@@ -1,0 +1,41 @@
+@import '../variables';
+
+.Layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: $spacer;
+  min-height: calc(100% - #{$spacer * 2});
+
+  &-neurons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  &-label {
+    background: $highlight;
+    border-radius: $spacer;
+    color: $light-gray;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    text-transform: uppercase;
+  }
+
+  button {
+    background: transparent;
+    border: 1px $dark-gray dashed;
+    border-radius: 0.5rem;
+    color: $dark-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    height: $spacer;
+  }
+}
