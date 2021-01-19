@@ -2,7 +2,7 @@ import './NavBar.scss';
 
 function NavBar({title}) {
   return (
-    <header class="NavBar">
+    <header className="NavBar">
       <h1>{title}</h1>
     </header>
   );

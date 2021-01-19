@@ -6,22 +6,29 @@ const testData = [
     'id': 1,
     'label': 'Hidden Layer',
     'neurons': [{
+      'id': 1,
       'label': 'Neuron'
     }]
   }
 ];
 
 function Network() {
-  let layers = testData;
 
-  const addNeuron = (event) => {
-    console.log(event);
+  let network = testData;
+
+  const test = () => {
+    console.log(network);
   }
 
-
   return (
-    <div class="Network">
-      {layers.map(({id, label, neurons}) => <Layer key={id} label={label} onAddNeuron={(event) => addNeuron(event)} />)}
+    <div className="Network">
+      {network.map(layer => (
+        <Layer
+          key={layer.id}
+          layer={layer}
+        />
+      ))}
+      <button onClick={test}>Test</button>
     </div>
   );
 }
