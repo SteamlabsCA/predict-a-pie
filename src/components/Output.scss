@@ -1,0 +1,25 @@
+@import '../variables';
+
+.Output {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  position: absolute;
+  right: -10rem - $spacer;
+  width: 10rem;
+  height: $spacer;
+
+  &-check {
+    background: $light-gray;
+    border-radius: 2.6rem;
+    position: relative;
+    left: 0.9rem;
+    transition: background-color 300ms;
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+}
