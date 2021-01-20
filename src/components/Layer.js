@@ -1,6 +1,7 @@
 import './Layer.scss';
 import Neuron from './Neuron';
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 
 function Layer({layer}) {
 
@@ -8,7 +9,8 @@ function Layer({layer}) {
 
   const onAddNeuron = () => {
     layer.neurons = [...neurons, {
-      id: neurons.length + 1,
+      id: uuid(),
+      type: layer.type,
       label: 'New Neuron'
     }];
     setNeurons(layer.neurons);

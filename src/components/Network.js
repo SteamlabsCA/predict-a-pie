@@ -1,12 +1,33 @@
 import './Network.scss';
 import Layer from './Layer';
+import { v4 as uuid } from 'uuid';
 
 const testData = [
   {
-    'id': 1,
+    'id': uuid(),
+    'type': 'input',
+    'label': 'Input Layer',
+    'neurons': [{
+      'id': uuid(),
+      'type': 'input',
+      'label': 'Neuron'
+    }]
+  },
+  {
+    'id': uuid(),
     'label': 'Hidden Layer',
     'neurons': [{
-      'id': 1,
+      'id': uuid(),
+      'label': 'Neuron'
+    }]
+  },
+  {
+    'id': uuid(),
+    'type': 'output',
+    'label': 'Output Layer',
+    'neurons': [{
+      'id': uuid(),
+      'type': 'output',
       'label': 'Neuron'
     }]
   }
@@ -21,15 +42,17 @@ function Network() {
   }
 
   return (
-    <div className="Network">
-      {network.map(layer => (
-        <Layer
-          key={layer.id}
-          layer={layer}
-        />
-      ))}
+    <>
+      <div className="Network">
+        {network.map(layer => (
+          <Layer
+            key={layer.id}
+            layer={layer}
+          />
+        ))}
+      </div>
       <button onClick={test}>Test</button>
-    </div>
+    </>
   );
 }
 
