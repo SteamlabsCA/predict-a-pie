@@ -2,7 +2,7 @@ import './Neuron.scss';
 import positive from '../assets/positive.svg';
 import negative from '../assets/negative.svg';
 import ContentEditable from './ContentEditable';
-import Toggle from './Toggle';
+import ToggleSwitch from './ToggleSwitch';
 import React from 'react';
 
 function Neuron({neuron}) {
@@ -16,7 +16,7 @@ function Neuron({neuron}) {
     case 'input':
       return (
         <div className="Neuron">
-          <Toggle />
+          <ToggleSwitch />
           <div className="Neuron-input"></div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           <div className="Neuron-output"></div>
