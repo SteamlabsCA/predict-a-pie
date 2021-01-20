@@ -15,6 +15,7 @@ function ToggleSwitch() {
         <div className="ToggleSwitch-switch"></div>
       </div>
       <div className="Neuron-output"></div>
+      <div className="ToggleSwitch-connector"></div>
     </div>
   );
 }

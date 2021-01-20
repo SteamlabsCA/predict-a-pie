@@ -43,4 +43,17 @@
   &-active &-switch {
     left: 2.3rem;
   }
+
+  &-connector {
+    background-color: #000;
+    position: absolute;
+    right: -$spacer - 1rem;
+    transition: background-color 300ms;
+    width: $spacer + 2rem;
+    height: 0.2rem;
+  }
+
+  &-active &-connector {
+    background-color: $active;
+  }
 }

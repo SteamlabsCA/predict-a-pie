@@ -22,4 +22,12 @@
     width: 3.6rem;
     height: 3.6rem;
   }
+
+  &-connector {
+    background: #000;
+    position: absolute;
+    left: -$spacer - 1rem;
+    width: $spacer + 2rem;
+    height: 0.2rem;
+  }
 }
