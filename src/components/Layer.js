@@ -3,7 +3,7 @@ import Neuron from './Neuron';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-function Layer({layer}) {
+function Layer({layer, ...props}) {
 
   const [neurons, setNeurons] = React.useState(layer.neurons);
 
@@ -20,7 +20,7 @@ function Layer({layer}) {
     <div className="Layer">
       <div className="Layer-neurons">
         {neurons.map((neuron) => (
-          <Neuron key={neuron.id} neuron={neuron} />
+          <Neuron key={neuron.id} neuron={neuron} onStartConnection={props.onStartConnection}/>
         ))}
         <button onClick={onAddNeuron}>Add New Node</button>
       </div>

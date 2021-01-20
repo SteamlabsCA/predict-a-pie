@@ -57,6 +57,7 @@
 
   &-output {
     @extend %terminal;
+    cursor: pointer;
     top: 50%;
     right: 0.5rem;
     transform: translateY(-50%);
