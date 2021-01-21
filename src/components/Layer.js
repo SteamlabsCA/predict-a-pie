@@ -20,7 +20,12 @@ function Layer({layer, ...props}) {
     <div className="Layer">
       <div className="Layer-neurons">
         {neurons.map((neuron) => (
-          <Neuron key={neuron.id} neuron={neuron} onStartConnection={props.onStartConnection}/>
+          <Neuron
+            key={neuron.id}
+            neuron={neuron}
+            onStartConnection={props.onStartConnection}
+            onCompleteConnection={props.onCompleteConnection}
+          />
         ))}
         <button onClick={onAddNeuron}>Add New Node</button>
       </div>

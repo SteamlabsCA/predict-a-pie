@@ -19,6 +19,12 @@ function Neuron({neuron, ...props}) {
     props.onStartConnection(neuron);
   }
 
+  const onCompleteConnection = (event, weight) => {
+    event.preventDefault();
+    event.stopPropagation();
+    props.onCompleteConnection(neuron, weight);
+  }
+
   switch (neuron.type) {
 
     case 'input':
@@ -34,10 +40,10 @@ function Neuron({neuron, ...props}) {
     case 'output':
       return (
         <div className="Neuron" ref={neuron.ref}>
-          <div className="Neuron-input Neuron-positive">
+          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
-          <div className="Neuron-input Neuron-negative">
+          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
             <img src={negative} alt="Negative terminal" />
           </div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
@@ -49,10 +55,10 @@ function Neuron({neuron, ...props}) {
     default:
       return (
         <div className="Neuron" ref={neuron.ref}>
-          <div className="Neuron-input Neuron-positive">
+          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
-          <div className="Neuron-input Neuron-negative">
+          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
             <img src={negative} alt="Negative terminal" />
           </div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
