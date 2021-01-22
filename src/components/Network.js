@@ -46,23 +46,16 @@ function Network() {
 
   const isNeuronAdjacent = (n1, n2) => {
     for (let i = 0; i < network.length - 1; i++) {
-      if (network[i].neurons.find(neuron => neuron.id === n1)) {
-        return network[i+1].neurons.find(neuron => neuron.id === n2)
+      if (network[i].neurons.find(neuron => neuron.id === n1.id)) {
+        return network[i+1].neurons.find(neuron => neuron.id === n2.id)
       }
     }
   }
 
   const onStartConnection = (neuron) => {
-    const rect = neuron.ref.current.getBoundingClientRect();
-    const x = rect.left + rect.width - 11;
-    const y = rect.top + rect.height / 2;
     setConnections([...connections, {
-      from: neuron.id,
+      from: neuron,
       to: false,
-      x1: x,
-      y1: y,
-      x2: false,
-      y2: false,
       weight: 0
     }]);
     setDragging(true);
@@ -72,31 +65,17 @@ function Network() {
     if (dragging) {
       let newConnections = [...connections];
       let connection = newConnections.pop();
-
-      // Neurons are on adjacent layers
-      if (isNeuronAdjacent(connection.from, neuron.id)) {
-        connection.to = neuron.id;
-        const rect = neuron.ref.current.getBoundingClientRect();
+      if (isNeuronAdjacent(connection.from, neuron)) {
+        connection.to = neuron;
+        connection.weight = weight;
 
         // Remove any existing connections
         newConnections = newConnections.filter(item => {
-          return !(item.from === connection.from && item.to === neuron.id);
+          return !(item.from.id === connection.from.id && item.to.id === neuron.id);
         });
-
-        // Connect to positive terminal
-        if (weight > 0) {
-          connection.x2 = rect.left + 11;
-          connection.y2 = rect.top + 15;
-
-        // Connect to negative terminal
-        } else {
-          connection.x2 = rect.left + 11;
-          connection.y2 = rect.top + rect.height - 14;
-        }
 
         newConnections.push(connection);
       }
-
       setConnections(newConnections);
       setDragging(false);
     }

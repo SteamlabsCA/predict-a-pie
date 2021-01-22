@@ -29,7 +29,7 @@ function Neuron({neuron, ...props}) {
 
     case 'input':
       return (
-        <div className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
           <ToggleSwitch />
           <div className="Neuron-input"></div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
@@ -39,7 +39,7 @@ function Neuron({neuron, ...props}) {
 
     case 'output':
       return (
-        <div className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
@@ -54,7 +54,7 @@ function Neuron({neuron, ...props}) {
 
     default:
       return (
-        <div className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
