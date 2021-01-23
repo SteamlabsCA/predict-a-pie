@@ -52,6 +52,34 @@ function Network() {
     }
   }
 
+  const neuronInputs(neuron) => {
+    let inputs = [];
+    for (let i = 0; i < connections.length; i++) {
+      if (connections[i].to.id === neuron.id) {
+        inputs.push(connections[i].from);
+      }
+    }
+    return inputs;
+  }
+
+  const neuronOutput(neuron) => {
+    if (neuron.type === 'input') {
+      return neuron.active;
+    }
+    const inputs = neuronInput(neuron);
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].weight < 0 && neuronOutput(inputs[i])) {
+        neuron.active = false;
+        return;
+      }
+      if (inputs[i].weight > 0 && !neuronOutput(inputs[i])) {
+        neuron.active = false;
+        return;
+      }
+    }
+    neuron.active = true;
+  }
+
   const onStartConnection = (neuron) => {
     setConnections([...connections, {
       from: neuron,

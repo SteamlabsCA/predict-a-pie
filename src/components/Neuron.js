@@ -14,6 +14,10 @@ function Neuron({neuron, ...props}) {
     neuron.label = value;
   }
 
+  const onToggle = () => {
+    neuron.active = !neuron.active;
+  }
+
   const onStartConnection = (event) => {
     event.preventDefault();
     props.onStartConnection(neuron);
@@ -30,7 +34,7 @@ function Neuron({neuron, ...props}) {
     case 'input':
       return (
         <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
-          <ToggleSwitch />
+          <ToggleSwitch onToggle={onToggle} />
           <div className="Neuron-input"></div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           <div className="Neuron-output" onMouseDown={onStartConnection}></div>
