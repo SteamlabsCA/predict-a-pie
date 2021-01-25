@@ -6,7 +6,10 @@
   display: flex;
   align-items: center;
   padding: 2rem;
+  position: fixed;
+  width: 100%;
   height: $spacer;
+  z-index: 10000;
 
   h1 {
     font-size: 1.8rem;

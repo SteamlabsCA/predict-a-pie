@@ -1,6 +1,9 @@
+@import '../variables';
+
 .Network {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-grow: 1;
+  padding-top: $spacer;
 }

@@ -140,8 +140,8 @@ function Network() {
             onChange={onChange}
           />
         ))}
-        <Connections connections={connections} mouseX={mouseX} mouseY={mouseY} />
       </div>
+      <Connections connections={connections} mouseX={mouseX} mouseY={mouseY} />
     </>
   );
 }

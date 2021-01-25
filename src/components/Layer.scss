@@ -1,11 +1,25 @@
 @import '../variables';
 
 .Layer {
+  background: #e6eaec;
+  border-right: 2px solid $light-gray;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $spacer;
+  margin: $spacer 0;
+  padding: $spacer / 2;
   min-height: calc(100% - #{$spacer * 2});
+
+  &:first-child {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  &:last-child {
+    border-right: 0;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
 
   &-neurons {
     display: flex;
@@ -21,6 +35,7 @@
     display: inline-block;
     font-size: 1.4rem;
     font-weight: 700;
+    margin-top: $spacer;
     padding: 0.5rem 2rem;
     text-transform: uppercase;
   }
