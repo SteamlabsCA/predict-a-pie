@@ -16,6 +16,7 @@ function Neuron({neuron, ...props}) {
 
   const onToggle = () => {
     neuron.active = !neuron.active;
+    props.onChange();
   }
 
   const onStartConnection = (event) => {
@@ -33,7 +34,7 @@ function Neuron({neuron, ...props}) {
 
     case 'input':
       return (
-        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
           <ToggleSwitch onToggle={onToggle} />
           <div className="Neuron-input"></div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
@@ -43,7 +44,7 @@ function Neuron({neuron, ...props}) {
 
     case 'output':
       return (
-        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
@@ -52,13 +53,13 @@ function Neuron({neuron, ...props}) {
           </div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           <div className="Neuron-output"></div>
-          <Output />
+          <Output active={neuron.active} />
         </div>
       );
 
     default:
       return (
-        <div id={'n-' + neuron.id} className="Neuron" ref={neuron.ref}>
+        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>

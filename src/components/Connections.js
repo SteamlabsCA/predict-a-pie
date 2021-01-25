@@ -53,7 +53,7 @@ function Connections({connections, mouseX, mouseY}) {
           y1={outputY(connection.from)}
           x2={inputX(connection.to, connection.weight)}
           y2={inputY(connection.to, connection.weight)}
-          className="Connections-line" />
+          className={connection.from.active ? 'Connections-line Connections-active' : 'Connections-line'} />
       ))}
     </svg>
   )

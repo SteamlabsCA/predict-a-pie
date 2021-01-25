@@ -14,20 +14,43 @@
   height: $spacer;
 
   &-check {
-    background: $light-gray;
+    background-color: $light-gray;
     border-radius: 2.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     left: 0.9rem;
     transition: background-color 300ms;
     width: 3.6rem;
     height: 3.6rem;
+
+    img {
+      display: none;
+      position: relative;
+      top: 0.1rem;
+      width: 2rem;
+      height: auto;
+    }
   }
 
   &-connector {
-    background: #000;
+    background-color: #000;
     position: absolute;
     left: -$spacer - 1rem;
     width: $spacer + 2rem;
     height: 0.2rem;
+  }
+
+  &-active &-check {
+    background-color: $active;
+
+    img {
+      display: block;
+    }
+  }
+
+  &-active &-connector {
+    background-color: $active;
   }
 }

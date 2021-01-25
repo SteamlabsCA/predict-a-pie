@@ -25,6 +25,7 @@ function Layer({layer, ...props}) {
             neuron={neuron}
             onStartConnection={props.onStartConnection}
             onCompleteConnection={props.onCompleteConnection}
+            onChange={props.onChange}
           />
         ))}
         <button onClick={onAddNeuron}>Add New Node</button>

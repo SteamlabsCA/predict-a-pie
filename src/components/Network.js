@@ -37,12 +37,15 @@ const testData = [
 
 function Network() {
 
-  let network = testData;
-
+  const [network, setNetwork] = React.useState(testData);
   const [connections, setConnections] = React.useState([]);
   const [dragging, setDragging] = React.useState(false);
   const [mouseX, setMouseX] = React.useState();
   const [mouseY, setMouseY] = React.useState();
+
+  React.useEffect(() => {
+    onChange();
+  }, [connections]);
 
   const isNeuronAdjacent = (n1, n2) => {
     for (let i = 0; i < network.length - 1; i++) {
@@ -50,34 +53,6 @@ function Network() {
         return network[i+1].neurons.find(neuron => neuron.id === n2.id)
       }
     }
-  }
-
-  const neuronInputs(neuron) => {
-    let inputs = [];
-    for (let i = 0; i < connections.length; i++) {
-      if (connections[i].to.id === neuron.id) {
-        inputs.push(connections[i].from);
-      }
-    }
-    return inputs;
-  }
-
-  const neuronOutput(neuron) => {
-    if (neuron.type === 'input') {
-      return neuron.active;
-    }
-    const inputs = neuronInput(neuron);
-    for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].weight < 0 && neuronOutput(inputs[i])) {
-        neuron.active = false;
-        return;
-      }
-      if (inputs[i].weight > 0 && !neuronOutput(inputs[i])) {
-        neuron.active = false;
-        return;
-      }
-    }
-    neuron.active = true;
   }
 
   const onStartConnection = (neuron) => {
@@ -109,6 +84,38 @@ function Network() {
     }
   }
 
+  const neuronInputs = (neuron) => {
+    let inputs = [];
+    for (let i = 0; i < connections.length; i++) {
+      if (connections[i].to.id === neuron.id) {
+        inputs.push(connections[i]);
+      }
+    }
+    return inputs;
+  }
+
+  const onChange = () => {
+    for (let i = 1; i < network.length; i++) {
+      for (let j = 0; j < network[i].neurons.length; j++) {
+        const inputs = neuronInputs(network[i].neurons[j]);
+        let activation = 0;
+        for (let k = 0; k < inputs.length; k++) {
+          if (inputs[k].weight > 0 && inputs[k].from.active) {
+            activation++;
+          }
+          if (inputs[k].weight > 0 && !inputs[k].from.active) {
+            activation -= 1000;
+          }
+          if (inputs[k].weight < 0 && inputs[k].from.active) {
+            activation -= 1000;
+          }
+        }
+        network[i].neurons[j].active = activation > 0;
+      }
+    }
+    setNetwork([...network]);
+  }
+
   const onMouseMove = (event) => {
     setMouseX(event.clientX);
     setMouseY(event.clientY);
@@ -130,6 +137,7 @@ function Network() {
             layer={layer}
             onStartConnection={onStartConnection}
             onCompleteConnection={onCompleteConnection}
+            onChange={onChange}
           />
         ))}
         <Connections connections={connections} mouseX={mouseX} mouseY={mouseY} />

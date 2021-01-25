@@ -1,3 +1,5 @@
+@import '../variables';
+
 .Connections {
   pointer-events: none;
   position: absolute;
@@ -9,5 +11,10 @@
   &-line {
     stroke: rgb(0, 0, 0);
     stroke-width: 2;
+    transition: stroke 300ms;
+  }
+
+  &-active {
+    stroke: $active;
   }
 }
