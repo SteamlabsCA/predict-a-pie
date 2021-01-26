@@ -28,7 +28,7 @@ function Layer({layer, ...props}) {
             onChange={props.onChange}
           />
         ))}
-        <button onClick={onAddNeuron}>Add New Node</button>
+        <button className="App-button" onClick={onAddNeuron}>Add New Node</button>
       </div>
       <div className="Layer-label">
         {layer.label}

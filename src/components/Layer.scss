@@ -39,18 +39,4 @@
     padding: 0.5rem 2rem;
     text-transform: uppercase;
   }
-
-  button {
-    background: transparent;
-    border: 1px $dark-gray dashed;
-    border-radius: 0.5rem;
-    color: $dark-gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 500;
-    margin: 1rem 0;
-    height: $spacer;
-  }
 }

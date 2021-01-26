@@ -55,6 +55,28 @@ function Network() {
     }
   }
 
+  const neuronInputs = (neuron) => {
+    let inputs = [];
+    for (let i = 0; i < connections.length; i++) {
+      if (connections[i].to.id === neuron.id) {
+        inputs.push(connections[i]);
+      }
+    }
+    return inputs;
+  }
+
+  const onAddLayer = () => {
+    network.splice(network.length - 1, 0, {
+      'id': uuid(),
+      'label': 'Hidden Layer',
+      'neurons': [{
+        'id': uuid(),
+        'label': 'Neuron'
+      }]
+    });
+    onChange();
+  }
+
   const onStartConnection = (neuron) => {
     setConnections([...connections, {
       from: neuron,
@@ -82,16 +104,6 @@ function Network() {
       setConnections(newConnections);
       setDragging(false);
     }
-  }
-
-  const neuronInputs = (neuron) => {
-    let inputs = [];
-    for (let i = 0; i < connections.length; i++) {
-      if (connections[i].to.id === neuron.id) {
-        inputs.push(connections[i]);
-      }
-    }
-    return inputs;
   }
 
   const onChange = () => {
@@ -131,15 +143,18 @@ function Network() {
   return (
     <>
       <div className="Network" onMouseMove={onMouseMove} onMouseUp={onMouseUp}>
-        {network.map(layer => (
-          <Layer
-            key={layer.id}
-            layer={layer}
-            onStartConnection={onStartConnection}
-            onCompleteConnection={onCompleteConnection}
-            onChange={onChange}
-          />
-        ))}
+        <div className="Network-layers">
+          {network.map(layer => (
+            <Layer
+              key={layer.id}
+              layer={layer}
+              onStartConnection={onStartConnection}
+              onCompleteConnection={onCompleteConnection}
+              onChange={onChange}
+            />
+          ))}
+        </div>
+        <button className="App-button" onClick={onAddLayer}>Add Layer</button>
       </div>
       <Connections connections={connections} mouseX={mouseX} mouseY={mouseY} />
     </>
