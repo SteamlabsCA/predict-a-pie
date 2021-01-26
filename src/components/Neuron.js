@@ -8,6 +8,9 @@ import React from 'react';
 
 function Neuron({neuron, ...props}) {
 
+  const [mouseX, setMouseX] = React.useState(false);
+  const [mouseY, setMouseY] = React.useState(false);
+
   neuron.ref = React.createRef();
 
   const onLabelChange = (value) => {
@@ -30,11 +33,33 @@ function Neuron({neuron, ...props}) {
     props.onCompleteConnection(neuron, weight);
   }
 
+  const onMouseDown = (event) => {
+    setMouseX(event.clientX);
+    setMouseY(event.clientY);
+  }
+
+  const onMouseMove = (event) => {
+    if (event.buttons) {
+      const deltaX = event.clientX - mouseX;
+      const deltaY = event.clientY - mouseY;
+      if (Math.abs(deltaX) < 10 && Math.abs(deltaY) > 10) {
+        props.onDragStart(neuron);
+      }
+    }
+  }
+
   switch (neuron.type) {
 
     case 'input':
       return (
-        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
+        <div
+          id={'n-' + neuron.id}
+          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          style={props.style}
+          ref={neuron.ref}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+        >
           <ToggleSwitch onToggle={onToggle} />
           <div className="Neuron-input"></div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
@@ -44,7 +69,14 @@ function Neuron({neuron, ...props}) {
 
     case 'output':
       return (
-        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
+        <div
+          id={'n-' + neuron.id}
+          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          style={props.style}
+          ref={neuron.ref}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+        >
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
@@ -59,7 +91,14 @@ function Neuron({neuron, ...props}) {
 
     default:
       return (
-        <div id={'n-' + neuron.id} className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'} ref={neuron.ref}>
+        <div
+          id={'n-' + neuron.id}
+          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          style={props.style}
+          ref={neuron.ref}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+        >
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
           </div>
