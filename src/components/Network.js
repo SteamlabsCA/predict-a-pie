@@ -66,6 +66,16 @@ function Network() {
   }
 
   const onAddLayer = () => {
+
+    // Break existing connections
+    const outputNeuronIds = network[network.length - 1].neurons.map(neuron => neuron.id);
+    let newConnections = [...connections];
+    newConnections = newConnections.filter(connection => {
+      return !outputNeuronIds.includes(connection.to.id);
+    });
+    setConnections(newConnections);
+
+    // Add new layer
     network.splice(network.length - 1, 0, {
       'id': uuid(),
       'label': 'Hidden Layer',
