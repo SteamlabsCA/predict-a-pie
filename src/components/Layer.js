@@ -6,6 +6,8 @@ import { v4 as uuid } from 'uuid';
 function Layer({layer, ...props}) {
 
   const [neurons, setNeurons] = React.useState(layer.neurons);
+  const [mouseY, setMouseY] = React.useState(false);
+  const [originY, setOriginY] = React.useState(false);
   const [dragging, setDragging] = React.useState(false);
 
   const onAddNeuron = () => {
@@ -19,45 +21,77 @@ function Layer({layer, ...props}) {
 
   const onDragStart = (neuron) => {
     if (!dragging) {
-      console.log('Drag start');
+      setOriginY(mouseY);
       setDragging(neuron);
     }
   };
 
   const onDragCancel = () => {
     if (dragging) {
-      neurons.map(neuron => {
-        if (neuron.id == dragging.id) {
-          neuron.style = {};
-        }
-      });
-      console.log('Drag cancelled');
+      neurons.map(neuron => neuron.style = {});
       setDragging(false);
     }
   };
 
-  const onDragEnd = () => {
+  const onDragEnd = (event) => {
     if (dragging) {
-      neurons.map(neuron => {
-        if (neuron.id == dragging.id) {
-          neuron.style = {};
-        }
-      });
-      console.log('Drag end');
+
+      // Determine change in index of dragged neuron
+      const deltaY = event.clientY - originY;
+      const neuronStyle = getComputedStyle(dragging.ref.current);
+      const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
+      const draggingIndex = neurons.findIndex(neuron => neuron.id === dragging.id);
+      const deltaIndex = Math.trunc(deltaY / neuronHeight);
+
+      // Reorder neuron array
+      if (Math.abs(deltaIndex) > 0) {
+        const neuron = neurons.splice(draggingIndex, 1);
+        neurons.splice(draggingIndex + deltaIndex, 0, neuron[0]);
+      }
+
+      neurons.map(neuron => neuron.style = {});
+      setNeurons([...neurons]);
       setDragging(false);
     }
   }
 
-  const onDragging = () => {
+  const onDragging = (event) => {
+    setMouseY(event.clientY);
     if (dragging) {
-      neurons.map(neuron => {
-        if (neuron.id == dragging.id) {
+
+      // Determine change in index of dragged neuron
+      const deltaY = event.clientY - originY;
+      const neuronStyle = getComputedStyle(dragging.ref.current);
+      const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
+      const draggingIndex = neurons.findIndex(neuron => neuron.id === dragging.id);
+      const deltaIndex = Math.trunc(deltaY / neuronHeight);
+
+      // Adjust position of each neuron accordingly
+      neurons.map((neuron, index) => {
+        if (neuron.id === dragging.id) {
           neuron.style = {
-            'background': 'red'
+            'top': deltaY + 'px',
+            'zIndex': 1
           };
+        } else {
+          neuron.style = {}
         }
+        if (deltaIndex < 0) {
+          if (index >= draggingIndex + deltaIndex && index < draggingIndex) {
+            neuron.style = {
+              'top': neuronHeight + 'px',
+            };
+          }
+        }
+        if (deltaIndex > 0) {
+          if (index > draggingIndex && index <= draggingIndex + deltaIndex) {
+            neuron.style = {
+              'top': -neuronHeight + 'px',
+            };
+          }
+        }
+        return neuron;
       });
-      console.log('Dragging');
     }
   }
 
