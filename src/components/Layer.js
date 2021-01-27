@@ -70,8 +70,10 @@ function Layer({layer, ...props}) {
       neurons.map((neuron, index) => {
         if (neuron.id === dragging.id) {
           neuron.style = {
+            'boxShadow': '0 0 10px rgba(0, 0, 0, 0.2)',
             'top': deltaY + 'px',
-            'zIndex': 1
+            'userSelect': 'none',
+            'zIndex': 10000
           };
         } else {
           neuron.style = {}
