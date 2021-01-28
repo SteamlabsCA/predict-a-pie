@@ -116,6 +116,13 @@ function Network() {
     }
   }
 
+  const onDeleteNeuron = (neuron) => {
+    let newConnections = connections.filter(connection => {
+      return connection.from.id !== neuron.id && connection.to.id !== neuron.id;
+    });
+    setConnections(newConnections);
+  }
+
   const onChange = () => {
     for (let i = 1; i < network.length; i++) {
       for (let j = 0; j < network[i].neurons.length; j++) {
@@ -160,6 +167,7 @@ function Network() {
               layer={layer}
               onStartConnection={onStartConnection}
               onCompleteConnection={onCompleteConnection}
+              onDeleteNeuron={onDeleteNeuron}
               onChange={onChange}
             />
           ))}

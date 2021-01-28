@@ -1,9 +1,12 @@
 import './Layer.scss';
+import trashcan from '../assets/trashcan.svg';
 import Neuron from './Neuron';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
 function Layer({layer, ...props}) {
+
+  const trash = React.createRef();
 
   const [neurons, setNeurons] = React.useState(layer.neurons);
   const [mouseY, setMouseY] = React.useState(false);
@@ -17,6 +20,14 @@ function Layer({layer, ...props}) {
       label: 'New Neuron'
     }];
     setNeurons(layer.neurons);
+  };
+
+  const onDeleteNeuron = () => {
+    layer.neurons = neurons.filter(neuron => neuron.id !== dragging.id);
+    props.onDeleteNeuron(dragging);
+    neurons.map(neuron => neuron.style = {});
+    setNeurons(layer.neurons);
+    setDragging(false);
   };
 
   const onDragStart = (neuron) => {
@@ -36,7 +47,14 @@ function Layer({layer, ...props}) {
   const onDragEnd = (event) => {
     if (dragging) {
 
-      // Determine change in index of dragged neuron
+      // Trash neuron
+      const rect = trash.current.getBoundingClientRect();
+      if (event.clientX > rect.left && event.clientX < rect.right && event.clientY > rect.top && event.clientY < rect.bottom) {
+        onDeleteNeuron();
+        return;
+      }
+
+        // Determine change in index of dragged neuron
       const deltaY = event.clientY - originY;
       const neuronStyle = getComputedStyle(dragging.ref.current);
       const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
@@ -98,7 +116,12 @@ function Layer({layer, ...props}) {
   }
 
   return (
-    <div className="Layer" onMouseUp={onDragEnd} onMouseLeave={onDragCancel} onMouseMove={onDragging}>
+    <div
+      className={dragging ? 'Layer Layer-dragging' : 'Layer'}
+      onMouseUp={onDragEnd}
+      onMouseLeave={onDragCancel}
+      onMouseMove={onDragging}
+    >
       <div className="Layer-neurons">
         {neurons.map((neuron) => (
           <Neuron
@@ -111,7 +134,14 @@ function Layer({layer, ...props}) {
             style={neuron.style}
           />
         ))}
-        <button className="App-button" onClick={onAddNeuron}>Add New Node</button>
+        {dragging &&
+          <div ref={trash} className="Layer-trash" onMouseUp={onDeleteNeuron}>
+            <img src={trashcan} alt="Trash can" />
+          </div>
+        }
+        {!dragging &&
+          <button className="App-button" onClick={onAddNeuron}>Add New Node</button>
+        }
       </div>
       <div className="Layer-label">
         {layer.label}
