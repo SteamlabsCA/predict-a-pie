@@ -70,6 +70,8 @@
   }
 
   &-dragging {
-    z-index: 100;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    z-index: 10000;
   }
 }

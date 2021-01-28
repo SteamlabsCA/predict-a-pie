@@ -12,6 +12,7 @@ function Layer({layer, ...props}) {
   const [mouseY, setMouseY] = React.useState(false);
   const [originY, setOriginY] = React.useState(false);
   const [dragging, setDragging] = React.useState(false);
+  const [overTrash, setOverTrash] = React.useState(false);
 
   const onAddNeuron = () => {
     layer.neurons = [...neurons, {
@@ -28,6 +29,7 @@ function Layer({layer, ...props}) {
     neurons.map(neuron => neuron.style = {});
     setNeurons(layer.neurons);
     setDragging(false);
+    setOverTrash(false);
   };
 
   const onDragStart = (neuron) => {
@@ -41,6 +43,7 @@ function Layer({layer, ...props}) {
     if (dragging) {
       neurons.map(neuron => neuron.style = {});
       setDragging(false);
+      setOverTrash(false);
     }
   };
 
@@ -70,12 +73,21 @@ function Layer({layer, ...props}) {
       neurons.map(neuron => neuron.style = {});
       setNeurons([...neurons]);
       setDragging(false);
+      setOverTrash(false);
     }
   }
 
   const onDragging = (event) => {
     setMouseY(event.clientY);
     if (dragging) {
+
+      // Over trashcan
+      const rect = trash.current.getBoundingClientRect();
+      if (event.clientX > rect.left && event.clientX < rect.right && event.clientY > rect.top && event.clientY < rect.bottom) {
+        setOverTrash(true);
+      } else {
+        setOverTrash(false);
+      }
 
       // Determine change in index of dragged neuron
       const deltaY = event.clientY - originY;
@@ -88,10 +100,7 @@ function Layer({layer, ...props}) {
       neurons.map((neuron, index) => {
         if (neuron.id === dragging.id) {
           neuron.style = {
-            'boxShadow': '0 0 10px rgba(0, 0, 0, 0.2)',
-            'top': deltaY + 'px',
-            'userSelect': 'none',
-            'zIndex': 10000
+            'top': deltaY + 'px'
           };
         } else {
           neuron.style = {}
@@ -122,7 +131,7 @@ function Layer({layer, ...props}) {
       onMouseLeave={onDragCancel}
       onMouseMove={onDragging}
     >
-      <div className="Layer-neurons">
+      <div className={overTrash ? 'Layer-neurons Layer-trash-hover' : 'Layer-neurons'}>
         {neurons.map((neuron) => (
           <Neuron
             key={neuron.id}
@@ -132,6 +141,7 @@ function Layer({layer, ...props}) {
             onCompleteConnection={props.onCompleteConnection}
             onChange={props.onChange}
             style={neuron.style}
+            dragging={neuron.id === dragging.id}
           />
         ))}
         {dragging &&

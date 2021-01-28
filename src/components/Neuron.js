@@ -54,7 +54,7 @@ function Neuron({neuron, ...props}) {
       return (
         <div
           id={'n-' + neuron.id}
-          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}
@@ -71,7 +71,7 @@ function Neuron({neuron, ...props}) {
       return (
         <div
           id={'n-' + neuron.id}
-          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}
@@ -93,7 +93,7 @@ function Neuron({neuron, ...props}) {
       return (
         <div
           id={'n-' + neuron.id}
-          className={neuron.active ? 'Neuron Neuron-active' : 'Neuron'}
+          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}
