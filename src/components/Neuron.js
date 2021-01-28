@@ -43,7 +43,9 @@ function Neuron({neuron, ...props}) {
       const deltaX = event.clientX - mouseX;
       const deltaY = event.clientY - mouseY;
       if (Math.abs(deltaX) < 10 && Math.abs(deltaY) > 10) {
+        getSelection().removeAllRanges();
         props.onDragStart(neuron);
+        neuron.ref.current.focus();
       }
     }
   }
