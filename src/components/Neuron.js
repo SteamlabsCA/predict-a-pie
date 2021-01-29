@@ -50,6 +50,11 @@ function Neuron({neuron, ...props}) {
     }
   }
 
+  const onMouseOut = (event) => {
+    setMouseX(false);
+    setMouseY(false);
+  }
+
   switch (neuron.type) {
 
     case 'input':
@@ -61,6 +66,7 @@ function Neuron({neuron, ...props}) {
           ref={neuron.ref}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
+          onMouseOut={onMouseOut}
         >
           <ToggleSwitch onToggle={onToggle} />
           <div className="Neuron-input"></div>
@@ -78,6 +84,7 @@ function Neuron({neuron, ...props}) {
           ref={neuron.ref}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
+          onMouseOut={onMouseOut}
         >
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
@@ -100,6 +107,7 @@ function Neuron({neuron, ...props}) {
           ref={neuron.ref}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
+          onMouseOut={onMouseOut}
         >
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
             <img src={positive} alt="Positive terminal" />
