@@ -1,10 +1,14 @@
 import './Connections.scss';
+import scissors from '../assets/scissors.svg';
 import React from 'react';
 
-function Connections({connections, mouseX, mouseY}) {
+function Connections({connections, mouseX, mouseY, ...props}) {
 
   const [time, setTime] = React.useState();
   const requestRef = React.useRef();
+
+  const [hover, setHover] = React.useState(false);
+  const [cursorStyle, setCursorStyle] = React.useState();
 
   const animate = (time) => {
     setTime(time);
@@ -44,18 +48,46 @@ function Connections({connections, mouseX, mouseY}) {
     }
   }
 
+  const onMouseMove = (event) => {
+    setCursorStyle({
+      'display': 'block',
+      'left': event.clientX + 'px',
+      'top': event.clientY + 'px'
+    });
+  }
+
+  const onMouseOut = (event) => {
+    setCursorStyle({
+      'display': 'none'
+    });
+  }
+
+  const onDeleteConnection = (connection) => {
+    setCursorStyle({
+      'display': 'none'
+    });
+    props.onDeleteConnection(connection);
+  }
+
   return (
-    <svg className="Connections">
-      {connections.map((connection, index) => (
-        <line
-          key={index}
-          x1={outputX(connection.from)}
-          y1={outputY(connection.from)}
-          x2={inputX(connection.to, connection.weight)}
-          y2={inputY(connection.to, connection.weight)}
-          className={connection.from.active ? 'Connections-line Connections-active' : 'Connections-line'} />
-      ))}
-    </svg>
+    <div className="Connections">
+      <svg>
+        {connections.map((connection, index) => (
+          <line
+            key={index}
+            x1={outputX(connection.from)}
+            y1={outputY(connection.from)}
+            x2={inputX(connection.to, connection.weight)}
+            y2={inputY(connection.to, connection.weight)}
+            className={connection.from.active ? 'Connections-line Connections-active' : 'Connections-line'}
+            onMouseMove={onMouseMove}
+            onMouseOut={onMouseOut}
+            onMouseDown={(event) => {onDeleteConnection(connection)}}
+          />
+        ))}
+      </svg>
+      <img className="Connections-cut" style={cursorStyle} src={scissors} alt="Scissors" />
+    </div>
   )
 }
 

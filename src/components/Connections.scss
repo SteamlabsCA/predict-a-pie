@@ -8,13 +8,34 @@
   width: 100%;
   height: 100%;
 
+  svg {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   &-line {
+    cursor: none;
+    pointer-events: all;
     stroke: rgb(0, 0, 0);
     stroke-width: 2;
     transition: stroke 300ms;
+
+    &:hover {
+      opacity: 0.4;
+    }
   }
 
   &-active {
     stroke: $active;
+  }
+
+  &-cut {
+    display: none;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    width: 3rem;
+    height: auto;
   }
 }

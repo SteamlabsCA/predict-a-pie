@@ -116,6 +116,12 @@ function Network() {
     }
   }
 
+  const onDeleteConnection = (connection) => {
+    setConnections(connections.filter(item => {
+      return !(item.from.id === connection.from.id && item.to.id === connection.to.id);
+    }));
+  }
+
   const onDeleteNeuron = (neuron) => {
     let newConnections = connections.filter(connection => {
       return connection.from.id !== neuron.id && connection.to.id !== neuron.id;
@@ -174,7 +180,12 @@ function Network() {
         </div>
         <button className="App-button" onClick={onAddLayer}>Add Layer</button>
       </div>
-      <Connections connections={connections} mouseX={mouseX} mouseY={mouseY} />
+      <Connections
+        connections={connections}
+        mouseX={mouseX}
+        mouseY={mouseY}
+        onDeleteConnection={onDeleteConnection}
+      />
     </>
   );
 }
