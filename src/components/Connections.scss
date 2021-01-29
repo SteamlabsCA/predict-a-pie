@@ -16,15 +16,15 @@
   }
 
   &-line {
-    cursor: none;
     pointer-events: all;
     stroke: rgb(0, 0, 0);
     stroke-width: 2;
     transition: stroke 300ms;
+  }
 
-    &:hover {
-      opacity: 0.4;
-    }
+  &-hover {
+    cursor: none;
+    opacity: 0.3;
   }
 
   &-active {

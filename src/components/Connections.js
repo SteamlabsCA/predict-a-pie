@@ -48,18 +48,22 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     }
   }
 
-  const onMouseMove = (event) => {
-    setCursorStyle({
-      'display': 'block',
-      'left': event.clientX + 'px',
-      'top': event.clientY + 'px'
-    });
+  const onMouseMove = (connection, event) => {
+    if (connection.to) {
+      setCursorStyle({
+        'display': 'block',
+        'left': event.clientX + 'px',
+        'top': event.clientY + 'px'
+      });
+      connection.hover = true;
+    }
   }
 
-  const onMouseOut = (event) => {
+  const onMouseOut = (connection) => {
     setCursorStyle({
       'display': 'none'
     });
+    connection.hover = false;
   }
 
   const onDeleteConnection = (connection) => {
@@ -79,9 +83,9 @@ function Connections({connections, mouseX, mouseY, ...props}) {
             y1={outputY(connection.from)}
             x2={inputX(connection.to, connection.weight)}
             y2={inputY(connection.to, connection.weight)}
-            className={connection.from.active ? 'Connections-line Connections-active' : 'Connections-line'}
-            onMouseMove={onMouseMove}
-            onMouseOut={onMouseOut}
+            className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
+            onMouseMove={(event) => {onMouseMove(connection, event)}}
+            onMouseOut={(event) => {onMouseOut(connection)}}
             onMouseDown={(event) => {onDeleteConnection(connection)}}
           />
         ))}
