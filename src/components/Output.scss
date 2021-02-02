@@ -54,3 +54,22 @@
     background-color: $active;
   }
 }
+
+.TrainedNetwork {
+
+  .Output {
+    right: -8rem - $spacer;
+    width: 8rem;
+    height: $spacer / 2;
+
+    &-check {
+      width: 2rem;
+      height: 2rem;
+
+      img {
+        top: 0.05rem;
+        width: 1rem;
+      }
+    }
+  }
+}

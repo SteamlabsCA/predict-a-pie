@@ -1,0 +1,11 @@
+@import '../variables';
+
+.TensorFlowNetwork {
+  background: #e6eaec;
+  border-right: 2px solid $light-gray;
+  display: flex;
+  margin: $spacer 0;
+  padding: $spacer / 2;
+  width: $spacer * 4;
+  min-height: calc(100% - #{$spacer * 2});
+}

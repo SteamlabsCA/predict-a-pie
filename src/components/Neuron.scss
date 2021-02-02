@@ -75,3 +75,16 @@
     z-index: 10000;
   }
 }
+
+.TrainedNetwork {
+
+  .Neuron {
+    margin: 0.5rem 0;
+    width: $spacer * 3;
+    height: $spacer / 2;
+
+    &-title {
+      font-size: 1.6rem;
+    }
+  }
+}

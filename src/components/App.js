@@ -1,6 +1,7 @@
 import './App.scss';
 import NavBar from './NavBar';
 import Network from './Network';
+import TrainedNetwork from './TrainedNetwork';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Switch>
           <Route path="/trained">
             <NavBar title="Test a Trained Network"/>
+            <TrainedNetwork />
           </Route>
           <Route path="/">
             <NavBar title="Build a Neural Network"/>
