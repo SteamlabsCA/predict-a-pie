@@ -4,10 +4,8 @@ import React from 'react';
 
 function Connections({connections, mouseX, mouseY, ...props}) {
 
-  const [time, setTime] = React.useState();
   const requestRef = React.useRef();
-
-  const [hover, setHover] = React.useState(false);
+  const [time, setTime] = React.useState();
   const [cursorStyle, setCursorStyle] = React.useState();
 
   const animate = (time) => {
@@ -18,7 +16,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   React.useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, []);
+  });
 
   const outputX = (neuron) => {
     const rect = document.querySelector('#n-' + neuron.id).getBoundingClientRect();
