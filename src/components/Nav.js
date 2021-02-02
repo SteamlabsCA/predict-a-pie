@@ -1,6 +1,8 @@
 import './Nav.scss';
 import menu from '../assets/menu.svg';
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 function Nav() {
 
@@ -21,8 +23,8 @@ function Nav() {
         <img src={menu} alt="Menu icon" />
       </button>
       <nav className="Nav-menu" style={menuStyle}>
-        <a href="/">Build a Neural Network</a>
-        <a href="/train">Test a Trained Network</a>
+        <Link to="/">Build a Neural Network</Link>
+        <Link to="/trained">Test a Trained Network</Link>
       </nav>
     </div>
   );
