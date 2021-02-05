@@ -150,7 +150,7 @@ function TrainedNetwork() {
             ))}
           </div>
         </div>
-        <TensorFlowNetwork />
+        <TensorFlowNetwork src="/model.json" />
         <div className="Layer">
           <div className="Layer-neurons">
             {outputs.map(neuron => (
