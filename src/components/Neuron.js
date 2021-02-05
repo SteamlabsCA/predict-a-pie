@@ -120,7 +120,11 @@ function Neuron({neuron, ...props}) {
             </>
           }
           <div className="Neuron-output"></div>
-          <Output active={neuron.active} small={props.small} />
+          <Output
+            active={neuron.active}
+            confidence={neuron.confidence}
+            small={props.small}
+          />
         </div>
       );
 

@@ -62,6 +62,7 @@
   }
 
   &-small &-check {
+    left: 0.8rem;
     width: 2rem;
     height: 2rem;
 
@@ -69,5 +70,13 @@
       top: 0.05rem;
       width: 1rem;
     }
+  }
+
+  &-small &-confidence {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1.1rem;
+    position: relative;
+    left: 1.4rem;
+    width: 3rem;
   }
 }

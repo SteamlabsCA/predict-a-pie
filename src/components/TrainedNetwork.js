@@ -135,6 +135,15 @@ function TrainedNetwork() {
     setInputs([...inputs]);
   };
 
+  const onPrediction = (result) => {
+    const max = Math.max(...result);
+    result.map((output, index) => {
+      outputs[index].confidence = Math.round(output * 100);
+      outputs[index].active = output === max;
+    });
+    setOutputs([...outputs]);
+  };
+
   return (
     <div className="TrainedNetwork">
       <div className="TrainedNetwork-layers">
@@ -150,7 +159,11 @@ function TrainedNetwork() {
             ))}
           </div>
         </div>
-        <TensorFlowNetwork src="/model.json" />
+        <TensorFlowNetwork
+          src="/model.json"
+          inputs={inputs}
+          onPrediction={onPrediction}
+        />
         <div className="Layer">
           <div className="Layer-neurons">
             {outputs.map(neuron => (
