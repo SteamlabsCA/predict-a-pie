@@ -24,13 +24,17 @@ function Neuron({neuron, ...props}) {
 
   const onStartConnection = (event) => {
     event.preventDefault();
-    props.onStartConnection(neuron);
+    if (props.editable) {
+      props.onStartConnection(neuron);
+    }
   }
 
   const onCompleteConnection = (event, weight) => {
     event.preventDefault();
     event.stopPropagation();
-    props.onCompleteConnection(neuron, weight);
+    if (props.editable) {
+      props.onCompleteConnection(neuron, weight);
+    }
   }
 
   const onMouseDown = (event) => {
@@ -44,8 +48,10 @@ function Neuron({neuron, ...props}) {
       const deltaY = event.clientY - mouseY;
       if (Math.abs(deltaX) < 10 && Math.abs(deltaY) > 10) {
         getSelection().removeAllRanges();
-        props.onDragStart(neuron);
-        neuron.ref.current.focus();
+        if (props.editable) {
+          props.onDragStart(neuron);
+          neuron.ref.current.focus();
+        }
       }
     }
   }
@@ -55,13 +61,18 @@ function Neuron({neuron, ...props}) {
     setMouseY(false);
   }
 
+  const classes = ['Neuron'];
+  if (neuron.active) classes.push('Neuron-active');
+  if (props.dragging) classes.push('Neuron-dragging');
+  if (props.small) classes.push('Neuron-small');
+
   switch (neuron.type) {
 
     case 'input':
       return (
         <div
           id={'n-' + neuron.id}
-          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
+          className={classes.join(' ')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}
@@ -70,7 +81,12 @@ function Neuron({neuron, ...props}) {
         >
           <ToggleSwitch onToggle={onToggle} />
           <div className="Neuron-input"></div>
-          <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
+          {props.editable &&
+            <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
+          }
+          {!props.editable &&
+            <div className="Neuron-title">{neuron.label}</div>
+          }
           <div className="Neuron-output" onMouseDown={onStartConnection}></div>
         </div>
       );
@@ -79,22 +95,32 @@ function Neuron({neuron, ...props}) {
       return (
         <div
           id={'n-' + neuron.id}
-          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
+          className={classes.join(' ')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
-            <img src={positive} alt="Positive terminal" />
-          </div>
-          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
-            <img src={negative} alt="Negative terminal" />
-          </div>
-          <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
+          {props.editable &&
+            <>
+              <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
+                <img src={positive} alt="Positive terminal" />
+              </div>
+              <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
+                <img src={negative} alt="Negative terminal" />
+              </div>
+              <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
+            </>
+          }
+          {!props.editable &&
+            <>
+              <div className="Neuron-input"></div>
+              <div className="Neuron-title">{neuron.label}</div>
+            </>
+          }
           <div className="Neuron-output"></div>
-          <Output active={neuron.active} />
+          <Output active={neuron.active} small={props.small} />
         </div>
       );
 
@@ -102,7 +128,7 @@ function Neuron({neuron, ...props}) {
       return (
         <div
           id={'n-' + neuron.id}
-          className={(neuron.active ? 'Neuron Neuron-active' : 'Neuron') + (props.dragging ? ' Neuron-dragging' : '')}
+          className={classes.join(' ')}
           style={props.style}
           ref={neuron.ref}
           onMouseDown={onMouseDown}

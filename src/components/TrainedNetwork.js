@@ -145,6 +145,7 @@ function TrainedNetwork() {
                 key={neuron.id}
                 neuron={neuron}
                 onChange={onChange}
+                small
               />
             ))}
           </div>
@@ -156,6 +157,7 @@ function TrainedNetwork() {
               <Neuron
                 key={neuron.id}
                 neuron={neuron}
+                small
               />
             ))}
           </div>

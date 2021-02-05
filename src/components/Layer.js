@@ -141,6 +141,7 @@ function Layer({layer, ...props}) {
             onCompleteConnection={props.onCompleteConnection}
             onChange={props.onChange}
             style={neuron.style}
+            editable
             dragging={neuron.id === dragging.id}
           />
         ))}
