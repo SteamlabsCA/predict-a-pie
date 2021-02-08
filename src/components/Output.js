@@ -16,7 +16,9 @@ function Output({active, confidence, ...props}) {
         <img src={check} alt="Check mark" />
       </div>
       {confidence !== undefined &&
-        <div className="Output-confidence">{confidence}%</div>
+        <div className="Output-confidence">
+          Confidence: {confidence}%
+        </div>
       }
     </div>
   );

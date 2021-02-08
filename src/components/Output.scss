@@ -56,8 +56,10 @@
 
 
   &-small {
-    right: -8rem - $spacer;
-    width: 8rem;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    right: -17rem - $spacer;
+    width: 17rem;
     height: $spacer / 2;
   }
 
@@ -74,9 +76,8 @@
 
   &-small &-confidence {
     color: rgba(0, 0, 0, 0.6);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     position: relative;
     left: 1.4rem;
-    width: 3rem;
   }
 }
