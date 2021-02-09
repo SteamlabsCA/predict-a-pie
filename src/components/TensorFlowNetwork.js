@@ -16,10 +16,10 @@ function TensorFlowNetwork({src, inputs, ...props}) {
       const output = await model.predict(tensor).array();
 
       // Get intermediate outputs
-      for (let i = 0; i < layerModels.length; i++) {
-        layerOutputs[i] = await layerModels[i].predict(tensor).array();
+      for (let i = 1; i < layerModels.length - 1; i++) {
+        layerOutputs[i-1] = await layerModels[i].predict(tensor).array();
         console.log(`Layer ${i}`);
-        console.log(layerOutputs[i]);
+        console.log(layerOutputs[i-1][0]);
       }
 
       setLayerOutputs([...layerOutputs]);
@@ -30,14 +30,17 @@ function TensorFlowNetwork({src, inputs, ...props}) {
   React.useEffect(() => {
     const loadModel = async () => {
       const model = await tf.loadLayersModel(src);
+      console.log(model);
 
       // Create additional models to view output at each layer
       layerModels.splice(0, layerModels.length);
       for (let i = 0; i < model.layers.length; i++) {
-        layerModels.push(tf.model({
-          inputs: model.inputs,
-          outputs: model.layers[i].output
-        }));
+        if (model.layers[i].constructor.name === 'Dense') {
+          layerModels.push(tf.model({
+            inputs: model.inputs,
+            outputs: model.layers[i].output
+          }));
+        }
       }
 
       setModel(model);
@@ -52,6 +55,13 @@ function TensorFlowNetwork({src, inputs, ...props}) {
 
   return (
     <div className="TensorFlowNetwork">
+      {layerOutputs.map((layer, i) => (
+        <div key={i}>
+          {layer[0].map((neuron, j) => (
+            <div key={j}>{neuron}</div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
