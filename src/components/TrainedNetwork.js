@@ -162,6 +162,7 @@ function TrainedNetwork() {
         <TensorFlowNetwork
           src="/model.json"
           inputs={inputs}
+          outputs={outputs}
           onPrediction={onPrediction}
         />
         <div className="Layer">

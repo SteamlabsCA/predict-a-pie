@@ -1,0 +1,28 @@
+@import '../variables';
+
+.TensorFlowConnections {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: -4.2rem;
+  width: calc(100% + 8.4rem);
+  height: 100%;
+
+  svg {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-internal-line {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1;
+    transition: stroke 300ms;
+  }
+
+  &-internal-line-active {
+    stroke: $active;
+    stroke-width: 1;
+  }
+}

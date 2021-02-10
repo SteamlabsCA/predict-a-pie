@@ -8,6 +8,7 @@
   align-items: center;
   margin: $spacer 0;
   padding: $spacer / 2;
+  position: relative;
   min-height: calc(100% - #{$spacer * 2});
 
   &:first-child {

@@ -10,8 +10,12 @@ function ToggleSwitch(props) {
     props.onToggle();
   }
 
+  const classes = ['ToggleSwitch'];
+  if (active) classes.push('ToggleSwitch-active');
+  if (props.small) classes.push('ToggleSwitch-small');
+
   return (
-    <div className={`ToggleSwitch${active ? ' ToggleSwitch-active' : ''}`} onClick={toggle}>
+    <div className={classes.join(' ')} onClick={toggle}>
       <div className="ToggleSwitch-well">
         <div className="ToggleSwitch-switch"></div>
       </div>

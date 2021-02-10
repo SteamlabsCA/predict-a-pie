@@ -1,12 +1,14 @@
 import './TensorFlowNetwork.scss';
 import * as tf from '@tensorflow/tfjs';
+import TensorFlowConnections from './TensorFlowConnections';
+import TensorFlowNeuron from './TensorFlowNeuron';
 import React from 'react';
 
-function TensorFlowNetwork({src, inputs, ...props}) {
+function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
   const [model, setModel] = React.useState()
   const [layerModels, setLayerModels] = React.useState([])
-  const [layerOutputs, setLayerOutputs] = React.useState([]);
+  const [layers, setLayers] = React.useState([]);
 
   const predict = async (model) => {
     if (model) {
@@ -17,12 +19,18 @@ function TensorFlowNetwork({src, inputs, ...props}) {
 
       // Get intermediate outputs
       for (let i = 1; i < layerModels.length - 1; i++) {
-        layerOutputs[i-1] = await layerModels[i].predict(tensor).array();
+        const layerWeights = await layerModels[i].predict(tensor).array();
+        layers[i-1] = layerWeights[0].map(weight => {
+          return {
+            'weight': weight,
+            'ref': null
+          };
+        });
         console.log(`Layer ${i}`);
-        console.log(layerOutputs[i-1][0]);
+        console.log(layerWeights[0]);
       }
 
-      setLayerOutputs([...layerOutputs]);
+      setLayers([...layers]);
       props.onPrediction(output[0]);
     }
   };
@@ -55,13 +63,14 @@ function TensorFlowNetwork({src, inputs, ...props}) {
 
   return (
     <div className="TensorFlowNetwork">
-      {layerOutputs.map((layer, i) => (
+      {layers.map((layer, i) => (
         <div key={i}>
-          {layer[0].map((neuron, j) => (
-            <div key={j}>{neuron}</div>
+          {layer.map((neuron, j) => (
+            <TensorFlowNeuron key={j} neuron={neuron} />
           ))}
         </div>
       ))}
+      <TensorFlowConnections inputs={inputs} layers={layers} outputs={outputs} />
     </div>
   );
 }

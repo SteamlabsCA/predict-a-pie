@@ -54,7 +54,6 @@
     background-color: $active;
   }
 
-
   &-small {
     justify-content: flex-start;
     padding-left: 2rem;
@@ -79,5 +78,9 @@
     font-size: 1.3rem;
     position: relative;
     left: 1.4rem;
+  }
+
+  &-small &-connector {
+    height: 1px;
   }
 }

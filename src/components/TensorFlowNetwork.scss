@@ -2,10 +2,11 @@
 
 .TensorFlowNetwork {
   background: #e6eaec;
-  border-right: 2px solid $light-gray;
   display: flex;
+  align-items: center;
   margin: $spacer 0;
-  padding: $spacer / 2;
-  width: $spacer * 4;
+  padding: $spacer / 2 $spacer;
+  position: relative;
   min-height: calc(100% - #{$spacer * 2});
+  z-index: 10;
 }
