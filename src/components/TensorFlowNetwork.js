@@ -38,12 +38,11 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
   React.useEffect(() => {
     const loadModel = async () => {
       const model = await tf.loadLayersModel(src);
-      console.log(model);
 
       // Create additional models to view output at each layer
       layerModels.splice(0, layerModels.length);
-      for (let i = 0; i < model.layers.length; i++) {
-        if (model.layers[i].constructor.name === 'Dense') {
+      for (let i = 1; i < model.layers.length; i++) {
+        if (model.layers[i].name.startsWith('dense')) {
           layerModels.push(tf.model({
             inputs: model.inputs,
             outputs: model.layers[i].output

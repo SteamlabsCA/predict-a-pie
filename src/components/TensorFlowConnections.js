@@ -38,7 +38,6 @@ function TensorFlowConnections({inputs, layers, outputs}) {
     for (let i = 0; i < layers.length - 1; i++) {
       for (let j = 0; j < layers[i].length; j++) {
         for (let k = 0; k < layers[i + 1].length; k++) {
-          console.log(layers[i][j]);
           lines.push({
             x1: neuronX(layers[i][j]),
             y1: neuronY(layers[i][j]),
