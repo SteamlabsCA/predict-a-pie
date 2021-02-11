@@ -6,22 +6,41 @@ import React from 'react';
 
 function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
+  const debug = true;
+
   const [model, setModel] = React.useState()
   const [layerModels, setLayerModels] = React.useState([])
   const [layers, setLayers] = React.useState([]);
 
   const predict = async (model) => {
     if (model) {
+
+      // Output debugging information
+      if (debug) {
+        console.log('%cStart Prediction', 'font-weight: bold; background: red; color: white');
+      }
+
       const tensor = tf.tensor2d(inputs.map(input => {
         return input.active ? 1 : 0;
       }), [1, 19]);
       const output = await model.predict(tensor).array();
 
-      console.log('----------------------------------------------------');
-      console.log('Inputs');
-      tensor.print();
+      // Output debugging information
+      if (debug) {
+        console.log('%cModel Weights', 'font-weight: bold; background: yellow');
+        for (let i = 1; i < model.layers.length; i++) {
+          console.log(`%cLayer ${i}`, 'background: cyan');
+          let weights = model.layers[i].getWeights()[0].print();
+        }
+
+        console.log('%cInputs', 'font-weight: bold; background: yellow');
+        tensor.print();
+      }
 
       // Get intermediate outputs
+      if (debug) {
+        console.log('%cIntermediate Outputs', 'font-weight: bold; background: yellow');
+      }
       for (let i = 1; i < layerModels.length - 1; i++) {
         const layerWeights = await layerModels[i].predict(tensor).array();
         layers[i-1] = layerWeights[0].map(weight => {
@@ -30,14 +49,17 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
             'ref': null
           };
         });
-        console.log('-----');
-        console.log(`Layer ${i}`);
-        console.log(layerWeights[0]);
+
+        if (debug) {
+          console.log(`%cDense Layer ${i}`, 'background: cyan');
+          console.log(layerWeights[0]);
+        }
       }
 
-      console.log('-----');
-      console.log('Ouput');
-      console.log(output[0]);
+      if (debug) {
+        console.log('%cFinal Output', 'font-weight: bold; background: yellow');
+        console.log(output[0]);
+      }
 
       setLayers([...layers]);
       props.onPrediction(output[0]);
