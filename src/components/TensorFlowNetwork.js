@@ -42,10 +42,10 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
         console.log('%cIntermediate Outputs', 'font-weight: bold; background: yellow');
       }
       for (let i = 1; i < layerModels.length - 1; i++) {
-        const layerWeights = await layerModels[i].predict(tensor).array();
-        layers[i-1] = layerWeights[0].map(weight => {
+        const layerOutputs = await layerModels[i].predict(tensor).array();
+        layers[i-1] = layerOutputs[0].map(output => {
           return {
-            'weight': weight,
+            'output': output,
             'ref': null
           };
         });

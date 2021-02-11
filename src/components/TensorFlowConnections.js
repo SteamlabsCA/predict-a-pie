@@ -7,12 +7,16 @@ function TensorFlowConnections({inputs, layers, outputs}) {
   const svg = React.useRef();
 
   const neuronX = (neuron) => {
-    const offset = document.querySelector('.TensorFlowConnections').offsetLeft;
-    return neuron.ref.current.offsetLeft + neuron.ref.current.offsetWidth / 2 - offset;
+    if (neuron.ref.current) {
+      const offset = document.querySelector('.TensorFlowConnections').offsetLeft;
+      return neuron.ref.current.offsetLeft + neuron.ref.current.offsetWidth / 2 - offset;
+    }
   }
 
   const neuronY = (neuron) => {
-    return neuron.ref.current.offsetTop + neuron.ref.current.offsetHeight / 2;
+    if (neuron.ref.current) {
+      return neuron.ref.current.offsetTop + neuron.ref.current.offsetHeight / 2;
+    }
   };
 
   React.useEffect(() => {
@@ -43,7 +47,7 @@ function TensorFlowConnections({inputs, layers, outputs}) {
             y1: neuronY(layers[i][j]),
             x2: neuronX(layers[i + 1][k]),
             y2: neuronY(layers[i + 1][k]),
-            active: layers[i][j].weight > 0.2
+            active: layers[i][j].output > 0.2
           });
         }
       }
@@ -58,7 +62,7 @@ function TensorFlowConnections({inputs, layers, outputs}) {
             y1: neuronY(layers[layers.length - 1][i]),
             x2: document.querySelector('.TensorFlowConnections').offsetWidth,
             y2: neuronY(outputs[j]),
-            active: layers[layers.length - 1][i].weight > 0.2
+            active: layers[layers.length - 1][i].output > 0.2
           });
         }
       }
