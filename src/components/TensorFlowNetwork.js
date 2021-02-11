@@ -17,6 +17,10 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
       }), [1, 19]);
       const output = await model.predict(tensor).array();
 
+      console.log('----------------------------------------------------');
+      console.log('Inputs');
+      tensor.print();
+
       // Get intermediate outputs
       for (let i = 1; i < layerModels.length - 1; i++) {
         const layerWeights = await layerModels[i].predict(tensor).array();
@@ -26,9 +30,14 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
             'ref': null
           };
         });
+        console.log('-----');
         console.log(`Layer ${i}`);
         console.log(layerWeights[0]);
       }
+
+      console.log('-----');
+      console.log('Ouput');
+      console.log(output[0]);
 
       setLayers([...layers]);
       props.onPrediction(output[0]);
