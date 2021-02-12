@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 
-function Nav(props) {
+function Nav({classroom, ...props}) {
 
   const [open, setOpen] = React.useState(false);
   const [menuStyle, setMenuStyle] = React.useState();
@@ -23,9 +23,9 @@ function Nav(props) {
         <img src={menu} alt="Menu icon" />
       </button>
       <nav className="Nav-menu" style={menuStyle}>
-        <Link to="/">Build a Neural Network</Link>
-        <Link to="/trained">Test a Trained Network</Link>
-        <a onClick={() => {props.onCommand('create-class')}}>Create Class Code</a>
+        <Link to={ classroom.code ? `/${classroom.code}` : '/'}>Build a Neural Network</Link>
+        <Link to={ classroom.code ? `/${classroom.code}/trained` : '/trained'}>Test a Trained Network</Link>
+        <a onClick={() => {props.onCommand('create-classroom')}}>Create Class Code</a>
       </nav>
     </div>
   );
