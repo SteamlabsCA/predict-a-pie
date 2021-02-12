@@ -1,4 +1,5 @@
 import './App.scss';
+import Alert from './Alert';
 import NavBar from './NavBar';
 import Network from './Network';
 import TrainedNetwork from './TrainedNetwork';
@@ -16,6 +17,7 @@ if (url[1] && url[1] !== 'trained') {
 
 function App(props) {
 
+  const [messages, setMessages] = React.useState([]);
   const [classroom, setClassroom] = React.useState({});
 
   // Receive from socket
@@ -24,6 +26,14 @@ function App(props) {
       setClassroom(classroom);
       window.history.pushState('', '', classroom.code);
     });
+
+    socket.on('error', (error) => {
+      messages.push({
+        'level': 'error',
+        'message': error
+      });
+      setMessages([...messages]);
+    });
   });
 
   // Send to socket
@@ -31,7 +41,11 @@ function App(props) {
     if (command === 'create-classroom') {
       socket.emit('create-classroom');
     }
-  }
+  };
+
+  const onDismiss = () => {
+    setMessages([, ...messages]);
+  };
 
   return (
     <BrowserRouter>
@@ -46,6 +60,13 @@ function App(props) {
             <Network />
           </Route>
         </Switch>
+        {messages[0] &&
+          <Alert
+            message={messages[0].message}
+            level={messages[0].level}
+            onDismiss={onDismiss}
+          />
+        }
       </div>
     </BrowserRouter>
   );
