@@ -52,7 +52,7 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
         if (debug) {
           console.log(`%cDense Layer ${i}`, 'background: cyan');
-          console.log(layerWeights[0]);
+          console.log(layerOutputs[0]);
         }
       }
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 
-function Nav() {
+function Nav(props) {
 
   const [open, setOpen] = React.useState(false);
   const [menuStyle, setMenuStyle] = React.useState();
@@ -25,6 +25,7 @@ function Nav() {
       <nav className="Nav-menu" style={menuStyle}>
         <Link to="/">Build a Neural Network</Link>
         <Link to="/trained">Test a Trained Network</Link>
+        <a onClick={() => {props.onCommand('create-class')}}>Create Class Code</a>
       </nav>
     </div>
   );
