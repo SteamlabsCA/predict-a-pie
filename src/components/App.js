@@ -18,21 +18,30 @@ if (url[1] && url[1] !== 'trained') {
 function App(props) {
 
   const [messages, setMessages] = React.useState([]);
-  const [classroom, setClassroom] = React.useState({});
+  const [appData, setAppData] = React.useState({
+    connected: false
+  });
 
   // Receive from socket
   React.useEffect(() => {
+    socket.on('connect', () => {
+        appData.connected = true;
+        setAppData(appData);
+    });
+
+    socket.on('disconnect', () => {
+        appData.connected = false;
+        setAppData(appData);
+    });
+
     socket.on('classroom-updated', (classroom) => {
-      setClassroom(classroom);
+      appData.classroom = classroom;
+      setAppData(appData);
       window.history.pushState('', '', classroom.code);
     });
 
     socket.on('error', (error) => {
-      messages.push({
-        'level': 'error',
-        'message': error
-      });
-      setMessages([...messages]);
+      alert(error, 'error');
     });
   });
 
@@ -43,29 +52,20 @@ function App(props) {
     }
   };
 
-  const onDismiss = () => {
-    setMessages([, ...messages]);
-  };
-
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
           <Route path="*/trained">
-            <NavBar title="Test a Trained Network" classroom={classroom} onCommand={onCommand} />
+            <NavBar title="Test a Trained Network" appData={appData} onCommand={onCommand} />
             <TrainedNetwork />
           </Route>
           <Route path="/">
-            <NavBar title="Build a Neural Network" classroom={classroom} onCommand={onCommand} />
+            <NavBar title="Build a Neural Network" appData={appData} onCommand={onCommand} />
             <Network />
           </Route>
         </Switch>
-        {messages[0] &&
-          <Alert
-            message={messages[0].message}
-            level={messages[0].level}
-            onDismiss={onDismiss}
-          />
+        <Alert />
         }
       </div>
     </BrowserRouter>

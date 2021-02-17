@@ -46,6 +46,12 @@
       &:hover {
         background: $light-gray;
       }
+
+      &[disabled] {
+        background: transparent !important;
+        cursor: default;
+        opacity: 0.2;
+      }
     }
   }
 
