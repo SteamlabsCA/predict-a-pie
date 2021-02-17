@@ -9,8 +9,8 @@ function TensorFlowNeuron({neuron}) {
     <div className="TensorFlowNeuron" ref={neuron.ref}>
       <div
         className="TensorFlowNeuron-fill"
-        style={{ opacity: neuron.weight / 2 }}
-        title={neuron.weight}
+        style={{ opacity: neuron.output / 2 }}
+        title={neuron.output}
       ></div>
     </div>
   );

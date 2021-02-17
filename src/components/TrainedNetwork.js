@@ -105,6 +105,11 @@ const network = [
   [
     {
       'id': uuid(),
+      'label': 'Disgusting',
+      'type': 'output'
+    },
+    {
+      'id': uuid(),
       'label': 'Sweet',
       'type': 'output'
     },
@@ -116,11 +121,6 @@ const network = [
     {
       'id': uuid(),
       'label': 'Pizza',
-      'type': 'output'
-    },
-    {
-      'id': uuid(),
-      'label': 'Disgusting',
       'type': 'output'
     }
   ]
