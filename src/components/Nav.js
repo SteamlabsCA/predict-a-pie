@@ -25,6 +25,10 @@ function Nav({appData, ...props}) {
       <nav className="Nav-menu" style={menuStyle}>
         <Link to={ appData.classroom ? `/${appData.classroom.code}` : '/'}>Build a Neural Network</Link>
         <Link to={ appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>Test a Trained Network</Link>
+        <hr/>
+        <a>Load Recipe</a>
+        <a>Save Recipe</a>
+        <hr/>
         <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>Create Class Code</a>
       </nav>
     </div>
