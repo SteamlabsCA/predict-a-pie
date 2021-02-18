@@ -23,13 +23,26 @@ function Nav({appData, ...props}) {
         <img src={menu} alt="Menu icon" />
       </button>
       <nav className="Nav-menu" style={menuStyle}>
-        <Link to={ appData.classroom ? `/${appData.classroom.code}` : '/'}>Build a Neural Network</Link>
-        <Link to={ appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>Test a Trained Network</Link>
+        <Link to={ appData.classroom ? `/${appData.classroom.code}` : '/'}>
+          Build a Neural Network
+        </Link>
+        <Link to={ appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>
+          Test a Pre-trained Model
+        </Link>
+        <Link to={ appData.classroom ? `/${appData.classroom.code}/stats` : ''} disabled={!appData.classroom}>
+          View Classroom Stats
+        </Link>
+        {props.route === 'trained' && (
+          <>
+            <hr/>
+            <a>Load Recipe</a>
+            <a>Save Recipe</a>
+          </>
+        )}
         <hr/>
-        <a>Load Recipe</a>
-        <a>Save Recipe</a>
-        <hr/>
-        <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>Create Class Code</a>
+        <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>
+          Create Class Code
+        </a>
       </nav>
     </div>
   );

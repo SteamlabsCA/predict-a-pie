@@ -2,6 +2,7 @@ import './App.scss';
 import Alert from './Alert';
 import NavBar from './NavBar';
 import Network from './Network';
+import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -57,11 +58,15 @@ function App(props) {
       <div className="App">
         <Switch>
           <Route path="*/trained">
-            <NavBar title="Test a Trained Network" appData={appData} onCommand={onCommand} />
+            <NavBar title="Test a Pre-trained Model" appData={appData} route="trained" onCommand={onCommand} />
             <TrainedNetwork />
           </Route>
+          <Route path="*/stats">
+            <NavBar title="View Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
+            <Stats />
+          </Route>
           <Route path="/">
-            <NavBar title="Build a Neural Network" appData={appData} onCommand={onCommand} />
+            <NavBar title="Build a Neural Network" appData={appData} route="build" onCommand={onCommand} />
             <Network />
           </Route>
         </Switch>
