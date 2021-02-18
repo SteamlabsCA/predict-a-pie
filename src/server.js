@@ -25,6 +25,7 @@ let classrooms = {};
 
 io.on('connection', (socket) => {
   console.log('New client connected');
+  io.emit('user-id', socket.id);
 
   // Create new classroom
   socket.on('create-classroom', () => {

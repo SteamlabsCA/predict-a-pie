@@ -20,7 +20,9 @@ function App(props) {
 
   const [messages, setMessages] = React.useState([]);
   const [appData, setAppData] = React.useState({
-    connected: false
+    connected: false,
+    classroom: false,
+    userId: false
   });
 
   // Receive from socket
@@ -33,6 +35,11 @@ function App(props) {
     socket.on('disconnect', () => {
         appData.connected = false;
         setAppData(appData);
+    });
+
+    socket.on('user-id', (userId) => {
+      appData.userId = userId;
+      setAppData(appData);
     });
 
     socket.on('classroom-updated', (classroom) => {
