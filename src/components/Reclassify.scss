@@ -15,6 +15,11 @@
   height: 18rem;
   z-index: 1000;
 
+  animation-name: popIn;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+
   &-step {
     display: flex;
     flex-direction: column;
@@ -144,6 +149,18 @@
 
   p {
     margin: 0;
+  }
+
+  @keyframes popIn {
+    0% {
+      transform: scale(0.9);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   @keyframes fadeOut {

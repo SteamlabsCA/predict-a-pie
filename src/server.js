@@ -50,8 +50,8 @@ io.on('connection', (socket) => {
     classrooms[code] = {
       code: code,
       hostId: socket.id,
-      responses: [],
       recipes: [],
+      reclassifications: [],
       participants: [socket.id]
     };
     console.log(`Created classroom: ${code}, 1 participant(s)`);
@@ -76,7 +76,19 @@ io.on('connection', (socket) => {
     let classroom = findClassroom();
     if (classroom) {
       console.log(`Recipe ${recipe.name} saved in classroom ${classroom.code}`);
+      recipe.userId = socket.it;
       classroom.recipes.push(recipe);
+      onUpdateClassroom(classroom);
+    }
+  });
+
+  // Reclassify recipe
+  socket.on('reclassify-recipe', (reclassification) => {
+    let classroom = findClassroom();
+    if (classroom) {
+      console.log(`Reclassification saved in classroom ${classroom.code}`);
+      reclassification.userId = socket.it;
+      classroom.reclassifications.push(reclassification);
       onUpdateClassroom(classroom);
     }
   });

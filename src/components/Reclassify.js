@@ -4,6 +4,7 @@ import React from 'react';
 function Reclassify({recipe, visible, ...props}) {
 
   const [step, setStep] = React.useState('1');
+  const [classification, setClassification] = React.useState('');
 
   const onAgree = () => {
     setStep('1-3');
@@ -21,7 +22,7 @@ function Reclassify({recipe, visible, ...props}) {
 
   const dismiss = () => {
     setTimeout(() => {
-      props.onReclassify();
+      props.onReclassify(recipe, classification);
       setStep(1);
     }, 3000);
   }
@@ -39,7 +40,7 @@ function Reclassify({recipe, visible, ...props}) {
         <div className="Reclassify-step Reclassify-step-2">
           <p>How would you classify it?</p>
           <div className="Reclassify-select">
-            <select>
+            <select onChange={(event) => setClassification(event.target.value)}>
               <option value="Disgusting">Disgusting</option>
               <option value="Sweet">Sweet</option>
               <option value="Quiche">Quiche</option>

@@ -180,7 +180,6 @@ function TrainedNetwork({inputs, ...props}) {
               <Neuron
                 key={neuron.id}
                 neuron={neuron}
-                active={neuron.active}
                 small
               />
             ))}

@@ -29,11 +29,12 @@ function App(props) {
   });
   const [recipe, setRecipe] = React.useState(new Array(19).fill(0));
   const [recipes, setRecipes] = React.useState([]);
+  const [classification, setClassification] = React.useState(0);
   const [reclassify, setReclassify] = React.useState(false);
 
   // Load pre-generated recipes
   React.useEffect(() => {
-    fetch('recipes.json').then(function(response){
+    fetch('/recipes.json').then(function(response){
       return response.json();
     }).then(function(json) {
       setRecipes(json)
@@ -88,7 +89,8 @@ function App(props) {
         prompt('Enter recipe name').then(name => {
           socket.emit('save-recipe', {
             name: name,
-            ingredients: appData.recipe
+            ingredients: recipe,
+            classification: classification
           });
         });
         break;
@@ -100,28 +102,35 @@ function App(props) {
   };
 
   const onFindRecipe = (type) => {
-    if (type === 'Random') {
-      setRecipe(
-        Object.values(
-          recipes[Math.floor(Math.random() * recipes.length)]
-        ).slice(0, 19)
-      );
-    } else {
-      const subset = recipes.filter(recipe => {
-        return recipe[type] === 1;
-      });
-      if (subset.length > 0) {
+    if (recipes.length > 0) {
+      if (type === 'Random') {
         setRecipe(
           Object.values(
-            subset[Math.floor(Math.random() * subset.length)]
+            recipes[Math.floor(Math.random() * recipes.length)]
           ).slice(0, 19)
         );
+      } else {
+        const subset = recipes.filter(recipe => {
+          return recipe[type] === 1;
+        });
+        if (subset.length > 0) {
+          setRecipe(
+            Object.values(
+              subset[Math.floor(Math.random() * subset.length)]
+            ).slice(0, 19)
+          );
+        }
       }
+      setReclassify(true);
     }
-    setReclassify(true);
   };
 
-  const onReclassify = () => {
+  const onReclassify = (recipe, reclassification) => {
+    socket.emit('reclassify-recipe', {
+      recipe: recipe,
+      original_classification: classification,
+      reclassification: reclassification
+    });
     setReclassify(false);
   };
 
@@ -141,8 +150,8 @@ function App(props) {
             <Reclassify recipe={recipe} visible={reclassify} onReclassify={onReclassify}/>
           </Route>
           <Route path="*/stats">
-            <NavBar title="View Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
-            <Stats />
+            <NavBar title="Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
+            <Stats appData={appData} />
           </Route>
           <Route path="/">
             <NavBar title="Build a Neural Network" appData={appData} route="build" onCommand={onCommand} />
