@@ -27,6 +27,14 @@ io.on('connection', (socket) => {
   console.log('New client connected');
   io.emit('user-id', socket.id);
 
+  const classroom = () => {
+    for (const i in classrooms) {
+      if (classrooms[i].participants.includes(socket.id)) {
+        return classrooms[i];
+      }
+    }
+  };
+
   // Create new classroom
   socket.on('create-classroom', () => {
     const hashids = new Hashids('predict-a-pie', 8, 'abcdefghijklmnopqrstuvwxyz');
@@ -50,6 +58,14 @@ io.on('connection', (socket) => {
       console.log(`Joined classroom: ${code}, ${classrooms[code].participants.length} participant(s)`);
       io.emit('classroom-updated', classrooms[code]);
     }
+  });
+
+  // Save recipe
+  socket.on('save-recipe', (recipe) => {
+    if (classroom()) {
+      classroom().recipes.push(recipe);
+    }
+    console.log(classroom());
   });
 
   socket.on('disconnect', () => {

@@ -126,22 +126,24 @@ const network = [
   ]
 ];
 
-function TrainedNetwork() {
+function TrainedNetwork({inputs, ...props}) {
 
-  const [inputs, setInputs] = React.useState(network[0]);
-  const [outputs, setOutputs] = React.useState(network[1]);
+  const [inputLayer, setInputLayer] = React.useState(network[0]);
+  const [outputLayer, setOutputLayer] = React.useState(network[1]);
 
-  const onChange = () => {
-    setInputs([...inputs]);
+  const onChange = (index) => {
+    inputs[index] = inputs[index] === 0 ? 1 : 0;
+    setInputLayer([...inputLayer]);
+    props.onChange(inputs);
   };
 
   const onPrediction = (result) => {
     const max = Math.max(...result);
     result.map((output, index) => {
-      outputs[index].confidence = Math.round(output * 100);
-      outputs[index].active = output === max;
+      outputLayer[index].confidence = Math.round(output * 100);
+      outputLayer[index].active = output === max;
     });
-    setOutputs([...outputs]);
+    setOutputLayer([...outputLayer]);
   };
 
   return (
@@ -149,11 +151,12 @@ function TrainedNetwork() {
       <div className="TrainedNetwork-layers">
         <div className="Layer">
           <div className="Layer-neurons">
-            {inputs.map(neuron => (
+            {inputLayer.map((neuron, index) => (
               <Neuron
                 key={neuron.id}
                 neuron={neuron}
-                onChange={onChange}
+                active={inputs[index]}
+                onChange={() => onChange(index)}
                 small
               />
             ))}
@@ -161,16 +164,17 @@ function TrainedNetwork() {
         </div>
         <TensorFlowNetwork
           src="/model.json"
-          inputs={inputs}
-          outputs={outputs}
+          inputs={inputLayer}
+          outputs={outputLayer}
           onPrediction={onPrediction}
         />
         <div className="Layer">
           <div className="Layer-neurons">
-            {outputs.map(neuron => (
+            {outputLayer.map(neuron => (
               <Neuron
                 key={neuron.id}
                 neuron={neuron}
+                active={neuron.active}
                 small
               />
             ))}

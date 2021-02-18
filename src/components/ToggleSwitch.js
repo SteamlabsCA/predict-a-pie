@@ -3,7 +3,7 @@ import React from 'react';
 
 function ToggleSwitch(props) {
 
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(props.active);
 
   const toggle = () => {
     setActive(!active);

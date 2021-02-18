@@ -2,6 +2,7 @@ import './App.scss';
 import Alert from './Alert';
 import NavBar from './NavBar';
 import Network from './Network';
+import Prompt from './Prompt';
 import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
 import React from 'react';
@@ -22,6 +23,7 @@ function App(props) {
   const [appData, setAppData] = React.useState({
     connected: false,
     classroom: false,
+    recipe: new Array(19).fill(0),
     userId: false
   });
 
@@ -53,11 +55,27 @@ function App(props) {
     });
   });
 
-  // Send to socket
   const onCommand = (command) => {
-    if (command === 'create-classroom') {
-      socket.emit('create-classroom');
+    switch (command) {
+
+      case 'create-classroom':
+        socket.emit('create-classroom');
+        break;
+
+      case 'save-recipe':
+        prompt('Recipe name').then(name => {
+          socket.emit('save-recipe', {
+            name: name,
+            ingredients: appData.recipe
+          });
+        });
+        break;
     }
+  };
+
+  const onChange = (inputs) => {
+    appData.recipe = inputs;
+    setAppData(appData);
   };
 
   return (
@@ -66,7 +84,7 @@ function App(props) {
         <Switch>
           <Route path="*/trained">
             <NavBar title="Test a Pre-trained Model" appData={appData} route="trained" onCommand={onCommand} />
-            <TrainedNetwork />
+            <TrainedNetwork onChange={onChange} inputs={appData.recipe} />
           </Route>
           <Route path="*/stats">
             <NavBar title="View Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
@@ -78,6 +96,7 @@ function App(props) {
           </Route>
         </Switch>
         <Alert />
+        <Prompt />
         }
       </div>
     </BrowserRouter>

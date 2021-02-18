@@ -79,7 +79,7 @@ function Neuron({neuron, ...props}) {
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          <ToggleSwitch onToggle={onToggle} small={props.small} />
+          <ToggleSwitch onToggle={onToggle} active={props.active} small={props.small} />
           <div className="Neuron-input"></div>
           {props.editable &&
             <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
