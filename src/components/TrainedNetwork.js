@@ -146,6 +146,13 @@ function TrainedNetwork({inputs, ...props}) {
     setOutputLayer([...outputLayer]);
   };
 
+  React.useEffect(() => {
+    for (let i = 0; i < inputLayer.length; i++) {
+      inputLayer[i].active = inputs[i];
+    }
+    setInputLayer([...inputLayer]);
+  }, [inputs]);
+
   return (
     <div className="TrainedNetwork">
       <div className="TrainedNetwork-layers">
@@ -155,7 +162,6 @@ function TrainedNetwork({inputs, ...props}) {
               <Neuron
                 key={neuron.id}
                 neuron={neuron}
-                active={inputs[index]}
                 onChange={() => onChange(index)}
                 small
               />

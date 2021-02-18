@@ -35,9 +35,6 @@ function Nav({appData, ...props}) {
         {props.route === 'trained' && (
           <>
             <hr/>
-            <a onClick={() => {props.onCommand('load-recipe')}}>
-              Load Recipe
-            </a>
             <a onClick={() => {props.onCommand('save-recipe')}} disabled={!appData.classroom}>
               Save Recipe
             </a>

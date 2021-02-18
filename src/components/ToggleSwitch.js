@@ -1,13 +1,10 @@
 import './ToggleSwitch.scss';
 import React from 'react';
 
-function ToggleSwitch(props) {
-
-  const [active, setActive] = React.useState(props.active);
+function ToggleSwitch({active, ...props}) {
 
   const toggle = () => {
-    setActive(!active);
-    props.onToggle();
+    props.onToggle(!active);
   }
 
   const classes = ['ToggleSwitch'];

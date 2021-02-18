@@ -17,8 +17,8 @@ function Neuron({neuron, ...props}) {
     neuron.label = value;
   }
 
-  const onToggle = () => {
-    neuron.active = !neuron.active;
+  const onToggle = (value) => {
+    neuron.active = value;
     props.onChange();
   }
 
@@ -79,7 +79,7 @@ function Neuron({neuron, ...props}) {
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          <ToggleSwitch onToggle={onToggle} active={props.active} small={props.small} />
+          <ToggleSwitch onToggle={onToggle} active={neuron.active} small={props.small} />
           <div className="Neuron-input"></div>
           {props.editable &&
             <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
