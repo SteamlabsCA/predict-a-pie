@@ -3,6 +3,7 @@ import Alert from './Alert';
 import NavBar from './NavBar';
 import Network from './Network';
 import Prompt from './Prompt';
+import Reclassify from './Reclassify';
 import SelectRecipe from './SelectRecipe';
 import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
@@ -28,6 +29,7 @@ function App(props) {
   });
   const [recipe, setRecipe] = React.useState(new Array(19).fill(0));
   const [recipes, setRecipes] = React.useState([]);
+  const [reclassify, setReclassify] = React.useState(false);
 
   // Load pre-generated recipes
   React.useEffect(() => {
@@ -109,6 +111,11 @@ function App(props) {
         );
       }
     }
+    setReclassify(true);
+  };
+
+  const onReclassify = () => {
+    setReclassify(false);
   };
 
   return (
@@ -124,6 +131,7 @@ function App(props) {
               content={(<SelectRecipe onSubmit={onFindRecipe}/>)}
             />
             <TrainedNetwork onChange={onChange} inputs={recipe} />
+            <Reclassify recipe={recipe} visible={reclassify} onReclassify={onReclassify}/>
           </Route>
           <Route path="*/stats">
             <NavBar title="View Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
