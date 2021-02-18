@@ -27,7 +27,8 @@
   }
 
   input {
-    border: 1px solid #000;
+    background: $light-gray;
+    border: 0;
     border-radius: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -46,7 +47,7 @@
   }
 
   button {
-    background: #000;
+    background: $highlight;
     border: 0;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;

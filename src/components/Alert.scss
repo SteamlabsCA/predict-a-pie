@@ -12,4 +12,19 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+
+  animation-name: fadeOut;
+  animation-delay: 2s;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }

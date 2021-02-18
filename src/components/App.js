@@ -15,7 +15,7 @@ const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
-if (url[1] && url[1] !== 'trained') {
+if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
   socket.emit('join-classroom', url[1]);
 }
 
@@ -34,11 +34,9 @@ function App(props) {
   // Load pre-generated recipes
   React.useEffect(() => {
     fetch('recipes.json').then(function(response){
-      console.log(response)
       return response.json();
-    }).then(function(myJson) {
-      console.log(myJson);
-      setRecipes(myJson)
+    }).then(function(json) {
+      setRecipes(json)
     });
   }, []);
 
@@ -59,10 +57,13 @@ function App(props) {
       setAppData(appData);
     });
 
+    socket.on('classroom-joined', (code) => {
+      window.history.pushState('', '', '/' + code);
+    });
+
     socket.on('classroom-updated', (classroom) => {
       appData.classroom = classroom;
       setAppData(appData);
-      window.history.pushState('', '', classroom.code);
     });
 
     socket.on('error', (error) => {
@@ -73,12 +74,18 @@ function App(props) {
   const onCommand = (command) => {
     switch (command) {
 
+      case 'join-classroom':
+        prompt('Enter classroom code').then(code => {
+          socket.emit('join-classroom', code);
+        });
+        break;
+
       case 'create-classroom':
         socket.emit('create-classroom');
         break;
 
       case 'save-recipe':
-        prompt('Recipe name').then(name => {
+        prompt('Enter recipe name').then(name => {
           socket.emit('save-recipe', {
             name: name,
             ingredients: appData.recipe

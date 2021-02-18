@@ -1,27 +1,24 @@
 import './Alert.scss';
 import React from 'react';
 
-function Alert({message, level, ...props}) {
+function Alert(props) {
 
-  const [messages, setMessages] = React.useState([]);
+  const [message, setMessage] = React.useState(false);
+  const [level, setLevel] = React.useState('status');
 
   window.alert = (message, level) => {
-    messages.push({
-      message: message,
-      level: level ? level : 'status'
-    });
-    setMessages([...messages]);
-  };
-
-  const onDismiss = () => {
-    setMessages([, ...messages]);
+    setMessage(message);
+    setLevel(level);
+    setTimeout(() => {
+      setMessage(false);
+    }, 3000);
   };
 
   return (
     <>
-      {messages[0] && (
-        <div className={'Alert Alert-' + messages[0].level} onClick={onDismiss}>
-          <p>{messages[0].message}</p>
+      {message && (
+        <div className={'Alert Alert-' + level}>
+          <p>{message}</p>
         </div>
       )}
     </>

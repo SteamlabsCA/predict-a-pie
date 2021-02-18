@@ -55,16 +55,19 @@ io.on('connection', (socket) => {
       participants: [socket.id]
     };
     console.log(`Created classroom: ${code}, 1 participant(s)`);
+    socket.emit('classroom-joined', code);
     onUpdateClassroom(classrooms[code]);
   });
 
   // Join classroom
   socket.on('join-classroom', (code) => {
-    console.log(code);
     if (classrooms[code]) {
       classrooms[code].participants.push(socket.id);
       console.log(`Joined classroom: ${code}, ${classrooms[code].participants.length} participant(s)`);
+      socket.emit('classroom-joined', code);
       onUpdateClassroom(classrooms[code]);
+    } else {
+      socket.emit('error', 'Invalid classroom code');
     }
   });
 
