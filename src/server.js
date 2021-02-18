@@ -25,15 +25,23 @@ let classrooms = {};
 
 io.on('connection', (socket) => {
   console.log('New client connected');
-  io.emit('user-id', socket.id);
+  socket.emit('user-id', socket.id);
 
-  const classroom = () => {
+  // Find participant's classroom
+  const findClassroom = () => {
     for (const i in classrooms) {
       if (classrooms[i].participants.includes(socket.id)) {
         return classrooms[i];
       }
     }
   };
+
+  // Notify participants of update to classroom
+  const onUpdateClassroom = (classroom) => {
+    for (const i in classroom.participants) {
+      io.to(classroom.participants[i]).emit('classroom-updated', classroom);
+    }
+  }
 
   // Create new classroom
   socket.on('create-classroom', () => {
@@ -47,7 +55,7 @@ io.on('connection', (socket) => {
       participants: [socket.id]
     };
     console.log(`Created classroom: ${code}, 1 participant(s)`);
-    io.emit('classroom-updated', classrooms[code]);
+    onUpdateClassroom(classrooms[code]);
   });
 
   // Join classroom
@@ -56,16 +64,18 @@ io.on('connection', (socket) => {
     if (classrooms[code]) {
       classrooms[code].participants.push(socket.id);
       console.log(`Joined classroom: ${code}, ${classrooms[code].participants.length} participant(s)`);
-      io.emit('classroom-updated', classrooms[code]);
+      onUpdateClassroom(classrooms[code]);
     }
   });
 
   // Save recipe
   socket.on('save-recipe', (recipe) => {
-    if (classroom()) {
-      classroom().recipes.push(recipe);
+    let classroom = findClassroom();
+    if (classroom) {
+      console.log(`Recipe ${recipe.name} saved in classroom ${classroom.code}`);
+      classroom.recipes.push(recipe);
+      onUpdateClassroom(classroom);
     }
-    console.log(classroom());
   });
 
   socket.on('disconnect', () => {
