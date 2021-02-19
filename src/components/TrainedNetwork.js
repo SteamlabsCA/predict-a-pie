@@ -4,132 +4,26 @@ import TensorFlowNetwork from './TensorFlowNetwork';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-const network = [
-  [
-    {
-      'id': uuid(),
-      'label': 'Crust',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Cherries',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Egg',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Sugar',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Soap',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Onion',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Tomato',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Cheese',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Blueberries',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Pecan',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Cashew',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Peach',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Corn',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Chocolate',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Pumpkin',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Coconut',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Honey',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Strawberry',
-      'type': 'input'
-    },
-    {
-      'id': uuid(),
-      'label': 'Spinach',
-      'type': 'input'
-    }
-  ],
-  [
-    {
-      'id': uuid(),
-      'label': 'Disgusting',
-      'type': 'output'
-    },
-    {
-      'id': uuid(),
-      'label': 'Sweet',
-      'type': 'output'
-    },
-    {
-      'id': uuid(),
-      'label': 'Quiche',
-      'type': 'output'
-    },
-    {
-      'id': uuid(),
-      'label': 'Pizza',
-      'type': 'output'
-    }
-  ]
-];
+function TrainedNetwork({inputs, ingredients, classifications, ...props}) {
 
-function TrainedNetwork({inputs, ...props}) {
-
-  const [inputLayer, setInputLayer] = React.useState(network[0]);
-  const [outputLayer, setOutputLayer] = React.useState(network[1]);
+  const [inputLayer, setInputLayer] = React.useState(
+    ingredients.map(ingredient => {
+      return {
+        'id': uuid(),
+        'label': ingredient,
+        'type': 'input'
+      };
+    })
+  );
+  const [outputLayer, setOutputLayer] = React.useState(
+    classifications.map(classification => {
+      return {
+        'id': uuid(),
+        'label': classification,
+        'type': 'output'
+      };
+    })
+  );
 
   const onChange = (index) => {
     inputs[index] = inputs[index] === 0 ? 1 : 0;

@@ -19,6 +19,37 @@ if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
   socket.emit('join-classroom', url[1]);
 }
 
+// Ingredients
+const ingredients = [
+  'Crust',
+  'Cherries',
+  'Egg',
+  'Sugar',
+  'Soap',
+  'Onion',
+  'Tomato',
+  'Cheese',
+  'Blueberries',
+  'Pecan',
+  'Cashew',
+  'Peach',
+  'Corn',
+  'Chocolate',
+  'Pumpkin',
+  'Coconut',
+  'Honey',
+  'Strawberry',
+  'Spinach'
+];
+
+// Classifications
+const classifications = [
+  'Disgusting',
+  'Sweet',
+  'Quice',
+  'Pizza'
+];
+
 function App(props) {
 
   const [messages, setMessages] = React.useState([]);
@@ -146,8 +177,17 @@ function App(props) {
               onCommand={onCommand}
               content={(<SelectRecipe onSubmit={onFindRecipe}/>)}
             />
-            <TrainedNetwork onChange={onChange} inputs={recipe} />
-            <Reclassify recipe={recipe} visible={reclassify} onReclassify={onReclassify}/>
+            <TrainedNetwork
+              onChange={onChange}
+              inputs={recipe}
+              ingredients={ingredients}
+              classifications={classifications}
+            />
+            <Reclassify
+              recipe={recipe}
+              visible={reclassify}
+              onReclassify={onReclassify}
+            />
           </Route>
           <Route path="*/stats">
             <NavBar title="Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
