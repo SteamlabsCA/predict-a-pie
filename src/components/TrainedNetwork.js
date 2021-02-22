@@ -51,15 +51,17 @@ function TrainedNetwork({inputs, ingredients, classifications, ...props}) {
     <div className="TrainedNetwork">
       <div className="TrainedNetwork-layers">
         <div className="Layer">
-          <div className="Layer-neurons">
-            {inputLayer.map((neuron, index) => (
-              <Neuron
-                key={neuron.id}
-                neuron={neuron}
-                onChange={() => onChange(index)}
-                small
-              />
-            ))}
+          <div className="Layer-container">
+            <div className="Layer-neurons">
+              {inputLayer.map((neuron, index) => (
+                <Neuron
+                  key={neuron.id}
+                  neuron={neuron}
+                  onChange={() => onChange(index)}
+                  small
+                />
+              ))}
+            </div>
           </div>
         </div>
         <TensorFlowNetwork
@@ -69,14 +71,16 @@ function TrainedNetwork({inputs, ingredients, classifications, ...props}) {
           onPrediction={onPrediction}
         />
         <div className="Layer">
-          <div className="Layer-neurons">
-            {outputLayer.map(neuron => (
-              <Neuron
-                key={neuron.id}
-                neuron={neuron}
-                small
-              />
-            ))}
+          <div className="Layer-container">
+            <div className="Layer-neurons">
+              {outputLayer.map(neuron => (
+                <Neuron
+                  key={neuron.id}
+                  neuron={neuron}
+                  small
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

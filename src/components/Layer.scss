@@ -18,12 +18,12 @@
     min-height: calc(100% - #{$spacer * 2});
   }
 
-  &:first-child {
+  &:first-child &-container {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
   }
 
-  &:last-child {
+  &:last-child &-container {
     border-right: 0;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
