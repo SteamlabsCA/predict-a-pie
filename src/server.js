@@ -1,8 +1,8 @@
 const express = require('express');
-const Hashids = require('hashids/cjs');
 const bodyParser = require('body-parser')
 const path = require('path');
 const http = require('http');
+const seedrandom = require('seedrandom');
 const socketIo = require('socket.io');
 
 const app = express();
@@ -22,6 +22,61 @@ app.get('/', function (req, res) {
 
 let counter = 0;
 let classrooms = {};
+
+// Dictionary of words for classroom code
+let dictionary = [
+  'apple',
+  'apricot',
+  'berry',
+  'blackberry',
+  'blueberry',
+  'cherry',
+  'chocolate',
+  'cinnamon',
+  'keylime',
+  'lemon',
+  'maple',
+  'nut',
+  'peach',
+  'pecan',
+  'pistachio',
+  'pumpkin',
+  'raspberry',
+  'strawberry',
+  'sugar',
+  'vanilla',
+  'walnut'
+];
+
+const seed = Math.floor(Math.random() * 1000);
+
+// Generate classroom code
+generateClassroomCode = (id) => {
+  seedrandom(seed, {global: true});
+  let code = [];
+  let clone = [...dictionary];
+  let whole;
+  do {
+
+    // Shuffle dictionary
+    for (let i = clone.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+
+    // Select word for 'clone.length' place value
+    whole = Math.floor(id / clone.length);
+    if (whole > 0) {
+      code.push(clone[whole]);
+      id = id - whole * clone.length;
+      clone.splice(whole, 1);
+    } else {
+      code.push(clone[id % clone.length]);
+    }
+
+  } while(whole > 0);
+  return code.join('-');
+};
 
 io.on('connection', (socket) => {
   console.log('New client connected');
@@ -45,8 +100,7 @@ io.on('connection', (socket) => {
 
   // Create new classroom
   socket.on('create-classroom', () => {
-    const hashids = new Hashids('predict-a-pie', 8, 'abcdefghijklmnopqrstuvwxyz');
-    const code = hashids.encode(counter++);
+    const code = generateClassroomCode(counter++);
     classrooms[code] = {
       code: code,
       hostId: socket.id,
@@ -104,6 +158,7 @@ io.on('connection', (socket) => {
     }
   });
 
+  // User disconnected
   socket.on('disconnect', () => {
     console.log('Client disconnected');
 
