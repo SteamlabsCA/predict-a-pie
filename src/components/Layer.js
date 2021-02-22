@@ -57,12 +57,15 @@ function Layer({layer, ...props}) {
         return;
       }
 
-        // Determine change in index of dragged neuron
+      // Determine change in index of dragged neuron
       const deltaY = event.clientY - originY;
       const neuronStyle = getComputedStyle(dragging.ref.current);
       const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
       const draggingIndex = neurons.findIndex(neuron => neuron.id === dragging.id);
-      const deltaIndex = Math.trunc(deltaY / neuronHeight);
+      const deltaIndex = Math.max(
+        -draggingIndex,
+        Math.trunc(deltaY / neuronHeight)
+      );
 
       // Reorder neuron array
       if (Math.abs(deltaIndex) > 0) {
