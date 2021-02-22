@@ -41,12 +41,23 @@ function Nav({appData, ...props}) {
           </>
         )}
         <hr/>
-        <a onClick={() => {props.onCommand('join-classroom')}} disabled={!appData.connected}>
-          Join Classroom
-        </a>
-        <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>
-          Create Classroom
-        </a>
+        { appData.classroom && (
+          <>
+            <a onClick={() => {props.onCommand('leave-classroom')}} disabled={!appData.connected}>
+              Leave Classroom
+            </a>
+          </>
+        )}
+        { !appData.classroom && (
+          <>
+            <a onClick={() => {props.onCommand('join-classroom')}} disabled={!appData.connected}>
+              Join Classroom
+            </a>
+            <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>
+              Create Classroom
+            </a>
+          </>
+        )}
       </nav>
     </div>
   );

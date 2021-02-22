@@ -112,6 +112,13 @@ function App(props) {
         });
         break;
 
+      case 'leave-classroom':
+        appData.classroom = false;
+        window.history.pushState('', '', '/');
+        setAppData(appData);
+        socket.emit('leave-classroom');
+        break;
+
       case 'create-classroom':
         socket.emit('create-classroom');
         break;

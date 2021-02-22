@@ -71,6 +71,17 @@ io.on('connection', (socket) => {
     }
   });
 
+  // Leave classroom
+  socket.on('leave-classroom', () => {
+    for (const i in classrooms) {
+      classrooms[i].participants = classrooms[i].participants.filter(id => id !== socket.id);
+      if (classrooms[i].participants.length === 0) {
+        console.log(`Closed classroom: ${classrooms[i].code}`);
+        delete classrooms[i];
+      }
+    }
+  });
+
   // Save recipe
   socket.on('save-recipe', (recipe) => {
     let classroom = findClassroom();
