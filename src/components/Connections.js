@@ -75,17 +75,25 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     <div className="Connections">
       <svg>
         {connections.map((connection, index) => (
-          <line
-            key={index}
-            x1={outputX(connection.from)}
-            y1={outputY(connection.from)}
-            x2={inputX(connection.to, connection.weight)}
-            y2={inputY(connection.to, connection.weight)}
-            className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
-            onMouseMove={(event) => {onMouseMove(connection, event)}}
-            onMouseOut={(event) => {onMouseOut(connection)}}
-            onMouseDown={(event) => {onDeleteConnection(connection)}}
-          />
+          <g key={index}>
+            <line
+              x1={outputX(connection.from)}
+              y1={outputY(connection.from)}
+              x2={inputX(connection.to, connection.weight)}
+              y2={inputY(connection.to, connection.weight)}
+              className="Connections-hit-area"
+              onMouseMove={(event) => {onMouseMove(connection, event)}}
+              onMouseOut={(event) => {onMouseOut(connection)}}
+              onMouseDown={(event) => {onDeleteConnection(connection)}}
+            />
+            <line
+              x1={outputX(connection.from)}
+              y1={outputY(connection.from)}
+              x2={inputX(connection.to, connection.weight)}
+              y2={inputY(connection.to, connection.weight)}
+              className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
+            />
+          </g>
         ))}
       </svg>
       <img className="Connections-cut" style={cursorStyle} src={scissors} alt="Scissors" />

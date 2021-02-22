@@ -15,8 +15,13 @@
     height: 100%;
   }
 
-  &-line {
+  &-hit-area {
     pointer-events: all;
+    stroke: rgba(0, 0, 0, 0);
+    stroke-width: 5;
+  }
+
+  &-line {
     stroke: rgb(0, 0, 0);
     stroke-width: 2;
     transition: stroke 300ms;
