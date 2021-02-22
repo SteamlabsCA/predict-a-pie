@@ -20,7 +20,7 @@ if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
 }
 
 // Ingredients
-const ingredients = [
+export const ingredients = [
   'Crust',
   'Cherries',
   'Egg',
@@ -43,7 +43,7 @@ const ingredients = [
 ];
 
 // Classifications
-const classifications = [
+export const classifications = [
   'Disgusting',
   'Sweet',
   'Quice',

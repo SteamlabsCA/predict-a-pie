@@ -1,4 +1,5 @@
 import './Stats.scss';
+import { classifications, ingredients } from './App';
 import React from 'react';
 
 function Stats({appData}) {
@@ -17,11 +18,17 @@ function Stats({appData}) {
     }
   }, [appData]);
 
+  const listIngredients = (items) => {
+    return items.map((item, index) => {
+      if (item) return ingredients[index];
+    }).filter(item => item != null).join(', ');
+  };
+
   return (
     <div className="Stats">
       <div className="Stats-container">
         <h2>Reclassified Recipes</h2>
-        <table>
+        <table className="Stats-reclassified">
           <thead>
             <tr>
               <th>Ingredients</th>
@@ -30,8 +37,8 @@ function Stats({appData}) {
             </tr>
           </thead>
           <tbody>
-            {reclassifications.map(reclassification => (
-              <tr>
+            {reclassifications.map((reclassification, index) => (
+              <tr key={index}>
                 <td>{reclassification.recipe}</td>
                 <td>{reclassification.original_classification}</td>
                 <td>{reclassification.reclassification}</td>
@@ -40,7 +47,7 @@ function Stats({appData}) {
           </tbody>
         </table>
         <h2>My Saved Recipes</h2>
-        <table>
+        <table className="Stats-recipes">
           <thead>
             <tr>
               <th>Name</th>
@@ -50,18 +57,18 @@ function Stats({appData}) {
             </tr>
           </thead>
           <tbody>
-            {myRecipes.map(recipe => (
-              <tr>
+            {myRecipes.map((recipe, index) => (
+              <tr key={index}>
                 <td>{recipe.name}</td>
-                <td>{recipe.ingredients}</td>
-                <td>{recipe.classification}</td>
+                <td>{listIngredients(recipe.ingredients)}</td>
+                <td>{classifications[recipe.classification]}</td>
                 <td></td>
               </tr>
             ))}
           </tbody>
         </table>
         <h2>All Saved Recipes</h2>
-        <table>
+        <table className="Stats-recipes">
           <thead>
             <tr>
               <th>Name</th>
@@ -71,11 +78,11 @@ function Stats({appData}) {
             </tr>
           </thead>
           <tbody>
-            {allRecipes.map(recipe => (
-              <tr>
+            {allRecipes.map((recipe, index) => (
+              <tr key={index}>
                 <td>{recipe.name}</td>
-                <td>{recipe.ingredients}</td>
-                <td>{recipe.classification}</td>
+                <td>{listIngredients(recipe.ingredients)}</td>
+                <td>{classifications[recipe.classification]}</td>
                 <td></td>
               </tr>
             ))}

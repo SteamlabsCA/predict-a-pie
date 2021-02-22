@@ -87,7 +87,7 @@ io.on('connection', (socket) => {
     let classroom = findClassroom();
     if (classroom) {
       console.log(`Recipe ${recipe.name} saved in classroom ${classroom.code}`);
-      recipe.userId = socket.it;
+      recipe.userId = socket.id;
       classroom.recipes.push(recipe);
       onUpdateClassroom(classroom);
     }

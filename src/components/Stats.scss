@@ -38,4 +38,38 @@
       margin-top: $spacer;
     }
   }
+
+  &-reclassified {
+
+    th:nth-child(1) {
+      width: 40%;
+    }
+
+    th:nth-child(2) {
+      width: 30%;
+    }
+
+    th:nth-child(3) {
+      width: 30%;
+    }
+  }
+
+  &-recipes {
+
+    th:nth-child(1) {
+      width: 20%;
+    }
+
+    th:nth-child(2) {
+      width: 40%;
+    }
+
+    th:nth-child(3) {
+      width: 20%;
+    }
+
+    th:nth-child(4) {
+      width: 20%;
+    }
+  }
 }
