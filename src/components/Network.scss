@@ -15,4 +15,21 @@
     justify-content: center;
     flex-grow: 1;
   }
+
+  &-button {
+    background: transparent;
+    border: 1px $dark-gray solid;
+    border-radius: 0.5rem;
+    color: $dark-gray;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    width: $spacer * 4;
+    height: $spacer;
+  }
 }

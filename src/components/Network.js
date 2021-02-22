@@ -4,11 +4,12 @@ import Layer from './Layer';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-const testData = [
+const initialData = [
   {
     'id': uuid(),
     'type': 'input',
     'label': 'Input Layer',
+    'description': 'Add new input nodes to process new ingredients.',
     'neurons': [{
       'id': uuid(),
       'type': 'input',
@@ -18,6 +19,7 @@ const testData = [
   {
     'id': uuid(),
     'label': 'Hidden Layer',
+    'description': 'Add a hidden layer to detect more complex combinations.',
     'neurons': [{
       'id': uuid(),
       'label': 'Neuron'
@@ -27,6 +29,7 @@ const testData = [
     'id': uuid(),
     'type': 'output',
     'label': 'Output Layer',
+    'description': 'Add new output nodes to detect new classes of predications.',
     'neurons': [{
       'id': uuid(),
       'type': 'output',
@@ -37,7 +40,7 @@ const testData = [
 
 function Network() {
 
-  const [network, setNetwork] = React.useState(testData);
+  const [network, setNetwork] = React.useState(initialData);
   const [connections, setConnections] = React.useState([]);
   const [dragging, setDragging] = React.useState(false);
   const [mouseX, setMouseX] = React.useState();
@@ -178,7 +181,7 @@ function Network() {
             />
           ))}
         </div>
-        <button className="App-button" onClick={onAddLayer}>Add Layer</button>
+        <button className="Network-button" onClick={onAddLayer}>Add Layer</button>
       </div>
       <Connections
         connections={connections}

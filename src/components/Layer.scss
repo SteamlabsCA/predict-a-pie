@@ -1,15 +1,22 @@
 @import '../variables';
 
 .Layer {
-  background: #e6eaec;
-  border-right: 2px solid $light-gray;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: $spacer 0;
-  padding: $spacer / 2;
   position: relative;
-  min-height: calc(100% - #{$spacer * 2});
+
+  &-container {
+    background: #e6eaec;
+    border-right: 2px solid $light-gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: $spacer / 2;
+    min-height: calc(100% - #{$spacer * 2});
+  }
 
   &:first-child {
     border-top-left-radius: 1rem;
@@ -40,6 +47,32 @@
     margin-top: $spacer;
     padding: 0.5rem 2rem;
     text-transform: uppercase;
+  }
+
+  &-description {
+    color: $dark-gray;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 2rem;
+    width: 20rem;
+    height: 4rem;
+  }
+
+  &-button {
+    background: transparent;
+    border: 1px $dark-gray dashed;
+    border-radius: 0.5rem;
+    color: $dark-gray;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    width: $spacer * 4;
+    height: $spacer;
   }
 
   &-trash {

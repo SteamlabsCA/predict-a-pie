@@ -131,31 +131,36 @@ function Layer({layer, ...props}) {
       onMouseLeave={onDragCancel}
       onMouseMove={onDragging}
     >
-      <div className={overTrash ? 'Layer-neurons Layer-trash-hover' : 'Layer-neurons'}>
-        {neurons.map((neuron) => (
-          <Neuron
-            key={neuron.id}
-            neuron={neuron}
-            onDragStart={onDragStart}
-            onStartConnection={props.onStartConnection}
-            onCompleteConnection={props.onCompleteConnection}
-            onChange={props.onChange}
-            style={neuron.style}
-            editable
-            dragging={neuron.id === dragging.id}
-          />
-        ))}
-        {dragging &&
-          <div ref={trash} className="Layer-trash" onMouseUp={onDeleteNeuron}>
-            <img src={trashcan} alt="Trash can" />
-          </div>
-        }
-        {!dragging &&
-          <button className="App-button" onClick={onAddNeuron}>Add New Node</button>
-        }
+      <div className="Layer-container">
+        <div className={overTrash ? 'Layer-neurons Layer-trash-hover' : 'Layer-neurons'}>
+          {neurons.map((neuron) => (
+            <Neuron
+              key={neuron.id}
+              neuron={neuron}
+              onDragStart={onDragStart}
+              onStartConnection={props.onStartConnection}
+              onCompleteConnection={props.onCompleteConnection}
+              onChange={props.onChange}
+              style={neuron.style}
+              editable
+              dragging={neuron.id === dragging.id}
+            />
+          ))}
+          {dragging &&
+            <div ref={trash} className="Layer-trash" onMouseUp={onDeleteNeuron}>
+              <img src={trashcan} alt="Trash can" />
+            </div>
+          }
+          {!dragging &&
+            <button className="Layer-button" onClick={onAddNeuron}>Add New Node</button>
+          }
+        </div>
       </div>
       <div className="Layer-label">
         {layer.label}
+      </div>
+      <div className="Layer-description">
+        {layer.description}
       </div>
     </div>
   )
