@@ -7,7 +7,7 @@ import React from 'react';
 
 function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
-  const debug = true;
+  const debug = false;
 
   const [loading, setLoading] = React.useState(true);
   const [model, setModel] = React.useState();
@@ -26,6 +26,11 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
         return input.active ? 1 : 0;
       }), [1, 19]);
       const output = await model.predict(tensor).array();
+
+      // All inputs off
+      const noInput = inputs.every(input => {
+        return !input.active;
+      });
 
       // Output debugging information
       if (debug) {
@@ -47,7 +52,7 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
         const layerOutputs = await layerModels[i].predict(tensor).array();
         layers[i-1] = layerOutputs[0].map(output => {
           return {
-            'output': output,
+            'output': noInput ? 0 : output,
             'ref': null
           };
         });
@@ -64,7 +69,7 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
       }
 
       setLayers([...layers]);
-      props.onPrediction(output[0]);
+      props.onPrediction(noInput ? [0, 0, 0, 0] : output[0]);
     }
   };
 

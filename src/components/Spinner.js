@@ -6,7 +6,7 @@ function Spinner({active}) {
   return (
     <>
       {active && (
-        <div class="Spinner"></div>
+        <div className="Spinner"></div>
       )}
     </>
   );
