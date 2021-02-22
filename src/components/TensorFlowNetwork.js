@@ -1,5 +1,6 @@
 import './TensorFlowNetwork.scss';
 import * as tf from '@tensorflow/tfjs';
+import Spinner from './Spinner';
 import TensorFlowConnections from './TensorFlowConnections';
 import TensorFlowNeuron from './TensorFlowNeuron';
 import React from 'react';
@@ -8,8 +9,9 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
   const debug = true;
 
-  const [model, setModel] = React.useState()
-  const [layerModels, setLayerModels] = React.useState([])
+  const [loading, setLoading] = React.useState(true);
+  const [model, setModel] = React.useState();
+  const [layerModels, setLayerModels] = React.useState([]);
   const [layers, setLayers] = React.useState([]);
 
   const predict = async (model) => {
@@ -83,8 +85,9 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
       setModel(model);
       setLayerModels(layerModels);
+      setLoading(false);
     };
-    loadModel();
+    setTimeout(loadModel, 1000);;
   }, [src]);
 
   React.useEffect(() => {
@@ -93,6 +96,7 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
   return (
     <div className="TensorFlowNetwork">
+      <Spinner active={loading} />
       {layers.map((layer, i) => (
         <div key={i}>
           {layer.map((neuron, j) => (

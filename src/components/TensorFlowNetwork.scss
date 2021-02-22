@@ -4,9 +4,11 @@
   background: #e6eaec;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: $spacer 0;
   padding: $spacer / 2 $spacer;
   position: relative;
+  min-width: 50rem;
   min-height: calc(100% - #{$spacer * 2});
   z-index: 10;
 }
