@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
       participants: [socket.id]
     };
     console.log(`Created classroom: ${code}, 1 participant(s)`);
-    socket.emit('classroom-joined', code);
+    socket.emit('classroom-created', code);
     onUpdateClassroom(classrooms[code]);
   });
 

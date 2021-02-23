@@ -1,5 +1,6 @@
 import './App.scss';
 import Alert from './Alert';
+import ClassroomCode from './ClassroomCode';
 import NavBar from './NavBar';
 import Network from './Network';
 import Prompt from './Prompt';
@@ -46,18 +47,18 @@ export const ingredients = [
 export const classifications = [
   'Disgusting',
   'Sweet',
-  'Quice',
+  'Quiche',
   'Pizza'
 ];
 
 function App(props) {
 
-  const [messages, setMessages] = React.useState([]);
   const [appData, setAppData] = React.useState({
     connected: false,
     classroom: false,
     userId: false
   });
+  const [classroomCode, setClassroomCode] = React.useState(false);
   const [recipe, setRecipe] = React.useState(new Array(19).fill(0));
   const [recipes, setRecipes] = React.useState([]);
   const [classification, setClassification] = React.useState(0);
@@ -89,13 +90,19 @@ function App(props) {
       setAppData(appData);
     });
 
+    socket.on('classroom-created', (code) => {
+      console.log('on created');
+      setClassroomCode(code);
+      window.history.pushState('', '', '/' + code);
+    });
+
     socket.on('classroom-joined', (code) => {
       window.history.pushState('', '', '/' + code);
     });
 
     socket.on('classroom-updated', (classroom) => {
       appData.classroom = classroom;
-      setAppData(appData);
+      setAppData({...appData});
     });
 
     socket.on('error', (error) => {
@@ -207,7 +214,7 @@ function App(props) {
         </Switch>
         <Alert />
         <Prompt />
-        }
+        <ClassroomCode code={classroomCode} appData={appData} onDismiss={() => setClassroomCode(false)} />
       </div>
     </BrowserRouter>
   );
