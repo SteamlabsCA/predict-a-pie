@@ -16,7 +16,9 @@ function ToggleSwitch({active, ...props}) {
       <div className="ToggleSwitch-well">
         <div className="ToggleSwitch-switch"></div>
       </div>
-      <div className="Neuron-output"></div>
+      <div className="Neuron-output">
+        <div className="Neuron-terminal"></div>
+      </div>
       <div className="ToggleSwitch-connector"></div>
     </div>
   );

@@ -80,14 +80,18 @@ function Neuron({neuron, ...props}) {
           onMouseOut={onMouseOut}
         >
           <ToggleSwitch onToggle={onToggle} active={neuron.active} small={props.small} />
-          <div className="Neuron-input"></div>
+          <div className="Neuron-input">
+            <div className="Neuron-terminal"></div>
+          </div>
           {props.editable &&
             <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           }
           {!props.editable &&
             <div className="Neuron-title">{neuron.label}</div>
           }
-          <div className="Neuron-output" onMouseDown={onStartConnection}></div>
+          <div className="Neuron-output" onMouseDown={onStartConnection}>
+            <div className="Neuron-terminal"></div>
+          </div>
         </div>
       );
 
@@ -119,11 +123,15 @@ function Neuron({neuron, ...props}) {
           }
           {!props.editable &&
             <>
-              <div className="Neuron-input"></div>
+              <div className="Neuron-input">
+                <div className="Neuron-terminal"></div>
+              </div>
               <div className="Neuron-title">{neuron.label}</div>
             </>
           }
-          <div className="Neuron-output"></div>
+          <div className="Neuron-output">
+            <div className="Neuron-terminal"></div>
+          </div>
           <Output
             active={neuron.active}
             confidence={neuron.confidence}
@@ -154,7 +162,9 @@ function Neuron({neuron, ...props}) {
             </div>
           </div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
-          <div className="Neuron-output" onMouseDown={onStartConnection}></div>
+          <div className="Neuron-output" onMouseDown={onStartConnection}>
+            <div className="Neuron-terminal"></div>
+          </div>
         </div>
       );
   }

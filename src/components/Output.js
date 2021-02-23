@@ -10,7 +10,9 @@ function Output({active, confidence, ...props}) {
 
   return (
     <div className={classes.join(' ')}>
-      <div className="Neuron-input"></div>
+      <div className="Neuron-input">
+        <div className="Neuron-terminal"></div>
+      </div>
       <div className="Output-connector"></div>
       <div className="Output-check">
         <img src={check} alt="Check mark" />
