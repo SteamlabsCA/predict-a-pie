@@ -6,6 +6,10 @@ function Reclassify({recipe, classifications, visible, ...props}) {
   const [step, setStep] = React.useState('1');
   const [classification, setClassification] = React.useState(-1);
 
+  React.useEffect(() => {
+    setClassification(-1);
+  }, [visible])
+
   const onAgree = () => {
     setStep('1-3');
     dismiss();

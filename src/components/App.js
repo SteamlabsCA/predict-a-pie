@@ -142,10 +142,12 @@ function App(props) {
   };
 
   const onChange = (inputs) => {
+    setReclassify(false);
     setRecipe(inputs);
   };
 
   const onFindRecipe = (type) => {
+    setReclassify(false);
     if (recipes.length > 0) {
       if (type === 'Random') {
         setRecipe(
@@ -165,7 +167,7 @@ function App(props) {
           );
         }
       }
-      setReclassify(true);
+      setTimeout(() => setReclassify(true), 1000);
     }
   };
 
