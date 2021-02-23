@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $spacer 0;
   position: relative;
 
   &-container {
@@ -44,18 +43,10 @@
     display: inline-block;
     font-size: 1.4rem;
     font-weight: 700;
-    margin-top: $spacer;
     padding: 0.5rem 2rem;
+    position: absolute;
+    bottom: -7rem;
     text-transform: uppercase;
-  }
-
-  &-description {
-    color: $dark-gray;
-    font-size: 1.4rem;
-    text-align: center;
-    margin-top: 2rem;
-    width: 20rem;
-    height: 4rem;
   }
 
   &-button {
@@ -103,5 +94,12 @@
     .Layer-trash {
       transform: scale(1.2);
     }
+  }
+
+  &-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
   }
 }

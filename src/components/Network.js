@@ -9,7 +9,6 @@ const initialData = [
     'id': uuid(),
     'type': 'input',
     'label': 'Input Layer',
-    'description': 'Add new input nodes to process new ingredients.',
     'neurons': [{
       'id': uuid(),
       'type': 'input',
@@ -18,18 +17,8 @@ const initialData = [
   },
   {
     'id': uuid(),
-    'label': 'Hidden Layer',
-    'description': 'Add a hidden layer to detect more complex combinations.',
-    'neurons': [{
-      'id': uuid(),
-      'label': 'Neuron'
-    }]
-  },
-  {
-    'id': uuid(),
     'type': 'output',
     'label': 'Output Layer',
-    'description': 'Add new output nodes to detect new classes of predications.',
     'neurons': [{
       'id': uuid(),
       'type': 'output',
@@ -48,13 +37,16 @@ function Network() {
 
   React.useEffect(() => {
     window.addEventListener('mouseup', onMouseUp);
+  }, [])
+
+  React.useEffect(() => {
     onChange();
   }, [connections]);
 
   const isNeuronAdjacent = (n1, n2) => {
     for (let i = 0; i < network.length - 1; i++) {
       if (network[i].neurons.find(neuron => neuron.id === n1.id)) {
-        return network[i+1].neurons.find(neuron => neuron.id === n2.id)
+        return network[i + 1].neurons.find(neuron => neuron.id === n2.id)
       }
     }
   }
@@ -169,20 +161,36 @@ function Network() {
 
   return (
     <>
-      <div className="Network" onMouseMove={onMouseMove}>
-        <div className="Network-layers">
-          {network.map(layer => (
-            <Layer
-              key={layer.id}
-              layer={layer}
-              onStartConnection={onStartConnection}
-              onCompleteConnection={onCompleteConnection}
-              onDeleteNeuron={onDeleteNeuron}
-              onChange={onChange}
-            />
-          ))}
+      <div className={(connections.length === 0 && network.length < 3) ? 'Network Network-empty' : 'Network'} onMouseMove={onMouseMove}>
+        <div className="Network-container">
+          <div className="Network-layers">
+            {network.map(layer => (
+              <Layer
+                key={layer.id}
+                layer={layer}
+                onStartConnection={onStartConnection}
+                onCompleteConnection={onCompleteConnection}
+                onDeleteNeuron={onDeleteNeuron}
+                onChange={onChange}
+              />
+            ))}
+            <div class="Network-instruction">
+              <p>Click and drag to create connections between nodes.</p>
+            </div>
+          </div>
+          <div className="Network-instructions">
+            <div className="Network-instruction">
+              <p>Add new input nodes to process new ingredients.</p>
+            </div>
+            <div className="Network-instruction">
+              <p>Add a hidden layer to detect more complex combinations.</p>
+              <button className="Network-button" onClick={onAddLayer}>Add Layer</button>
+            </div>
+            <div className="Network-instruction">
+              <p>Add new input nodes to process new ingredients.</p>
+            </div>
+          </div>
         </div>
-        <button className="Network-button" onClick={onAddLayer}>Add Layer</button>
       </div>
       <Connections
         connections={connections}

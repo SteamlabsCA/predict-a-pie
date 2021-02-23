@@ -162,9 +162,6 @@ function Layer({layer, ...props}) {
       <div className="Layer-label">
         {layer.label}
       </div>
-      <div className="Layer-description">
-        {layer.description}
-      </div>
     </div>
   )
 }

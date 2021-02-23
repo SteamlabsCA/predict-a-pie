@@ -9,11 +9,21 @@
   height: min-content;
   min-height: 100%;
 
+  &-container {
+    display: flex;
+    padding: 6rem 0 16rem;
+    position: relative;
+    min-height: 100%;
+  }
+
   &-layers {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     flex-grow: 1;
+    padding-bottom: 7rem;
+    position: relative;
+    min-width: calc(90rem + 4px);
   }
 
   &-button {
@@ -31,5 +41,47 @@
     margin: 1rem 0;
     width: $spacer * 4;
     height: $spacer;
+  }
+
+  &-instructions {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &-instruction {
+    display: flex;
+    align-items: center;
+    flex-basis: 30rem;
+    flex-direction: column;
+    flex-grow: 0;
+
+    p {
+      color: $dark-gray;
+      font-size: 1.4rem;
+      text-align: center;
+      width: 22rem;
+    }
+
+    &:nth-child(2) {
+      margin-left: auto;
+    }
+  }
+
+  &-layers &-instruction {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 7rem;
+    left: 0;
+  }
+
+  &-empty &-layers &-instruction {
+    display: flex;
   }
 }

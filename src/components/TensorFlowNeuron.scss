@@ -13,6 +13,14 @@
   height: 3rem;
   z-index: 1000;
 
+  &:first-child {
+    margin-top: 3rem;
+  }
+
+  &:last-child {
+    margin-bottom: 3rem;
+  }
+
   &-fill {
     background: $active;
     transition: opacity 300ms;
