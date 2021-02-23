@@ -47,6 +47,7 @@ function Network() {
   const [mouseY, setMouseY] = React.useState();
 
   React.useEffect(() => {
+    window.addEventListener('mouseup', onMouseUp);
     onChange();
   }, [connections]);
 
@@ -168,7 +169,7 @@ function Network() {
 
   return (
     <>
-      <div className="Network" onMouseMove={onMouseMove} onMouseUp={onMouseUp}>
+      <div className="Network" onMouseMove={onMouseMove}>
         <div className="Network-layers">
           {network.map(layer => (
             <Layer
