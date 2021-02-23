@@ -1,4 +1,0 @@
-{
-  "install": "npm run build",
-  "start": "node ./src/server.js"
-}
