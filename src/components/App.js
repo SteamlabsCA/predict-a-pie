@@ -77,21 +77,20 @@ function App(props) {
   React.useEffect(() => {
     socket.on('connect', () => {
         appData.connected = true;
-        setAppData(appData);
+        setAppData({...appData});
     });
 
     socket.on('disconnect', () => {
         appData.connected = false;
-        setAppData(appData);
+        setAppData({...appData});
     });
 
     socket.on('user-id', (userId) => {
       appData.userId = userId;
-      setAppData(appData);
+      setAppData({...appData});
     });
 
     socket.on('classroom-created', (code) => {
-      console.log('on created');
       setClassroomCode(code);
       window.history.pushState('', '', '/' + code);
     });
@@ -122,7 +121,7 @@ function App(props) {
       case 'leave-classroom':
         appData.classroom = false;
         window.history.pushState('', '', '/');
-        setAppData(appData);
+        setAppData({...appData});
         socket.emit('leave-classroom');
         break;
 

@@ -44,6 +44,11 @@
     }
   }
 
+  &-terminal {
+    background: red;
+    padding: 1rem;
+  }
+
   &-input {
     @extend %terminal;
     top: 50%;

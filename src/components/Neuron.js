@@ -105,10 +105,14 @@ function Neuron({neuron, ...props}) {
           {props.editable &&
             <>
               <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
-                <img src={positive} alt="Positive terminal" />
+                <div className="Neuron-terminal">
+                  <img src={positive} alt="Positive terminal" />
+                </div>
               </div>
               <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
-                <img src={negative} alt="Negative terminal" />
+                <div className="Neuron-terminal">
+                  <img src={negative} alt="Negative terminal" />
+                </div>
               </div>
               <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
             </>
@@ -140,10 +144,14 @@ function Neuron({neuron, ...props}) {
           onMouseOut={onMouseOut}
         >
           <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
-            <img src={positive} alt="Positive terminal" />
+            <div className="Neuron-terminal">
+              <img src={positive} alt="Positive terminal" />
+            </div>
           </div>
           <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
-            <img src={negative} alt="Negative terminal" />
+            <div className="Neuron-terminal">
+              <img src={negative} alt="Negative terminal" />
+            </div>
           </div>
           <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           <div className="Neuron-output" onMouseDown={onStartConnection}></div>
