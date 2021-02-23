@@ -174,7 +174,7 @@ function Network() {
                 onChange={onChange}
               />
             ))}
-            <div class="Network-instruction">
+            <div className="Network-instruction">
               <p>Click and drag to create connections between nodes.</p>
             </div>
           </div>

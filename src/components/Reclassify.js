@@ -1,10 +1,10 @@
 import './Reclassify.scss';
 import React from 'react';
 
-function Reclassify({recipe, visible, ...props}) {
+function Reclassify({recipe, classifications, visible, ...props}) {
 
   const [step, setStep] = React.useState('1');
-  const [classification, setClassification] = React.useState('');
+  const [classification, setClassification] = React.useState(-1);
 
   const onAgree = () => {
     setStep('1-3');
@@ -41,10 +41,9 @@ function Reclassify({recipe, visible, ...props}) {
           <p>How would you classify it?</p>
           <div className="Reclassify-select">
             <select onChange={(event) => setClassification(event.target.value)}>
-              <option value="Disgusting">Disgusting</option>
-              <option value="Sweet">Sweet</option>
-              <option value="Quiche">Quiche</option>
-              <option value="Pizza">Pizza</option>
+              {classifications.map((classification, index) => (
+                <option value={index}>{classification}</option>
+              ))}
             </select>
             <button onClick={onReclassify}>Submit</button>
           </div>

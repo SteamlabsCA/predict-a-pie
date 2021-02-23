@@ -170,6 +170,9 @@ function App(props) {
   };
 
   const onReclassify = (recipe, reclassification) => {
+    if (reclassification < 0) {
+      reclassification = classification;
+    }
     socket.emit('reclassify-recipe', {
       recipe: recipe,
       original_classification: classification,
@@ -198,13 +201,19 @@ function App(props) {
             />
             <Reclassify
               recipe={recipe}
+              classifications={classifications}
               visible={reclassify}
               onReclassify={onReclassify}
             />
           </Route>
           <Route path="*/stats">
             <NavBar title="Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
-            <Stats appData={appData} />
+            <Stats
+              appData={appData}
+              ingredients={ingredients}
+              classifications={classifications}
+              recipes={recipes}
+            />
           </Route>
           <Route path="/">
             <NavBar title="Build a Neural Network" appData={appData} route="build" onCommand={onCommand} />
