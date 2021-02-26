@@ -1,0 +1,18 @@
+@import '../variables';
+
+.Knob {
+  cursor: pointer;
+  pointer-events: all;
+  position: absolute;
+  top: 100px;
+  left: 0;
+
+  &-control {
+    background: #dfe1e2;
+    border: 1px solid #d5d8da;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    border-radius: 4rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}

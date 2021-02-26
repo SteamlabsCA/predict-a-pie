@@ -1,5 +1,6 @@
 import './Connections.scss';
 import scissors from '../assets/scissors.svg';
+import Knob from './Knob';
 import React from 'react';
 
 function Connections({connections, mouseX, mouseY, ...props}) {
@@ -7,6 +8,9 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   const requestRef = React.useRef();
   const [time, setTime] = React.useState();
   const [cursorStyle, setCursorStyle] = React.useState();
+
+  const [knobWeight, setKnobWeight] = React.useState(50);
+
 
   const animate = (time) => {
     setTime(time);
@@ -71,6 +75,11 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     props.onDeleteConnection(connection);
   }
 
+  const onChangeWeight = (value) => {
+    console.log(value);
+    setKnobWeight(value);
+  };
+
   return (
     <div className="Connections">
       <svg>
@@ -97,6 +106,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
         ))}
       </svg>
       <img className="Connections-cut" style={cursorStyle} src={scissors} alt="Scissors" />
+      <Knob value={knobWeight} min="-100" max="100" onChange={onChangeWeight} />
     </div>
   )
 }
