@@ -1,7 +1,7 @@
 import './SelectRecipe.scss';
 import React from 'react';
 
-function SelectRecipe(props) {
+function SelectRecipe({classifications, ...props}) {
 
   const [value, setValue] = React.useState('Random');
 
@@ -17,10 +17,9 @@ function SelectRecipe(props) {
     <div className="SelectRecipe">
       <select onChange={onChange}>
         <option value="Random">Random</option>
-        <option value="Disgusting">Disgusting</option>
-        <option value="Sweet">Sweet</option>
-        <option value="Quiche">Quiche</option>
-        <option value="Pizza">Pizza</option>
+        {classifications.map((classification, index) => (
+          <option key={index} value={classification}>{classification}</option>
+        ))}
       </select>
       <button onClick={onSubmit}>Find Recipe</button>
     </div>

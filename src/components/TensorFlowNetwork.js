@@ -24,7 +24,7 @@ function TensorFlowNetwork({src, inputs, outputs, ...props}) {
 
       const tensor = tf.tensor2d(inputs.map(input => {
         return input.active ? 1 : 0;
-      }), [1, 19]);
+      }), [1, inputs.length]);
       const output = await model.predict(tensor).array();
 
       // All inputs off

@@ -24,32 +24,42 @@ if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
 // Ingredients
 export const ingredients = [
   'Crust',
-  'Cherries',
-  'Egg',
   'Sugar',
-  'Soap',
-  'Onion',
-  'Tomato',
-  'Cheese',
-  'Blueberries',
-  'Pecan',
-  'Cashew',
-  'Peach',
-  'Corn',
-  'Chocolate',
-  'Pumpkin',
-  'Coconut',
   'Honey',
+  'Chocolate',
+  'Cherries',
   'Strawberry',
-  'Spinach'
+  'Pineapple',
+  'Rhubarb',
+  'Tomato',
+  'Corn',
+  'Onion',
+  'Spinach',
+  'Pumpkin',
+  'Broccoli',
+  'Mushroom',
+  'Hot Peppers',
+  'Sweet Potato',
+  'Cheese',
+  'Blue Cheese',
+  'Egg',
+  'Chicken',
+  'Ham',
+  'Steak',
+  'Salmon',
+  'Shrimp',
+  'Soy Chunks',
+  'Pecan',
+  'Pesto'
 ];
 
 // Classifications
 export const classifications = [
-  'Disgusting',
   'Sweet',
   'Quiche',
-  'Pizza'
+  'Pizza',
+  'Savoury',
+  'Disgusting'
 ];
 
 function App(props) {
@@ -62,6 +72,7 @@ function App(props) {
   const [classroomCode, setClassroomCode] = React.useState(false);
   const [recipe, setRecipe] = React.useState(new Array(19).fill(0));
   const [recipes, setRecipes] = React.useState([]);
+  const [discuss, setDiscuss] = React.useState(true);
   const [classification, setClassification] = React.useState(0);
   const [reclassify, setReclassify] = React.useState(false);
 
@@ -70,6 +81,13 @@ function App(props) {
     fetch('/recipes.json').then(function(response){
       return response.json();
     }).then(function(json) {
+
+      // Shuffle recipes
+      for (let i = json.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [json[i], json[j]] = [json[j], json[i]];
+      }
+
       setRecipes(json)
     });
   }, []);
@@ -147,28 +165,25 @@ function App(props) {
     setRecipe(inputs);
   };
 
-  const onFindRecipe = (type) => {
+  const onFindRecipe = (type, discuss = true) => {
     setReclassify(false);
+
+    // Find first suitable recipe
     if (recipes.length > 0) {
-      if (type === 'Random') {
-        setRecipe(
-          Object.values(
-            recipes[Math.floor(Math.random() * recipes.length)]
-          ).slice(0, 19)
-        );
-      } else {
-        const subset = recipes.filter(recipe => {
-          return recipe[type] === 1;
-        });
-        if (subset.length > 0) {
-          setRecipe(
-            Object.values(
-              subset[Math.floor(Math.random() * subset.length)]
-            ).slice(0, 19)
-          );
+      for (let index = 0; index < recipes.length; index++) {
+        if (
+          (!discuss || recipes[index].Discuss === 1) &&
+          (type === 'Random' || recipe[type] === 1)
+        ) {
+          const item = recipes.splice(index, 1)[0];
+          setRecipe(Object.values(item).slice(0, ingredients.length));
+          setTimeout(() => setReclassify(true), 1000);
+          return;
         }
       }
-      setTimeout(() => setReclassify(true), 1000);
+      if (discuss) {
+        onFindRecipe(type, false);
+      }
     }
   };
 
@@ -194,7 +209,7 @@ function App(props) {
               appData={appData}
               route="trained"
               onCommand={onCommand}
-              content={(<SelectRecipe onSubmit={onFindRecipe}/>)}
+              content={(<SelectRecipe classifications={classifications} onSubmit={onFindRecipe}/>)}
             />
             <TrainedNetwork
               onChange={onChange}
