@@ -36,6 +36,9 @@ function TrainedNetwork({inputs, ingredients, classifications, ...props}) {
     result.map((output, index) => {
       outputLayer[index].confidence = Math.round(output * 100);
       outputLayer[index].active = output > 0 && output === max;
+      if (outputLayer[index].active) {
+        props.onPrediction(index);
+      }
     });
     setOutputLayer([...outputLayer]);
   };

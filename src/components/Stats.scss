@@ -68,6 +68,10 @@
     & + h2 {
       margin-top: $spacer;
     }
+
+    small {
+      color: $dark-gray;
+    }
   }
 
   &-reclassified {
@@ -77,11 +81,11 @@
     }
 
     th:nth-child(2) {
-      width: 30%;
+      width: 20%;
     }
 
     th:nth-child(3) {
-      width: 30%;
+      width: 40%;
     }
   }
 

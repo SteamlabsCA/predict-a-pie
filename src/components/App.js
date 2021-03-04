@@ -165,6 +165,10 @@ function App(props) {
     setRecipe(inputs);
   };
 
+  const onPrediction = (output) => {
+    setClassification(output)
+  };
+
   const onFindRecipe = (type, discuss = true) => {
     setReclassify(false);
 
@@ -213,6 +217,7 @@ function App(props) {
             />
             <TrainedNetwork
               onChange={onChange}
+              onPrediction={onPrediction}
               inputs={recipe}
               ingredients={ingredients}
               classifications={classifications}

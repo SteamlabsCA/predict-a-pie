@@ -6,14 +6,13 @@
   align-items: center;
   padding: $spacer $spacer * 3;
   min-width: min-content;
-  height: min-content;
-  min-height: 100%;
+  flex-basis: 100%;
 
   &-container {
     display: flex;
     padding: 6rem 0 16rem;
     position: relative;
-    min-height: 100%;
+    flex-basis: 100%;
   }
 
   &-layers {

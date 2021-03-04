@@ -5,87 +5,65 @@ import React from 'react';
 
 function Stats({appData, ingredients, classifications, recipes}) {
 
-  const [myRecipes, setMyRecipes] = React.useState([]);
-  const [allRecipes, setAllRecipes] = React.useState([]);
-
-  // Defaults
-  let reclassifications = [];
-  let correct = [];
-  let incorrect = [];
-
-  /*React.useEffect(() => {
-
-    console.log('compile');
-
-    // Compile stats
-    const recipeHash = {};
-    recipes.map(recipe => {
-      let hashId = '';
-      let classification = -1;
-      for (let i = 0; i < ingredients.length; i++) {
-        hashId += recipe[ingredients[i]];
-      }
-      for (let i = 0; i < classifications.length; i++) {
-        if (recipe[classifications[i]] === 1) {
-          classification = i;
-        }
-      }
-      recipeHash[hashId] = {
-        'classification': classification,
-        'reclassified': false,
-        'reclassifications': new Array(classifications.length).fill(0)
-      };
-    });
-
-    if (appData.classroom) {
-      console.log('classrom');
-      setReclassications(appData.classroom.reclassifications);
-      setMyRecipes(appData.classroom.recipes.filter(recipe => recipe.userId === appData.userId));
-      setAllRecipes(appData.classroom.recipes);
-
-      // Add classroom recipes
-      appData.classroom.recipes.map(recipe => {
-        let hashId = recipe.ingredients.join('');
-        if (recipeHash[hashId] === undefined) {
-          recipeHash[hashId] = {
-            'classification': recipe.original_classification,
-            'reclassified': false,
-            'reclassifications': new Array(classifications.length).fill(0)
-          }
-        }
-      });
-
-      // Tally reclassifications
-      appData.classroom.reclassifications.map(reclassification => {
-        let hashId = reclassification.recipe.join('');
-        if (recipeHash[hashId]) {
-          recipeHash[hashId].reclassifications[reclassification.reclassification]++;
-          if (reclassification.original_classification != reclassification.reclassification) {
-            recipeHash[hashId].reclassified = true;
-          }
-        }
-      });
-    }
-  }, [appData, classifications, recipes]);*/
-
   const listIngredients = (items) => {
     return items.map((item, index) => {
       if (item) return ingredients[index];
     }).filter(item => item != null).join(', ');
   };
 
-  // Use classroom data
-  if (appData.classroom) {
-    reclassifications = appData.classroom.reclassifications;
-  }
+  const getClassificationPercent = (item, index) => {
+    let total = 0;
+    item.reclassifications.map(value => total += value);
+    return total > 0 ? Math.round(item.reclassifications[index] / total * 100) : 0;
+  };
+
+  const listReclassifications = (item) => {
+    let list = [];
+    let total = 0;
+    item.reclassifications.map(value => total += value);
+    item.reclassifications.map((value, index) => {
+      if (index != item.original_classification && value > 0) {
+        list.push(classifications[index] + ' (' + value / total * 100 + '%)');
+      }
+    });
+    return list.join(', ');
+  };
+
+  const reclassifications = appData.classroom ? appData.classroom.reclassifications : [];
+  const allRecipes = appData.classroom ? appData.classroom.recipes : [];
+  const myRecipes = allRecipes.filter(recipe => {
+    return recipe.userId === appData.userId;
+  });
+
+  // Aggregate reclassifications
+  const recipeMap = {};
+  reclassifications.map(item => {
+    let hashId = item.recipe.join('');
+    if (recipeMap[hashId] === undefined) {
+      recipeMap[hashId] = {
+        'recipe': item.recipe,
+        'original_classification': item.original_classification,
+        'reclassifications': new Array(classifications.length).fill(0)
+      };
+    }
+    recipeMap[hashId].reclassifications[item.reclassification]++;
+  });
+  let aggregated = Object.values(recipeMap);
+
+  // Sort most controversial first
+  aggregated.sort((a, b) => {
+    let percentA = getClassificationPercent(a, a.original_classification);
+    let percentB = getClassificationPercent(b, b.original_classification);
+    return percentA - percentB;
+  });
 
   // Correct classifications
-  correct = reclassifications.filter(item => {
+  const correct = reclassifications.filter(item => {
     return item.original_classification === item.reclassification;
   });
 
   // Incorrect classifications
-  incorrect = reclassifications.filter(item => {
+  const incorrect = reclassifications.filter(item => {
     return item.original_classification !== item.reclassification;
   });
 
@@ -133,11 +111,24 @@ function Stats({appData, ingredients, classifications, recipes}) {
             </tr>
           </thead>
           <tbody>
-            {reclassifications.map((reclassification, index) => (
-              <tr key={index}>
-                <td>{listIngredients(reclassification.recipe)}</td>
-                <td>{classifications[reclassification.original_classification]}</td>
-                <td>{classifications[reclassification.reclassification]}</td>
+            {aggregated.map((item, i) => (
+              <tr key={i}>
+                <td>{listIngredients(item.recipe)}</td>
+                <td>
+                  {classifications[item.original_classification]} {getClassificationPercent(item, item.original_classification) > 0 && (
+                    <small>({getClassificationPercent(item, item.original_classification)}%)</small>
+                  )}
+                </td>
+                <td>
+                  {classifications.map((classification, index) => {
+                    let percent = getClassificationPercent(item, index);
+                    if (index != item.original_classification && percent> 0) {
+                      return (<span key={index}>
+                        {classification} <small>({percent}%)</small>
+                      </span>);
+                    }
+                  })}&nbsp;
+                </td>
               </tr>
             ))}
           </tbody>
