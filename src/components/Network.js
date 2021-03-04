@@ -166,20 +166,16 @@ function Network() {
   const onChange = () => {
     for (let i = 1; i < network.length; i++) {
       for (let j = 0; j < network[i].neurons.length; j++) {
-        const inputs = neuronInputs(network[i].neurons[j]);
+
+        // Activation function
         let activation = 0;
+        const inputs = neuronInputs(network[i].neurons[j]);
         for (let k = 0; k < inputs.length; k++) {
-          if (inputs[k].weight > 0 && inputs[k].from.active) {
-            activation++;
-          }
-          if (inputs[k].weight > 0 && !inputs[k].from.active) {
-            activation -= 1000;
-          }
-          if (inputs[k].weight < 0 && inputs[k].from.active) {
-            activation -= 1000;
+          if (inputs[k].from.active) {
+            activation += inputs[k].positive ? inputs[k].weight : -inputs[k].weight;
           }
         }
-        network[i].neurons[j].active = activation > 0;
+        network[i].neurons[j].active = activation >= 99;
       }
     }
     setNetwork([...network]);

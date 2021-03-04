@@ -87,7 +87,7 @@ function Weights({connections, ...props}) {
           <img src={positive} alt="Positive terminal" />
         )}
         {!editing[0].positive && (
-          <img src={positive} alt="Positive terminal" />
+          <img src={negative} alt="Negative terminal" />
         )}
       </div>
     </div>
