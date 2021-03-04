@@ -51,7 +51,7 @@ function Weights({connections, ...props}) {
 
   const editing = connections.filter(connection => connection.editing);
 
-  return editing.length && (
+  return editing.length > 0 && (
     <div className="Weights" onClick={onComplete}>
       <svg>
         {editing.map((connection, index) => (
@@ -91,7 +91,7 @@ function Weights({connections, ...props}) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default Weights;

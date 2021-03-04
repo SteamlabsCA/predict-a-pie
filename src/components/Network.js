@@ -184,6 +184,10 @@ function Network() {
   const onMouseMove = (event) => {
     setMouseX(event.clientX);
     setMouseY(event.clientY);
+    if (dragging && event.buttons === 0) {
+      setConnections(connections.slice(0, -1));
+      setDragging(false);
+    }
   };
 
   const onMouseUp = () => {
