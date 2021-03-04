@@ -17,6 +17,7 @@ function Gauge({value}) {
         <img className="Gauge-background" src={background} alt="Gauge background" />
         <img className="Gauge-needle" src={needle} style={{'transform': 'rotate(' + angle + 'deg)'}} alt="Gauge needle" />
       </div>
+      <div className="Gauge-value">{Math.round(value * 100)}%</div>
     </div>
   );
 }

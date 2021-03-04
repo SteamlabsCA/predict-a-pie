@@ -46,7 +46,7 @@ function Reclassify({recipe, classifications, visible, ...props}) {
           <div className="Reclassify-select">
             <select onChange={(event) => setClassification(event.target.value)}>
               {classifications.map((classification, index) => (
-                <option value={index}>{classification}</option>
+                <option key={index} value={index}>{classification}</option>
               ))}
             </select>
             <button onClick={onReclassify}>Submit</button>

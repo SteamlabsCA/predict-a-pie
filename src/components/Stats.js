@@ -5,16 +5,17 @@ import React from 'react';
 
 function Stats({appData, ingredients, classifications, recipes}) {
 
-  const [recipeCount, setRecipeCount] = React.useState(0);
-  const [reclassifiedCount, setReclassifiedCount] = React.useState(0);
-  const [accuracy, setAccuracy] = React.useState('-');
-  const [reclassifications, setReclassications] = React.useState([]);
   const [myRecipes, setMyRecipes] = React.useState([]);
   const [allRecipes, setAllRecipes] = React.useState([]);
 
-  React.useEffect(() => {
+  // Defaults
+  let reclassifications = [];
+  let correct = [];
+  let incorrect = [];
 
-    console.log(recipes.length);
+  /*React.useEffect(() => {
+
+    console.log('compile');
 
     // Compile stats
     const recipeHash = {};
@@ -37,6 +38,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
     });
 
     if (appData.classroom) {
+      console.log('classrom');
       setReclassications(appData.classroom.reclassifications);
       setMyRecipes(appData.classroom.recipes.filter(recipe => recipe.userId === appData.userId));
       setAllRecipes(appData.classroom.recipes);
@@ -63,35 +65,8 @@ function Stats({appData, ingredients, classifications, recipes}) {
           }
         }
       });
-
-      // Total recipe count
-      setRecipeCount(Object.values(recipeHash).length);
-
-      // Number of recipes reclassified
-      setReclassifiedCount(Object.values(recipeHash).filter(recipe => recipe.reclassified).length);
-
-      // Calculate AI accuracy
-      const accuracies = [];
-      Object.values(recipeHash).map(recipe => {
-        let total = 0;
-        let correct = 0;
-        for (let i = 0; i < recipe.reclassifications.length; i++) {
-          total += recipe.reclassifications[i];
-          if (i == recipe.classification) {
-            correct += recipe.reclassifications[i];
-          }
-        }
-        if (total > 0) {
-          accuracies.push(correct / total);
-        }
-      });
-      if (accuracies.length === 0) {
-        setAccuracy('-');
-      } else {
-        setAccuracy(accuracies.reduce((a, b) => a + b, 0) / accuracies.length);
-      }
     }
-  }, [appData, recipes]);
+  }, [appData, classifications, recipes]);*/
 
   const listIngredients = (items) => {
     return items.map((item, index) => {
@@ -99,20 +74,52 @@ function Stats({appData, ingredients, classifications, recipes}) {
     }).filter(item => item != null).join(', ');
   };
 
+  // Use classroom data
+  if (appData.classroom) {
+    reclassifications = appData.classroom.reclassifications;
+  }
+
+  // Correct classifications
+  correct = reclassifications.filter(item => {
+    return item.original_classification === item.reclassification;
+  });
+
+  // Incorrect classifications
+  incorrect = reclassifications.filter(item => {
+    return item.original_classification !== item.reclassification;
+  });
+
+  // Accuracy
+  const accuracy = reclassifications.length > 0 ?
+    correct.length / reclassifications.length : 1;
+
   return (
     <div className="Stats">
       <div className="Stats-container">
         <div className="Stats-dashboard">
           <div className="Stats-dashboard-item">
-            <h2>Number of Recipes</h2>
-            <p>{recipeCount}</p>
+            <h2>
+              Total<br/>
+              Predictions
+            </h2>
+            <p>{reclassifications.length}</p>
           </div>
           <div className="Stats-dashboard-item">
-            <h2>Number Reclassified</h2>
-            <p>{reclassifiedCount}</p>
+            <h2>
+              Correct<br/>
+              Classifications
+            </h2>
+            <p>{correct.length}</p>
           </div>
           <div className="Stats-dashboard-item">
-            <h2>A.I. Accuracy</h2>
+            <h2>
+              Incorrect<br/>
+              Classifications
+            </h2>
+            <p>{incorrect.length}</p>
+          </div>
+          <div className="Stats-dashboard-item">
+            <h2>Accuracy</h2>
             <Gauge value={accuracy} />
           </div>
         </div>
