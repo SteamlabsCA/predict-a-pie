@@ -69,7 +69,7 @@ function Weights({connections, ...props}) {
       {editing.map((connection, index) => connection.editing && (
         <Knob
           key={index}
-          x={outputX(connection.from) + 11}
+          x={outputX(connection.from)}
           y={outputY(connection.from)}
           value={connection.weight}
           onStartChange={onStartChange}
