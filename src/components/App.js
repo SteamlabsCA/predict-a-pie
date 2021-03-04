@@ -12,8 +12,8 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import socketClient from 'socket.io-client';
 
-//const socket = socketClient();
-const socket = socketClient('http://127.0.0.1:8080');
+const socket = socketClient();
+//const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
