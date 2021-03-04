@@ -6,13 +6,14 @@ function Knob({x, y, value, ...props}) {
   let mouseX, mouseY, previousValue;
 
   const onMouseDown = (event) => {
+    props.onStartChange();
     mouseX = event.clientX;
     mouseY = event.clientY;
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('mousemove', onMouseMove);
   };
 
-  const onMouseUp = () => {
+  const onMouseUp = (event) => {
     window.removeEventListener('mouseup', onMouseUp);
     window.removeEventListener('mousemove', onMouseMove);
   };

@@ -1,6 +1,7 @@
 import './Network.scss';
 import Connections from './Connections';
 import Layer from './Layer';
+import Weights from './Weights';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
@@ -109,19 +110,43 @@ function Network() {
 
         newConnections.push(connection);
       }
+
+      // Assign default weights to inputs
+      const inputs = newConnections.filter(connection => {
+        return connection.to.id === neuron.id && connection.positive === positive;
+      });
+      inputs.map(connection => {
+        if (positive) {
+          connection.weight = Math.round(100 / inputs.length);
+        } else {
+          connection.weight = 100;
+        }
+      });
+
+
       setConnections(newConnections);
       setDragging(false);
     }
   };
 
   const onAdjustWeights = (neuron, positive) => {
-    connections.map((connection) => {
+    connections.map(connection => {
       if (connection.to.id === neuron.id && connection.positive === positive) {
         connection.editing = true;
       } else {
         connection.editing = false;
       }
     });
+    setConnections([...connections]);
+  };
+
+  const onAdjustWeightsComplete = () => {
+    connections.map(connection => connection.editing = false);
+    setConnections([...connections]);
+  };
+
+  const onChangeWeight = (connection, value) => {
+    connection.weight = value;
     setConnections([...connections]);
   };
 
@@ -183,9 +208,9 @@ function Network() {
                 layer={layer}
                 onStartConnection={onStartConnection}
                 onCompleteConnection={onCompleteConnection}
-                onAdjustWeights={onAdjustWeights}
                 onDeleteNeuron={onDeleteNeuron}
                 onChange={onChange}
+                onAdjustWeights={onAdjustWeights}
               />
             ))}
             <div className="Network-instruction">
@@ -211,6 +236,11 @@ function Network() {
         mouseX={mouseX}
         mouseY={mouseY}
         onDeleteConnection={onDeleteConnection}
+      />
+      <Weights
+        connections={connections}
+        onChange={onChangeWeight}
+        onComplete={onAdjustWeightsComplete}
       />
     </>
   );

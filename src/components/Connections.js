@@ -1,6 +1,5 @@
 import './Connections.scss';
 import scissors from '../assets/scissors.svg';
-import Knob from './Knob';
 import React from 'react';
 
 function Connections({connections, mouseX, mouseY, ...props}) {
@@ -8,9 +7,6 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   const requestRef = React.useRef();
   const [time, setTime] = React.useState();
   const [cursorStyle, setCursorStyle] = React.useState();
-
-  const [knobWeight, setKnobWeight] = React.useState(50);
-
 
   const animate = (time) => {
     setTime(time);
@@ -25,7 +21,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   const outputX = (neuron) => {
     const rect = document.querySelector('#n-' + neuron.id).getBoundingClientRect();
     return rect.left + rect.width - 11;
-  }
+  };
 
   const outputY = (neuron) => {
     const rect = document.querySelector('#n-' + neuron.id).getBoundingClientRect();
@@ -39,7 +35,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     } else {
       return mouseX;
     }
-  }
+  };
 
   const inputY = (neuron, positive) => {
     if (neuron) {
@@ -48,7 +44,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     } else {
       return mouseY;
     }
-  }
+  };
 
   const onMouseMove = (connection, event) => {
     if (connection.to && !connection.editing) {
@@ -59,14 +55,14 @@ function Connections({connections, mouseX, mouseY, ...props}) {
       });
       connection.hover = true;
     }
-  }
+  };
 
   const onMouseOut = (connection) => {
     setCursorStyle({
       'display': 'none'
     });
     connection.hover = false;
-  }
+  };
 
   const onDeleteConnection = (connection) => {
     setCursorStyle({
@@ -75,11 +71,6 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     if (!connection.editing) {
       props.onDeleteConnection(connection);
     }
-  }
-
-  const onChangeWeight = (value) => {
-    //console.log(value);
-    setKnobWeight(value);
   };
 
   return (
@@ -102,23 +93,12 @@ function Connections({connections, mouseX, mouseY, ...props}) {
               y1={outputY(connection.from)}
               x2={inputX(connection.to, connection.positive)}
               y2={inputY(connection.to, connection.positive)}
-              className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '') + (connection.editing ? ' Connections-editing' : '')}
+              className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
             />
           </g>
         ))}
       </svg>
       <img className="Connections-cut" style={cursorStyle} src={scissors} alt="Scissors" />
-      <div className="Connections-weights">
-        {connections.map((connection, index) => connection.editing && (
-          <Knob
-            key={index}
-            x={outputX(connection.from)}
-            y={outputY(connection.from)}
-            value={connection.weight}
-            onChange={onChangeWeight}
-          />
-        ))}
-      </div>
     </div>
   )
 }
