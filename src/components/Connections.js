@@ -76,7 +76,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   }
 
   const onChangeWeight = (value) => {
-    console.log(value);
+    //console.log(value);
     setKnobWeight(value);
   };
 
