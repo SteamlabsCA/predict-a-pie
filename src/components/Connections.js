@@ -41,10 +41,10 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     }
   }
 
-  const inputY = (neuron, weight) => {
+  const inputY = (neuron, positive) => {
     if (neuron) {
       const rect = document.querySelector('#n-' + neuron.id).getBoundingClientRect();
-      return weight > 0 ? rect.top + 15 : rect.top + rect.height - 14;
+      return positive ? rect.top + 15 : rect.top + rect.height - 14;
     } else {
       return mouseY;
     }
@@ -88,8 +88,8 @@ function Connections({connections, mouseX, mouseY, ...props}) {
             <line
               x1={outputX(connection.from)}
               y1={outputY(connection.from)}
-              x2={inputX(connection.to, connection.weight)}
-              y2={inputY(connection.to, connection.weight)}
+              x2={inputX(connection.to, connection.positive)}
+              y2={inputY(connection.to, connection.positive)}
               className="Connections-hit-area"
               onMouseMove={(event) => {onMouseMove(connection, event)}}
               onMouseOut={(event) => {onMouseOut(connection)}}
@@ -98,8 +98,8 @@ function Connections({connections, mouseX, mouseY, ...props}) {
             <line
               x1={outputX(connection.from)}
               y1={outputY(connection.from)}
-              x2={inputX(connection.to, connection.weight)}
-              y2={inputY(connection.to, connection.weight)}
+              x2={inputX(connection.to, connection.positive)}
+              y2={inputY(connection.to, connection.positive)}
               className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
             />
           </g>

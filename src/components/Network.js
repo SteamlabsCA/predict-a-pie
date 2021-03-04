@@ -87,18 +87,20 @@ function Network() {
     setConnections([...connections, {
       from: neuron,
       to: false,
-      weight: 0
+      positive: true,
+      weight: 0,
+      active: false
     }]);
     setDragging(true);
   }
 
-  const onCompleteConnection = (neuron, weight) => {
+  const onCompleteConnection = (neuron, positive) => {
     if (dragging) {
       let newConnections = [...connections];
       let connection = newConnections.pop();
       if (isNeuronAdjacent(connection.from, neuron)) {
         connection.to = neuron;
-        connection.weight = weight;
+        connection.positive = positive;
 
         // Remove any existing connections
         newConnections = newConnections.filter(item => {

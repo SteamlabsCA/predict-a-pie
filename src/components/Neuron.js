@@ -29,11 +29,11 @@ function Neuron({neuron, ...props}) {
     }
   }
 
-  const onCompleteConnection = (event, weight) => {
+  const onCompleteConnection = (event, positive) => {
     event.preventDefault();
     event.stopPropagation();
     if (props.editable) {
-      props.onCompleteConnection(neuron, weight);
+      props.onCompleteConnection(neuron, positive);
     }
   }
 
@@ -108,12 +108,12 @@ function Neuron({neuron, ...props}) {
         >
           {props.editable &&
             <>
-              <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
+              <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, true)}>
                 <div className="Neuron-terminal">
                   <img src={positive} alt="Positive terminal" />
                 </div>
               </div>
-              <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
+              <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, false)}>
                 <div className="Neuron-terminal">
                   <img src={negative} alt="Negative terminal" />
                 </div>
@@ -151,12 +151,12 @@ function Neuron({neuron, ...props}) {
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, 1)}>
+          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, true)}>
             <div className="Neuron-terminal">
               <img src={positive} alt="Positive terminal" />
             </div>
           </div>
-          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, -100)}>
+          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, false)}>
             <div className="Neuron-terminal">
               <img src={negative} alt="Negative terminal" />
             </div>
