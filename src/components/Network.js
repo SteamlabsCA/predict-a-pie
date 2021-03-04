@@ -76,6 +76,7 @@ function Network() {
     network.splice(network.length - 1, 0, {
       'id': uuid(),
       'label': 'Hidden Layer',
+      'type': 'hidden',
       'neurons': [{
         'id': uuid(),
         'label': 'Neuron'
@@ -163,6 +164,13 @@ function Network() {
     setConnections(newConnections);
   };
 
+  const onDeleteLayer = (layer) => {
+    let newNetwork = network.filter(item => {
+      return item.id != layer.id;
+    });
+    setNetwork(newNetwork);
+  };
+
   const onChange = () => {
     for (let i = 1; i < network.length; i++) {
       for (let j = 0; j < network[i].neurons.length; j++) {
@@ -209,6 +217,7 @@ function Network() {
                 onStartConnection={onStartConnection}
                 onCompleteConnection={onCompleteConnection}
                 onDeleteNeuron={onDeleteNeuron}
+                onDeleteLayer={onDeleteLayer}
                 onChange={onChange}
                 onAdjustWeights={onAdjustWeights}
               />

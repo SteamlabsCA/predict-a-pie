@@ -30,6 +30,11 @@ function Layer({layer, ...props}) {
     setNeurons(layer.neurons);
     setDragging(false);
     setOverTrash(false);
+
+    // Delete layer if no neurons left
+    if (layer.type === 'hidden' && layer.neurons.length == 0) {
+      props.onDeleteLayer(layer);
+    }
   };
 
   const onDragStart = (neuron) => {
@@ -58,14 +63,16 @@ function Layer({layer, ...props}) {
       }
 
       // Determine change in index of dragged neuron
-      const deltaY = event.clientY - originY;
-      const neuronStyle = getComputedStyle(dragging.ref.current);
-      const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
-      const draggingIndex = neurons.findIndex(neuron => neuron.id === dragging.id);
-      const deltaIndex = Math.max(
-        -draggingIndex,
-        Math.trunc(deltaY / neuronHeight)
-      );
+      if (dragging.ref.current) {
+        const deltaY = event.clientY - originY;
+        const neuronStyle = getComputedStyle(dragging.ref.current);
+        const neuronHeight = dragging.ref.current.offsetHeight + parseInt(neuronStyle.marginTop) + parseInt(neuronStyle.marginBottom);
+        const draggingIndex = neurons.findIndex(neuron => neuron.id === dragging.id);
+        const deltaIndex = Math.max(
+          -draggingIndex,
+          Math.trunc(deltaY / neuronHeight)
+        );
+      }
 
       // Reorder neuron array
       if (Math.abs(deltaIndex) > 0) {
