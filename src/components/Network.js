@@ -89,7 +89,7 @@ function Network() {
       to: false,
       positive: true,
       weight: 0,
-      active: false
+      editing: false
     }]);
     setDragging(true);
   }
@@ -112,20 +112,31 @@ function Network() {
       setConnections(newConnections);
       setDragging(false);
     }
-  }
+  };
+
+  const onAdjustWeights = (neuron, positive) => {
+    connections.map((connection) => {
+      if (connection.to.id === neuron.id && connection.positive === positive) {
+        connection.editing = true;
+      } else {
+        connection.editing = false;
+      }
+    });
+    setConnections([...connections]);
+  };
 
   const onDeleteConnection = (connection) => {
     setConnections(connections.filter(item => {
       return !(item.from.id === connection.from.id && item.to.id === connection.to.id);
     }));
-  }
+  };
 
   const onDeleteNeuron = (neuron) => {
     let newConnections = connections.filter(connection => {
       return connection.from.id !== neuron.id && connection.to.id !== neuron.id;
     });
     setConnections(newConnections);
-  }
+  };
 
   const onChange = () => {
     for (let i = 1; i < network.length; i++) {
@@ -147,19 +158,19 @@ function Network() {
       }
     }
     setNetwork([...network]);
-  }
+  };
 
   const onMouseMove = (event) => {
     setMouseX(event.clientX);
     setMouseY(event.clientY);
-  }
+  };
 
   const onMouseUp = () => {
     if (dragging) {
       setConnections(connections.slice(0, -1));
       setDragging(false);
     }
-  }
+  };
 
   return (
     <>
@@ -172,6 +183,7 @@ function Network() {
                 layer={layer}
                 onStartConnection={onStartConnection}
                 onCompleteConnection={onCompleteConnection}
+                onAdjustWeights={onAdjustWeights}
                 onDeleteNeuron={onDeleteNeuron}
                 onChange={onChange}
               />

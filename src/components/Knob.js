@@ -1,7 +1,7 @@
 import './Knob.scss';
 import React from 'react';
 
-function Knob({value, ...props}) {
+function Knob({x, y, value, ...props}) {
 
   let mouseX, mouseY, previousValue;
 
@@ -31,7 +31,7 @@ function Knob({value, ...props}) {
   };
 
   return (
-    <div className="Knob" onMouseDown={onMouseDown}>
+    <div className="Knob" onMouseDown={onMouseDown} style={{left: x + 'px', top: y + 'px'}}>
       <div className="Knob-control">
         <div className="Knob-detail" style={{transform: 'rotate(' + (value * 3.6) + 'deg)'}}></div>
       </div>

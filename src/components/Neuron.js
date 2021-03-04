@@ -37,6 +37,14 @@ function Neuron({neuron, ...props}) {
     }
   }
 
+  const onAdjustWeights = (event, positive) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (props.editable) {
+      props.onAdjustWeights(neuron, positive);
+    }
+  };
+
   const onMouseDown = (event) => {
     setMouseX(event.clientX);
     setMouseY(event.clientY);
@@ -108,12 +116,20 @@ function Neuron({neuron, ...props}) {
         >
           {props.editable &&
             <>
-              <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, true)}>
+              <div
+                className="Neuron-input Neuron-positive"
+                onMouseUp={(event) => onCompleteConnection(event, true)}
+                onClick={(event) => onAdjustWeights(event, true)}
+              >
                 <div className="Neuron-terminal">
                   <img src={positive} alt="Positive terminal" />
                 </div>
               </div>
-              <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, false)}>
+              <div
+                className="Neuron-input Neuron-negative"
+                onMouseUp={(event) => onCompleteConnection(event, false)}
+                onClick={(event) => onAdjustWeights(event, false)}
+              >
                 <div className="Neuron-terminal">
                   <img src={negative} alt="Negative terminal" />
                 </div>
@@ -151,12 +167,20 @@ function Neuron({neuron, ...props}) {
           onMouseMove={onMouseMove}
           onMouseOut={onMouseOut}
         >
-          <div className="Neuron-input Neuron-positive" onMouseUp={(event) => onCompleteConnection(event, true)}>
+          <div
+            className="Neuron-input Neuron-positive"
+            onMouseUp={(event) => onCompleteConnection(event, true)}
+            onClick={(event) => onAdjustWeights(event, true)}
+          >
             <div className="Neuron-terminal">
               <img src={positive} alt="Positive terminal" />
             </div>
           </div>
-          <div className="Neuron-input Neuron-negative" onMouseUp={(event) => onCompleteConnection(event, false)}>
+          <div
+            className="Neuron-input Neuron-negative"
+            onMouseUp={(event) => onCompleteConnection(event, false)}
+            onClick={(event) => onAdjustWeights(event, false)}
+          >
             <div className="Neuron-terminal">
               <img src={negative} alt="Negative terminal" />
             </div>

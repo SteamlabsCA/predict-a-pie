@@ -51,7 +51,7 @@ function Connections({connections, mouseX, mouseY, ...props}) {
   }
 
   const onMouseMove = (connection, event) => {
-    if (connection.to) {
+    if (connection.to && !connection.editing) {
       setCursorStyle({
         'display': 'block',
         'left': event.clientX + 'px',
@@ -72,7 +72,9 @@ function Connections({connections, mouseX, mouseY, ...props}) {
     setCursorStyle({
       'display': 'none'
     });
-    props.onDeleteConnection(connection);
+    if (!connection.editing) {
+      props.onDeleteConnection(connection);
+    }
   }
 
   const onChangeWeight = (value) => {
@@ -100,13 +102,23 @@ function Connections({connections, mouseX, mouseY, ...props}) {
               y1={outputY(connection.from)}
               x2={inputX(connection.to, connection.positive)}
               y2={inputY(connection.to, connection.positive)}
-              className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '')}
+              className={'Connections-line' + (connection.from.active ? ' Connections-active' : '') + (connection.hover ? ' Connections-hover' : '') + (connection.editing ? ' Connections-editing' : '')}
             />
           </g>
         ))}
       </svg>
       <img className="Connections-cut" style={cursorStyle} src={scissors} alt="Scissors" />
-      <Knob value={knobWeight} min="-100" max="100" onChange={onChangeWeight} />
+      <div className="Connections-weights">
+        {connections.map((connection, index) => connection.editing && (
+          <Knob
+            key={index}
+            x={outputX(connection.from)}
+            y={outputY(connection.from)}
+            value={connection.weight}
+            onChange={onChangeWeight}
+          />
+        ))}
+      </div>
     </div>
   )
 }

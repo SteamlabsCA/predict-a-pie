@@ -143,6 +143,7 @@ function Layer({layer, ...props}) {
               onDragStart={onDragStart}
               onStartConnection={props.onStartConnection}
               onCompleteConnection={props.onCompleteConnection}
+              onAdjustWeights={props.onAdjustWeights}
               onChange={props.onChange}
               style={neuron.style}
               editable

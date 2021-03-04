@@ -36,6 +36,10 @@
     stroke: $active;
   }
 
+  &-editing {
+    stroke: red;
+  }
+
   &-cut {
     display: none;
     position: absolute;
