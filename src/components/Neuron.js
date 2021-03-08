@@ -54,7 +54,7 @@ function Neuron({neuron, ...props}) {
     if (event.buttons) {
       const deltaX = event.clientX - mouseX;
       const deltaY = event.clientY - mouseY;
-      if (Math.abs(deltaX) < 10 && Math.abs(deltaY) > 10) {
+      if (Math.abs(deltaX) < 10 && Math.abs(deltaY) > 5) {
         getSelection().removeAllRanges();
         if (props.editable) {
           props.onDragStart(neuron);

@@ -72,12 +72,12 @@ function Layer({layer, ...props}) {
           -draggingIndex,
           Math.trunc(deltaY / neuronHeight)
         );
-      }
 
-      // Reorder neuron array
-      if (Math.abs(deltaIndex) > 0) {
-        const neuron = neurons.splice(draggingIndex, 1);
-        neurons.splice(draggingIndex + deltaIndex, 0, neuron[0]);
+        // Reorder neuron array
+        if (Math.abs(deltaIndex) > 0) {
+          const neuron = neurons.splice(draggingIndex, 1);
+          neurons.splice(draggingIndex + deltaIndex, 0, neuron[0]);
+        }
       }
 
       neurons.map(neuron => neuron.style = {});
