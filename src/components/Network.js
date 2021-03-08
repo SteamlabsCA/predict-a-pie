@@ -235,7 +235,7 @@ function Network() {
               <button className="Network-button" onClick={onAddLayer}>Add Layer</button>
             </div>
             <div className="Network-instruction">
-              <p>Add new input nodes to process new ingredients.</p>
+              <p>Add new output nodes to detect new classes of predictions.</p>
             </div>
           </div>
         </div>
