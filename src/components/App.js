@@ -177,7 +177,7 @@ function App(props) {
       for (let index = 0; index < recipes.length; index++) {
         if (
           (!discuss || recipes[index].Discuss === 1) &&
-          (type === 'Random' || recipe[type] === 1)
+          (type === 'Random' || recipes[index][type] === 1)
         ) {
           const item = recipes.splice(index, 1)[0];
           setRecipe(Object.values(item).slice(0, ingredients.length));
