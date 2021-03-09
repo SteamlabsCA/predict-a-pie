@@ -20,7 +20,8 @@ function TrainedNetwork({inputs, ingredients, classifications, ...props}) {
       return {
         'id': uuid(),
         'label': classification,
-        'type': 'output'
+        'type': 'output',
+        'confidence': 0
       };
     })
   );
