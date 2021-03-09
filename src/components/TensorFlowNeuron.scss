@@ -14,11 +14,11 @@
   z-index: 1000;
 
   &:first-child {
-    margin-top: 3rem;
+    margin-top: 0;
   }
 
   &:last-child {
-    margin-bottom: 3rem;
+    margin-bottom: 0;
   }
 
   &-fill {
