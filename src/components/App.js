@@ -12,6 +12,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import socketClient from 'socket.io-client';
 
+import ingredients from '../ingredients.json';
+import classifications from '../classifications.json';
+
+export { ingredients, classifications };
+
 const socket = socketClient();
 //const socket = socketClient('http://127.0.0.1:8080');
 
@@ -20,47 +25,6 @@ const url = window.location.pathname.split('/');
 if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
   socket.emit('join-classroom', url[1]);
 }
-
-// Ingredients
-export const ingredients = [
-  'Crust',
-  'Sugar',
-  'Honey',
-  'Chocolate',
-  'Cherries',
-  'Strawberry',
-  'Pineapple',
-  'Rhubarb',
-  'Tomato',
-  'Corn',
-  'Onion',
-  'Spinach',
-  'Pumpkin',
-  'Broccoli',
-  'Mushroom',
-  'Hot Peppers',
-  'Sweet Potato',
-  'Cheese',
-  'Blue Cheese',
-  'Egg',
-  'Chicken',
-  'Ham',
-  'Steak',
-  'Salmon',
-  'Shrimp',
-  'Soy Chunks',
-  'Pecan',
-  'Pesto'
-];
-
-// Classifications
-export const classifications = [
-  'Sweet',
-  'Quiche',
-  'Pizza',
-  'Savoury',
-  'Disgusting'
-];
 
 function App(props) {
 
