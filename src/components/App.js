@@ -17,8 +17,8 @@ import classifications from '../classifications.json';
 
 export { ingredients, classifications };
 
-const socket = socketClient();
-//const socket = socketClient('http://127.0.0.1:8080');
+//const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -39,6 +39,7 @@ function App(props) {
   const [discuss, setDiscuss] = React.useState(true);
   const [classification, setClassification] = React.useState(0);
   const [reclassify, setReclassify] = React.useState(false);
+  const [updated, setUpdated] = React.useState(false);
 
   // Load pre-generated recipes
   React.useEffect(() => {
@@ -111,22 +112,13 @@ function App(props) {
       case 'create-classroom':
         socket.emit('create-classroom');
         break;
-
-      case 'save-recipe':
-        prompt('Enter recipe name').then(name => {
-          socket.emit('save-recipe', {
-            name: name,
-            ingredients: recipe,
-            classification: classification
-          });
-        });
-        break;
     }
   };
 
   const onChange = (inputs) => {
     setReclassify(false);
     setRecipe(inputs);
+    setUpdated(true);
   };
 
   const onPrediction = (output) => {
@@ -135,6 +127,7 @@ function App(props) {
 
   const onFindRecipe = (type, discuss = true) => {
     setReclassify(false);
+    setUpdated(false);
 
     // Find first suitable recipe
     if (recipes.length > 0) {
@@ -153,6 +146,16 @@ function App(props) {
         onFindRecipe(type, false);
       }
     }
+  };
+
+  const onSaveRecipe = () => {
+    prompt('Enter recipe name').then(name => {
+      socket.emit('save-recipe', {
+        name: name,
+        ingredients: recipe,
+        classification: classification
+      });
+    });
   };
 
   const onReclassify = (recipe, reclassification) => {
@@ -177,7 +180,12 @@ function App(props) {
               appData={appData}
               route="trained"
               onCommand={onCommand}
-              content={(<SelectRecipe classifications={classifications} onSubmit={onFindRecipe}/>)}
+              content={(
+                <>
+                  <SelectRecipe classifications={classifications} onSubmit={onFindRecipe}/>
+                  <button onClick={onSaveRecipe} disabled={!appData.classroom || !updated}>Save Recipe</button>
+                </>
+              )}
             />
             <TrainedNetwork
               onChange={onChange}

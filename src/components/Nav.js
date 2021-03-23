@@ -32,14 +32,6 @@ function Nav({appData, ...props}) {
         <Link to={ appData.classroom ? `/${appData.classroom.code}/stats` : ''} disabled={!appData.classroom}>
           View Classroom Stats
         </Link>
-        {props.route === 'trained' && (
-          <>
-            <hr/>
-            <a onClick={() => {props.onCommand('save-recipe')}} disabled={!appData.classroom}>
-              Save Recipe
-            </a>
-          </>
-        )}
         <hr/>
         { appData.classroom && (
           <>
