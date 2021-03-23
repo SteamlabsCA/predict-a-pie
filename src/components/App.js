@@ -18,12 +18,12 @@ import classifications from '../classifications.json';
 import stringData from '../strings.json';
 
 const strings = new LocalizedStrings(stringData);
-strings.setLanguage('fr');
+//strings.setLanguage('fr');
 
 export { ingredients, classifications, strings };
 
-//const socket = socketClient();
-const socket = socketClient('http://127.0.0.1:8080');
+const socket = socketClient();
+//const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -44,6 +44,7 @@ function App(props) {
   const [discuss, setDiscuss] = React.useState(true);
   const [classification, setClassification] = React.useState(0);
   const [reclassify, setReclassify] = React.useState(false);
+  const [reclassifyTimeout, setReclassifyTimeout] = React.useState(false);
   const [updated, setUpdated] = React.useState(false);
 
   // Load pre-generated recipes
@@ -124,6 +125,14 @@ function App(props) {
     setReclassify(false);
     setRecipe(inputs);
     setUpdated(true);
+
+    // Show reclassify dialog after a delay
+    if (reclassifyTimeout) {
+      clearTimeout(reclassifyTimeout);
+    }
+    setReclassifyTimeout(
+      setTimeout(() => setReclassify(true), 3000)
+    );
   };
 
   const onPrediction = (output) => {
@@ -143,7 +152,14 @@ function App(props) {
         ) {
           const item = recipes.splice(index, 1)[0];
           setRecipe(Object.values(item).slice(0, ingredients.length));
-          setTimeout(() => setReclassify(true), 1000);
+
+          // Show reclassify dialog after a delay
+          if (reclassifyTimeout) {
+            clearTimeout(reclassifyTimeout);
+          }
+          setReclassifyTimeout(
+            setTimeout(() => setReclassify(true), 1000)
+          );
           return;
         }
       }
