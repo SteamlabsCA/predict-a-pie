@@ -1,5 +1,6 @@
 import './Reclassify.scss';
 import React from 'react';
+import { strings } from './App';
 
 function Reclassify({recipe, classifications, visible, ...props}) {
 
@@ -35,10 +36,10 @@ function Reclassify({recipe, classifications, visible, ...props}) {
     <>
       {visible && (<div className={'Reclassify Reclassify-' + step}>
         <div className="Reclassify-step Reclassify-step-1">
-          <p>Do you agree with the classification?</p>
+          <p>{strings.agree}</p>
           <div className="Reclassify-buttons">
-            <button onClick={onAgree}>Yes</button>
-            <button onClick={onDisagree}>No</button>
+            <button onClick={onAgree}>{strings.yes}</button>
+            <button onClick={onDisagree}>{strings.no}</button>
           </div>
         </div>
         <div className="Reclassify-step Reclassify-step-2">

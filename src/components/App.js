@@ -10,12 +10,17 @@ import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LocalizedStrings from 'react-localization';
 import socketClient from 'socket.io-client';
 
 import ingredients from '../ingredients.json';
 import classifications from '../classifications.json';
+import stringData from '../strings.json';
 
-export { ingredients, classifications };
+const strings = new LocalizedStrings(stringData);
+strings.setLanguage('fr');
+
+export { ingredients, classifications, strings };
 
 //const socket = socketClient();
 const socket = socketClient('http://127.0.0.1:8080');
@@ -176,7 +181,7 @@ function App(props) {
         <Switch>
           <Route path="*/trained">
             <NavBar
-              title="Test a Pre-trained Model"
+              title={strings.pretrainedModel}
               appData={appData}
               route="trained"
               onCommand={onCommand}
@@ -211,7 +216,7 @@ function App(props) {
             />
           </Route>
           <Route path="/">
-            <NavBar title="Build a Neural Network" appData={appData} route="build" onCommand={onCommand} />
+            <NavBar title={strings.buildNetwork} appData={appData} route="build" onCommand={onCommand} />
             <Network />
           </Route>
         </Switch>

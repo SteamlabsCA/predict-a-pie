@@ -1,36 +1,36 @@
 import './Network.scss';
 import Connections from './Connections';
+import Definition from './Definition';
 import Layer from './Layer';
 import Weights from './Weights';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-
-const initialData = [
-  {
-    'id': uuid(),
-    'type': 'input',
-    'label': 'Input Layer',
-    'neurons': [{
-      'id': uuid(),
-      'type': 'input',
-      'label': 'Neuron'
-    }]
-  },
-  {
-    'id': uuid(),
-    'type': 'output',
-    'label': 'Output Layer',
-    'neurons': [{
-      'id': uuid(),
-      'type': 'output',
-      'label': 'Neuron'
-    }]
-  }
-];
+import { strings } from './App';
 
 function Network() {
 
-  const [network, setNetwork] = React.useState(initialData);
+  const [network, setNetwork] = React.useState([
+    {
+      'id': uuid(),
+      'type': 'input',
+      'label': strings.inputLayer,
+      'neurons': [{
+        'id': uuid(),
+        'type': 'input',
+        'label': strings.neuron
+      }]
+    },
+    {
+      'id': uuid(),
+      'type': 'output',
+      'label': strings.outputLayer,
+      'neurons': [{
+        'id': uuid(),
+        'type': 'output',
+        'label': strings.neuron
+      }]
+    }
+  ]);
   const [connections, setConnections] = React.useState([]);
   const [dragging, setDragging] = React.useState(false);
   const [mouseX, setMouseX] = React.useState();
@@ -75,7 +75,7 @@ function Network() {
     // Add new layer
     network.splice(network.length - 1, 0, {
       'id': uuid(),
-      'label': 'Hidden Layer',
+      'label': strings.hiddenLayer,
       'type': 'hidden',
       'neurons': [{
         'id': uuid(),
@@ -228,11 +228,11 @@ function Network() {
           </div>
           <div className="Network-instructions">
             <div className="Network-instruction">
-              <p>Add new input nodes to process new ingredients.</p>
+              <p>Add new input <Definition text={strings.neuronDef}>nodes</Definition> to process new ingredients.</p>
             </div>
             <div className="Network-instruction">
               <p>Add a hidden layer to detect more complex combinations.</p>
-              <button className="Network-button" onClick={onAddLayer}>Add Layer</button>
+              <button className="Network-button" onClick={onAddLayer}>{strings.addLayer}</button>
             </div>
             <div className="Network-instruction">
               <p>Add new output nodes to detect new classes of predictions.</p>

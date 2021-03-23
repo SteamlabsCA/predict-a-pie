@@ -1,5 +1,6 @@
 import './SelectRecipe.scss';
 import React from 'react';
+import { strings } from './App';
 
 function SelectRecipe({classifications, ...props}) {
 
@@ -16,12 +17,12 @@ function SelectRecipe({classifications, ...props}) {
   return (
     <div className="SelectRecipe">
       <select onChange={onChange}>
-        <option value="Random">Random</option>
+        <option value={strings.random}>{strings.random}</option>
         {classifications.map((classification, index) => (
           <option key={index} value={classification}>{classification}</option>
         ))}
       </select>
-      <button onClick={onSubmit}>Find Recipe</button>
+      <button onClick={onSubmit}>{strings.findRecipe}</button>
     </div>
   );
 }

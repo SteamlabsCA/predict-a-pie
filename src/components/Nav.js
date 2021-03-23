@@ -1,7 +1,8 @@
 import './Nav.scss';
 import menu from '../assets/menu.svg';
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { strings } from './App';
 
 
 function Nav({appData, ...props}) {
@@ -15,7 +16,7 @@ function Nav({appData, ...props}) {
       'top': (event.clientY - 5) + 'px'
     });
     setOpen(!open);
-  }
+  };
 
   return (
     <div className={open ? 'Nav Nav-open' : 'Nav Nav-closed'} onClick={onClick}>
@@ -24,10 +25,10 @@ function Nav({appData, ...props}) {
       </button>
       <nav className="Nav-menu" style={menuStyle}>
         <Link to={ appData.classroom ? `/${appData.classroom.code}` : '/'}>
-          Build a Neural Network
+          {strings.buildNetwork}
         </Link>
         <Link to={ appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>
-          Test a Pre-trained Model
+          {strings.pretrainedModel}
         </Link>
         <Link to={ appData.classroom ? `/${appData.classroom.code}/stats` : ''} disabled={!appData.classroom}>
           View Classroom Stats

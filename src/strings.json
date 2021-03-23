@@ -1,0 +1,37 @@
+{
+  "en": {
+    "buildNetwork": "Build a Neural Network",
+    "neuron": "Neuron",
+    "neuronDef": "Neurons, also called nodes, are a computational unit that can take one or more inputs and multiply it by values called \"weights\" and add them together. A neural network is made up of many different nodes layered together.",
+    "inputLayer": "Input Layer",
+    "hiddenLayer": "Hidden Layer",
+    "outputLayer": "Output Layer",
+    "addNode": "Add New node",
+    "addLayer": "Add Layer",
+
+    "pretrainedModel": "Test a Pre-trained Model",
+    "findRecipe": "Find Recipe",
+    "random": "Random",
+    "agree": "Do you agree with the classification?",
+    "yes": "Yes",
+    "no": "No"
+  },
+
+  "fr": {
+    "buildNetwork": "Construire un réseau neuronal",
+    "neuron": "Neurone",
+    "neuronDef": "Les neurones, également appelés nœuds, sont des unités de calcul capables de recevoir une ou plusieurs entrées, de les multiplier par des valeurs appelées \"poids\" et de les additionner. Un réseau neuronal est constitué de plusieurs nœuds différents qui sont superposés.",
+    "inputLayer": "Couche d'entrée",
+    "hiddenLayer": "Couche cachée",
+    "outputLayer": "Couche de sortie",
+    "addNode": "Ajouter un nouveau nœud",
+    "addLayer": "Ajouter une couche",
+
+    "pretrainedModel": "Tester un modèle pré-entraîné",
+    "findRecipe": "Trouver une recette",
+    "random": "Aléatoire",
+    "agree": "Êtes-vous d'accord avec cette classification ?",
+    "yes": "Oui",
+    "no": "Non"
+  }
+}

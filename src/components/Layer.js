@@ -3,6 +3,7 @@ import trashcan from '../assets/trashcan.svg';
 import Neuron from './Neuron';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
+import { strings } from './App';
 
 function Layer({layer, ...props}) {
 
@@ -163,7 +164,7 @@ function Layer({layer, ...props}) {
             </div>
           }
           {!dragging &&
-            <button className="Layer-button" onClick={onAddNeuron}>Add New Node</button>
+            <button className="Layer-button" onClick={onAddNeuron}>{strings.addNode}</button>
           }
         </div>
       </div>
