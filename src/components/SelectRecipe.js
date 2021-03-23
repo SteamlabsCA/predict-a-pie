@@ -17,9 +17,9 @@ function SelectRecipe({classifications, ...props}) {
   return (
     <div className="SelectRecipe">
       <select onChange={onChange}>
-        <option value={strings.random}>{strings.random}</option>
+        <option value="Random">{strings.random}</option>
         {classifications.map((classification, index) => (
-          <option key={index} value={classification}>{classification}</option>
+          <option key={index} value={classification}>{strings[classification]}</option>
         ))}
       </select>
       <button onClick={onSubmit}>{strings.findRecipe}</button>

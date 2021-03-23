@@ -5,6 +5,7 @@ import ContentEditable from './ContentEditable';
 import Output from './Output';
 import ToggleSwitch from './ToggleSwitch';
 import React from 'react';
+import { strings } from './App';
 
 function Neuron({neuron, ...props}) {
 
@@ -95,7 +96,7 @@ function Neuron({neuron, ...props}) {
             <ContentEditable className="Neuron-title" content={neuron.label} onChange={onLabelChange} />
           }
           {!props.editable &&
-            <div className="Neuron-title">{neuron.label}</div>
+            <div className="Neuron-title">{strings[neuron.label]}</div>
           }
           <div className="Neuron-output" onMouseDown={onStartConnection}>
             <div className="Neuron-terminal"></div>
@@ -142,7 +143,7 @@ function Neuron({neuron, ...props}) {
               <div className="Neuron-input">
                 <div className="Neuron-terminal"></div>
               </div>
-              <div className="Neuron-title">{neuron.label}</div>
+              <div className="Neuron-title">{strings[neuron.label]}</div>
             </>
           }
           <div className="Neuron-output">

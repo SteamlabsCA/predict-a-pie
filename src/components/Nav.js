@@ -31,23 +31,23 @@ function Nav({appData, ...props}) {
           {strings.pretrainedModel}
         </Link>
         <Link to={ appData.classroom ? `/${appData.classroom.code}/stats` : ''} disabled={!appData.classroom}>
-          View Classroom Stats
+          {strings.classroomStats}
         </Link>
         <hr/>
         { appData.classroom && (
           <>
             <a onClick={() => {props.onCommand('leave-classroom')}} disabled={!appData.connected}>
-              Leave Classroom
+              {strings.leaveClassroom}
             </a>
           </>
         )}
         { !appData.classroom && (
           <>
             <a onClick={() => {props.onCommand('join-classroom')}} disabled={!appData.connected}>
-              Join Classroom
+              {strings.joinClassroom}
             </a>
             <a onClick={() => {props.onCommand('create-classroom')}} disabled={!appData.connected}>
-              Create Classroom
+              {strings.createClassroom}
             </a>
           </>
         )}
