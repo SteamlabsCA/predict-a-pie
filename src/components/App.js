@@ -22,8 +22,8 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-//const socket = socketClient('http://127.0.0.1:8080');
+//const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -103,7 +103,7 @@ function App(props) {
     switch (command) {
 
       case 'join-classroom':
-        prompt('Enter classroom code').then(code => {
+        prompt(strings.enterClassroomCode).then(code => {
           socket.emit('join-classroom', code);
         });
         break;
@@ -170,7 +170,7 @@ function App(props) {
   };
 
   const onSaveRecipe = () => {
-    prompt('Enter recipe name').then(name => {
+    prompt(strings.nameRecipe).then(name => {
       socket.emit('save-recipe', {
         name: name,
         ingredients: recipe,
@@ -208,7 +208,7 @@ function App(props) {
               content={(
                 <>
                   <SelectRecipe classifications={classifications} onSubmit={onFindRecipe}/>
-                  <button onClick={onSaveRecipe} disabled={!appData.classroom || !updated}>Save Recipe</button>
+                  <button onClick={onSaveRecipe} disabled={!appData.classroom || !updated}>{strings.saveRecipe}</button>
                 </>
               )}
             />

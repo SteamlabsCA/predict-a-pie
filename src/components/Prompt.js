@@ -1,5 +1,6 @@
 import './Prompt.scss';
 import React from 'react';
+import { strings } from './App';
 
 function Prompt() {
 
@@ -37,7 +38,7 @@ function Prompt() {
             <p>{message}</p>
             <div className="Prompt-inputs">
               <input type="text" value={value} onChange={onChange} />
-              <button onClick={onAccept}>OK</button>
+              <button onClick={onAccept}>{strings.ok}</button>
             </div>
           </div>
         </div>

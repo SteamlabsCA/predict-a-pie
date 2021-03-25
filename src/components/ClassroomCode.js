@@ -1,5 +1,6 @@
 import './ClassroomCode.scss';
 import React from 'react';
+import { strings } from './App';
 
 function ClassroomCode({code, appData, ...props}) {
 
@@ -8,13 +9,13 @@ function ClassroomCode({code, appData, ...props}) {
       {code && (
         <div className="ClassroomCode" onClick={props.onDismiss}>
           <div className="ClassroomCode-modal">
-            <p>The classroom code is:</p>
+            <p>{strings.classroomCode}</p>
             <p className="ClassroomCode-code">{code}</p>
             {(appData.classroom.participants === undefined || appData.classroom.participants.length === 1) && (
-              <small>You are the only participant.</small>
+              <small>{strings.onlyParticipant}</small>
             )}
             {(appData.classroom.participants !== undefined && appData.classroom.participants.length > 1) && (
-              <small>There are currently {appData.classroom.participants.length} participants.</small>
+              <small>{strings.formatString(strings.participants, appData.classroom.participants.length)}</small>
             )}
           </div>
         </div>

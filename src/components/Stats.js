@@ -2,6 +2,7 @@ import './Stats.scss';
 import { classifications, ingredients } from './App';
 import Gauge from './Gauge';
 import React from 'react';
+import { strings } from './App';
 
 function Stats({appData, ingredients, classifications, recipes}) {
 
@@ -77,37 +78,34 @@ function Stats({appData, ingredients, classifications, recipes}) {
         <div className="Stats-dashboard">
           <div className="Stats-dashboard-item">
             <h2>
-              Total<br/>
-              Predictions
+              {strings.totalPredictions}
             </h2>
             <p>{reclassifications.length}</p>
           </div>
           <div className="Stats-dashboard-item">
             <h2>
-              Correct<br/>
-              Classifications
+              {strings.correctClassifications}
             </h2>
             <p>{correct.length}</p>
           </div>
           <div className="Stats-dashboard-item">
             <h2>
-              Incorrect<br/>
-              Classifications
+              {strings.incorrectClassifications}
             </h2>
             <p>{incorrect.length}</p>
           </div>
           <div className="Stats-dashboard-item">
-            <h2>Accuracy</h2>
+            <h2>{strings.accuracy}</h2>
             <Gauge value={accuracy} />
           </div>
         </div>
-        <h2>Reclassified Recipes</h2>
+        <h2>{strings.reclassifiedRecipes}</h2>
         <table className="Stats-reclassified">
           <thead>
             <tr>
-              <th>Ingredients</th>
-              <th>Original Classification</th>
-              <th>Reclassification</th>
+              <th>{strings.ingredients}</th>
+              <th>{strings.originalClassification}</th>
+              <th>{strings.reclassification}</th>
             </tr>
           </thead>
           <tbody>
@@ -133,14 +131,14 @@ function Stats({appData, ingredients, classifications, recipes}) {
             ))}
           </tbody>
         </table>
-        <h2>My Saved Recipes</h2>
+        <h2>{strings.mySavedRecipes}</h2>
         <table className="Stats-recipes">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Ingredients</th>
-              <th>Original Classification</th>
-              <th>Reclassification</th>
+              <th>{strings.name}</th>
+              <th>{strings.ingredients}</th>
+              <th>{strings.originalClassification}</th>
+              <th>{strings.reclassification}</th>
             </tr>
           </thead>
           <tbody>
@@ -154,14 +152,14 @@ function Stats({appData, ingredients, classifications, recipes}) {
             ))}
           </tbody>
         </table>
-        <h2>All Saved Recipes</h2>
+        <h2>{strings.allSavedRecipes}</h2>
         <table className="Stats-recipes">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Ingredients</th>
-              <th>Original Classification</th>
-              <th>Reclassification</th>
+              <th>{strings.name}</th>
+              <th>{strings.ingredients}</th>
+              <th>{strings.originalClassification}</th>
+              <th>{strings.reclassification}</th>
             </tr>
           </thead>
           <tbody>
