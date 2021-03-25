@@ -1,6 +1,7 @@
 import './App.scss';
 import Alert from './Alert';
 import ClassroomCode from './ClassroomCode';
+import Instructions from './Instructions';
 import NavBar from './NavBar';
 import Network from './Network';
 import Prompt from './Prompt';
@@ -22,12 +23,12 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-//const socket = socketClient('http://127.0.0.1:8080');
+//const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
-if (url[1] && (!['trained', 'stats'].includes(url[1]))) {
+if (url[1] && (!['build', 'trained', 'stats'].includes(url[1]))) {
   socket.emit('join-classroom', url[1]);
 }
 
@@ -195,6 +196,10 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <Switch>
+          <Route path="*/build">
+            <NavBar title={strings.buildNetwork} appData={appData} route="build" onCommand={onCommand} />
+            <Network />
+          </Route>
           <Route path="*/trained">
             <NavBar
               title={strings.pretrainedModel}
@@ -232,8 +237,8 @@ function App(props) {
             />
           </Route>
           <Route path="/">
-            <NavBar title={strings.buildNetwork} appData={appData} route="build" onCommand={onCommand} />
-            <Network />
+            <NavBar title={strings.instructions} appData={appData} route="instructions" onCommand={onCommand} />
+            <Instructions />
           </Route>
         </Switch>
         <Alert />

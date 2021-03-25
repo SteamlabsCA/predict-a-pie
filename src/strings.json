@@ -1,5 +1,7 @@
 {
   "en": {
+    "instructions": "Instructions",
+
     "buildNetwork": "Build a Neural Network",
     "neuron": "Neuron",
     "neuronDef": "Neurons, also called nodes, are a computational unit that can take one or more inputs and multiply it by values called \"weights\" and add them together. A neural network is made up of many different nodes layered together.",
@@ -8,6 +10,10 @@
     "outputLayer": "Output Layer",
     "addNode": "Add New node",
     "addLayer": "Add Layer",
+    "inputLayerInstructions": "Add new input nodes to process new ingredients.",
+    "outputLayerInstructions": "Add new output nodes to detect new classes of predictions.",
+    "hiddenLayerInstructions": "Add a hidden layer to detect more complex combinations.",
+    "connectionInstructions": "Click and drag to create connections between nodes.",
 
     "pretrainedModel": "Test a Pre-trained Model",
     "findRecipe": "Find Recipe",
@@ -61,6 +67,8 @@
   },
 
   "fr": {
+    "instructions": "Instructions",
+
     "buildNetwork": "Construire un réseau neuronal",
     "neuron": "Neurone",
     "neuronDef": "Les neurones, également appelés nœuds, sont des unités de calcul capables de recevoir une ou plusieurs entrées, de les multiplier par des valeurs appelées \"poids\" et de les additionner. Un réseau neuronal est constitué de plusieurs nœuds différents qui sont superposés.",
@@ -69,6 +77,10 @@
     "outputLayer": "Couche de sortie",
     "addNode": "Ajouter un nouveau nœud",
     "addLayer": "Ajouter une couche",
+    "inputLayerInstructions": "Add new input nodes to process new ingredients.",
+    "outputLayerInstructions": "Add new output nodes to detect new classes of predictions.",
+    "hiddenLayerInstructions": "Add a hidden layer to detect more complex combinations.",
+    "connectionInstructions": "Click and drag to create connections between nodes.",
 
     "pretrainedModel": "Tester un modèle pré-entraîné",
     "findRecipe": "Trouver une recette",

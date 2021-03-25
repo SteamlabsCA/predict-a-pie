@@ -22,8 +22,8 @@
   &:hover &-tooltip {
     display: block;
     opacity: 1;
-    transition: opacity 300ms;
-    transition-delay: 1s;
+    transition: opacity 200ms;
+    transition-delay: 500ms;
     visibility: visible;
   }
 }

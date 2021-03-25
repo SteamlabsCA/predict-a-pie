@@ -25,6 +25,9 @@ function Nav({appData, ...props}) {
       </button>
       <nav className="Nav-menu" style={menuStyle}>
         <Link to={ appData.classroom ? `/${appData.classroom.code}` : '/'}>
+          {strings.instructions}
+        </Link>
+        <Link to={ appData.classroom ? `/${appData.classroom.code}/build` : '/build'}>
           {strings.buildNetwork}
         </Link>
         <Link to={ appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>

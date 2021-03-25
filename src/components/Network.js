@@ -223,19 +223,19 @@ function Network() {
               />
             ))}
             <div className="Network-instruction">
-              <p>Click and drag to create connections between nodes.</p>
+              <p>{strings.connectionInstructions}</p>
             </div>
           </div>
           <div className="Network-instructions">
             <div className="Network-instruction">
-              <p>Add new input <Definition text={strings.neuronDef}>nodes</Definition> to process new ingredients.</p>
+              <p>{strings.inputLayerInstructions}</p>
             </div>
             <div className="Network-instruction">
-              <p>Add a hidden layer to detect more complex combinations.</p>
+              <p>{strings.hiddenLayerInstructions}</p>
               <button className="Network-button" onClick={onAddLayer}>{strings.addLayer}</button>
             </div>
             <div className="Network-instruction">
-              <p>Add new output nodes to detect new classes of predictions.</p>
+              <p>{strings.outputLayerInstructions}</p>
             </div>
           </div>
         </div>
