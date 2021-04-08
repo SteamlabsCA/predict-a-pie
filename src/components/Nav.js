@@ -54,6 +54,21 @@ function Nav({appData, ...props}) {
             </a>
           </>
         )}
+        <hr/>
+        { strings.getLanguage() == 'en' && (
+          <>
+            <a onClick={() => {props.onCommand('french')}}>
+              {strings.french}
+            </a>
+          </>
+        )}
+        { strings.getLanguage() == 'fr' && (
+          <>
+            <a onClick={() => {props.onCommand('english')}}>
+              {strings.english}
+            </a>
+          </>
+        )}
       </nav>
     </div>
   );

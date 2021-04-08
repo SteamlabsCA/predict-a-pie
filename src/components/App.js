@@ -118,6 +118,16 @@ function App(props) {
       case 'create-classroom':
         socket.emit('create-classroom');
         break;
+
+      case 'english':
+        strings.setLanguage('en');
+        setAppData({...appData});
+        break;
+
+      case 'french':
+        strings.setLanguage('fr');
+        setAppData({...appData});
+        break;
     }
   };
 

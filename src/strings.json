@@ -81,7 +81,10 @@
     "Quiche": "Quiche",
     "Pizza": "Pizza",
     "Savoury": "Savoury",
-    "Disgusting": "Disgusting"
+    "Disgusting": "Disgusting",
+
+    "english": "English",
+    "french": "Français"
   },
 
   "fr": {
@@ -166,6 +169,9 @@
     "Quiche": "Quiche",
     "Pizza": "Pizza",
     "Savoury": "Pâté",
-    "Disgusting": "Dégoûtant"
+    "Disgusting": "Dégoûtant",
+
+    "english": "English",
+    "french": "Français"
   }
 }
