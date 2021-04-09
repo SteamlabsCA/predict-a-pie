@@ -124,7 +124,6 @@ function Network() {
         }
       });
 
-
       setConnections(newConnections);
       setDragging(false);
     }
@@ -152,9 +151,23 @@ function Network() {
   };
 
   const onDeleteConnection = (connection) => {
-    setConnections(connections.filter(item => {
+
+    // Remove connection
+    let newConnections = connections.filter(item => {
       return !(item.from.id === connection.from.id && item.to.id === connection.to.id);
-    }));
+    });
+
+    // Assign default weights to sibling inputs
+    if (connection.positive) {
+      const inputs = newConnections.filter(item => {
+        return item.to.id === connection.to.id && connection.positive;
+      });
+      inputs.map(connection => {
+        connection.weight = Math.round(100 / inputs.length);
+      });
+    }
+
+    setConnections(newConnections);
   };
 
   const onDeleteNeuron = (neuron) => {
