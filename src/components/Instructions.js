@@ -57,15 +57,15 @@ If necessary, you can click on the (+) or (-) symbol on any node and change the 
     
     <h2>Credits</h2>
     <p>
-      <a href="https://www.steamlabs.ca/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" width=150 border=0 align="left" /></a> Predict-a-Pie is a creation of <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a>.
+      <a href="https://www.steamlabs.ca/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" width="150" border="0" align="left" /></a> Predict-a-Pie is a creation of <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a>.
       <br clear="left" />
     </p>
     <p>
-      <a href="https://kidscodejeunesse.org/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png" width=150 border=0 align="left" /></a> Co-designed by <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a> and <a href="https://kidscodejeunesse.org/" target="_new">Kids Code Jeunesse</a>.
+      <a href="https://kidscodejeunesse.org/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png" width="150" border="0" align="left" /></a> Co-designed by <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a> and <a href="https://kidscodejeunesse.org/" target="_new">Kids Code Jeunesse</a>.
       <br clear="left" />
     </p>
     <p>
-      <a href="https://www.amazonfutureengineer.com/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" width=150 border=0 align="left" /></a> Created with funding from <a href="https://www.amazonfutureengineer.com/" target="_new">Amazon Future Engineer</a>.
+      <a href="https://www.amazonfutureengineer.com/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" width="150" border="0" align="left" /></a> Created with funding from <a href="https://www.amazonfutureengineer.com/" target="_new">Amazon Future Engineer</a>.
       <br clear="left" />
     </p>
     
@@ -146,15 +146,15 @@ If necessary, you can click on the (+) or (-) symbol on any node and change the 
 			
 			<h2>Credits</h2>
 			<p>
-				<a href="https://www.steamlabs.ca/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" width=150 border=0 align="left" /></a> Predict-a-Pie is a creation of <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a>.
+				<a href="https://www.steamlabs.ca/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" width="150" border="0" align="left" /></a> Predict-a-Pie is a creation of <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a>.
 				<br clear="left" />
 			</p>
 			<p>
-				<a href="https://kidscodejeunesse.org/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png" width=150 border=0 align="left" /></a> Co-designed by <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a> and <a href="https://kidscodejeunesse.org/" target="_new">Kids Code Jeunesse</a>.
+				<a href="https://kidscodejeunesse.org/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png" width="150" border="0" align="left" /></a> Co-designed by <a href="https://www.steamlabs.ca/" target="_new">Steamlabs</a> and <a href="https://kidscodejeunesse.org/" target="_new">Kids Code Jeunesse</a>.
 				<br clear="left" />
 			</p>
 			<p>
-				<a href="https://www.amazonfutureengineer.com/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" width=150 border=0 align="left" /></a> Created with funding from <a href="https://www.amazonfutureengineer.com/" target="_new">Amazon Future Engineer</a>.
+				<a href="https://www.amazonfutureengineer.com/" target="_new"><img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" width="150" border="0" align="left" /></a> Created with funding from <a href="https://www.amazonfutureengineer.com/" target="_new">Amazon Future Engineer</a>.
 				<br clear="left" />
 			</p>
 			
