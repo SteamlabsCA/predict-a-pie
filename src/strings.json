@@ -73,7 +73,7 @@
     "Steak": "Steak",
     "Salmon": "Salmon",
     "Shrimp": "Shrimp",
-    "Soy Chunks": "Soy Chunks",
+    "Soy Chunks": "Soy protein",
     "Pecan": "Pecan",
     "Pesto": "Pesto",
 
@@ -81,7 +81,7 @@
     "Quiche": "Quiche",
     "Pizza": "Pizza",
     "Savoury": "Savoury",
-    "Disgusting": "Disgusting",
+    "Disgusting": "Other",
 
     "english": "English",
     "french": "Français"
@@ -169,7 +169,7 @@
     "Quiche": "Quiche",
     "Pizza": "Pizza",
     "Savoury": "Pâté",
-    "Disgusting": "Dégoûtant",
+    "Disgusting": "Autre",
 
     "english": "English",
     "french": "Français"
