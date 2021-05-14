@@ -8,7 +8,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
 
   const listIngredients = (items) => {
     return items.map((item, index) => {
-      if (item) return ingredients[index];
+      if (item) return strings[ingredients[index]];
     }).filter(item => item != null).join(', ');
   };
 
@@ -113,7 +113,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
               <tr key={i}>
                 <td>{listIngredients(item.recipe)}</td>
                 <td>
-                  {classifications[item.original_classification]} {getClassificationPercent(item, item.original_classification) > 0 && (
+                  {strings[classifications[item.original_classification]]} {getClassificationPercent(item, item.original_classification) > 0 && (
                     <small>({getClassificationPercent(item, item.original_classification)}%)</small>
                   )}
                 </td>
@@ -122,7 +122,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
                     let percent = getClassificationPercent(item, index);
                     if (index != item.original_classification && percent> 0) {
                       return (<span key={index}>
-                        {classification} <small>({percent}%)</small>
+                        {strings[classification]} <small>({percent}%)</small>
                       </span>);
                     }
                   })}&nbsp;
@@ -146,7 +146,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
               <tr key={index}>
                 <td>{recipe.name}</td>
                 <td>{listIngredients(recipe.ingredients)}</td>
-                <td>{classifications[recipe.classification]}</td>
+                <td>{strings[classifications[recipe.classification]]}</td>
                 <td></td>
               </tr>
             ))}
@@ -167,7 +167,7 @@ function Stats({appData, ingredients, classifications, recipes}) {
               <tr key={index}>
                 <td>{recipe.name}</td>
                 <td>{listIngredients(recipe.ingredients)}</td>
-                <td>{classifications[recipe.classification]}</td>
+                <td>{strings[classifications[recipe.classification]]}</td>
                 <td></td>
               </tr>
             ))}

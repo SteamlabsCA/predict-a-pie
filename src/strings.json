@@ -1,7 +1,7 @@
 {
   "en": {
     "instructions": "Instructions",
-
+    "stats":"Classroom Stats",
     "buildNetwork": "Build a Neural Network",
     "neuron": "Neuron",
     "neuronDef": "Neurons, also called nodes, are a computational unit that can take one or more inputs and multiply it by values called \"weights\" and add them together. A neural network is made up of many different nodes layered together.",
@@ -89,7 +89,7 @@
 
   "fr": {
     "instructions": "Instructions",
-
+    "stats":"Statistique de la Classe",
     "buildNetwork": "Construire un réseau neuronal",
     "neuron": "Neurone",
     "neuronDef": "Les neurones, également appelés nœuds, sont des unités de calcul capables de recevoir une ou plusieurs entrées, de les multiplier par des valeurs appelées \"poids\" et de les additionner. Un réseau neuronal est constitué de plusieurs nœuds différents qui sont superposés.",
@@ -124,9 +124,9 @@
     "classroomCode": "Le code de la classe est :",
     "onlyParticipant": "Vous êtes le seul participant.",
     "participants": "Il y a actuellement {0} participants.",
-    "totalPredictions": "Total des prédictions",
-    "correctClassifications": "Correct Classifications",
-    "incorrectClassifications": "Classifications correctes",
+    "totalPredictions": "Prédictions totales",
+    "correctClassifications": "Classifications correctes",
+    "incorrectClassifications": "Classifications incorrectes",
     "accuracy": "Précision",
     "reclassifiedRecipes": "Recettes reclassées",
     "ingredients": "Ingrédients",
