@@ -237,7 +237,7 @@ function App(props) {
             />
           </Route>
           <Route path="*/stats">
-            <NavBar title="Classroom Stats" appData={appData} route="stats" onCommand={onCommand} />
+            <NavBar title={strings.stats} appData={appData} route="stats" onCommand={onCommand} />
             <Stats
               appData={appData}
               ingredients={ingredients}
