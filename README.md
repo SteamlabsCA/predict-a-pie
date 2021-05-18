@@ -1,6 +1,6 @@
 # Predict-a-Pie
 
-Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum.
+ What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop, you will wire up a neural network to do just that! You will then use your new knowledge to test a larger neural network that has used “machine learning” to analyse thousands of recipes to come up with new, creative combinations.
 
 ## Getting Started
 
