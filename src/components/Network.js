@@ -67,7 +67,7 @@ function Network() {
 	};
 
 	const onAddLayer = () => {
-		gtmTrack('ter_btn_click', 'Build', 'Layer', 'Add');
+		gtmTrack('ter_btn_click', 'Build', 'Layer: Add', 'Add');
 		// Break existing connections
 		const outputNeuronIds = network[network.length - 1].neurons.map((neuron) => neuron.id);
 		let newConnections = [...connections];
@@ -179,7 +179,7 @@ function Network() {
 	};
 
 	const onDeleteNeuron = (neuron) => {
-		gtmTrack('ter_btn_click', 'Build', 'Neuron', 'Delete');
+		gtmTrack('ter_btn_click', 'Build', 'Neuron: Delete', 'Delete');
 		let newConnections = connections.filter((connection) => {
 			return connection.from.id !== neuron.id && connection.to.id !== neuron.id;
 		});
@@ -187,7 +187,7 @@ function Network() {
 	};
 
 	const onDeleteLayer = (layer) => {
-		gtmTrack('ter_btn_click', 'Build', 'Layer', 'Delete');
+		gtmTrack('ter_btn_click', 'Build', 'Layer: Delete', 'Delete');
 		let newNetwork = network.filter((item) => {
 			return item.id != layer.id;
 		});

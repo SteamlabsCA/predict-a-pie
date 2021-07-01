@@ -18,7 +18,7 @@ function Instructions() {
 					<p>
 						Vous pouvez en savoir plus à propos de cette activité et trouver des liens vers{' '}
 						<a
-							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://steamlabs.ca/ai-programs/predict-a-pie/')}
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie/', 'https://steamlabs.ca/ai-programs/predict-a-pie/')}
 							href='https://steamlabs.ca/ai-programs/predict-a-pie'
 							target='_new'
 						>
@@ -60,37 +60,53 @@ function Instructions() {
 
 					<h2>Crédits</h2>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							<img src='https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg' width='150' border='0' align='left' />
 						</a>{' '}
 						"Predict-a-Pie" est une création de{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							Steamlabs
 						</a>
 						.
 						<br clear='left' />
 					</p>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://kidscodejeunesse.org/')} href='https://kidscodejeunesse.org/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
+							href='https://kidscodejeunesse.org/'
+							target='_new'
+						>
 							<img src='https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png' width='150' border='0' align='left' />
 						</a>{' '}
 						Co-conçu par{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							Steamlabs
 						</a>{' '}
 						et{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://kidscodejeunesse.org/')} href='https://kidscodejeunesse.org/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
+							href='https://kidscodejeunesse.org/'
+							target='_new'
+						>
 							Kids Code Jeunesse
 						</a>
 						.
 						<br clear='left' />
 					</p>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.amazonfutureengineer.com/')} href='https://www.amazonfutureengineer.com/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
+							href='https://www.amazonfutureengineer.com/'
+							target='_new'
+						>
 							<img src='https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png' width='150' border='0' align='left' />
 						</a>{' '}
 						Créé grâce au financement de{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.amazonfutureengineer.com/')} href='https://www.amazonfutureengineer.com/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
+							href='https://www.amazonfutureengineer.com/'
+							target='_new'
+						>
 							Amazon Future Engineer
 						</a>
 						.
@@ -120,7 +136,7 @@ function Instructions() {
 					<p>
 						Les détails complets de cette licence peuvent être trouvés ici :{' '}
 						<a
-							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://creativecommons.org/licenses/by-sa/4.0/')}
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/', 'https://creativecommons.org/licenses/by-sa/4.0/')}
 							href='https://creativecommons.org/licenses/by-sa/4.0/'
 							target='_new'
 						>
@@ -142,7 +158,7 @@ function Instructions() {
 					<p>
 						You can read more about this activity and find links to{' '}
 						<a
-							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://steamlabs.ca/ai-programs/predict-a-pie')}
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie', 'https://steamlabs.ca/ai-programs/predict-a-pie')}
 							href='https://steamlabs.ca/ai-programs/predict-a-pie'
 							target='_new'
 						>
@@ -174,37 +190,53 @@ function Instructions() {
 
 					<h2>Credits</h2>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							<img src='https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg' width='150' border='0' align='left' />
 						</a>{' '}
 						Predict-a-Pie is a creation of{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							Steamlabs
 						</a>
 						.
 						<br clear='left' />
 					</p>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://kidscodejeunesse.org/')} href='https://kidscodejeunesse.org/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
+							href='https://kidscodejeunesse.org/'
+							target='_new'
+						>
 							<img src='https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png' width='150' border='0' align='left' />
 						</a>{' '}
 						Co-designed by{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 							Steamlabs
 						</a>{' '}
 						and{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://kidscodejeunesse.org/')} href='https://kidscodejeunesse.org/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
+							href='https://kidscodejeunesse.org/'
+							target='_new'
+						>
 							Kids Code Jeunesse
 						</a>
 						.
 						<br clear='left' />
 					</p>
 					<p>
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.amazonfutureengineer.com/')} href='https://www.amazonfutureengineer.com/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
+							href='https://www.amazonfutureengineer.com/'
+							target='_new'
+						>
 							<img src='https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png' width='150' border='0' align='left' />
 						</a>{' '}
 						Created with funding from{' '}
-						<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://www.amazonfutureengineer.com/')} href='https://www.amazonfutureengineer.com/' target='_new'>
+						<a
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
+							href='https://www.amazonfutureengineer.com/'
+							target='_new'
+						>
 							Amazon Future Engineer
 						</a>
 						.
@@ -234,7 +266,7 @@ function Instructions() {
 					<p>
 						Full details of this license can be found here:{' '}
 						<a
-							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound', 'https://creativecommons.org/licenses/by-sa/4.0/')}
+							onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/', 'https://creativecommons.org/licenses/by-sa/4.0/')}
 							href='https://creativecommons.org/licenses/by-sa/4.0/'
 							target='_new'
 						>

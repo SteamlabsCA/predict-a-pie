@@ -16,7 +16,7 @@ function Layer({ layer, ...props }) {
 	const [overTrash, setOverTrash] = React.useState(false);
 
 	const onAddNeuron = () => {
-		gtmTrack('ter_btn_click', 'Build', 'Neuron', 'Add');
+		gtmTrack('ter_btn_click', 'Build', 'Neuron: Add', 'Add');
 		layer.neurons = [
 			...neurons,
 			{

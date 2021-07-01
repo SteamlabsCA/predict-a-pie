@@ -13,13 +13,13 @@ function Reclassify({ recipe, classifications, visible, ...props }) {
 	}, [visible]);
 
 	const onAgree = () => {
-		gtmTrack('sec_btn_click', 'Pretrained', 'Classification', 'Agree');
+		gtmTrack('sec_btn_click', 'Pretrained', 'Classification: Agree', 'Agree');
 		setStep('1-3');
 		dismiss();
 	};
 
 	const onDisagree = () => {
-		gtmTrack('sec_btn_click', 'Pretrained', 'Classification', 'Disagree');
+		gtmTrack('sec_btn_click', 'Pretrained', 'Classification: Disagree', 'Disagree');
 		setStep('1-2');
 	};
 
