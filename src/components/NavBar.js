@@ -7,7 +7,7 @@ function NavBar({ title, content, appData, checkEnv, ...props }) {
 
 	React.useEffect(() => {
 		isMountedRef.current = true;
-		if (isMountedRef.current) {
+		if (isMountedRef.current && checkEnv) {
 			checkEnv();
 		}
 		return () => (isMountedRef.current = false);
