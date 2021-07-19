@@ -1,90 +1,90 @@
 @import '../variables';
 
 .Network {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: $spacer $spacer * 3;
-  min-width: min-content;
-  flex-basis: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: $spacer $spacer * 3;
+	min-width: min-content;
+	flex-basis: 100%;
 
-  &-container {
-    display: flex;
-    padding: 6rem 0 16rem;
-    position: relative;
-    flex-basis: 100%;
-  }
+	&-container {
+		display: flex;
+		padding: 6rem 0 16rem;
+		position: relative;
+		flex-basis: 100%;
+	}
 
-  &-layers {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-grow: 1;
-    flex-shrink: 0;
-    padding-bottom: 7rem;
-    position: relative;
-    min-width: calc(90rem + 4px);
-    min-height: fit-content;
-  }
+	&-layers {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-grow: 1;
+		flex-shrink: 0;
+		padding-bottom: 7rem;
+		position: relative;
+		min-width: calc(90rem + 4px);
+		min-height: fit-content;
+	}
 
-  &-button {
-    background: transparent;
-    border: 1px $dark-gray solid;
-    border-radius: 0.5rem;
-    color: $dark-gray;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 2rem;
-    font-weight: 500;
-    margin: 1rem 0;
-    width: $spacer * 4;
-    height: $spacer;
-  }
+	&-button {
+		background: transparent;
+		border: 1px $dark-gray solid;
+		border-radius: 0.5rem;
+		color: $dark-gray;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		font-size: 2rem;
+		font-weight: 500;
+		margin: 1rem 0;
+		width: $spacer * 4;
+		height: $spacer;
+	}
 
-  &-instructions {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
+	&-instructions {
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
 
-  &-instruction {
-    display: flex;
-    align-items: center;
-    flex-basis: 30rem;
-    flex-direction: column;
-    flex-grow: 0;
-    margin: 0 auto;
-    width: 30rem;
+	&-instruction {
+		display: flex;
+		align-items: center;
+		flex-basis: 30rem;
+		flex-direction: column;
+		flex-grow: 0;
+		margin: 0 auto;
+		width: 30rem;
 
-    p {
-      color: $dark-gray;
-      font-size: 1.4rem;
-      text-align: center;
-      width: 22rem;
-    }
+		p {
+			color: $dark-gray;
+			font-size: 1.4rem;
+			text-align: center;
+			width: 22rem;
+		}
 
-    &:nth-child(2) {
-      flex-grow: 1;
-    }
-  }
+		&:nth-child(2) {
+			flex-grow: 1;
+		}
+	}
 
-  &-layers &-instruction {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 7rem;
-    left: 0;
-  }
+	&-layers &-instruction {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 7rem;
+		left: 0;
+	}
 
-  &-empty &-layers &-instruction {
-    display: flex;
-  }
+	&-empty &-layers &-instruction {
+		display: flex;
+	}
 }

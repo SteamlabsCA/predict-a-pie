@@ -7,46 +7,88 @@ import React from 'react';
 import { v4 as uuid } from 'uuid';
 import { strings } from './App';
 import gtmTrack from '../helpers/gtmTrack';
+import Spinner from './Spinner';
 
-function Network() {
-	const [network, setNetwork] = React.useState([
-		{
-			id: uuid(),
-			type: 'input',
-			label: strings.inputLayer,
-			neurons: [
-				{
-					id: uuid(),
-					type: 'input',
-					label: strings.neuron,
-				},
-			],
-		},
-		{
-			id: uuid(),
-			type: 'output',
-			label: strings.outputLayer,
-			neurons: [
-				{
-					id: uuid(),
-					type: 'output',
-					label: strings.neuron,
-				},
-			],
-		},
-	]);
+function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrievedNetwork, setRetrievedNetwork, ...props }) {
+	const [network, setNetwork] = React.useState(
+		buildNetwork.network
+			? buildNetwork.network
+			: [
+					{
+						id: uuid(),
+						type: 'input',
+						label: strings.inputLayer,
+						neurons: [
+							{
+								id: uuid(),
+								type: 'input',
+								label: strings.neuron,
+							},
+						],
+					},
+					{
+						id: uuid(),
+						type: 'output',
+						label: strings.outputLayer,
+						neurons: [
+							{
+								id: uuid(),
+								type: 'output',
+								label: strings.neuron,
+							},
+						],
+					},
+			  ]
+	);
 	const [connections, setConnections] = React.useState([]);
 	const [dragging, setDragging] = React.useState(false);
 	const [mouseX, setMouseX] = React.useState();
 	const [mouseY, setMouseY] = React.useState();
+	const [loading, setLoading] = React.useState(true);
+	const isMountedRef = React.useRef(null);
 
 	React.useEffect(() => {
-		window.addEventListener('mouseup', onMouseUp);
+		isMountedRef.current = true;
+		if (retrievedNetwork && retrievedNetwork.connections && isMountedRef.current) {
+			setConnections(retrievedNetwork.connections);
+			setRetrievedNetwork({
+				network: false,
+				connections: false,
+			});
+			setLoading(false);
+		}
+		return () => (isMountedRef.current = false);
+	}, [network]);
+
+	React.useEffect(() => {
+		isMountedRef.current = true;
+		if (retrievedNetwork && retrievedNetwork.network && isMountedRef.current) {
+			setNetwork(retrievedNetwork.network);
+		}
+		return () => (isMountedRef.current = false);
+	}, [retrievedNetwork]);
+
+	React.useEffect(() => {
+		isMountedRef.current = true;
+		if (isMountedRef.current) {
+			window.addEventListener('mouseup', onMouseUp);
+			if (buildNetwork.connections) setConnections(buildNetwork.connections);
+			if (shared) retrieveNetwork(window.location.pathname.slice(7));
+		}
+		return () => (isMountedRef.current = false);
 	}, []);
 
 	React.useEffect(() => {
 		onChange();
 	}, [connections]);
+
+	React.useEffect(() => {
+		isMountedRef.current = true;
+		if (isMountedRef.current) {
+			shareNetwork(false, network, connections);
+		}
+		return () => (isMountedRef.current = false);
+	}, [network, connections]);
 
 	const isNeuronAdjacent = (n1, n2) => {
 		for (let i = 0; i < network.length - 1; i++) {
@@ -245,7 +287,7 @@ function Network() {
 							/>
 						))}
 						<div className='Network-instruction'>
-							<p>{strings.connectionInstructions}</p>
+							{retrievedNetwork && props.envVariables ? <Spinner active={loading} /> : <p>{strings.connectionInstructions}</p>}
 						</div>
 					</div>
 					<div className='Network-instructions'>

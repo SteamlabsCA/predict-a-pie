@@ -1,6 +1,7 @@
 import './App.scss';
 import Alert from './Alert';
 import ClassroomCode from './ClassroomCode';
+import SharePrompt from './SharePrompt';
 import Instructions from './Instructions';
 import NavBar from './NavBar';
 import Network from './Network';
@@ -18,6 +19,8 @@ import socketClient from 'socket.io-client';
 import ingredients from '../ingredients.json';
 import classifications from '../classifications.json';
 import stringData from '../strings.json';
+
+import { toJSON, fromJSON } from 'flatted';
 
 const strings = new LocalizedStrings(stringData);
 
@@ -46,6 +49,19 @@ function App(props) {
 	const [reclassify, setReclassify] = React.useState(false);
 	const [reclassifyTimeout, setReclassifyTimeout] = React.useState(false);
 	const [updated, setUpdated] = React.useState(false);
+	const [buildNetwork, setBuildNetwork] = React.useState({
+		network: false,
+		connections: false,
+		id: '',
+		urlId: '',
+		url: '',
+		visible: false,
+	});
+	const [retrievedNetwork, setRetrievedNetwork] = React.useState({
+		network: false,
+		connections: false,
+	});
+	const [envVariables, setEnvVariables] = React.useState(false);
 
 	// Load pre-generated recipes
 	React.useEffect(() => {
@@ -195,13 +211,123 @@ function App(props) {
 		setReclassify(false);
 	};
 
+	const retrieveNetwork = (hashID) => {
+		checkEnv().then((res) => {
+			if (res) {
+				socket.emit('retrieve-network', hashID, (response) => {
+					let networkInfo = JSON.parse(response);
+					const asMap = RecursiveMap.fromJSON(JSON.parse(networkInfo.data));
+					const nn = asMap.get('newNetwork');
+					setRetrievedNetwork({
+						network: nn.network,
+						connections: nn.connections,
+					});
+				});
+			}
+		});
+	};
+
+	//Recursive Map for sharing a network
+	class RecursiveMap extends Map {
+		static fromJSON(any) {
+			return new this(fromJSON(any));
+		}
+		toJSON() {
+			return toJSON([...this.entries()]);
+		}
+	}
+
+	// Share the network and recieve the URL
+	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections) => {
+		if (sharing && envVariables) {
+			let d = new Date();
+
+			const recObj = new RecursiveMap();
+			recObj.set('newNetwork', {
+				network: network,
+				connections: connections,
+			});
+			const JsonObj = JSON.stringify(recObj);
+
+			socket.emit('save-network', { data: JsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
+				let urlId = response.id.split('.')[1];
+				let url = window.location.origin + '/build/' + urlId;
+
+				setBuildNetwork({
+					network: network,
+					connections: connections,
+					id: response.id,
+					urlId: urlId,
+					url: url,
+					visible: true,
+				});
+			});
+		} else {
+			setBuildNetwork({
+				name: '',
+				network: network,
+				connections: connections,
+				visible: false,
+			});
+		}
+	};
+
+	// Check if Environment Variables Exist
+	const checkEnv = () => {
+		let resPromise = new Promise((resolve, reject) => {
+			socket.emit('check-env', (response) => {
+				setEnvVariables(response);
+				resolve(response);
+			});
+		});
+		return resPromise;
+	};
+
 	return (
 		<BrowserRouter>
 			<div className='App'>
 				<Switch>
-					<Route path='*/build'>
-						<NavBar title={strings.buildNetwork} appData={appData} route='build' onCommand={onCommand} />
-						<Network />
+					<Route path='*/build' exact>
+						<NavBar
+							title={strings.buildNetwork}
+							appData={appData}
+							route='build'
+							onCommand={onCommand}
+							checkEnv={checkEnv}
+							content={
+								envVariables && (
+									<>
+										<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
+									</>
+								)
+							}
+						/>
+						<Network shareNetwork={shareNetwork} buildNetwork={buildNetwork} />
+					</Route>
+					<Route path='*/build/:id'>
+						<NavBar
+							title={strings.buildNetwork}
+							appData={appData}
+							route='build'
+							onCommand={onCommand}
+							checkEnv={checkEnv}
+							content={
+								envVariables && (
+									<>
+										<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
+									</>
+								)
+							}
+						/>
+						<Network
+							shareNetwork={shareNetwork}
+							buildNetwork={buildNetwork}
+							shared={true}
+							retrieveNetwork={retrieveNetwork}
+							retrievedNetwork={retrievedNetwork}
+							setRetrievedNetwork={setRetrievedNetwork}
+							envVariables={envVariables}
+						/>
 					</Route>
 					<Route path='*/trained'>
 						<NavBar
@@ -218,7 +344,13 @@ function App(props) {
 								</>
 							}
 						/>
-						<TrainedNetwork onChange={onChange} onPrediction={onPrediction} inputs={recipe} ingredients={ingredients} classifications={classifications} />
+						<TrainedNetwork
+							onChange={onChange}
+							onPrediction={onPrediction}
+							inputs={recipe}
+							ingredients={ingredients}
+							classifications={classifications}
+						/>
 						<Reclassify recipe={recipe} classifications={classifications} visible={reclassify} onReclassify={onReclassify} />
 					</Route>
 					<Route path='*/stats'>
@@ -232,6 +364,7 @@ function App(props) {
 				</Switch>
 				<Alert />
 				<Prompt />
+				<SharePrompt buildNetwork={buildNetwork} onDismiss={() => setBuildNetwork({ ...buildNetwork, visible: false })} />
 				<ClassroomCode code={classroomCode} appData={appData} onDismiss={() => setClassroomCode(false)} />
 			</div>
 		</BrowserRouter>
