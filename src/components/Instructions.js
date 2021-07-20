@@ -70,7 +70,34 @@ function Instructions() {
 						"Voir les statistiques de la classe", vous pouvez voir les classifications d'autres participants et vérifier s'ils sont d'accord avec
 						vous.
 					</p>
-
+					{window.location.origin.includes('glitch') && (
+						<>
+							<h2>Remixing Predict a Pie</h2>
+							<p>
+								When you remix Predict a Pie, you’re creating a copy of the existing project. From there, you can customize the project and make other
+								changes.
+							</p>
+							<h3 style={{ marginBottom: 0 }}>How to Remix</h3>
+							<p style={{ marginTop: 0 }}>
+								To remix Predict a Pie press on the fish icon
+								<img
+									src='https://cdn.glitch.com/1973df30-22e4-49d9-94b0-9a3b017066bc%2FGlitchLogo_Color.svg?v=1613667290307'
+									width='50px'
+									style={{ position: 'relative', top: '15px', margin: '0 15px' }}
+								/>
+								and click on <strong>'Remix on Glitch'</strong>.
+							</p>
+							<p> To make the project your own you'll have to boost it to allow for extra memory and disk space.</p>
+							<h3>From here, you can:</h3>
+							<ul style={{ marginBottom: '30px' }}>
+								<p>
+									<li>Edit any of the files that were in the original project.</li>
+									<li>Change the name of the project.</li>
+									<li>Customize the project to make it your own!</li>
+								</p>
+							</ul>
+						</>
+					)}
 					<h1>À propos de cette application</h1>
 
 					<h2>Crédits</h2>
@@ -232,7 +259,6 @@ function Instructions() {
 						in the middle to detect these combinations. If necessary, you can click on the (+) or (-) symbol on any node and change the “weights” to
 						indicate the relative importance of each incoming node.
 					</p>
-
 					<h2>Test a Trained Neural Network</h2>
 					<p>
 						This activity can be done on your own, or with a group. For a group, start with “Create Classroom”, and have everyone go to the URL that
@@ -252,9 +278,35 @@ function Instructions() {
 						Find classifications that you disagree with, and input the correct classification. On the “View Classroom Stats” page you can see if
 						others agreed with you.
 					</p>
-
+					{window.location.origin.includes('glitch') && (
+						<>
+							<h2>Remixing Predict a Pie</h2>
+							<p>
+								When you remix Predict a Pie, you’re creating a copy of the existing project. From there, you can customize the project and make other
+								changes.
+							</p>
+							<h3 style={{ marginBottom: 0 }}>How to Remix</h3>
+							<p style={{ marginTop: 0 }}>
+								To remix Predict a Pie press on the fish icon
+								<img
+									src='https://cdn.glitch.com/1973df30-22e4-49d9-94b0-9a3b017066bc%2FGlitchLogo_Color.svg?v=1613667290307'
+									width='50px'
+									style={{ position: 'relative', top: '15px', margin: '0 15px' }}
+								/>
+								and click on <strong>'Remix on Glitch'</strong>.
+							</p>
+							<p> To make the project your own you'll have to boost it to allow for extra memory and disk space.</p>
+							<h3>From here, you can:</h3>
+							<ul style={{ marginBottom: '30px' }}>
+								<p>
+									<li>Edit any of the files that were in the original project.</li>
+									<li>Change the name of the project.</li>
+									<li>Customize the project to make it your own!</li>
+								</p>
+							</ul>
+						</>
+					)}
 					<h1>About this app</h1>
-
 					<h2>Credits</h2>
 					<p>
 						<a
@@ -325,9 +377,7 @@ function Instructions() {
 						.
 						<br clear='left' />
 					</p>
-
 					<h2>License</h2>
-
 					<p>Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</p>
 					<p>In summary, you are free to:</p>
 					<ul>
@@ -349,7 +399,6 @@ function Instructions() {
 							</li>
 						</p>
 					</ul>
-
 					<p>
 						Full details of this license can be found here:{' '}
 						<a

@@ -2,15 +2,26 @@
 @import 'variables';
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 body {
-  background: $light-gray;
-  font-family: 'Mulish', sans-serif;
-  -webkit-font-smoothing: antialiased;
+	background: $light-gray;
+	font-family: 'Mulish', sans-serif;
+	-webkit-font-smoothing: antialiased;
+
+	button {
+		box-shadow: none !important;
+		&:hover {
+			background-color: #fff !important;
+		}
+	}
+
+	h1 {
+		color: #000 !important;
+	}
 }

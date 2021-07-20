@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
-s3 = new AWS.S3();
+const s3 = new AWS.S3();
 var config = new AWS.Config({
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -184,21 +184,13 @@ String.prototype.hashCode = function () {
 
 //Get User IP Address
 function getIP() {
-	const nets = networkInterfaces();
-	const results = Object.create(null); // Or just '{}', an empty object
+	const getLocalExternalIP = () =>
+		[]
+			.concat(...Object.values(networkInterfaces()))
+			.filter((details) => details.family === 'IPv4' && !details.internal)
+			.pop().address;
 
-	for (const name of Object.keys(nets)) {
-		for (const net of nets[name]) {
-			// Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-			if (net.family === 'IPv4' && !net.internal) {
-				if (!results[name]) {
-					results[name] = [];
-				}
-				results[name].push(net.address);
-			}
-		}
-	}
-	return results['Wi-Fi'][0];
+	return getLocalExternalIP();
 }
 
 io.on('connection', (socket) => {

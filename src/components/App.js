@@ -335,6 +335,7 @@ function App(props) {
 							appData={appData}
 							route='trained'
 							onCommand={onCommand}
+							checkEnv={checkEnv}
 							content={
 								<>
 									<SelectRecipe classifications={classifications} onSubmit={onFindRecipe} />
@@ -354,11 +355,11 @@ function App(props) {
 						<Reclassify recipe={recipe} classifications={classifications} visible={reclassify} onReclassify={onReclassify} />
 					</Route>
 					<Route path='*/stats'>
-						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} />
+						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} checkEnv={checkEnv} />
 						<Stats appData={appData} ingredients={ingredients} classifications={classifications} recipes={recipes} />
 					</Route>
 					<Route path='/'>
-						<NavBar title={strings.instructions} appData={appData} route='instructions' onCommand={onCommand} />
+						<NavBar title={strings.instructions} appData={appData} route='instructions' onCommand={onCommand} checkEnv={checkEnv} />
 						<Instructions />
 					</Route>
 				</Switch>
