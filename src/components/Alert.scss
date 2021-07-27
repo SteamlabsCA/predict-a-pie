@@ -15,9 +15,17 @@
 
 	animation-name: fadeOut;
 	animation-delay: 2s;
-	animation-duration: 500ms;
+	animation-duration: 1200ms;
 	animation-iteration-count: 1;
 	animation-fill-mode: both;
+
+	&-rateLimit {
+		animation-name: fadeOut;
+		animation-delay: 2s;
+		animation-duration: 3600ms;
+		animation-iteration-count: 1;
+		animation-fill-mode: both;
+	}
 
 	@keyframes fadeOut {
 		from {

@@ -2,7 +2,7 @@ import React from 'react';
 import './NavBar.scss';
 import Nav from './Nav';
 
-function NavBar({ title, content, appData, checkEnv, ...props }) {
+function NavBar({ title, content, appData, checkEnv, envVariables, ...props }) {
 	const isMountedRef = React.useRef(null);
 
 	React.useEffect(() => {
@@ -17,7 +17,7 @@ function NavBar({ title, content, appData, checkEnv, ...props }) {
 		<header className='NavBar'>
 			<Nav appData={appData} route={props.route} onCommand={props.onCommand} />
 			<h1>{title}</h1>
-			{content}
+			{envVariables && content}
 		</header>
 	);
 }

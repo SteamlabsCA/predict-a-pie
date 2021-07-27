@@ -16,8 +16,8 @@ body {
 
 	button {
 		box-shadow: none !important;
-		&:hover {
-			background-color: #fff !important;
+		.glitchButton .glitchButtonElement {
+			background-color: transparent !important;
 		}
 	}
 

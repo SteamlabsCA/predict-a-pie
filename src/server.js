@@ -3,7 +3,6 @@ const path = require('path');
 const http = require('http');
 const seedrandom = require('seedrandom');
 const socketIo = require('socket.io');
-const { networkInterfaces } = require('os');
 var AWS = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 if (process.env.NODE_ENV !== 'production') {
@@ -37,6 +36,7 @@ app.get('*', function (req, res) {
 
 let counter = 0;
 let classrooms = {};
+let lastRequest = {};
 
 // Dictionary of words for classroom code
 let dictionary = [
@@ -92,12 +92,13 @@ generateClassroomCode = (id) => {
 };
 
 // Get all the Bucket Keys
-const listAllKeys = () => {
+const listAllKeys = (thisIp) => {
 	var params = {
 		Bucket: 'predictapie',
 	};
 	return new Promise((resolve, reject) => {
 		let allKeys = [];
+		let knownIpNum = [];
 		s3.listObjectsV2(params, function (err, data) {
 			if (err) {
 				console.log(err, err.stack);
@@ -105,23 +106,41 @@ const listAllKeys = () => {
 				var contents = data.Contents;
 				contents.forEach(function (content) {
 					allKeys.push(content.Key);
+					if (content.Key.includes(thisIp)) {
+						knownIpNum.push({ key: content.Key, ip: thisIp, date: content.LastModified });
+					}
 				});
 
 				if (data.IsTruncated) {
 					params.ContinuationToken = data.NextContinuationToken;
-					listAllKeys();
+					listAllKeys(thisIp);
 				}
 			}
-			resolve(allKeys);
+			resolve({ allKeys: allKeys, allIps: knownIpNum });
 		});
 	});
 };
 
-//Generate Unique ID for NN
-async function generateId(id) {
-	let allKeys = await listAllKeys();
-	let isUnique = true;
+//Generate Unique ID for NN and rate llimit based on IP
+async function generateId(id, thisIp) {
+	let rateLimit = 10;
+	let timeOutRec = 600000;
+	let res = await listAllKeys(thisIp);
+	let allKeys = res.allKeys;
+	let allIps = res.allIps;
 
+	let max = 0;
+
+	for (let i = 0; i < allIps.length; i++) {
+		let date = allIps[i].date.getTime();
+		if (max < date) max = date;
+	}
+
+	let isUnique = true;
+	if (allIps.length > rateLimit && Date.now() - max < timeOutRec) {
+		console.log('Consecutive Neural Network Sharing rate has been exceeded, please try again in 10 minutes.');
+		return { status: -1, message: 'Consecutive Neural Network Sharing rate has been exceeded, please try again in 10 minutes.' };
+	}
 	for (let i = 0; i < allKeys.length; i++) {
 		if (id === allKeys[i]) {
 			isUnique = false;
@@ -133,7 +152,7 @@ async function generateId(id) {
 	} else {
 		let baseId = uuidv4();
 		let newId = `${baseId}.${baseId.hashCode().toString().replace(/-/g, '_')}`;
-		return generateId(newId);
+		return generateId(newId, thisIp);
 	}
 }
 
@@ -143,6 +162,7 @@ const retrieveNN = (id) => {
 		Bucket: 'predictapie',
 	};
 	return new Promise((resolve, reject) => {
+		let found = false;
 		s3.listObjectsV2(params, function (err, data) {
 			if (err) {
 				console.log(err, err.stack);
@@ -150,6 +170,7 @@ const retrieveNN = (id) => {
 				var contents = data.Contents;
 				contents.forEach(function (content) {
 					if (content.Key.includes(id)) {
+						found = true;
 						var params = {
 							Bucket: 'predictapie',
 							Key: content.Key,
@@ -163,6 +184,7 @@ const retrieveNN = (id) => {
 						});
 					}
 				});
+				if (!found) resolve(found);
 			}
 		});
 	});
@@ -181,17 +203,6 @@ String.prototype.hashCode = function () {
 	}
 	return hash;
 };
-
-//Get User IP Address
-function getIP() {
-	const getLocalExternalIP = () =>
-		[]
-			.concat(...Object.values(networkInterfaces()))
-			.filter((details) => details.family === 'IPv4' && !details.internal)
-			.pop().address;
-
-	return getLocalExternalIP();
-}
 
 io.on('connection', (socket) => {
 	console.log('New client connected');
@@ -282,34 +293,72 @@ io.on('connection', (socket) => {
 
 	// Save Neural Network
 	socket.on('save-network', (network, callback) => {
-		// console.log(Buffer.byteLength(network.data) / 1024 / 1024);
+		//Check to make sure data is a JSON object and includes the secret
+		try {
+			JSON.parse(network.data);
+			if (!network.data.includes(process.env.DATA_SECRET)) {
+				throw 'Secret Not Passed';
+			}
+		} catch (e) {
+			callback({
+				status: -1,
+				message: 'Error',
+			});
+			return -1;
+		}
+
+		let ipHash = require('crypto')
+			.createHmac('sha256', process.env.IP_HASH_SECRET)
+			.update(socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress)
+			.digest('hex');
+
+		let timeLimit = 5000;
+		if (lastRequest.ipHash === ipHash && Date.now() - lastRequest.time < timeLimit) {
+			console.log('Consecutive Neural Network Sharing rate has been exceeded, please try again in 5 seconds.');
+			callback({
+				status: -1,
+				message: 'Consecutive Neural Network Sharing rate has been exceeded, please try again in 5 seconds.',
+			});
+			return -1;
+		}
+
 		network.id = uuidv4();
 
-		generateId(`${network.id}.${network.id.hashCode().toString().replace(/-/g, '_')}`).then((res) => {
-			let networkData = JSON.stringify({
-				id: res,
-				data: network.data,
-				ipAddress: getIP(),
-				date: network.dateTime,
-			});
+		generateId(`${network.id}.${network.id.hashCode().toString().replace(/-/g, '_')}`, ipHash).then((res) => {
+			if (res.status !== -1) {
+				let networkData = JSON.stringify({
+					id: res,
+					data: network.data,
+					ipAddress: ipHash,
+					date: network.dateTime,
+				});
 
-			var params = { Bucket: 'predictapie', Body: networkData, Key: res };
-			s3.upload(params, function (err, data) {
-				console.log(err, data);
-			});
-			callback({
-				id: res,
-				data: network.data,
-				ipAddress: getIP(),
-				date: network.dateTime,
-			});
+				var params = { Bucket: 'predictapie', Body: networkData, Key: `${res}^${ipHash}` };
+				s3.upload(params, function (err, data) {
+					console.log(err);
+				});
+				lastRequest = {
+					ipHash: ipHash,
+					time: Date.now(),
+				};
+
+				callback({
+					id: res,
+					data: network.data,
+					ipAddress: ipHash,
+					date: network.dateTime,
+					status: 1,
+				});
+			} else {
+				callback(res);
+			}
 		});
 	});
 
 	// Check for Environment Variables
 	socket.on('check-env', (callback) => {
 		let tempArr = [];
-		tempArr.push(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY, process.env.DB);
+		tempArr.push(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY, process.env.DB, process.env.IP_HASH_SECRET);
 		for (let i = 0; i < tempArr.length; i++) {
 			if (tempArr[i] === '' || tempArr[i] === undefined) {
 				callback(false);

@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { strings } from './App';
 import gtmTrack from '../helpers/gtmTrack';
 import Spinner from './Spinner';
+import { useHistory } from 'react-router-dom';
 
 function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrievedNetwork, setRetrievedNetwork, ...props }) {
 	const [network, setNetwork] = React.useState(
@@ -45,7 +46,9 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	const [mouseX, setMouseX] = React.useState();
 	const [mouseY, setMouseY] = React.useState();
 	const [loading, setLoading] = React.useState(true);
+
 	const isMountedRef = React.useRef(null);
+	const history = useHistory();
 
 	React.useEffect(() => {
 		isMountedRef.current = true;
@@ -62,8 +65,13 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 
 	React.useEffect(() => {
 		isMountedRef.current = true;
+		//If theres a shared NN set it up otherwise redirect to build page
 		if (retrievedNetwork && retrievedNetwork.network && isMountedRef.current) {
 			setNetwork(retrievedNetwork.network);
+		} else if (shared && !retrievedNetwork) {
+			history.push('/build');
+			alert('Invalid Neural Network Code');
+			shared = false;
 		}
 		return () => (isMountedRef.current = false);
 	}, [retrievedNetwork]);

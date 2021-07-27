@@ -211,17 +211,22 @@ function App(props) {
 		setReclassify(false);
 	};
 
+	// Retrieve the NN from a link
 	const retrieveNetwork = (hashID) => {
 		checkEnv().then((res) => {
 			if (res) {
 				socket.emit('retrieve-network', hashID, (response) => {
-					let networkInfo = JSON.parse(response);
-					const asMap = RecursiveMap.fromJSON(JSON.parse(networkInfo.data));
-					const nn = asMap.get('newNetwork');
-					setRetrievedNetwork({
-						network: nn.network,
-						connections: nn.connections,
-					});
+					if (response) {
+						let networkInfo = JSON.parse(response);
+						const asMap = RecursiveMap.fromJSON(JSON.parse(networkInfo.data));
+						const nn = asMap.get('newNetwork');
+						setRetrievedNetwork({
+							network: nn.network,
+							connections: nn.connections,
+						});
+					} else {
+						setRetrievedNetwork(response);
+					}
 				});
 			}
 		});
@@ -241,26 +246,28 @@ function App(props) {
 	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections) => {
 		if (sharing && envVariables) {
 			let d = new Date();
-
 			const recObj = new RecursiveMap();
 			recObj.set('newNetwork', {
 				network: network,
 				connections: connections,
 			});
 			const JsonObj = JSON.stringify(recObj);
-
 			socket.emit('save-network', { data: JsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
-				let urlId = response.id.split('.')[1];
-				let url = window.location.origin + '/build/' + urlId;
+				if (response.status === 1) {
+					let urlId = response.id.split('.')[1];
+					let url = window.location.origin + '/build/' + urlId;
 
-				setBuildNetwork({
-					network: network,
-					connections: connections,
-					id: response.id,
-					urlId: urlId,
-					url: url,
-					visible: true,
-				});
+					setBuildNetwork({
+						network: network,
+						connections: connections,
+						id: response.id,
+						urlId: urlId,
+						url: url,
+						visible: true,
+					});
+				} else {
+					alert(response.message, 'rateLimit');
+				}
 			});
 		} else {
 			setBuildNetwork({
@@ -294,12 +301,17 @@ function App(props) {
 							route='build'
 							onCommand={onCommand}
 							checkEnv={checkEnv}
+							envVariables={envVariables}
 							content={
-								envVariables && (
-									<>
-										<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
-									</>
-								)
+								<>
+									<button
+										onClick={() => {
+											shareNetwork(true);
+										}}
+									>
+										{strings.shareNetwork}
+									</button>
+								</>
 							}
 						/>
 						<Network shareNetwork={shareNetwork} buildNetwork={buildNetwork} />
@@ -311,12 +323,11 @@ function App(props) {
 							route='build'
 							onCommand={onCommand}
 							checkEnv={checkEnv}
+							envVariables={envVariables}
 							content={
-								envVariables && (
-									<>
-										<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
-									</>
-								)
+								<>
+									<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
+								</>
 							}
 						/>
 						<Network
@@ -336,6 +347,7 @@ function App(props) {
 							route='trained'
 							onCommand={onCommand}
 							checkEnv={checkEnv}
+							envVariables={envVariables}
 							content={
 								<>
 									<SelectRecipe classifications={classifications} onSubmit={onFindRecipe} />
@@ -355,11 +367,18 @@ function App(props) {
 						<Reclassify recipe={recipe} classifications={classifications} visible={reclassify} onReclassify={onReclassify} />
 					</Route>
 					<Route path='*/stats'>
-						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} checkEnv={checkEnv} />
+						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} checkEnv={checkEnv} envVariables={envVariables} />
 						<Stats appData={appData} ingredients={ingredients} classifications={classifications} recipes={recipes} />
 					</Route>
 					<Route path='/'>
-						<NavBar title={strings.instructions} appData={appData} route='instructions' onCommand={onCommand} checkEnv={checkEnv} />
+						<NavBar
+							title={strings.instructions}
+							appData={appData}
+							route='instructions'
+							onCommand={onCommand}
+							checkEnv={checkEnv}
+							envVariables={envVariables}
+						/>
 						<Instructions />
 					</Route>
 				</Switch>
