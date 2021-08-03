@@ -258,6 +258,7 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 				network[i].neurons[j].active = activation >= 99;
 			}
 		}
+		console.log(toJSON());
 		setNetwork([...network]);
 	};
 
@@ -275,6 +276,18 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 			setConnections(connections.slice(0, -1));
 			setDragging(false);
 		}
+	};
+
+	const toJSON = () => {
+		const replacer = (key, value) => {
+    	if (key == 'ref') return undefined;
+    	if (key == 'meter') return undefined;
+	    return value;
+		};
+		return JSON.stringify({
+			network: network,
+			connections: connections
+		}, replacer);
 	};
 
 	return (
