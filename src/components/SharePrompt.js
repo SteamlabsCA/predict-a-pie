@@ -2,7 +2,11 @@ import './SharePrompt.scss';
 import React from 'react';
 import { strings } from './App';
 
-function SharePrompt({ buildNetwork, ...props }) {
+function SharePrompt({ buildNetwork, setLoading, loading, ...props }) {
+	React.useEffect(() => {
+		if (buildNetwork.visible) setLoading(false);
+	});
+
 	function bckpCopyText() {
 		var textArea = document.createElement('textarea');
 		textArea.value = buildNetwork.url;
@@ -23,7 +27,6 @@ function SharePrompt({ buildNetwork, ...props }) {
 		} catch (err) {
 			console.error('Fallback: Oops, unable to copy', err);
 		}
-
 		document.body.removeChild(textArea);
 	}
 

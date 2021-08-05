@@ -25,7 +25,6 @@ const io = socketIo(server, {
 		origin: '*',
 		methods: ['GET', 'POST'],
 	},
-	maxHttpBufferSize: 3e6,
 });
 
 app.use(express.static(path.join(__dirname, '../build')));
@@ -335,7 +334,7 @@ io.on('connection', (socket) => {
 
 				var params = { Bucket: 'predictapie', Body: networkData, Key: `${res}^${ipHash}` };
 				s3.upload(params, function (err, data) {
-					console.log(err);
+					console.log('Neural Network Shared');
 				});
 				lastRequest = {
 					ipHash: ipHash,

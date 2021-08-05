@@ -2,6 +2,7 @@ import './App.scss';
 import Alert from './Alert';
 import ClassroomCode from './ClassroomCode';
 import SharePrompt from './SharePrompt';
+import Backdrop from './Backdrop';
 import Instructions from './Instructions';
 import NavBar from './NavBar';
 import Network from './Network';
@@ -11,6 +12,7 @@ import SelectRecipe from './SelectRecipe';
 import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
 import gtmTrack from '../helpers/gtmTrack';
+import nnToJSON from '../helpers/nnToJSON';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LocalizedStrings from 'react-localization';
@@ -20,14 +22,12 @@ import ingredients from '../ingredients.json';
 import classifications from '../classifications.json';
 import stringData from '../strings.json';
 
-import { toJSON, fromJSON } from 'flatted';
-
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-//const socket = socketClient('http://127.0.0.1:8080');
+// const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -62,6 +62,7 @@ function App(props) {
 		connections: false,
 	});
 	const [envVariables, setEnvVariables] = React.useState(false);
+	const [loading, setLoading] = React.useState(false);
 
 	// Load pre-generated recipes
 	React.useEffect(() => {
@@ -218,8 +219,8 @@ function App(props) {
 				socket.emit('retrieve-network', hashID, (response) => {
 					if (response) {
 						let networkInfo = JSON.parse(response);
-						const asMap = RecursiveMap.fromJSON(JSON.parse(networkInfo.data));
-						const nn = asMap.get('newNetwork');
+						const nn = JSON.parse(networkInfo.data);
+						nn.network.pop();
 						setRetrievedNetwork({
 							network: nn.network,
 							connections: nn.connections,
@@ -232,31 +233,18 @@ function App(props) {
 		});
 	};
 
-	//Recursive Map for sharing a network
-	class RecursiveMap extends Map {
-		static fromJSON(any) {
-			return new this(fromJSON(any));
-		}
-		toJSON() {
-			return toJSON([...this.entries()]);
-		}
-	}
-
 	// Share the network and recieve the URL
 	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections) => {
 		if (sharing && envVariables) {
+			setLoading(true);
 			let d = new Date();
-			const recObj = new RecursiveMap();
-			recObj.set('newNetwork', {
-				network: network,
-				connections: connections,
-			});
-			const JsonObj = JSON.stringify(recObj);
-			socket.emit('save-network', { data: JsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
+			let newNN = [...network];
+			newNN.push({ sharing: -1 });
+			const jsonObj = nnToJSON(newNN, connections);
+			socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
 				if (response.status === 1) {
 					let urlId = response.id.split('.')[1];
 					let url = window.location.origin + '/build/' + urlId;
-
 					setBuildNetwork({
 						network: network,
 						connections: connections,
@@ -266,6 +254,7 @@ function App(props) {
 						visible: true,
 					});
 				} else {
+					setLoading(false);
 					alert(response.message, 'rateLimit');
 				}
 			});
@@ -384,7 +373,13 @@ function App(props) {
 				</Switch>
 				<Alert />
 				<Prompt />
-				<SharePrompt buildNetwork={buildNetwork} onDismiss={() => setBuildNetwork({ ...buildNetwork, visible: false })} />
+				<SharePrompt
+					loading={loading}
+					setLoading={setLoading}
+					buildNetwork={buildNetwork}
+					onDismiss={() => setBuildNetwork({ ...buildNetwork, visible: false })}
+				/>
+				<Backdrop loading={loading} />
 				<ClassroomCode code={classroomCode} appData={appData} onDismiss={() => setClassroomCode(false)} />
 			</div>
 		</BrowserRouter>

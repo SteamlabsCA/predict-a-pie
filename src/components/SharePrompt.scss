@@ -15,6 +15,7 @@
 		transform: translateX(-50%) translateY(-50%);
 		z-index: 10000;
 		display: flex;
+		width: 60%;
 	}
 
 	&-url {
@@ -23,10 +24,10 @@
 		font-weight: 900;
 		line-height: 1;
 		margin: 2rem 0 !important;
-		padding: 2rem 10rem;
+		padding: 2rem 2rem;
 		text-align: center;
 		white-space: nowrap;
-		min-width: 30rem;
+		min-width: 80%;
 	}
 
 	p {

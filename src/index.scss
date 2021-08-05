@@ -19,6 +19,9 @@ body {
 		.glitchButton .glitchButtonElement {
 			background-color: transparent !important;
 		}
+		&:hover {
+			background-color: #cac8c8 !important;
+		}
 	}
 
 	h1 {
