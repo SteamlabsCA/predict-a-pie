@@ -295,10 +295,13 @@ io.on('connection', (socket) => {
 		//Check to make sure data is a JSON object and includes the secret
 		try {
 			JSON.parse(network.data);
-			if (!network.data.includes(process.env.DATA_SECRET)) {
+			let secret = process.env.DATA_SECRET;
+			if (!network.data.includes(secret.replace(/'/g, '"'))) {
 				throw 'Secret Not Passed';
 			}
 		} catch (e) {
+			console.log(e);
+			console.log(network.data);
 			callback({
 				status: -1,
 				message: 'Error',
