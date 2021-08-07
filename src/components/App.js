@@ -26,8 +26,8 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-// const socket = socketClient('http://127.0.0.1:8080');
+// const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -234,30 +234,34 @@ function App(props) {
 	};
 
 	// Share the network and recieve the URL
-	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections) => {
+	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections, networkName) => {
 		if (sharing && envVariables) {
 			setLoading(true);
 			let d = new Date();
 			let newNN = [...network];
-			newNN.push({ sharing: -1 });
+			newNN.push({ sharing: -1, name: networkName });
 			const jsonObj = nnToJSON(newNN, connections);
-			socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
-				if (response.status === 1) {
-					let urlId = response.id.split('.')[1];
-					let url = window.location.origin + '/build/' + urlId;
-					setBuildNetwork({
-						network: network,
-						connections: connections,
-						id: response.id,
-						urlId: urlId,
-						url: url,
-						visible: true,
-					});
-				} else {
-					setLoading(false);
-					alert(response.message, 'rateLimit');
-				}
-			});
+
+			//test
+			console.log(newNN);
+			console.log(jsonObj);
+			// socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
+			// 	if (response.status === 1) {
+			// 		let urlId = response.id.split('.')[1];
+			// 		let url = window.location.origin + '/build/' + urlId;
+			// 		setBuildNetwork({
+			// 			network: network,
+			// 			connections: connections,
+			// 			id: response.id,
+			// 			urlId: urlId,
+			// 			url: url,
+			// 			visible: true,
+			// 		});
+			// 	} else {
+			// 		setLoading(false);
+			// 		alert(response.message, 'rateLimit');
+			// 	}
+			// });
 		} else {
 			setBuildNetwork({
 				name: '',

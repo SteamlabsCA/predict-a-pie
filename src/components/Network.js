@@ -46,6 +46,7 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	const [mouseX, setMouseX] = React.useState();
 	const [mouseY, setMouseY] = React.useState();
 	const [loading, setLoading] = React.useState(true);
+	const [networkName, setNetworkName] = React.useState('');
 
 	const isMountedRef = React.useRef(null);
 	const history = useHistory();
@@ -79,6 +80,9 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	React.useEffect(() => {
 		isMountedRef.current = true;
 		if (isMountedRef.current) {
+			//test
+			if (network.name) setNetworkName(network.name);
+
 			window.addEventListener('mouseup', onMouseUp);
 			if (buildNetwork.connections) setConnections(buildNetwork.connections);
 			if (shared) retrieveNetwork(window.location.pathname.slice(7));
@@ -93,10 +97,17 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	React.useEffect(() => {
 		isMountedRef.current = true;
 		if (isMountedRef.current) {
-			shareNetwork(false, network, connections);
+			//test
+			console.log(networkName);
+			shareNetwork(false, network, connections, networkName);
 		}
 		return () => (isMountedRef.current = false);
-	}, [network, connections]);
+	}, [network, connections, networkName]);
+
+	//test
+	const onNameChange = (e) => {
+		setNetworkName(e.target.value);
+	};
 
 	const isNeuronAdjacent = (n1, n2) => {
 		for (let i = 0; i < network.length - 1; i++) {
@@ -280,6 +291,14 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	return (
 		<>
 			<div className={connections.length === 0 && network.length < 3 ? 'Network Network-empty' : 'Network'} onMouseMove={onMouseMove}>
+				<input
+					maxLength={17}
+					name='network-name'
+					placeholder='Network Name'
+					className='Network-name'
+					onChange={onNameChange}
+					value={networkName}
+				></input>
 				<div className='Network-container'>
 					<div className='Network-layers'>
 						{network.map((layer) => (

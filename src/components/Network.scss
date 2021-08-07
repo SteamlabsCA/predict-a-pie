@@ -10,9 +10,21 @@
 
 	&-container {
 		display: flex;
-		padding: 6rem 0 16rem;
+		padding: 2rem 0 16rem;
 		position: relative;
 		flex-basis: 100%;
+	}
+
+	&-name {
+		color: #7b7b7b;
+		display: inline-block;
+		font-size: 4rem;
+		font-weight: 700;
+		margin: 4rem 0 0;
+		text-transform: uppercase;
+		border: none;
+		background: transparent;
+		text-align: center;
 	}
 
 	&-layers {
