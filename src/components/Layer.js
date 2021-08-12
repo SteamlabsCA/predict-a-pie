@@ -66,7 +66,7 @@ function Layer({ layer, ...props }) {
 		if (dragging) {
 			// Trash neuron
 			const rect = trash.current.getBoundingClientRect();
-			if (event.clientX > rect.left && event.clientX < rect.right && event.clientY > rect.top && event.clientY < rect.bottom) {
+			if (event.clientY > rect.top && event.clientY < rect.bottom) {
 				onDeleteNeuron();
 				return;
 			}
@@ -98,7 +98,7 @@ function Layer({ layer, ...props }) {
 		if (dragging) {
 			// Over trashcan
 			const rect = trash.current.getBoundingClientRect();
-			if (event.clientX > rect.left && event.clientX < rect.right && event.clientY > rect.top && event.clientY < rect.bottom) {
+			if (event.clientY > rect.top && event.clientY < rect.bottom) {
 				setOverTrash(true);
 			} else {
 				setOverTrash(false);
@@ -173,7 +173,14 @@ function Layer({ layer, ...props }) {
 						</button>
 					)}
 				</div>
-				<input maxLength={17} name='layer-name' placeholder='Layer Name' className='Layer-name' onChange={onNameChange} value={layerName}></input>
+				<input
+					maxLength={17}
+					name='layer-name'
+					placeholder={strings.layerName}
+					className='Layer-name'
+					onChange={onNameChange}
+					value={layerName}
+				></input>
 			</div>
 			<div className='Layer-label'>{layer.label}</div>
 		</div>

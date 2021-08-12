@@ -221,7 +221,7 @@ function Instructions() {
 		return (
 			<div className='Instructions'>
 				<div className='Instructions-container'>
-					<h1>Predict a Pie with a Neural Network</h1>
+					<h1 className='Instructions-title'>Predict a Pie with a Neural Network</h1>
 					<p>
 						What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop, you
 						will wire up a neural network to do just that! You will then use your new knowledge to test a larger neural network that has used “machine

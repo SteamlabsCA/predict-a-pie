@@ -300,8 +300,6 @@ io.on('connection', (socket) => {
 				throw 'Secret Not Passed';
 			}
 		} catch (e) {
-			console.log(e);
-			console.log(network.data);
 			callback({
 				status: -1,
 				message: 'Error',

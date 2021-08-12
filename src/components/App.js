@@ -220,10 +220,12 @@ function App(props) {
 					if (response) {
 						let networkInfo = JSON.parse(response);
 						const nn = JSON.parse(networkInfo.data);
+						const nnName = nn.network[nn.network.length - 1].name;
 						nn.network.pop();
 						setRetrievedNetwork({
 							network: nn.network,
 							connections: nn.connections,
+							name: nnName,
 						});
 					} else {
 						setRetrievedNetwork(response);
@@ -239,18 +241,15 @@ function App(props) {
 			setLoading(true);
 			let d = new Date();
 			let newNN = [...network];
-			newNN.push({ sharing: -1, name: networkName });
+			newNN.push({ sharing: -1, name: buildNetwork.name });
 			const jsonObj = nnToJSON(newNN, connections);
-
-			//test
-			// console.log(newNN);
-			// console.log(jsonObj);
 
 			socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
 				if (response.status === 1) {
 					let urlId = response.id.split('.')[1];
 					let url = window.location.origin + '/build/' + urlId;
 					setBuildNetwork({
+						name: buildNetwork.name,
 						network: network,
 						connections: connections,
 						id: response.id,
@@ -265,7 +264,7 @@ function App(props) {
 			});
 		} else {
 			setBuildNetwork({
-				name: '',
+				name: networkName,
 				network: network,
 				connections: connections,
 				visible: false,

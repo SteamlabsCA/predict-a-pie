@@ -68,6 +68,7 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 		isMountedRef.current = true;
 		//If theres a shared NN set it up otherwise redirect to build page
 		if (retrievedNetwork && retrievedNetwork.network && isMountedRef.current) {
+			if (retrievedNetwork.name) setNetworkName(retrievedNetwork.name);
 			setNetwork(retrievedNetwork.network);
 		} else if (shared && !retrievedNetwork) {
 			history.push('/build');
@@ -80,8 +81,7 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	React.useEffect(() => {
 		isMountedRef.current = true;
 		if (isMountedRef.current) {
-			//test
-			// if (network.name) setNetworkName(network.name);
+			if (network.name) setNetworkName(network.name);
 
 			window.addEventListener('mouseup', onMouseUp);
 			if (buildNetwork.connections) setConnections(buildNetwork.connections);
@@ -102,10 +102,9 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 		return () => (isMountedRef.current = false);
 	}, [network, connections, networkName]);
 
-	//test
-	// const onNameChange = (e) => {
-	// 	setNetworkName(e.target.value);
-	// };
+	const onNameChange = (e) => {
+		setNetworkName(e.target.value);
+	};
 
 	const isNeuronAdjacent = (n1, n2) => {
 		for (let i = 0; i < network.length - 1; i++) {
@@ -289,14 +288,14 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	return (
 		<>
 			<div className={connections.length === 0 && network.length < 3 ? 'Network Network-empty' : 'Network'} onMouseMove={onMouseMove}>
-				{/* <input
+				<input
 					maxLength={17}
 					name='network-name'
-					placeholder='Network Name'
+					placeholder={strings.networkName}
 					className='Network-name'
 					onChange={onNameChange}
 					value={networkName}
-				></input> */}
+				></input>
 				<div className='Network-container'>
 					<div className='Network-layers'>
 						{network.map((layer) => (

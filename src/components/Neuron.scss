@@ -14,6 +14,13 @@
 	width: $spacer * 4;
 	height: $spacer;
 
+	&:hover {
+		cursor: grab;
+	}
+	&:active {
+		cursor: grabbing;
+	}
+
 	&-active {
 		background-color: #e4ffe3;
 	}
@@ -23,6 +30,10 @@
 		font-weight: 600;
 		outline: none;
 		user-select: text;
+
+		&:hover {
+			cursor: text;
+		}
 	}
 
 	&-terminal {
