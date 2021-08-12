@@ -1,20 +1,22 @@
 import './Nav.scss';
+import React from 'react';
+import PretrainedNav from './PretrainedNav';
 import gtmTrack from '../helpers/gtmTrack';
 import menu from '../assets/menu.svg';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { strings } from './App';
 
 function Nav({ appData, ...props }) {
 	const [open, setOpen] = React.useState(false);
 	const [menuStyle, setMenuStyle] = React.useState();
-
 	const onClick = (event) => {
-		setMenuStyle({
-			left: event.clientX - 5 + 'px',
-			top: event.clientY - 5 + 'px',
-		});
-		setOpen(!open);
+		if (!event.target.className.includes('stayOpen')) {
+			setOpen(!open);
+			setMenuStyle({
+				left: event.clientX - 5 + 'px',
+				top: event.clientY - 5 + 'px',
+			});
+		}
 	};
 
 	return (
@@ -23,16 +25,21 @@ function Nav({ appData, ...props }) {
 				<img src={menu} alt='Menu icon' />
 			</button>
 			<nav className='Nav-menu' style={menuStyle}>
-				<Link onClick={() => gtmTrack('prm_btn_click', 'Instructions', 'Instructions', '')} to={appData.classroom ? `/${appData.classroom.code}` : '/'}>
+				<Link
+					onClick={() => gtmTrack('prm_btn_click', 'Instructions', 'Instructions', '')}
+					to={appData.classroom ? `/${appData.classroom.code}` : '/'}
+				>
 					{strings.instructions}
 				</Link>
 				<Link onClick={() => gtmTrack('prm_btn_click', 'Build', 'Build', '')} to={appData.classroom ? `/${appData.classroom.code}/build` : '/build'}>
 					{strings.buildNetwork}
 				</Link>
-				<Link onClick={() => gtmTrack('prm_btn_click', 'Pretrained', 'Pretrained', '')} to={appData.classroom ? `/${appData.classroom.code}/trained` : '/trained'}>
-					{strings.pretrainedModel}
-				</Link>
-				<Link onClick={() => gtmTrack('prm_btn_click', 'ClassStats', 'ClassStats', '')} to={appData.classroom ? `/${appData.classroom.code}/stats` : ''} disabled={!appData.classroom}>
+				<PretrainedNav appData={appData} mainOpen={open} />
+				<Link
+					onClick={() => gtmTrack('prm_btn_click', 'ClassStats', 'ClassStats', '')}
+					to={appData.classroom ? `/${appData.classroom.code}/stats` : ''}
+					disabled={!appData.classroom}
+				>
 					{strings.classroomStats}
 				</Link>
 				<hr />
