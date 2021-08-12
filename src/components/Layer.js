@@ -14,6 +14,11 @@ function Layer({ layer, ...props }) {
 	const [originY, setOriginY] = React.useState(false);
 	const [dragging, setDragging] = React.useState(false);
 	const [overTrash, setOverTrash] = React.useState(false);
+	const [layerName, setLayerName] = React.useState('');
+
+	React.useEffect(() => {
+		if (layer.name) setLayerName(layer.name);
+	}, []);
 
 	const onAddNeuron = () => {
 		gtmTrack('ter_btn_click', 'Build', 'Neuron: Add', 'Add');
@@ -134,6 +139,11 @@ function Layer({ layer, ...props }) {
 		}
 	};
 
+	const onNameChange = (e) => {
+		layer.name = e.target.value;
+		setLayerName(layer.name);
+	};
+
 	return (
 		<div className={dragging ? 'Layer Layer-dragging' : 'Layer'} onMouseUp={onDragEnd} onMouseLeave={onDragCancel} onMouseMove={onDragging}>
 			<div className='Layer-container'>
@@ -163,6 +173,7 @@ function Layer({ layer, ...props }) {
 						</button>
 					)}
 				</div>
+				<input maxLength={17} name='layer-name' placeholder='Layer Name' className='Layer-name' onChange={onNameChange} value={layerName}></input>
 			</div>
 			<div className='Layer-label'>{layer.label}</div>
 		</div>

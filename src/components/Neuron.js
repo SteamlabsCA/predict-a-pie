@@ -69,6 +69,16 @@ function Neuron({ neuron, ...props }) {
 		setMouseY(false);
 	};
 
+	const randomLabel = (string) => {
+		const stringArr = string.split(',');
+		let newLabel = stringArr[Math.floor(Math.random() * stringArr.length)];
+		if (newLabel.length > 18) {
+			return newLabel.substr(0, 18 - 1) + '...';
+		} else {
+			return newLabel + '*';
+		}
+	};
+
 	const classes = ['Neuron'];
 	if (neuron.active) classes.push('Neuron-active');
 	if (props.dragging) classes.push('Neuron-dragging');
@@ -92,7 +102,7 @@ function Neuron({ neuron, ...props }) {
 						<div className='Neuron-terminal'></div>
 					</div>
 					{props.editable && <ContentEditable className='Neuron-title' content={neuron.label} onChange={onLabelChange} />}
-					{!props.editable && <div className='Neuron-title'>{strings[neuron.label]}</div>}
+					{!props.editable && <div className='Neuron-title'>{props.truncate ? randomLabel(strings[neuron.label]) : strings[neuron.label]}</div>}
 					<div className='Neuron-output' onMouseDown={onStartConnection}>
 						<div className='Neuron-terminal'></div>
 					</div>

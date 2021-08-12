@@ -11,6 +11,7 @@ import Reclassify from './Reclassify';
 import SelectRecipe from './SelectRecipe';
 import Stats from './Stats';
 import TrainedNetwork from './TrainedNetwork';
+import TrainedChefNetwork from './TrainedChefNetwork';
 import gtmTrack from '../helpers/gtmTrack';
 import nnToJSON from '../helpers/nnToJSON';
 import React from 'react';
@@ -18,16 +19,15 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LocalizedStrings from 'react-localization';
 import socketClient from 'socket.io-client';
 
-import ingredients from '../ingredients.json';
-import classifications from '../classifications.json';
+import ingredients from '../ingredients/ingredients.json';
+import classifications from '../ingredients/classifications.json';
 import stringData from '../strings.json';
-
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-// const socket = socketClient('http://127.0.0.1:8080');
+// const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -234,13 +234,18 @@ function App(props) {
 	};
 
 	// Share the network and recieve the URL
-	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections) => {
+	const shareNetwork = (sharing, network = buildNetwork.network, connections = buildNetwork.connections, networkName) => {
 		if (sharing && envVariables) {
 			setLoading(true);
 			let d = new Date();
 			let newNN = [...network];
-			newNN.push({ sharing: -1 });
+			newNN.push({ sharing: -1, name: networkName });
 			const jsonObj = nnToJSON(newNN, connections);
+
+			//test
+			// console.log(newNN);
+			// console.log(jsonObj);
+
 			socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
 				if (response.status === 1) {
 					let urlId = response.id.split('.')[1];
@@ -329,7 +334,7 @@ function App(props) {
 							envVariables={envVariables}
 						/>
 					</Route>
-					<Route path='*/trained'>
+					<Route path='*/trained' exact>
 						<NavBar
 							title={strings.pretrainedModel}
 							appData={appData}
@@ -354,6 +359,17 @@ function App(props) {
 							classifications={classifications}
 						/>
 						<Reclassify recipe={recipe} classifications={classifications} visible={reclassify} onReclassify={onReclassify} />
+					</Route>
+					<Route path='*/trained/:id'>
+						<NavBar
+							title={'customPretrain'}
+							appData={appData}
+							route='trained'
+							onCommand={onCommand}
+							checkEnv={checkEnv}
+							envVariables={envVariables}
+						/>
+						<TrainedChefNetwork onChange={onChange} onPrediction={onPrediction} inputs={recipe} />
 					</Route>
 					<Route path='*/stats'>
 						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} checkEnv={checkEnv} envVariables={envVariables} />

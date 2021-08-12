@@ -1,0 +1,9 @@
+@import '../variables';
+
+.DropdownGroup {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 30px 0 10px;
+	width: 100%;
+}
