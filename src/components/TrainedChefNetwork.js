@@ -85,6 +85,7 @@ function TrainedChefNetwork({ inputs, ...props }) {
 
 		const onSubmit = (value, primary) => {
 			if (primary && (value === 'Standard' || !inputIngredients[value][dropdownVal.second])) {
+				// setDropdownVal({ ...dropdownVal, first: value });
 				setInputLayer(
 					inputIngredients[value][Object.keys(inputIngredients[value])[0]].map((ingredient) => {
 						return {
@@ -117,7 +118,15 @@ function TrainedChefNetwork({ inputs, ...props }) {
 
 		return (
 			<div className='TrainedChefNetwork'>
-				{dropdownList.first.length > 0 && <DropdownGroup items={dropdownList} inputIngredients={inputIngredients} onSubmit={onSubmit} />}
+				{dropdownList.first.length > 0 && (
+					<DropdownGroup
+						items={dropdownList}
+						inputIngredients={inputIngredients}
+						onSubmit={onSubmit}
+						setDropdownVal={setDropdownVal}
+						dropdownVal={dropdownVal}
+					/>
+				)}
 				<div className='TrainedChefNetwork-layers'>
 					<div className='Layer'>
 						<div className='Layer-container'>
