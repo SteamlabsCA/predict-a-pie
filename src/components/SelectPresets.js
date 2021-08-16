@@ -14,14 +14,26 @@ function SelectPresets({ primary, ...props }) {
 	}, [props.secondaryItems]);
 
 	const onChange = (event) => {
-		if (primary) props.setChange(event.target.value);
-		setValue(event.target.value);
+		let targetVal = event.target.value;
+		let msg = props.inputIngredients.Standard.message;
+		if (primary) {
+			props.setChange(targetVal === msg ? 'Standard' : event.target.value);
+		}
+		setValue(targetVal === msg ? 'Standard' : event.target.value);
 	};
 
 	const onSubmit = () => {
 		// gtmTrack('sec_btn_click', 'Pretrained', 'Find Recipe', value);
 		props.onSubmit(value, primary);
 	};
+
+	React.useEffect(() => {
+		if (props.primaryItems) {
+			let arr = [...list];
+			arr[arr.indexOf('Standard')] = props.inputIngredients.Standard.message;
+			setList([...arr]);
+		}
+	}, []);
 
 	return (
 		<>

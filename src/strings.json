@@ -154,6 +154,7 @@
     "Puff Pastry Dessert":"Puff Pastry Dessert",
 
     "Standard": "Standard",
+    "Select a Region":"Select a Region",
     "Arctic": "Arctic",
     "East Coast":"East Coast",
     "Plains":"Plains",
@@ -322,7 +323,8 @@
     "Roast":"",
     "Puff Pastry Dessert":"",
 
-    "Standard": "Standard",
+    "Standard": "",
+    "Select a Region":"",
     "Arctic": "",
     "East Coast":"",
     "Plains":"",

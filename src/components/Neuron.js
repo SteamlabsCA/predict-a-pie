@@ -10,8 +10,13 @@ import { strings } from './App';
 function Neuron({ neuron, ...props }) {
 	const [mouseX, setMouseX] = React.useState(false);
 	const [mouseY, setMouseY] = React.useState(false);
+	const [randomName, setRandomName] = React.useState('');
 
 	neuron.ref = React.createRef();
+
+	React.useEffect(() => {
+		if (props.truncate) setRandomName(randomLabel(strings[neuron.label]));
+	}, []);
 
 	const onLabelChange = (value) => {
 		neuron.label = value;
@@ -83,6 +88,8 @@ function Neuron({ neuron, ...props }) {
 	if (neuron.active) classes.push('Neuron-active');
 	if (props.dragging) classes.push('Neuron-dragging');
 	if (props.small) classes.push('Neuron-small');
+	if (props.editable) classes.push('Neuron-grabbable');
+
 	neuron.meter = 'NeuronConnection17363924';
 
 	switch (neuron.type) {
@@ -101,8 +108,8 @@ function Neuron({ neuron, ...props }) {
 					<div className='Neuron-input'>
 						<div className='Neuron-terminal'></div>
 					</div>
-					{props.editable && <ContentEditable className='Neuron-title' content={neuron.label} onChange={onLabelChange} />}
-					{!props.editable && <div className='Neuron-title'>{props.truncate ? randomLabel(strings[neuron.label]) : strings[neuron.label]}</div>}
+					{props.editable && <ContentEditable className='Neuron-title ' content={neuron.label} onChange={onLabelChange} />}
+					{!props.editable && <div className='Neuron-title'>{props.truncate ? randomName : strings[neuron.label]}</div>}
 					<div className='Neuron-output' onMouseDown={onStartConnection}>
 						<div className='Neuron-terminal'></div>
 					</div>

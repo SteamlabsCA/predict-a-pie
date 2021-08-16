@@ -44,6 +44,11 @@ function TrainedChefNetwork({ inputs, ...props }) {
 		function toArray(obj) {
 			let counter = 0;
 			const first = Object.keys(obj);
+
+			let temp2 = first[first.indexOf('Standard')];
+			first[first.indexOf('Standard')] = first[0];
+			first[0] = temp2;
+
 			const second = [];
 
 			for (let i = 0; i < first.length; i++) {
@@ -112,7 +117,7 @@ function TrainedChefNetwork({ inputs, ...props }) {
 
 		return (
 			<div className='TrainedChefNetwork'>
-				{dropdownList.first.length > 0 && <DropdownGroup items={dropdownList} onSubmit={onSubmit} />}
+				{dropdownList.first.length > 0 && <DropdownGroup items={dropdownList} inputIngredients={inputIngredients} onSubmit={onSubmit} />}
 				<div className='TrainedChefNetwork-layers'>
 					<div className='Layer'>
 						<div className='Layer-container'>

@@ -221,12 +221,31 @@ function Instructions() {
 		return (
 			<div className='Instructions'>
 				<div className='Instructions-container'>
-					<h1 className='Instructions-title'>Predict a Pie with a Neural Network</h1>
-					<p>
-						What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop, you
-						will wire up a neural network to do just that! You will then use your new knowledge to test a larger neural network that has used “machine
-						learning” to analyse thousands of recipes to come up with new, creative combinations.
-					</p>
+					<div className='Instructions-sctOne'>
+						<h1 className='Instructions-title'>Predict a Pie with a Neural Network</h1>
+						<p>
+							What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop, you
+							will wire up a neural network to do just that! You will then use your new knowledge to test a larger neural network that has used
+							"machine learning" to analyse thousands of recipes to come up with new, creative combinations.
+						</p>
+						<p>Interested in learning more? Visit the Steamlabs website to:</p>
+						<p>
+							Read more about this activity and our other AI educational activities Find links to educational presentations for this activity
+							Frequently Asked Questions on how this AI system works and technical questions on building your own network We’d love to hear your
+							questions! Email us at info@steamlabs.ca and we will get back to you and add your questions and answers to the page’s FAQ.
+						</p>
+						<img
+							src='https://cdn.glitch.com/1973df30-22e4-49d9-94b0-9a3b017066bc%2FGlitchLogo_Color.svg?v=1613667290307'
+							width='50px'
+							style={{ position: 'relative', top: '15px', margin: '0 15px' }}
+						/>
+					</div>
+					<div className='Instructions-sctTwo'></div>
+					<div className='Instructions-sctThree'></div>
+					<div className='Instructions-sctFour'></div>
+					<div className='Instructions-sctFive'></div>
+					<div className='Instructions-sctSix'></div>
+
 					<p>
 						You can read more about this activity and find links to{' '}
 						<a
