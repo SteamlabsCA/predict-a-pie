@@ -42,6 +42,7 @@ function SharePrompt({ buildNetwork, setLoading, loading, ...props }) {
 			},
 			function (err) {
 				console.error('Async: Could not copy text: ', err);
+				bckpCopyText();
 			}
 		);
 	}
