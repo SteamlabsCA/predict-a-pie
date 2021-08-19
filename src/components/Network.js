@@ -52,9 +52,23 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 	const history = useHistory();
 
 	React.useEffect(() => {
+		onChange();
+	}, [connections]);
+
+	React.useEffect(() => {
 		isMountedRef.current = true;
 		if (retrievedNetwork && retrievedNetwork.connections && isMountedRef.current) {
 			setConnections(retrievedNetwork.connections);
+			retrievedNetwork.network.map((net) => {
+				net.neurons.map((neuron) => {
+					retrievedNetwork.connections.map((con) => {
+						if (con.from.id === neuron.id) {
+							con.from = neuron;
+						}
+					});
+				});
+			});
+
 			setRetrievedNetwork({
 				network: false,
 				connections: false,
@@ -89,10 +103,6 @@ function Network({ shareNetwork, buildNetwork, shared, retrieveNetwork, retrieve
 		}
 		return () => (isMountedRef.current = false);
 	}, []);
-
-	React.useEffect(() => {
-		onChange();
-	}, [connections]);
 
 	React.useEffect(() => {
 		isMountedRef.current = true;
