@@ -26,8 +26,8 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-// const socket = socketClient();
-const socket = socketClient('http://127.0.0.1:8080');
+const socket = socketClient();
+// const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
