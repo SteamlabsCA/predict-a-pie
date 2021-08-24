@@ -48,7 +48,7 @@ function TrainedNetwork({ inputs, ingredients, classifications, ...props }) {
 				confidence: 0,
 			};
 			modOutput[4] = {
-				...modOutput[0],
+				...modOutput[4],
 				active: true,
 				confidence: 100,
 			};
