@@ -26,8 +26,8 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-// const socket = socketClient('http://127.0.0.1:8080');
+// const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -300,6 +300,7 @@ function App(props) {
 									<button
 										onClick={() => {
 											shareNetwork(true);
+											gtmTrack('sec_btn_click', 'Build', 'Share Recipe', '');
 										}}
 									>
 										{strings.shareNetwork}
@@ -319,7 +320,14 @@ function App(props) {
 							envVariables={envVariables}
 							content={
 								<>
-									<button onClick={() => shareNetwork(true)}>{strings.shareNetwork}</button>
+									<button
+										onClick={() => {
+											shareNetwork(true);
+											gtmTrack('sec_btn_click', 'Build', 'Share Recipe', '');
+										}}
+									>
+										{strings.shareNetwork}
+									</button>
 								</>
 							}
 						/>

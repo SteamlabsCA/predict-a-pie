@@ -35,7 +35,7 @@ function PretrainedNav({ appData, mainOpen }) {
 						return (
 							<Link
 								key={key}
-								// onClick={() => gtmTrack('prm_btn_click', 'Pretrained', 'Pretrained', '')}
+								onClick={() => gtmTrack('prm_btn_click', 'Pretrained', key, '')}
 								to={appData.classroom ? `/${appData.classroom.code + value}` : value}
 							>
 								{key}

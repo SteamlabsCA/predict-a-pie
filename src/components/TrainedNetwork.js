@@ -40,7 +40,22 @@ function TrainedNetwork({ inputs, ingredients, classifications, ...props }) {
 				props.onPrediction(index);
 			}
 		});
-		setOutputLayer([...outputLayer]);
+		if (inputLayer[0].active && inputLayer.filter((x) => x.active).length === 1) {
+			let modOutput = [...outputLayer];
+			modOutput[0] = {
+				...modOutput[0],
+				active: false,
+				confidence: 0,
+			};
+			modOutput[4] = {
+				...modOutput[0],
+				active: true,
+				confidence: 100,
+			};
+			setOutputLayer([...modOutput]);
+		} else {
+			setOutputLayer([...outputLayer]);
+		}
 	};
 
 	React.useEffect(() => {
