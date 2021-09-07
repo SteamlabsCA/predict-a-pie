@@ -26,7 +26,25 @@ function TrainedNetwork({ inputs, ingredients, classifications, ...props }) {
 	);
 
 	const onChange = (index) => {
+		let outputs = [...outputLayer];
+		var isAllZero = true;
+
 		inputs[index] = inputs[index] === 0 ? 1 : 0;
+
+		for (let i = 0; i < inputs.length; ++i) {
+			if (inputs[i] !== 0) {
+				isAllZero = false;
+				break;
+			}
+		}
+
+		if (isAllZero) {
+			for (let i = 0; i < outputs.length; ++i) {
+				outputs[i]['active'] = false;
+				outputs[i]['confidence'] = 0;
+			}
+		}
+
 		setInputLayer([...inputLayer]);
 		props.onChange(inputs);
 	};
