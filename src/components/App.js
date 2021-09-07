@@ -189,6 +189,7 @@ function App(props) {
 		}
 	};
 
+	// Send recipe to backend to save in DB
 	const onSaveRecipe = () => {
 		gtmTrack('sec_btn_click', 'Pretrained', 'Save Recipe', '');
 		prompt(strings.nameRecipe).then((name) => {

@@ -109,6 +109,10 @@ function TrainedChefNetwork({ inputs, ...props }) {
 			}
 		};
 
+		const findExpansions = (label) => {
+			return inputIngredients.Standard.expansions[label];
+		};
+
 		React.useEffect(() => {
 			for (let i = 0; i < inputLayer.length; i++) {
 				inputLayer[i].active = inputs[i];
@@ -132,8 +136,28 @@ function TrainedChefNetwork({ inputs, ...props }) {
 						<div className='Layer-container'>
 							<div className='Layer-neurons'>
 								{inputLayer.map((neuron, index) => {
-									if (strings[neuron.label].length > 18) {
-										return <Tooltip text={strings[neuron.label]} key={neuron.id} neuron={neuron} onChange={() => onChange()} index={index} />;
+									if (strings[neuron.label].length > 18 && !(strings[neuron.label].indexOf('*') > -1)) {
+										return (
+											<Tooltip
+												text={strings[neuron.label]}
+												key={neuron.id}
+												neuron={neuron}
+												onChange={() => onChange()}
+												index={index}
+												expansions={false}
+											/>
+										);
+									} else if (strings[neuron.label].indexOf('*') > -1) {
+										return (
+											<Tooltip
+												text={findExpansions(strings[neuron.label])}
+												expansions={true}
+												key={neuron.id}
+												neuron={neuron}
+												onChange={() => onChange()}
+												index={index}
+											/>
+										);
 									} else {
 										return <Neuron key={neuron.id} neuron={neuron} onChange={() => onChange(index)} small />;
 									}
