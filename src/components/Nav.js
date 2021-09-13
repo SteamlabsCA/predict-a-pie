@@ -40,7 +40,7 @@ function Nav({ appData, ...props }) {
 					to={appData.classroom ? `/${appData.classroom.code}/stats` : ''}
 					disabled={!appData.classroom}
 				>
-					{strings.classroomStats}
+					{strings.viewStats}
 				</Link>
 				<hr />
 				{appData.classroom && (

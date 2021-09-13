@@ -90,7 +90,7 @@ function Instructions() {
 							</p>
 							<p>
 								Save the recipes that you like for future reference. Find classifications that you disagree with, and input the correct
-								classification. On the "View Classroom Stats" page you can see if others agreed with you.
+								classification. On the "View Stats" page you can see if others agreed with you.
 							</p>
 						</div>
 					</div>
@@ -301,7 +301,7 @@ function Instructions() {
 							</p>
 							<p>
 								Save the recipes that you like for future reference. Find classifications that you disagree with, and input the correct
-								classification. On the "View Classroom Stats" page you can see if others agreed with you.
+								classification. On the "View Stats" page you can see if others agreed with you.
 							</p>
 						</div>
 					</div>
