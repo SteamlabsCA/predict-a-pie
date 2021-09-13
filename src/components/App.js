@@ -166,7 +166,7 @@ function App(props) {
 
 	const onFindRecipe = (type, discuss = true) => {
 		setReclassify(false);
-		setUpdated(false);
+		setUpdated(true);
 
 		// Find first suitable recipe
 		if (recipes.length > 0) {
