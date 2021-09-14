@@ -28,7 +28,6 @@ function TrainedNetwork({ inputs, ingredients, classifications, ...props }) {
 	const onChange = (index) => {
 		let outputs = [...outputLayer];
 		var isAllZero = true;
-
 		inputs[index] = inputs[index] === 0 ? 1 : 0;
 
 		for (let i = 0; i < inputs.length; ++i) {

@@ -42,7 +42,7 @@ function App(props) {
 		userId: false,
 	});
 	const [classroomCode, setClassroomCode] = React.useState(false);
-	const [recipe, setRecipe] = React.useState(new Array(19).fill(0));
+	const [recipe, setRecipe] = React.useState(new Array(28).fill(0));
 	const [recipes, setRecipes] = React.useState([]);
 	const [discuss, setDiscuss] = React.useState(true);
 	const [classification, setClassification] = React.useState(0);
