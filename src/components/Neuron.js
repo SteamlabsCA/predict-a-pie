@@ -17,13 +17,13 @@ function Neuron({ neuron, ...props }) {
 	React.useEffect(() => {
 		setCustomName(() => {
 			let string = strings[neuron.label];
-			if (string.indexOf(',') > -1) {
-				const stringArr = string.split(',');
-				string = stringArr[Math.floor(Math.random() * stringArr.length)];
-			}
+			// if (string.indexOf(',') > -1) {
+			// 	const stringArr = string.split(',');
+			// 	string = stringArr[Math.floor(Math.random() * stringArr.length)];
+			// }
 			return string.length > 18 ? string.substr(0, 18 - 1) + `...${!props.standard ? '*' : ''}` : string + `${!props.standard ? '*' : ''}`;
 		});
-	}, []);
+	});
 
 	const onLabelChange = (value) => {
 		neuron.label = value;
