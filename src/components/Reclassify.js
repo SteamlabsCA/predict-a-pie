@@ -8,7 +8,6 @@ function Reclassify({ recipe, classifications, visible, ...props }) {
 	const [classification, setClassification] = React.useState(-1);
 
 	React.useEffect(() => {
-		console.log(classification);
 		setClassification(0);
 		setStep('1');
 	}, [visible]);

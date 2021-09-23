@@ -2,10 +2,10 @@ import './Tooltip.scss';
 import React from 'react';
 import Neuron from './Neuron';
 
-function Tooltip({ text, neuron, onChange, index, expansions }) {
+function Tooltip({ text, neuron, onChange, index, long, standard, ...props }) {
 	return (
 		<div className='Tooltip' data-tooltip={text}>
-			<Neuron expansions={expansions} truncate={true} neuron={neuron} onChange={() => onChange(index)} small />
+			<Neuron list={props.list} truncate={long} standard={standard} neuron={neuron} onChange={() => onChange(index)} small />
 		</div>
 	);
 }

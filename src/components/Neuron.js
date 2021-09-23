@@ -15,7 +15,14 @@ function Neuron({ neuron, ...props }) {
 	neuron.ref = React.createRef();
 
 	React.useEffect(() => {
-		if (props.truncate) setCustomName(customLabel());
+		setCustomName(() => {
+			let string = strings[neuron.label];
+			if (string.indexOf(',') > -1) {
+				const stringArr = string.split(',');
+				string = stringArr[Math.floor(Math.random() * stringArr.length)];
+			}
+			return string.length > 18 ? string.substr(0, 18 - 1) + `...${!props.standard ? '*' : ''}` : string + `${!props.standard ? '*' : ''}`;
+		});
 	}, []);
 
 	const onLabelChange = (value) => {
@@ -74,17 +81,6 @@ function Neuron({ neuron, ...props }) {
 		setMouseY(false);
 	};
 
-	const customLabel = () => {
-		const string = strings[neuron.label];
-		const stringArr = string.split(',');
-		let newLabel = stringArr[Math.floor(Math.random() * stringArr.length)];
-		if (newLabel.length > 18) {
-			return newLabel.substr(0, 18 - 1) + `...${!props.expansions ? '*' : ''}`;
-		} else {
-			return newLabel + `${!props.expansions ? '*' : ''}`;
-		}
-	};
-
 	const classes = ['Neuron'];
 	if (neuron.active) classes.push('Neuron-active');
 	if (props.dragging) classes.push('Neuron-dragging');
@@ -110,7 +106,9 @@ function Neuron({ neuron, ...props }) {
 						<div className='Neuron-terminal'></div>
 					</div>
 					{props.editable && <ContentEditable className='Neuron-title ' content={neuron.label} onChange={onLabelChange} />}
-					{!props.editable && <div className='Neuron-title'>{props.truncate ? customName : strings[neuron.label]}</div>}
+					{!props.editable && (
+						<div className='Neuron-title'>{(props.truncate || props.list) && !props.standard ? customName : strings[neuron.label]}</div>
+					)}
 					<div className='Neuron-output' onMouseDown={onStartConnection}>
 						<div className='Neuron-terminal'></div>
 					</div>
