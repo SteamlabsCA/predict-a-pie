@@ -8,8 +8,14 @@ function Reclassify({ recipe, classifications, visible, ...props }) {
 	const [classification, setClassification] = React.useState(-1);
 
 	React.useEffect(() => {
-		setClassification(0);
-		setStep('1');
+		let isMounted = true;
+		if (isMounted) {
+			setClassification(step === '1' ? -1 : 0);
+			setStep('1');
+		}
+		return () => {
+			isMounted = false;
+		};
 	}, [visible]);
 
 	const onAgree = () => {
