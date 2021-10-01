@@ -10,7 +10,6 @@ function Reclassify({ recipe, classifications, visible, ...props }) {
 	React.useEffect(() => {
 		let isMounted = true;
 		if (isMounted) {
-			setClassification(step === '1' ? -1 : 0);
 			setStep('1');
 		}
 		return () => {
@@ -25,6 +24,7 @@ function Reclassify({ recipe, classifications, visible, ...props }) {
 	};
 
 	const onDisagree = () => {
+		setClassification(0);
 		gtmTrack('sec_btn_click', 'Pretrained', 'Classification: Disagree', 'Disagree');
 		setStep('1-2');
 	};
