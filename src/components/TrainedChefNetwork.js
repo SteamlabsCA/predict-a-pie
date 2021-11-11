@@ -13,6 +13,10 @@ function TrainedChefNetwork({ inputs, ...props }) {
 	const history = useHistory();
 	let inputIngredients = false;
 
+	React.useEffect(() => {
+		props.getCustomRecipe(id);
+	}, []);
+
 	try {
 		inputIngredients = require(`../ingredients/${id}.json`);
 

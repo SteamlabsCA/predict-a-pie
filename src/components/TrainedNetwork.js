@@ -25,6 +25,10 @@ function TrainedNetwork({ inputs, ingredients, classifications, ...props }) {
 		})
 	);
 
+	React.useEffect(() => {
+		props.getRecipe('predictApie');
+	}, []);
+
 	const onChange = (index) => {
 		let outputs = [...outputLayer];
 		var isAllZero = true;

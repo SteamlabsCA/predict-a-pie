@@ -61,7 +61,33 @@
 		}
 	}
 
-	&-sctTwo {
+	.video-sctn {
+		.video-container {
+			display: flex;
+		}
+
+		.sctn {
+			width: 50%;
+			margin: 40px 40px 40px 0;
+		}
+
+		iframe {
+			display: block;
+			margin: 0 auto;
+			margin: 40px 0;
+			width: 31vw;
+			height: 17vw;
+		}
+
+		@media screen and (min-width: 1120px) {
+			.aligned-p {
+				height: 180px;
+			}
+		}
+	}
+
+	&-sctTwo,
+	.sctn-title {
 		font-size: 24px;
 		line-height: 28.13px;
 		text-align: center;

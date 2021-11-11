@@ -17,20 +17,14 @@ function Instructions() {
 							</span>
 							<div className='body'>
 								<p>
-								Qu'est-ce qui fait qu'un pâté est plus savoureux qu'un autre? Et si vous aviez tous les ingrédients du monde pour créer la tarte parfaite? Dans cet atelier, vous allez créer un réseau neuronal pour y parvenir! 
-    							Vous utiliserez ensuite vos nouvelles connaissances pour tester un plus grand réseau neuronal qui a été créé à partir de l'apprentissage automatique dans le but d'analyser des milliers de recettes et trouver de nouvelles combinaisons originales.
+									Qu'est-ce qui fait qu'un pâté est plus savoureux qu'un autre? Et si vous aviez tous les ingrédients du monde pour créer la tarte parfaite? Dans cet atelier, vous allez créer un
+									réseau neuronal pour y parvenir! Vous utiliserez ensuite vos nouvelles connaissances pour tester un plus grand réseau neuronal qui a été créé à partir de l'apprentissage automatique
+									dans le but d'analyser des milliers de recettes et trouver de nouvelles combinaisons originales.
 								</p>
 								<p>
 									Vous souhaitez en savoir plus ? Visitez le{' '}
 									<a
-										onClick={() =>
-											gtmTrack(
-												'out_btn_click',
-												'Instructions',
-												'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie',
-												'https://steamlabs.ca/ai-programs/predict-a-pie'
-											)
-										}
+										onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie', 'https://steamlabs.ca/ai-programs/predict-a-pie')}
 										href='https://steamlabs.ca'
 										target='_new'
 									>
@@ -46,14 +40,62 @@ function Instructions() {
 									</p>
 								</ul>
 								<p>
-									Nous aimerions recevoir vos questions ! Envoyez-nous un courriel à l'adresse info@steamlabs.ca et nous vous répondrons en ajoutant vos questions et vos réponses à la
-									à la section FAQ de cette page.
+									Nous aimerions recevoir vos questions ! Envoyez-nous un courriel à l'adresse info@steamlabs.ca et nous vous répondrons en ajoutant vos questions et vos réponses à la à la section FAQ
+									de cette page.
 								</p>
 							</div>
 						</span>
 						<span>
 							<img src='./PredictPie.jpg' />
 						</span>
+					</div>
+					<div className='sctn-title'>
+						<strong>
+							Indigenous Cooking with a <em>dash</em> of AI
+						</strong>
+					</div>
+					<div className='video-sctn'>
+						<div>
+							<h2>Educational and Tutorial Video</h2>
+							<p>
+								Learn about Indigenous-fusion cooking practices from Xaxli’p First Nation chef, David Wolfman and how to use an AI Neural Network simulator to generate new recipes for a restaurant!
+								You will learn about how data can be biased and how excluding cooking from a wide array of cultures can have negative impacts. This can lead to missing out on the rich diversity of
+								experiences that can be shared from other cultures, and risk marginalizing those communities. We then show how you can build your own model from your own data using our Neural Network
+								simulator.
+							</p>
+						</div>
+						<div className='video-container'>
+							<div className='sctn'>
+								<h2>Full Video</h2>
+								<p className='aligned-p'>
+									If you are coming here totally new to AI and machine learning, this is a video for you! Used as a self service tool, this video covers the basics of machine learning programming and
+									neural networks. We consult with indigenous chef, David Wolfman to test out our model and then discuss the potential training biases and ethical implications of AI. Chef Wolfman
+									creates a new model that better caters to his own indigenous fusion culinary values and principles.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+							<div className='sctn'>
+								<h2>Shortened Video - Only Indigenous Content</h2>
+								<p className='aligned-p'>
+									If you are planning to use this webapp with your classroom/ educational group to support your AI and neural network lesson, this video is for you! This videos covers all of our
+									consultation with indigenous chef, David Wolfman. Chef Wolfman tests out our predict a pie model and then discusses the potential training biases and ethical implications of AI. Chef
+									Wolfman creates a new model that better caters to his own indigenous fusion culinary values and principles.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+						</div>
 					</div>
 					<div className='Instructions-sctTwo'>
 						Il y a deux activités principales que vous pouvez faire dans cette application web. Vous pouvez y accéder à tout moment à partir du menu qui se trouve dans le coin supérieur gauche
@@ -62,26 +104,28 @@ function Instructions() {
 						<div>
 							<h2>Construire un réseau neuronal (RN)</h2>
 							<p>
-								Dans cette activité, vous pouvez construire un réseau neuronal réel et fonctionnel.
-								Les <Definition text={strings.neuronDef}>neurones</Definition> de la première couche (celle de gauche) sont vos "entrées". Considérez-les comme les ingrédients, ou les éléments d'information sur lesquels votre RN fondera ses décisions. 
-								La dernière couche (à droite) de <Definition text={strings.neuronDef}>neurones</Definition> représente les décisions, ou "classifications", que le réseau neuronal peut prendre sur la base de ces entrées.
-								Ajoutez les <Definition text={strings.neuronDef}>neurones</Definition> un par un, connectez-les entre eux pour indiquer quelles entrées mènent à quelles décisions de sortie. Si vous devez détecter des combinaisons d'entrées, vous pouvez ajouter des "couches cachées" au milieu pour détecter ces combinaisons.
-								Si nécessaire, vous pouvez cliquer sur le symbole (+) ou (-) de n'importe quel nœud et modifier les "poids" pour indiquer l'importance relative de chaque nœud entrant.
+								Dans cette activité, vous pouvez construire un réseau neuronal réel et fonctionnel. Les <Definition text={strings.neuronDef}>neurones</Definition> de la première couche (celle de
+								gauche) sont vos "entrées". Considérez-les comme les ingrédients, ou les éléments d'information sur lesquels votre RN fondera ses décisions. La dernière couche (à droite) de{' '}
+								<Definition text={strings.neuronDef}>neurones</Definition> représente les décisions, ou "classifications", que le réseau neuronal peut prendre sur la base de ces entrées. Ajoutez les{' '}
+								<Definition text={strings.neuronDef}>neurones</Definition> un par un, connectez-les entre eux pour indiquer quelles entrées mènent à quelles décisions de sortie. Si vous devez détecter
+								des combinaisons d'entrées, vous pouvez ajouter des "couches cachées" au milieu pour détecter ces combinaisons. Si nécessaire, vous pouvez cliquer sur le symbole (+) ou (-) de
+								n'importe quel nœud et modifier les "poids" pour indiquer l'importance relative de chaque nœud entrant.
 							</p>
 						</div>
 						<div>
 							<h2>Tester un réseau neuronal pré-entraîné</h2>
+							<p>Cette activité peut être réalisée seul ou en groupe. Pour un groupe, commencez par "Créer une salle de classe", et demandez à chacun d'aller sur l'URL générée.</p>
 							<p>
-								Cette activité peut être réalisée seul ou en groupe. Pour un groupe, commencez par "Créer une salle de classe", et demandez à chacun d'aller sur l'URL générée.
+								Le réseau neuronal de cette activité a été entraîné sur des milliers de recettes pour être capable de classifier n'importe quelle combinaison d'ingrédients comme étant une tarte
+								"Sucrée", une "Quiche", une "Pizza", un "Pâté" ou quelque chose d'"Autre". Il peut maintenant généraliser et classifier n'importe quelle combinaison d'ingrédients disponibles.
 							</p>
 							<p>
-								Le réseau neuronal de cette activité a été entraîné sur des milliers de recettes pour être capable de classifier n'importe quelle combinaison d'ingrédients comme étant une tarte "Sucrée", une "Quiche", une "Pizza", un "Pâté" ou quelque chose d'"Autre". Il peut maintenant généraliser et classifier n'importe quelle combinaison d'ingrédients disponibles.
+								Essayez différentes combinaisons d'ingrédients et voyez ce que le réseau neuronal en pense ! Vous pouvez également cliquer sur le bouton "Trouver une recette" pour générer une nouvelle
+								recette.
 							</p>
 							<p>
-								Essayez différentes combinaisons d'ingrédients et voyez ce que le réseau neuronal en pense ! Vous pouvez également cliquer sur le bouton "Trouver une recette" pour générer une nouvelle recette.
-							</p>
-							<p>
-								Sauvegardez les recettes que vous aimez pour pouvoir les consulter ultérieurement. Vous pouvez signaler les classifications avec lesquelles vous n'êtes pas en accord et sélectionnez la classification correcte. Sur la page "Voir les statistiques de la classe", vous pouvez voir les classifications d'autres participants et vérifier s'ils sont d'accord avec vous.
+								Sauvegardez les recettes que vous aimez pour pouvoir les consulter ultérieurement. Vous pouvez signaler les classifications avec lesquelles vous n'êtes pas en accord et sélectionnez la
+								classification correcte. Sur la page "Voir les statistiques de la classe", vous pouvez voir les classifications d'autres participants et vérifier s'ils sont d'accord avec vous.
 							</p>
 						</div>
 					</div>
@@ -89,9 +133,7 @@ function Instructions() {
 					{window.location.origin.includes('glitch') && (
 						<>
 							<h2>Remixer Predict a Pie</h2>
-							<p>
-								Lorsque vous remixez Predict a Pie, vous créez une copie du projet existant. A partir de là, vous pourrez personnaliser le projet et faire d'autres modifications.
-							</p>
+							<p>Lorsque vous remixez Predict a Pie, vous créez une copie du projet existant. A partir de là, vous pourrez personnaliser le projet et faire d'autres modifications.</p>
 							<h3 style={{ marginBottom: 0 }}>Comment remixer</h3>
 							<p style={{ marginTop: 0 }}>
 								Pour remixer Predict a Pie, cliquez sur le logo de la plateforme Glitch (un poisson).
@@ -117,16 +159,21 @@ function Instructions() {
 					<h3>Crédits</h3>
 					<div className='Instructions-sctFour'>
 						<p>
-							<a
-								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')}
-								href='https://www.steamlabs.ca/'
-								target='_new'
-							>
+							<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 								<img src='https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg' />
 							</a>
 							Predict-a-Pie est une création de Steamlabs.
 						</p>
-
+						<p>
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: http://www.cookingwiththewolfman.com/home.html', 'http://www.cookingwiththewolfman.com/home.html')}
+								href='http://www.cookingwiththewolfman.com/home.html'
+								target='_new'
+							>
+								<img src='./ChefWolfmanLogo.gif' />
+							</a>
+							Consultation with David Wolfman and Marlene Finn
+						</p>
 						<p>
 							<a
 								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
@@ -139,14 +186,7 @@ function Instructions() {
 						</p>
 						<p>
 							<a
-								onClick={() =>
-									gtmTrack(
-										'out_btn_click',
-										'Instructions',
-										'Out Bound: https://www.amazonfutureengineer.com/',
-										'https://www.amazonfutureengineer.com/'
-									)
-								}
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
 								href='https://www.amazonfutureengineer.com/'
 								target='_new'
 							>
@@ -169,24 +209,16 @@ function Instructions() {
 						<ul>
 							<p>
 								<li>
-									Attribution - Vous devez donner le crédit approprié, fournir un lien vers la licence et indiquer si des modifications ont été apportées. Vous pouvez le faire de toute manière raisonnable, mais pas d'une manière qui suggère que le donneur de licence vous approuve ou approuve votre utilisation.
+									Attribution - Vous devez donner le crédit approprié, fournir un lien vers la licence et indiquer si des modifications ont été apportées. Vous pouvez le faire de toute manière
+									raisonnable, mais pas d'une manière qui suggère que le donneur de licence vous approuve ou approuve votre utilisation.
 								</li>
-								<li>
-									ShareAlike - Si vous remixez, transformez ou développez le matériel, vous devez distribuer vos contributions sous la même licence que l'original.
-								</li>
+								<li>ShareAlike - Si vous remixez, transformez ou développez le matériel, vous devez distribuer vos contributions sous la même licence que l'original.</li>
 							</p>
 						</ul>
 						<p>
 							Les détails complets de cette licence peuvent être trouvés ici :{' '}
 							<a
-								onClick={() =>
-									gtmTrack(
-										'out_btn_click',
-										'Instructions',
-										'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/',
-										'https://creativecommons.org/licenses/by-sa/4.0/'
-									)
-								}
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/', 'https://creativecommons.org/licenses/by-sa/4.0/')}
 								href='https://creativecommons.org/licenses/by-sa/4.0/'
 								target='_new'
 							>
@@ -216,21 +248,14 @@ function Instructions() {
 							</span>
 							<div className='body'>
 								<p>
-									What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop,
-									you will wire up a neural network to do just that! You will then use your new knowledge to test a larger neural network that has
-									used "machine learning" to analyse thousands of recipes to come up with new, creative combinations.
+									What makes a pie taste the best? What if you had all the ingredients in the world to come up with the perfect pie? In this workshop, you will wire up a neural network to do just
+									that! You will then use your new knowledge to test a larger neural network that has used "machine learning" to analyse thousands of recipes to come up with new, creative
+									combinations.
 								</p>
 								<p>
 									Interested in learning more? Visit the{' '}
 									<a
-										onClick={() =>
-											gtmTrack(
-												'out_btn_click',
-												'Instructions',
-												'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie',
-												'https://steamlabs.ca/ai-programs/predict-a-pie'
-											)
-										}
+										onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie', 'https://steamlabs.ca/ai-programs/predict-a-pie')}
 										href='https://steamlabs.ca'
 										target='_new'
 									>
@@ -245,51 +270,85 @@ function Instructions() {
 										<li>Frequently Asked Questions on how this AI system works and technical questions on building your own network</li>
 									</p>
 								</ul>
-								<p>
-									We’d love to hear your questions! Email us at info@steamlabs.ca and we will get back to you and add your questions and answers to
-									the page’s FAQ.
-								</p>
+								<p>We’d love to hear your questions! Email us at info@steamlabs.ca and we will get back to you and add your questions and answers to the page’s FAQ.</p>
 							</div>
 						</span>
 						<span>
 							<img src='./PredictPie.jpg' />
 						</span>
 					</div>
-					<div className='Instructions-sctTwo'>
-						There are two main activities that you can do in this web application. You can access them at any time from the menu in the top left
-						corner
+					<div className='sctn-title'>
+						<strong>
+							Indigenous Cooking with a <em>dash</em> of AI
+						</strong>
 					</div>
+					<div className='video-sctn'>
+						<div>
+							<h2>Educational and Tutorial Video</h2>
+							<p>
+								Learn about Indigenous-fusion cooking practices from Xaxli’p First Nation chef, David Wolfman and how to use an AI Neural Network simulator to generate new recipes for a restaurant!
+								You will learn about how data can be biased and how excluding cooking from a wide array of cultures can have negative impacts. This can lead to missing out on the rich diversity of
+								experiences that can be shared from other cultures, and risk marginalizing those communities. We then show how you can build your own model from your own data using our Neural Network
+								simulator.
+							</p>
+						</div>
+						<div className='video-container'>
+							<div className='sctn'>
+								<h2>Full Video</h2>
+								<p className='aligned-p'>
+									If you are coming here totally new to AI and machine learning, this is a video for you! Used as a self service tool, this video covers the basics of machine learning programming and
+									neural networks. We consult with indigenous chef, David Wolfman to test out our model and then discuss the potential training biases and ethical implications of AI. Chef Wolfman
+									creates a new model that better caters to his own indigenous fusion culinary values and principles.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+							<div className='sctn'>
+								<h2>Shortened Video - Only Indigenous Content</h2>
+								<p className='aligned-p'>
+									If you are planning to use this webapp with your classroom/ educational group to support your AI and neural network lesson, this video is for you! This videos covers all of our
+									consultation with indigenous chef, David Wolfman. Chef Wolfman tests out our predict a pie model and then discusses the potential training biases and ethical implications of AI. Chef
+									Wolfman creates a new model that better caters to his own indigenous fusion culinary values and principles.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+						</div>
+					</div>
+					{/* here */}
+					<div className='Instructions-sctTwo'>There are two main activities that you can do in this web application. You can access them at any time from the menu in the top left corner</div>
 					<div className='Instructions-sctThree'>
 						<div>
 							<h2>Build a Neural Network (NN)</h2>
 							<p>
-								In this activity, you can build a real, working Neural Network. The <Definition text={strings.neuronDef}>neuron</Definition> nodes in
-								the first layer on the left are your "inputs". Think of these as the ingredients, or pieces of information that your NN will base its
-								decisions on. The last layer of <Definition text={strings.neuronDef}>neurons</Definition> are the decisions, or "classifications" that
-								the neural network can make based on these inputs. Add <Definition text={strings.neuronDef}>neurons</Definition> one at a time,
-								connect them together to indicate what inputs lead to what output decisions. If you need to detect combinations of inputs, you can add
-								"hidden layers" in the middle to detect these combinations. If necessary, you can click on the (+) or (-) symbol on any node and
-								change the "weights" to indicate the relative importance of each incoming node.
+								In this activity, you can build a real, working Neural Network. The <Definition text={strings.neuronDef}>neuron</Definition> nodes in the first layer on the left are your "inputs".
+								Think of these as the ingredients, or pieces of information that your NN will base its decisions on. The last layer of <Definition text={strings.neuronDef}>neurons</Definition> are the
+								decisions, or "classifications" that the neural network can make based on these inputs. Add <Definition text={strings.neuronDef}>neurons</Definition> one at a time, connect them
+								together to indicate what inputs lead to what output decisions. If you need to detect combinations of inputs, you can add "hidden layers" in the middle to detect these combinations. If
+								necessary, you can click on the (+) or (-) symbol on any node and change the "weights" to indicate the relative importance of each incoming node.
 							</p>
 						</div>
 						<div>
 							<h2>Test a Trained Neural Network</h2>
+							<p>This activity can be done on your own, or with a group. For a group, start with "Create Classroom", and have everyone go to the URL that it generates.</p>
 							<p>
-								This activity can be done on your own, or with a group. For a group, start with "Create Classroom", and have everyone go to the URL
-								that it generates.
+								The Neural Network in this activity has been trained on thousands of recipes to be able to classify any recipe as "Sweet Pie", "Quiche", "Savoury Pie" and "Disgusting" from a
+								combination of the input ingredients. Now it can generalize and classify any of the millions of combinations of recipes.
 							</p>
+							<p>Try different combinations of ingredients and see what the Neural Network thinks of them! You can also click on the "Find Recipe" button to search for a recipe.</p>
 							<p>
-								The Neural Network in this activity has been trained on thousands of recipes to be able to classify any recipe as "Sweet Pie",
-								"Quiche", "Savoury Pie" and "Disgusting" from a combination of the input ingredients. Now it can generalize and classify any of the
-								millions of combinations of recipes.
-							</p>
-							<p>
-								Try different combinations of ingredients and see what the Neural Network thinks of them! You can also click on the "Find Recipe"
-								button to search for a recipe.
-							</p>
-							<p>
-								Save the recipes that you like for future reference. Find classifications that you disagree with, and input the correct
-								classification. On the "View Stats" page you can see if others agreed with you.
+								Save the recipes that you like for future reference. Find classifications that you disagree with, and input the correct classification. On the "View Stats" page you can see if others
+								agreed with you.
 							</p>
 						</div>
 					</div>
@@ -297,10 +356,7 @@ function Instructions() {
 					{window.location.origin.includes('glitch') && (
 						<>
 							<h2>Remixing Predict a Pie</h2>
-							<p>
-								When you remix Predict a Pie, you’re creating a copy of the existing project. From there, you can customize the project and make other
-								changes.
-							</p>
+							<p>When you remix Predict a Pie, you’re creating a copy of the existing project. From there, you can customize the project and make other changes.</p>
 							<h3 style={{ marginBottom: 0 }}>How to Remix</h3>
 							<p style={{ marginTop: 0 }}>
 								To remix Predict a Pie press on the fish icon
@@ -326,16 +382,21 @@ function Instructions() {
 					<h3>Credits</h3>
 					<div className='Instructions-sctFour'>
 						<p>
-							<a
-								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')}
-								href='https://www.steamlabs.ca/'
-								target='_new'
-							>
+							<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
 								<img src='https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg' />
 							</a>
 							Predict-a-Pie is a creation of Steamlabs.
 						</p>
-
+						<p>
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: http://www.cookingwiththewolfman.com/home.html', 'http://www.cookingwiththewolfman.com/home.html')}
+								href='http://www.cookingwiththewolfman.com/home.html'
+								target='_new'
+							>
+								<img src='./ChefWolfmanLogo.gif' />
+							</a>
+							Consultation with David Wolfman and Marlene Finn
+						</p>
 						<p>
 							<a
 								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
@@ -348,14 +409,7 @@ function Instructions() {
 						</p>
 						<p>
 							<a
-								onClick={() =>
-									gtmTrack(
-										'out_btn_click',
-										'Instructions',
-										'Out Bound: https://www.amazonfutureengineer.com/',
-										'https://www.amazonfutureengineer.com/'
-									)
-								}
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
 								href='https://www.amazonfutureengineer.com/'
 								target='_new'
 							>
@@ -378,26 +432,16 @@ function Instructions() {
 						<ul>
 							<p>
 								<li>
-									Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in
-									any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+									Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that
+									suggests the licensor endorses you or your use.
 								</li>
-								<li>
-									ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as
-									the original.
-								</li>
+								<li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
 							</p>
 						</ul>
 						<p>
 							Full details of this license can be found here:{' '}
 							<a
-								onClick={() =>
-									gtmTrack(
-										'out_btn_click',
-										'Instructions',
-										'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/',
-										'https://creativecommons.org/licenses/by-sa/4.0/'
-									)
-								}
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/', 'https://creativecommons.org/licenses/by-sa/4.0/')}
 								href='https://creativecommons.org/licenses/by-sa/4.0/'
 								target='_new'
 							>
