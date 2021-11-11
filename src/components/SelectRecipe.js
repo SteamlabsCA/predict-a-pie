@@ -2,8 +2,12 @@ import './SelectRecipe.scss';
 import gtmTrack from '../helpers/gtmTrack';
 import React from 'react';
 import { strings } from './App';
+import { useParams } from 'react-router-dom';
 
 function SelectRecipe({ classifications, ...props }) {
+	let { id } = useParams();
+	const customClassifications = !classifications && require(`../ingredients/${id}.json`).Standard.classifications;
+
 	const [value, setValue] = React.useState('Random');
 
 	const onChange = (event) => {
@@ -11,7 +15,7 @@ function SelectRecipe({ classifications, ...props }) {
 	};
 
 	const onSubmit = () => {
-		gtmTrack('sec_btn_click', 'Pretrained', 'Find Recipe', value);
+		gtmTrack('sec_btn_click', 'CustomPretrained', 'Find Recipe', value);
 		props.onSubmit(value);
 	};
 
@@ -19,7 +23,7 @@ function SelectRecipe({ classifications, ...props }) {
 		<div className='SelectRecipe'>
 			<select onChange={onChange}>
 				<option value='Random'>{strings.random}</option>
-				{classifications.map((classification, index) => (
+				{(classifications === false ? customClassifications : classifications).map((classification, index) => (
 					<option key={index} value={classification}>
 						{strings[classification]}
 					</option>

@@ -64,23 +64,6 @@ function App(props) {
 	const [envVariables, setEnvVariables] = React.useState(false);
 	const [loading, setLoading] = React.useState(false);
 
-	// Load pre-generated recipes
-	React.useEffect(() => {
-		fetch('/recipes.json')
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (json) {
-				// Shuffle recipes
-				for (let i = json.length - 1; i > 0; i--) {
-					const j = Math.floor(Math.random() * (i + 1));
-					[json[i], json[j]] = [json[j], json[i]];
-				}
-
-				setRecipes(json);
-			});
-	}, []);
-
 	// Receive from socket
 	React.useEffect(() => {
 		socket.on('connect', () => {
@@ -116,6 +99,22 @@ function App(props) {
 			alert(error, 'error');
 		});
 	}, []);
+
+	//  Load pre-generated recipes
+	const getRecipe = (name) => {
+		fetch(`/models/${name}/recipes.json`)
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (json) {
+				// Shuffle recipes
+				for (let i = json.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[json[i], json[j]] = [json[j], json[i]];
+				}
+				setRecipes(json);
+			});
+	};
 
 	const onCommand = (command) => {
 		switch (command) {
@@ -167,12 +166,12 @@ function App(props) {
 	const onFindRecipe = (type, discuss = true) => {
 		setReclassify(false);
 		setUpdated(true);
-
 		// Find first suitable recipe
 		if (recipes.length > 0) {
 			for (let index = 0; index < recipes.length; index++) {
 				if ((!discuss || recipes[index].Discuss === 1) && (type === 'Random' || recipes[index][type] === 1)) {
-					const item = recipes.splice(index, 1)[0];
+					let tempRec = [...recipes];
+					const item = tempRec.splice(index, 1)[0];
 					setRecipe(Object.values(item).slice(0, ingredients.length));
 
 					// Show reclassify dialog after a delay
@@ -359,13 +358,7 @@ function App(props) {
 								</>
 							}
 						/>
-						<TrainedNetwork
-							onChange={onChange}
-							onPrediction={onPrediction}
-							inputs={recipe}
-							ingredients={ingredients}
-							classifications={classifications}
-						/>
+						<TrainedNetwork onChange={onChange} onPrediction={onPrediction} inputs={recipe} ingredients={ingredients} classifications={classifications} getRecipe={getRecipe} />
 						<Reclassify recipe={recipe} classifications={classifications} visible={reclassify} onReclassify={onReclassify} />
 					</Route>
 					<Route path='*/trained/:id'>
@@ -376,33 +369,26 @@ function App(props) {
 							onCommand={onCommand}
 							checkEnv={checkEnv}
 							envVariables={envVariables}
+							// content={
+							// 	<>
+							// 		<SelectRecipe classifications={false} onSubmit={onFindRecipe} />
+							// 	</>
+							// }
 						/>
-						<TrainedChefNetwork onChange={onChange} onPrediction={onPrediction} inputs={recipe} />
+						<TrainedChefNetwork getCustomRecipe={getRecipe} onChange={onChange} onPrediction={onPrediction} inputs={recipe} />
 					</Route>
 					<Route path='*/stats'>
 						<NavBar title={strings.stats} appData={appData} route='stats' onCommand={onCommand} checkEnv={checkEnv} envVariables={envVariables} />
 						<Stats appData={appData} ingredients={ingredients} classifications={classifications} recipes={recipes} />
 					</Route>
 					<Route path='/'>
-						<NavBar
-							title={strings.instructions}
-							appData={appData}
-							route='instructions'
-							onCommand={onCommand}
-							checkEnv={checkEnv}
-							envVariables={envVariables}
-						/>
+						<NavBar title={strings.instructions} appData={appData} route='instructions' onCommand={onCommand} checkEnv={checkEnv} envVariables={envVariables} />
 						<Instructions />
 					</Route>
 				</Switch>
 				<Alert />
 				<Prompt />
-				<SharePrompt
-					loading={loading}
-					setLoading={setLoading}
-					buildNetwork={buildNetwork}
-					onDismiss={() => setBuildNetwork({ ...buildNetwork, visible: false })}
-				/>
+				<SharePrompt loading={loading} setLoading={setLoading} buildNetwork={buildNetwork} onDismiss={() => setBuildNetwork({ ...buildNetwork, visible: false })} />
 				<Backdrop loading={loading} />
 				<ClassroomCode code={classroomCode} appData={appData} onDismiss={() => setClassroomCode(false)} />
 			</div>
