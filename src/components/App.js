@@ -26,8 +26,8 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient();
-// const socket = socketClient('http://127.0.0.1:8080');
+// const socket = socketClient();
+const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
 const url = window.location.pathname.split('/');
@@ -43,6 +43,7 @@ function App(props) {
 	});
 	const [classroomCode, setClassroomCode] = React.useState(false);
 	const [recipe, setRecipe] = React.useState(new Array(28).fill(0));
+	const [lastFoundRecipe, setLastFoundRecipe] = React.useState(-1);
 	const [recipes, setRecipes] = React.useState([]);
 	const [discuss, setDiscuss] = React.useState(true);
 	const [classification, setClassification] = React.useState(0);
@@ -166,12 +167,28 @@ function App(props) {
 	const onFindRecipe = (type, discuss = true) => {
 		setReclassify(false);
 		setUpdated(true);
+
 		// Find first suitable recipe
 		if (recipes.length > 0) {
 			for (let index = 0; index < recipes.length; index++) {
+				//here
 				if ((!discuss || recipes[index].Discuss === 1) && (type === 'Random' || recipes[index][type] === 1)) {
-					let tempRec = [...recipes];
-					const item = tempRec.splice(index, 1)[0];
+					// if ((!discuss || recipes[index].Discuss === 1) && (type === 'Random' || recipes[index][type] === 1) && (type === 'Random' || recipes[lastFoundRecipe][type] !== recipes[index][type])) {
+					// //test
+					// const item = type === 'Random' ? recipes[Math.floor(Math.random() * recipes.length)] : recipes[index];
+					// setLastFoundRecipe(index);
+					// // let tempRec = [...recipes];
+					// // const item = tempRec.splice(index, 1)[0];
+
+					// setRecipe(Object.values(item).slice(0, ingredients.length));
+					// //test
+					// if (!type === 'Random') {
+					// 	console.log('last:');
+					// 	console.log(recipes[lastFoundRecipe][type]);
+					// 	console.log('this:');
+					// 	console.log(recipes[index][type]);
+					// }
+					const item = recipes.splice(index, 1)[0];
 					setRecipe(Object.values(item).slice(0, ingredients.length));
 
 					// Show reclassify dialog after a delay
@@ -372,6 +389,9 @@ function App(props) {
 							// content={
 							// 	<>
 							// 		<SelectRecipe classifications={false} onSubmit={onFindRecipe} />
+							// 		<button onClick={onSaveRecipe} disabled={!appData.classroom || !updated}>
+							// 			{strings.saveRecipe}
+							// 		</button>
 							// 	</>
 							// }
 						/>

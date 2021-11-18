@@ -325,7 +325,6 @@ function Instructions() {
 							</div>
 						</div>
 					</div>
-					{/* here */}
 					<div className='Instructions-sctTwo'>There are two main activities that you can do in this web application. You can access them at any time from the menu in the top left corner</div>
 					<div className='Instructions-sctThree'>
 						<div>
