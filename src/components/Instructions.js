@@ -58,34 +58,20 @@ function Instructions() {
 						<div>
 							<h2>Vidéo éducative et tutoriel</h2>
 							<p>
-								Découvrez la cuisine fusion autochtone avec le chef cuisinier
-                						David Wolfman de la Première Nation des Xaxli'ps. Apprenez à
-                						utiliser un simulateur de réseau neuronal afin de générer de
-                						nouvelles recettes pour un restaurant ! Vous découvrirez
-								l'impact des biais provenant des données lorsqu'elles excluent
-								les types de cuisine provenant de différentes cultures. En
-								effet, ces biais peuvent nous empêcher de profiter pleinement de
-								la richesse qu'offre le partage entre les différentes cultures.
-								De plus ce biais peuvent avoir pour effet d'accentuer la
-								marginalisation de certaines communautés. Nous montrons ensuite
-								comment vous pouvez construire votre propre modèle à partir de
-								vos propres données en utilisant notre simulateur de réseau
-								neuronal.
+								Découvrez la cuisine fusion autochtone avec le chef cuisinier David Wolfman de la Première Nation des Xaxli'ps. Apprenez à utiliser un simulateur de réseau neuronal afin de générer de
+								nouvelles recettes pour un restaurant ! Vous découvrirez l'impact des biais provenant des données lorsqu'elles excluent les types de cuisine provenant de différentes cultures. En
+								effet, ces biais peuvent nous empêcher de profiter pleinement de la richesse qu'offre le partage entre les différentes cultures. De plus ce biais peuvent avoir pour effet d'accentuer
+								la marginalisation de certaines communautés. Nous montrons ensuite comment vous pouvez construire votre propre modèle à partir de vos propres données en utilisant notre simulateur de
+								réseau neuronal.
 							</p>
 						</div>
 						<div className='video-container'>
 							<div className='sctn'>
 								<h2>Vidéo intégrale</h2>
 								<p className='aligned-p'>
-									Si vous êtes débutant en matière d'IA et d'apprentissage
-									  automatique, cette vidéo est faite pour vous ! Utilisée comme
-									  un outil en libre-service, cette vidéo couvre les bases de la
-									  programmation de l'apprentissage automatique et des réseaux
-									  neuronaux. Nous y consultons le chef cuisinier autochtone
-									  David Wolfman afin de tester notre modèle et de discuter des
-									  questions éthiques liées à l'IA. Le chef Wolfman y crée un
-									  nouveau modèle qui correspond mieux à ses propres valeurs et
-									  principes culinaires autochtones.
+									Si vous êtes débutant en matière d'IA et d'apprentissage automatique, cette vidéo est faite pour vous ! Utilisée comme un outil en libre-service, cette vidéo couvre les bases de la
+									programmation de l'apprentissage automatique et des réseaux neuronaux. Nous y consultons le chef cuisinier autochtone David Wolfman afin de tester notre modèle et de discuter des
+									questions éthiques liées à l'IA. Le chef Wolfman y crée un nouveau modèle qui correspond mieux à ses propres valeurs et principes culinaires autochtones.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
@@ -98,15 +84,9 @@ function Instructions() {
 							<div className='sctn'>
 								<h2>Vidéo écourtée - uniquement le contenu autochtone</h2>
 								<p className='aligned-p'>
-									Si vous envisagez d'utiliser cette application web dans votre
-                  							classe pour soutenir votre cours d'IA et de réseaux neuronaux,
-									cette vidéo est pour vous ! Cette vidéo couvre l'ensemble de
-									notre consultation avec le chef cuisinier autochtone, David
-									Wolfman. Le chef Wolfman teste notre modèle de prédiction de
-									pâtés et discute ensuite des biais potentiels et des
-									implications éthiques de l'IA. Le chef Wolfman crée un nouveau
-									modèle qui correspond mieux à ses propres valeurs et principes
-									culinaires autochtones.
+									Si vous envisagez d'utiliser cette application web dans votre classe pour soutenir votre cours d'IA et de réseaux neuronaux, cette vidéo est pour vous ! Cette vidéo couvre l'ensemble
+									de notre consultation avec le chef cuisinier autochtone, David Wolfman. Le chef Wolfman teste notre modèle de prédiction de pâtés et discute ensuite des biais potentiels et des
+									implications éthiques de l'IA. Le chef Wolfman crée un nouveau modèle qui correspond mieux à ses propres valeurs et principes culinaires autochtones.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
@@ -318,8 +298,8 @@ function Instructions() {
 								<h2>Full Video</h2>
 								<p className='aligned-p'>
 									If you are coming here totally new to AI and machine learning, this is a video for you! Used as a self service tool, this video covers the basics of machine learning programming and
-									neural networks. We consult with indigenous chef, David Wolfman to test out our model and then discuss the potential training biases and ethical implications of AI. Chef Wolfman
-									creates a new model that better caters to his own indigenous fusion culinary values and principles.
+									neural networks. We consult with Indigenous chef, David Wolfman to test out our model and then discuss the potential training biases and ethical implications of AI. Chef Wolfman
+									creates a new model that better caters to his own Indigenous fusion culinary values and principles.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
@@ -332,9 +312,9 @@ function Instructions() {
 							<div className='sctn'>
 								<h2>Shortened Video - Only Indigenous Content</h2>
 								<p className='aligned-p'>
-									If you are planning to use this webapp with your classroom/ educational group to support your AI and neural network lesson, this video is for you! This videos covers all of our
-									consultation with indigenous chef, David Wolfman. Chef Wolfman tests out our predict a pie model and then discusses the potential training biases and ethical implications of AI. Chef
-									Wolfman creates a new model that better caters to his own indigenous fusion culinary values and principles.
+									If you are planning to use this webapp with your classroom/ educational group to support your AI and neural network lesson, this video is for you! This video covers all of our
+									consultation with Indigenous chef, David Wolfman. Chef Wolfman tests out our predict a pie model and then discusses the potential training biases and ethical implications of AI. Chef
+									Wolfman creates a new model that better caters to his own Indigenous fusion culinary values and principles.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
