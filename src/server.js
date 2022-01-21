@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const https = require('https');
 const seedrandom = require('seedrandom');
 const socketIo = require('socket.io');
 var AWS = require('aws-sdk');
@@ -20,6 +21,14 @@ AWS.config = config;
 
 const app = express();
 const server = http.createServer(app);
+const httpsServer = https.createServer(
+	{
+		key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+		cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+	},
+	app
+);
+
 const io = socketIo(server, {
 	cors: {
 		origin: '*',
@@ -382,5 +391,7 @@ io.on('connection', (socket) => {
 	});
 });
 
-server.listen(process.env.PORT || 8080);
+server.listen(process.env.PORT || 8080, () => console.log(`Server on port ${process.env.PORT}`));
+httpsServer.listen(process.env.PORT || 443, () => console.log(`Secure server on port ${process.env.PORT}`));
+
 console.log('Server started');
