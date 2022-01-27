@@ -28,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "react-scripts start"
+    "dev": "react-scripts start",
+    "dev:server": "nodemon ./src/server.js"
   },
   "browserslist": {
     "production": [
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^12.0.0",
+    "nodemon": "^2.0.15",
     "react-test-render": "^1.1.2"
   }
 }

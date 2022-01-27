@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const seedrandom = require('seedrandom');
@@ -22,15 +23,15 @@ AWS.config = config;
 const app = express();
 
 const httpsOptions = {
-	cert: fs.readFileSync(path.join(__dirname, '../../cert', 'cert.crt')),
-	ca: fs.readFileSync(path.join(__dirname, '../../cert', 'ca.crt')),
-	key: fs.readFileSync(path.join(__dirname, '../../cert', 'private.key')),
+	cert: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.crt')),
+	ca: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.ca-bundle')),
+	key: fs.readFileSync(path.join(__dirname, 'cert', 'ssl_nn_inventor_city_PK.key')),
 };
 
 const server = http.createServer(app);
 const httpsServer = https.createServer(httpsOptions, app);
 
-const io = socketIo(server, {
+const io = socketIo(httpsServer, {
 	cors: {
 		origin: '*',
 		methods: ['GET', 'POST'],
@@ -39,14 +40,10 @@ const io = socketIo(server, {
 
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.use((req, res, next) => {
-	if (req.protocol === 'http') {
-		res.redirect(301, `https://${req.headers.host}${req.url}`);
-	}
-	next();
-});
-
 app.get('*', function (req, res) {
+	if (process.env.LOGNAME == 'ubuntu' && req.get('x-forwarded-proto').indexOf('https') == -1) {
+		res.redirect('https://' + req.hostname + req.url);
+	}
 	res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
@@ -399,5 +396,5 @@ io.on('connection', (socket) => {
 	});
 });
 
-server.listen(process.env.PORT || 80, () => console.log(`Server on port ${process.env.PORT}`));
-httpsServer.listen(process.env.PORT || 443, () => console.log(`Secure server on port ${process.env.PORT}`));
+server.listen(80, () => console.log(`Server on port 80`));
+httpsServer.listen(443, () => console.log(`Secure server on port 443`));
