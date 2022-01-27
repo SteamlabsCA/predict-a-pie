@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const https = require('https');
 const seedrandom = require('seedrandom');
 const socketIo = require('socket.io');
 var AWS = require('aws-sdk');
@@ -19,7 +20,16 @@ var config = new AWS.Config({
 AWS.config = config;
 
 const app = express();
+
+const httpsOptions = {
+	cert: fs.readFileSync(path.join(__dirname, '../../cert', 'cert.crt')),
+	ca: fs.readFileSync(path.join(__dirname, '../../cert', 'ca.crt')),
+	key: fs.readFileSync(path.join(__dirname, '../../cert', 'private.key')),
+};
+
 const server = http.createServer(app);
+const httpsServer = https.createServer(httpsOptions, app);
+
 const io = socketIo(server, {
 	cors: {
 		origin: '*',
@@ -28,6 +38,13 @@ const io = socketIo(server, {
 });
 
 app.use(express.static(path.join(__dirname, '../build')));
+
+app.use((req, res, next) => {
+	if (req.protocol === 'http') {
+		res.redirect(301, `https://${req.headers.host}${req.url}`);
+	}
+	next();
+});
 
 app.get('*', function (req, res) {
 	res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -382,5 +399,5 @@ io.on('connection', (socket) => {
 	});
 });
 
-server.listen(process.env.PORT || 8080);
-console.log('Server started');
+server.listen(process.env.PORT || 80, () => console.log(`Server on port ${process.env.PORT}`));
+httpsServer.listen(process.env.PORT || 443, () => console.log(`Secure server on port ${process.env.PORT}`));
