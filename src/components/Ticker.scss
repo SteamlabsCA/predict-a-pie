@@ -46,6 +46,10 @@ width: 4rem;
     cursor: pointer;
     height: 2rem;
     position: relative;
+
+    &:hover {
+      background: none !important;
+    }
   }
   
   &-triangle {
