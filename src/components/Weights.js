@@ -2,6 +2,7 @@ import './Weights.scss';
 import positive from '../assets/positive.svg';
 import negative from '../assets/negative.svg';
 import Knob from './Knob';
+import Ticker from './Ticker'
 import React from 'react';
 
 function Weights({connections, ...props}) {
@@ -67,15 +68,15 @@ function Weights({connections, ...props}) {
         ))}
       </svg>
       {editing.map((connection, index) => connection.editing && (
-        <Knob
+        <Ticker
           key={index}
           x={outputX(connection.from)}
           y={outputY(connection.from)}
           value={connection.weight}
           onStartChange={onStartChange}
           onChange={(value) => props.onChange(connection, value)}
-        />
-      ))}
+        />        
+      ))}      
       <div
         className="Neuron-terminal"
         style={{
