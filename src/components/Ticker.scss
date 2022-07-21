@@ -1,0 +1,88 @@
+@import "../variables";
+
+.Ticker {
+  cursor: pointer;
+  pointer-events: all;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  transform: translateX(-50%) translateY(-50%);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 4rem;
+
+  &-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 2rem;
+    position: relative;
+
+    &:hover {
+      background: none !important;
+    }
+  }
+
+  &-triangle {
+    border-style: solid;
+    height: 0;
+    width: 0;
+  }
+
+  &-triangle-up {
+    border-color: transparent transparent #dfe1e2;
+    border-width: 0 1rem 1rem;
+  }
+
+  &-triangle-down {
+    border-color: #dfe1e2 transparent transparent;
+    border-width: 1rem 1rem 0;
+  }
+
+  &-window {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    box-sizing: content-box;
+    overflow: hidden;
+    position: relative;
+    width: 3.4rem;
+    height: 2.4rem;
+  }
+
+  &-values {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: absolute;
+    top: 0;
+    transition: top 100ms;
+  }
+
+  &-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    width: 3.4rem;
+    height: 2.4rem;
+  }
+
+  &-input {
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+}
