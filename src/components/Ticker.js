@@ -5,6 +5,15 @@ function Ticker({ x, y, value, ...props }) {
   let mouseX, mouseY, previousValue;
   const [isInputClicked, setIsInputClicked] = React.useState(false);
 
+  const changeValue = (newValue) => {
+    newValue = Math.max(1, newValue);
+    newValue = Math.min(100, newValue);
+    if (newValue != previousValue) {
+      previousValue = newValue;
+      props.onChange(newValue);
+    }
+  };
+
   const onMouseDown = (event) => {
     props.onStartChange();
     mouseX = event.clientX;
@@ -24,35 +33,20 @@ function Ticker({ x, y, value, ...props }) {
       const deltaY = -event.clientY + mouseY;
       const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
       let newValue = parseInt(value) + Math.round(delta / 3);
-      newValue = Math.max(1, newValue);
-      newValue = Math.min(100, newValue);
-      if (newValue != previousValue) {
-        previousValue = newValue;
-        props.onChange(newValue);
-      }
+      changeValue(newValue);
     }
   };
 
   const onClickPlus = () => {
     setIsInputClicked(false);
     let newValue = value + 1;
-    newValue = Math.max(1, newValue);
-    newValue = Math.min(100, newValue);
-    if (newValue != previousValue) {
-      previousValue = newValue;
-      props.onChange(newValue);
-    }
+    changeValue(newValue);
   };
 
   const onClickMinus = () => {
     setIsInputClicked(false);
     let newValue = value - 1;
-    newValue = Math.max(1, newValue);
-    newValue = Math.min(100, newValue);
-    if (newValue != previousValue) {
-      previousValue = newValue;
-      props.onChange(newValue);
-    }
+    changeValue(newValue);
   };
 
   const onClick = (event) => {
@@ -66,11 +60,9 @@ function Ticker({ x, y, value, ...props }) {
     if (event.key === "Enter") {
       setIsInputClicked(false);
       let newValue = event.target.value;
-      newValue = Math.max(1, newValue);
-      newValue = Math.min(100, newValue);
-      if (newValue != previousValue) {
-        previousValue = newValue;
-        props.onChange(newValue);
+
+      if (newValue !== "") {
+        changeValue(newValue);
       }
     }
   };
@@ -98,6 +90,7 @@ function Ticker({ x, y, value, ...props }) {
               <div className="Ticker-value" key={i} onClick={onClick}>
                 {isInputClicked ? (
                   <input
+                    type="number"
                     className="Ticker-value Ticker-input"
                     defaultValue={i + 1}
                     onKeyDown={onKeyDown}
@@ -114,9 +107,6 @@ function Ticker({ x, y, value, ...props }) {
         <div
           className="Ticker-triangle Ticker-triangle-down"
           onClick={onClickMinus}
-          // onMouseDown={onMouseDownMinus}
-          // onMouseUp={onMouseUpMinus}
-          // onMouseLeave={onMouseUpMinus}
         ></div>
       </button>
     </div>
