@@ -4,6 +4,10 @@ import React from "react";
 function Ticker({ x, y, value, ...props }) {
   let mouseX, mouseY, previousValue;
   const [isInputClicked, setIsInputClicked] = React.useState(false);
+  const [isArrowClicked, setIsArrowClicked] = React.useState(false);
+
+  const upArrow = React.useRef();
+  const downArrow = React.useRef();
 
   const changeValue = (newValue) => {
     newValue = Math.max(1, newValue);
@@ -15,6 +19,7 @@ function Ticker({ x, y, value, ...props }) {
   };
 
   const onMouseDown = (event) => {
+    console.log("called");
     props.onStartChange();
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -43,13 +48,40 @@ function Ticker({ x, y, value, ...props }) {
     changeValue(newValue);
   };
 
-  const onClickMinus = () => {
+  // const onClickMinus = () => {
+  //   setIsInputClicked(false);
+  //   let newValue = value - 1;
+  //   changeValue(newValue);
+  // };
+
+  const onMouseDownMinus = () => {
     setIsInputClicked(false);
     let newValue = value - 1;
     changeValue(newValue);
+    const timeoutId = setTimeout(timeout, 1000);
+
+    document.addEventListener("mouseup", () => {
+      clearTimeout(timeoutId);
+    });
   };
 
-  const onClick = (event) => {
+  const timeout = () => {
+    const decrementId = setInterval(decrement, 200);
+
+    document.addEventListener("mouseup", () => {
+      clearInterval(decrementId);
+    });
+  };
+
+  const decrement = () => {
+    if (value > 1) {
+      value--;
+      changeValue(value);
+      console.log("interval");
+    }
+  };
+
+  const onClick = () => {
     setIsInputClicked(true);
   };
 
@@ -73,7 +105,7 @@ function Ticker({ x, y, value, ...props }) {
       onMouseDown={onMouseDown}
       style={{ left: x + -15 + "px", top: y + "px" }}
     >
-      <button className="Ticker-button">
+      <button className="Ticker-button" ref={upArrow}>
         <div
           className="Ticker-triangle Ticker-triangle-up"
           onClick={onClickPlus}
@@ -103,10 +135,10 @@ function Ticker({ x, y, value, ...props }) {
             ))}
         </div>
       </div>
-      <button className="Ticker-button">
+      <button className="Ticker-button" ref={downArrow}>
         <div
           className="Ticker-triangle Ticker-triangle-down"
-          onClick={onClickMinus}
+          onMouseDown={onMouseDownMinus}
         ></div>
       </button>
     </div>
