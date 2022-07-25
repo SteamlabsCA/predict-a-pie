@@ -4,7 +4,6 @@ import React from "react";
 function Ticker({ x, y, value, ...props }) {
   let mouseX, mouseY, previousValue;
   const [isInputClicked, setIsInputClicked] = React.useState(false);
-  const [isArrowClicked, setIsArrowClicked] = React.useState(false);
 
   const changeValue = (newValue) => {
     newValue = Math.max(1, newValue);
@@ -16,7 +15,6 @@ function Ticker({ x, y, value, ...props }) {
   };
 
   const onMouseDown = (event) => {
-    setIsArrowClicked(isArrowClicked ? false : true);
     props.onStartChange();
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -30,7 +28,7 @@ function Ticker({ x, y, value, ...props }) {
   };
 
   const onMouseMove = (event) => {
-    if (isInputClicked === false && isArrowClicked === false) {
+    if (isInputClicked === false) {
       const deltaX = event.clientX - mouseX;
       const deltaY = -event.clientY + mouseY;
       const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
@@ -39,16 +37,8 @@ function Ticker({ x, y, value, ...props }) {
     }
   };
 
-  const onClickPlus = () => {
-    setIsInputClicked(false);
-    let newValue = value + 1;
-    changeValue(newValue);
-  };
-
   const onMouseDownPlus = () => {
     setIsInputClicked(false);
-    setIsArrowClicked(true);
-    console.log("isArrowClicked", isArrowClicked);
     let newValue = value + 1;
     changeValue(newValue);
     const timeoutId = setTimeout(timeoutIncrement, 1000);
@@ -75,8 +65,6 @@ function Ticker({ x, y, value, ...props }) {
 
   const onMouseDownMinus = () => {
     setIsInputClicked(false);
-    setIsArrowClicked(true);
-    console.log("isArrowClicked", isArrowClicked);
     let newValue = value - 1;
     changeValue(newValue);
     const timeoutId = setTimeout(timeoutDecrement, 1000);
