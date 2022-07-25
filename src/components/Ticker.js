@@ -6,9 +6,6 @@ function Ticker({ x, y, value, ...props }) {
   const [isInputClicked, setIsInputClicked] = React.useState(false);
   const [isArrowClicked, setIsArrowClicked] = React.useState(false);
 
-  const upArrow = React.useRef();
-  const downArrow = React.useRef();
-
   const changeValue = (newValue) => {
     newValue = Math.max(1, newValue);
     newValue = Math.min(100, newValue);
@@ -19,7 +16,7 @@ function Ticker({ x, y, value, ...props }) {
   };
 
   const onMouseDown = (event) => {
-    console.log("called");
+    setIsArrowClicked(isArrowClicked ? false : true);
     props.onStartChange();
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -33,7 +30,7 @@ function Ticker({ x, y, value, ...props }) {
   };
 
   const onMouseMove = (event) => {
-    if (isInputClicked === false) {
+    if (isInputClicked === false && isArrowClicked === false) {
       const deltaX = event.clientX - mouseX;
       const deltaY = -event.clientY + mouseY;
       const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
@@ -48,24 +45,48 @@ function Ticker({ x, y, value, ...props }) {
     changeValue(newValue);
   };
 
-  // const onClickMinus = () => {
-  //   setIsInputClicked(false);
-  //   let newValue = value - 1;
-  //   changeValue(newValue);
-  // };
-
-  const onMouseDownMinus = () => {
+  const onMouseDownPlus = () => {
     setIsInputClicked(false);
-    let newValue = value - 1;
+    setIsArrowClicked(true);
+    console.log("isArrowClicked", isArrowClicked);
+    let newValue = value + 1;
     changeValue(newValue);
-    const timeoutId = setTimeout(timeout, 1000);
+    const timeoutId = setTimeout(timeoutIncrement, 1000);
 
     document.addEventListener("mouseup", () => {
       clearTimeout(timeoutId);
     });
   };
 
-  const timeout = () => {
+  const timeoutIncrement = () => {
+    const incrementId = setInterval(increment, 200);
+
+    document.addEventListener("mouseup", () => {
+      clearInterval(incrementId);
+    });
+  };
+
+  const increment = () => {
+    if (value < 100) {
+      value++;
+      changeValue(value);
+    }
+  };
+
+  const onMouseDownMinus = () => {
+    setIsInputClicked(false);
+    setIsArrowClicked(true);
+    console.log("isArrowClicked", isArrowClicked);
+    let newValue = value - 1;
+    changeValue(newValue);
+    const timeoutId = setTimeout(timeoutDecrement, 1000);
+
+    document.addEventListener("mouseup", () => {
+      clearTimeout(timeoutId);
+    });
+  };
+
+  const timeoutDecrement = () => {
     const decrementId = setInterval(decrement, 200);
 
     document.addEventListener("mouseup", () => {
@@ -77,7 +98,6 @@ function Ticker({ x, y, value, ...props }) {
     if (value > 1) {
       value--;
       changeValue(value);
-      console.log("interval");
     }
   };
 
@@ -105,10 +125,10 @@ function Ticker({ x, y, value, ...props }) {
       onMouseDown={onMouseDown}
       style={{ left: x + -15 + "px", top: y + "px" }}
     >
-      <button className="Ticker-button" ref={upArrow}>
+      <button className="Ticker-button">
         <div
           className="Ticker-triangle Ticker-triangle-up"
-          onClick={onClickPlus}
+          onMouseDown={onMouseDownPlus}
         ></div>
       </button>
       <div className="Ticker-window">
@@ -135,7 +155,7 @@ function Ticker({ x, y, value, ...props }) {
             ))}
         </div>
       </div>
-      <button className="Ticker-button" ref={downArrow}>
+      <button className="Ticker-button">
         <div
           className="Ticker-triangle Ticker-triangle-down"
           onMouseDown={onMouseDownMinus}
