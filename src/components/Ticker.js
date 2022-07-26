@@ -1,9 +1,13 @@
 import "./Ticker.scss";
 import React from "react";
 
+// comment: implemented drag and change number feature, but it also happens when holding arrows AND moving cursor
+// comment: can't figure out why setIsArrowClicked can't be changed in onmousedown and onmouseup
+
 function Ticker({ x, y, value, ...props }) {
   let mouseX, mouseY, previousValue;
   const [isInputClicked, setIsInputClicked] = React.useState(false);
+  const [isArrowClicked, setIsArrowClicked] = React.useState(false);
 
   const changeValue = (newValue) => {
     newValue = Math.max(1, newValue);
@@ -27,24 +31,36 @@ function Ticker({ x, y, value, ...props }) {
     window.removeEventListener("mousemove", onMouseMove);
   };
 
+  let prevY;
   const onMouseMove = (event) => {
-    if (isInputClicked === false) {
-      const deltaX = event.clientX - mouseX;
-      const deltaY = -event.clientY + mouseY;
-      const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
-      let newValue = parseInt(value) + Math.round(delta / 3);
-      changeValue(newValue);
+    if (isInputClicked === false && isArrowClicked === false) {
+      if (event.clientY > prevY) {
+        console.log("decrease");
+        value--;
+        changeValue(value);
+      } else if (event.clientY < prevY) {
+        console.log("increase");
+        value++;
+        changeValue(value);
+      } else {
+        console.log("same");
+      }
+
+      prevY = event.clientY;
     }
   };
 
   const onMouseDownPlus = () => {
     setIsInputClicked(false);
+    setIsArrowClicked(true);
+
     let newValue = value + 1;
     changeValue(newValue);
     const timeoutId = setTimeout(timeoutIncrement, 1000);
 
     document.addEventListener("mouseup", () => {
       clearTimeout(timeoutId);
+      setIsArrowClicked(false);
     });
   };
 
@@ -65,12 +81,15 @@ function Ticker({ x, y, value, ...props }) {
 
   const onMouseDownMinus = () => {
     setIsInputClicked(false);
+    setIsArrowClicked(true);
+
     let newValue = value - 1;
     changeValue(newValue);
     const timeoutId = setTimeout(timeoutDecrement, 1000);
 
     document.addEventListener("mouseup", () => {
       clearTimeout(timeoutId);
+      setIsArrowClicked(false);
     });
   };
 
