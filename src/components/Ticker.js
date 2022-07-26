@@ -1,13 +1,10 @@
 import "./Ticker.scss";
 import React from "react";
 
-// comment: implemented drag and change number feature, but it also happens when holding arrows AND moving cursor
-// comment: can't figure out why setIsArrowClicked can't be changed in onmousedown and onmouseup
-
 function Ticker({ x, y, value, ...props }) {
-  let mouseX, mouseY, previousValue;
+  let previousValue, prevY;
+  let isArrowClicked = false;
   const [isInputClicked, setIsInputClicked] = React.useState(false);
-  const [isArrowClicked, setIsArrowClicked] = React.useState(false);
 
   const changeValue = (newValue) => {
     newValue = Math.max(1, newValue);
@@ -20,8 +17,6 @@ function Ticker({ x, y, value, ...props }) {
 
   const onMouseDown = (event) => {
     props.onStartChange();
-    mouseX = event.clientX;
-    mouseY = event.clientY;
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("mousemove", onMouseMove);
   };
@@ -31,19 +26,14 @@ function Ticker({ x, y, value, ...props }) {
     window.removeEventListener("mousemove", onMouseMove);
   };
 
-  let prevY;
   const onMouseMove = (event) => {
     if (isInputClicked === false && isArrowClicked === false) {
       if (event.clientY > prevY) {
-        console.log("decrease");
         value--;
         changeValue(value);
       } else if (event.clientY < prevY) {
-        console.log("increase");
         value++;
         changeValue(value);
-      } else {
-        console.log("same");
       }
 
       prevY = event.clientY;
@@ -52,7 +42,7 @@ function Ticker({ x, y, value, ...props }) {
 
   const onMouseDownPlus = () => {
     setIsInputClicked(false);
-    setIsArrowClicked(true);
+    isArrowClicked = true;
 
     let newValue = value + 1;
     changeValue(newValue);
@@ -60,7 +50,7 @@ function Ticker({ x, y, value, ...props }) {
 
     document.addEventListener("mouseup", () => {
       clearTimeout(timeoutId);
-      setIsArrowClicked(false);
+      isArrowClicked = false;
     });
   };
 
@@ -81,7 +71,7 @@ function Ticker({ x, y, value, ...props }) {
 
   const onMouseDownMinus = () => {
     setIsInputClicked(false);
-    setIsArrowClicked(true);
+    isArrowClicked = true;
 
     let newValue = value - 1;
     changeValue(newValue);
@@ -89,7 +79,7 @@ function Ticker({ x, y, value, ...props }) {
 
     document.addEventListener("mouseup", () => {
       clearTimeout(timeoutId);
-      setIsArrowClicked(false);
+      isArrowClicked = false;
     });
   };
 
