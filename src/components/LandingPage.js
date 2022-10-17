@@ -2,8 +2,9 @@ import React from "react";
 import "./LandingPage.scss";
 import Hero from "./Hero";
 import Button from "./Button";
-import david from "../assets/david.png";
-import stew from "../assets/stew.png";
+import indigenous from "../assets/indigenous.png";
+import aiWeirdness from "../assets/ai-weirdness.png";
+import amazonIcon from "../assets/amazon-icon.png";
 
 const LandingPage = () => {
   return (
@@ -11,8 +12,8 @@ const LandingPage = () => {
       <Hero />
 
       <div className="MainSection">
-        <div className="Beginning">
-          <div className="Beginning-left">
+        <div className="Beginning columns">
+          <div className="left">
             <h2>Let’s start from the beginning...</h2>
             <h4 className="box-title">Intro to Neural Networks</h4>
             <p className="box-description">
@@ -23,7 +24,7 @@ const LandingPage = () => {
             <Button>READ ARTICLE</Button>
           </div>
 
-          <div className="Beginning-right">
+          <div className="right">
             <img src="" />
           </div>
         </div>
@@ -31,13 +32,11 @@ const LandingPage = () => {
         <div className="Articles">
           <h2>Let's go deeper!</h2>
           <div className="Articles-contents">
-            <div className="Articles-indigenous">
-              <div className="Articles-indigenous-left">
-                <img src="" />
-                <img src="" />
-                <div></div>
+            <div className="Articles-indigenous columns">
+              <div className="left">
+                <img src={indigenous} />
               </div>
-              <div className="Articles-indigenous-right">
+              <div className="right">
                 <h4>
                   Indigenous Cooking with a <em>dash</em> of AI
                 </h4>
@@ -52,36 +51,55 @@ const LandingPage = () => {
                 <Button>READ ARTICLE</Button>
               </div>
             </div>
-            <div className="Articles-columns">
-              <div className="Articles-columns-weird">
-                <h4> AI Weirdness</h4>
-                <p>asff</p>
 
-                <Button>READ ARTICLE</Button>
+            <div className="Articles-columns columns">
+              <div className="Articles-columns-weird columns left">
+                <div className="left">
+                  <h4>AI Weirdness</h4>
+                  <p>asff</p>
+
+                  <Button>READ ARTICLE</Button>
+                </div>
+
+                <div className="right">
+                  <img src={aiWeirdness} />
+                </div>
               </div>
-              <div className="Articles-columns-prime">
-                <h4>Recommendation engine AI with Prime Video</h4>
-                <p>
-                  Learn how the Amazon Prime Video recommendation engine works
-                  using Neural Networks!
-                </p>
+              <div className="Articles-columns-prime columns right">
+                <div className="left">
+                  <h4>Recommendation engine AI with Prime Video</h4>
+                  <p>
+                    Learn how the Amazon Prime Video recommendation engine works
+                    using Neural Networks!
+                  </p>
 
-                <Button>READ ARTICLE</Button>
+                  <Button>READ ARTICLE</Button>
+                </div>
+                <div className="right">
+                  <img src={amazonIcon} />
+                </div>
               </div>
             </div>
-            <div className="Articles-non-computer">
-              <h4>
-                Neural Networks for your non-computer science classroom subject
-              </h4>
-              <p>
-                The idea of Artificial Intelligence (AI) often conjures up ideas
-                related to science fiction or of an individual mashing the
-                keyboard, working on some complex algorithm. However, we hope to
-                challenge some of these notions and highlight potential areas in
-                which AI could be adopted into different areas of an education
-                curriculum.
-              </p>
-              <Button>READ ARTICLE</Button>
+            <div className="Articles-non-computer columns">
+              <div className="left">
+                {" "}
+                <h4>
+                  Neural Networks for your non-computer science classroom
+                  subject
+                </h4>
+                <p>
+                  The idea of Artificial Intelligence (AI) often conjures up
+                  ideas related to science fiction or of an individual mashing
+                  the keyboard, working on some complex algorithm. However, we
+                  hope to challenge some of these notions and highlight
+                  potential areas in which AI could be adopted into different
+                  areas of an education curriculum.
+                </p>
+                <Button>READ ARTICLE</Button>
+              </div>
+              <div className="right">
+                <img src="" />
+              </div>
             </div>
           </div>
         </div>

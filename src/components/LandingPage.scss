@@ -1,7 +1,7 @@
 $boxBorderRadius: 25px;
-$boxPadding: 0 35px 35px;
-$boxTitleWeight: 700;
-$boxTitleSize: 3rem;
+$boxPadding: 15px 35px 35px;
+$boxTitleWeight: 800;
+$boxTitleSize: 2rem;
 $boxDescriptionSize: 1.5rem;
 
 $sectionMargin: 200px 0 125px;
@@ -14,13 +14,8 @@ $sectionTitleSize: 6rem;
   margin: 0 13%;
 }
 
-.Beginning {
-  // margin: $sectionMargin;
-  background: #2e4046;
-  border-radius: $boxBorderRadius;
+.columns {
   width: 100%;
-  min-height: 560px;
-  padding: 55px 65px 65px;
   display: flex;
   flex-direction: column;
 
@@ -28,9 +23,25 @@ $sectionTitleSize: 6rem;
     flex-direction: row;
   }
 
-  &-left {
+  .left,
+  .right {
+    width: 100%;
+
+    @media screen and (min-width: 1120px) {
+      width: 50%;
+    }
+  }
+}
+
+.Beginning {
+  // margin: $sectionMargin;
+  background: #2e4046;
+  border-radius: $boxBorderRadius;
+  min-height: 560px;
+  padding: 55px 65px 65px;
+
+  .left {
     color: #fff;
-    width: 50%;
 
     h2 {
       font-weight: $sectionTitleWeight;
@@ -45,10 +56,6 @@ $sectionTitleSize: 6rem;
     p {
       font-size: $boxDescriptionSize;
     }
-  }
-
-  &-right {
-    width: 50%;
   }
 }
 
@@ -78,37 +85,63 @@ $sectionTitleSize: 6rem;
 
   &-indigenous {
     background: #b3edd2;
-    padding: 55px 45px 45px;
+    // padding: 55px 45px 45px;
+    padding: 0 45px;
+    align-items: center;
 
-    &-left {
-      width: 50%;
-    }
-
-    &-right {
-      width: 50%;
+    .left {
+      img {
+        width: 100%;
+      }
     }
   }
 
   &-columns {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    @media screen and (min-width: 1120px) {
-      flex-direction: row;
+    .Button {
+      width: 225px;
     }
 
     &-weird {
       background: linear-gradient(180deg, #dbeaf7 0%, #9bd6f3 100%);
-      width: 50%;
       padding: $boxPadding;
+
+      @media screen and (min-width: 1120px) {
+        margin: 25px 7px 25px 0;
+        align-items: center;
+      }
+
+      .left {
+        width: 60%;
+      }
+
+      .right {
+        width: 40%;
+        img {
+          width: 130%;
+        }
+      }
     }
 
     &-prime {
       background: #2e4046;
-      width: 50%;
       padding: $boxPadding;
       color: #fff;
+
+      @media screen and (min-width: 1120px) {
+        margin: 25px 0 25px 7px;
+        align-items: center;
+      }
+
+      .left {
+        width: 60%;
+      }
+
+      .right {
+        width: 40%;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 
