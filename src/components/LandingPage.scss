@@ -93,6 +93,72 @@ $sectionTitleSize: 6rem;
   }
 }
 
+.Hero {
+  height: 100vh;
+  width: 100%;
+  background-color: #b3edd2;
+  position: relative;
+
+  &-scroll {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 83%;
+    text-align: center;
+    animation: arrowmove 1s ease-in-out infinite;
+    cursor: pointer;
+  }
+
+  &-arrow {
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    width: 0.5em;
+    height: 3.5em;
+    background: currentColor;
+  }
+
+  &-arrow::before {
+    content: "";
+    width: 2em;
+    height: 2em;
+    border: 0.5em solid currentColor;
+    border-top: 0;
+    border-right: 0;
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+    position: absolute;
+    left: 50%;
+    bottom: -0.5em;
+    box-sizing: border-box;
+  }
+
+  @keyframes arrowmove {
+    0% {
+      top: 83%;
+    }
+    50% {
+      top: 85%;
+    }
+    100% {
+      top: 83%;
+    }
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 89%;
+    text-align: center;
+  }
+}
+
 .Beginning {
   margin: $sectionMargin;
   background: #2e4046;

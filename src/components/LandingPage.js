@@ -1,8 +1,8 @@
 import React from "react";
 import "./LandingPage.scss";
-import Hero from "./Hero";
 import Button from "./Button";
 import gtmTrack from "../helpers/gtmTrack";
+import { Link } from "react-router-dom";
 
 import beginning from "../assets/beginning.png";
 import indigenous from "../assets/indigenous.png";
@@ -18,9 +18,20 @@ import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
 
 const LandingPage = ({ onCommand, appData }) => {
+  const scroll = () => {
+    const scrollHeight = document.getElementById("Hero").scrollHeight;
+    window.scrollTo({ top: scrollHeight, behavior: "smooth" });
+  };
+
   return (
     <div className="LandingPage">
-      <Hero />
+      <div className="Hero" id="Hero">
+        <div className="Hero-scroll" onClick={scroll}>
+          <span class="Hero-arrow"></span>
+        </div>
+
+        <p>SCROLL DOWN</p>
+      </div>
 
       <div className="MainSection">
         <div className="Beginning columns">
@@ -263,7 +274,7 @@ const LandingPage = ({ onCommand, appData }) => {
                   from a combination of the input ingredients.
                 </p>
               </div>
-              <a
+              <Link
                 onClick={() =>
                   gtmTrack("prm_btn_click", "Pretrained", "Predict a Pie", "")
                 }
@@ -274,7 +285,7 @@ const LandingPage = ({ onCommand, appData }) => {
                 }
               >
                 <Button>Ready to Play!</Button>
-              </a>
+              </Link>
             </div>
 
             <div className="tile fun-part">
@@ -288,7 +299,7 @@ const LandingPage = ({ onCommand, appData }) => {
                 </p>
               </div>
 
-              <a
+              <Link
                 onClick={() =>
                   gtmTrack(
                     "prm_btn_click",
@@ -304,7 +315,7 @@ const LandingPage = ({ onCommand, appData }) => {
                 }
               >
                 <Button>Ready to Play!</Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
