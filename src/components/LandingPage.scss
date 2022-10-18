@@ -5,11 +5,9 @@ $boxTitleSize: 2rem;
 $boxDescriptionSize: 1.6rem;
 $boxDescriptionLineHeight: 1.6;
 
-$sectionMargin: 200px 0 125px;
+$sectionMargin: 125px 0;
 $sectionTitleWeight: 700;
 $sectionTitleSize: 6rem;
-
-// $buttonBackground; ;
 
 .MainSection {
   margin: 0 13%;
@@ -62,29 +60,41 @@ $sectionTitleSize: 6rem;
   p {
     font-size: $boxDescriptionSize;
     line-height: $boxDescriptionLineHeight;
+    margin-bottom: 3rem;
   }
+
+  position: relative;
 
   .Button {
     color: #fff;
     background: #2e4046;
     width: 80%;
+    position: absolute;
+    bottom: 2%;
+    transform: translateX(-50%);
   }
 }
 
 .fun-part {
   width: 90%;
+  position: relative;
+
   @media screen and (min-width: 1120px) {
     width: 24%;
-    height: 550px;
+    // height: 600px;
   }
 
   img {
     width: 100%;
   }
+
+  p {
+    margin-bottom: 12rem;
+  }
 }
 
 .Beginning {
-  // margin: $sectionMargin;
+  margin: $sectionMargin;
   background: #2e4046;
   border-radius: $borderRadius;
   min-height: 560px;
@@ -111,6 +121,7 @@ $sectionTitleSize: 6rem;
 }
 
 .Articles {
+  margin: $sectionMargin;
   h2 {
     font-weight: $sectionTitleWeight;
     font-size: $sectionTitleSize;
@@ -206,6 +217,7 @@ $sectionTitleSize: 6rem;
 }
 
 .Educators {
+  margin: $sectionMargin;
   .left {
     width: 40%;
     h2 {
@@ -228,6 +240,7 @@ $sectionTitleSize: 6rem;
 }
 
 .FunPart {
+  margin: $sectionMargin;
   h2 {
     font-weight: $sectionTitleWeight;
     font-size: $sectionTitleSize;
@@ -242,6 +255,7 @@ $sectionTitleSize: 6rem;
 }
 
 .AboutApp {
+  margin: $sectionMargin;
   h2 {
     font-weight: $sectionTitleWeight;
     font-size: $sectionTitleSize;

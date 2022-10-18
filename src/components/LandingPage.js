@@ -192,8 +192,8 @@ const LandingPage = () => {
                   Enter the classroom code provide by your instructor to start
                   exploring!
                 </p>
-                <Button>Enter Code</Button>
               </div>
+              <Button>Enter Code</Button>
             </div>
 
             <div className="tile fun-part">
@@ -205,8 +205,8 @@ const LandingPage = () => {
                   Create your own working neural network! Wire up the nodes and
                   use to make decisions based on your interests!{" "}
                 </p>
-                <Button>Ready to Build!</Button>
               </div>
+              <Button>Ready to Build!</Button>
             </div>
 
             <div className="tile fun-part">
@@ -232,8 +232,8 @@ const LandingPage = () => {
                   Play with this pretrained neural network and discover new
                   recipes using this AI trained on xnumber of pie recipes!
                 </p>
-                <Button>Ready to Play!</Button>
               </div>
+              <Button>Ready to Play!</Button>
             </div>
           </div>
         </div>
