@@ -5,6 +5,14 @@ import Button from "./Button";
 import indigenous from "../assets/indigenous.png";
 import aiWeirdness from "../assets/ai-weirdness.png";
 import amazonIcon from "../assets/amazon-icon.png";
+import iconLesson from "../assets/icon-lesson-plans.png";
+import iconCreateClassroom from "../assets/icon-create-classroom.png";
+import iconBookTraining from "../assets/icon-book-training.png";
+import iconBookClassroom from "../assets/icon-book-classroom.png";
+import funJoin from "../assets/fun-join.png";
+import funBuild from "../assets/fun-build.png";
+import funPP from "../assets/fun-pp.png";
+import funIndigenous from "../assets/fun-indigenous.png";
 
 const LandingPage = () => {
   return (
@@ -104,14 +112,268 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="Educators"></div>
+        <div className="Educators columns">
+          <div className="left">
+            <h2>Hey Educators! Want to use this in your classroom?</h2>
+            <p>
+              In this activity, you can build a real, working Neural Network.
+              The neuron nodes in the first layer on the left are your "inputs".
+              Think of these as the ingredients, or pieces of information that
+              your NN will base its decisions on. The last layer of neurons are
+              the decisions, or "classifications" that the neural network can
+              make based on these inputs. Add neurons one at a time, connect
+              them together to indicate what inputs lead to what output
+              decisions. If you need to detect combinations of inputs, you can
+              add "hidden layers" in the middle to detect these combinations. If
+              necessary, you can click on the (+) or (-) symbol on any node and
+              change the "weights" to indicate the relative importance of each
+              incoming node.
+            </p>
+          </div>
+
+          <div className="right">
+            <div className="tile">
+              <img src={iconLesson} />
+
+              <div>
+                <h4>Lesson Plans</h4>
+                <p>We have lesson plans for all grade and subjects!</p>
+                <Button>Download Plans</Button>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconCreateClassroom} />
+
+              <div>
+                <h4>Create a Classroom</h4>
+                <p>
+                  Ready to explore this activity with your students? Share your
+                  findings together.
+                </p>
+                <Button>Create</Button>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconBookTraining} />
+
+              <div>
+                <h4>Book Teacher Training</h4>
+                <p>
+                  Participant in live workshops that will help guide you through
+                  lessons!
+                </p>
+                <Button>Book</Button>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconBookClassroom} />
+
+              <div>
+                <h4>Book a Classroom Visit</h4>
+                <p>Have an instructor present to your classrom</p>
+                <Button>Book</Button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="FunPart">
           <h2>Now for the FUN part!</h2>
+          <div className="columns">
+            <div className="tile fun-part">
+              <img src={funJoin} />
+
+              <div>
+                <h4>Join a Classroom</h4>
+                <p>
+                  Enter the classroom code provide by your instructor to start
+                  exploring!
+                </p>
+                <Button>Enter Code</Button>
+              </div>
+            </div>
+
+            <div className="tile fun-part">
+              <img src={funBuild} />
+
+              <div>
+                <h4>Build Your Own Neural Network</h4>
+                <p>
+                  Create your own working neural network! Wire up the nodes and
+                  use to make decisions based on your interests!{" "}
+                </p>
+                <Button>Ready to Build!</Button>
+              </div>
+            </div>
+
+            <div className="tile fun-part">
+              <img src={funPP} />
+
+              <div>
+                <h4>Predict a Pie Neural Network</h4>
+                <p>
+                  The Neural Network in this activity has been trained on
+                  thousands of pie recipes to be able to classify any recipe
+                  from a combination of the input ingredients.
+                </p>
+              </div>
+              <Button>Ready to Play!</Button>
+            </div>
+
+            <div className="tile fun-part">
+              <img src={funIndigenous} />
+
+              <div>
+                <h4>Indigenous Fusion Neural Network</h4>
+                <p>
+                  Play with this pretrained neural network and discover new
+                  recipes using this AI trained on xnumber of pie recipes!
+                </p>
+                <Button>Ready to Play!</Button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="AboutApp">
           <h2>About this app</h2>
+          <h3>Credits</h3>
+          <div className="Instructions-sctFour">
+            <p>
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.steamlabs.ca/",
+                    "https://www.steamlabs.ca/"
+                  )
+                }
+                href="https://www.steamlabs.ca/"
+                target="_new"
+              >
+                <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
+              </a>
+              Predict-a-Pie is a creation of Steamlabs.
+            </p>
+            <p>
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: http://www.cookingwiththewolfman.com/home.html",
+                    "http://www.cookingwiththewolfman.com/home.html"
+                  )
+                }
+                href="http://www.cookingwiththewolfman.com/home.html"
+                target="_new"
+              >
+                <img src="./ChefWolfmanLogo.gif" />
+              </a>
+              Consultation with David Wolfman and Marlene Finn
+            </p>
+            <p>
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://kidscodejeunesse.org/",
+                    "https://kidscodejeunesse.org/"
+                  )
+                }
+                href="https://kidscodejeunesse.org/"
+                target="_new"
+              >
+                <img
+                  src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png"
+                  height="100px"
+                />
+              </a>
+              Co-designed by Steamlabs and Kids Code Jeunesse.
+            </p>
+            <p>
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.amazonfutureengineer.com/",
+                    "https://www.amazonfutureengineer.com/"
+                  )
+                }
+                href="https://www.amazonfutureengineer.com/"
+                target="_new"
+              >
+                <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
+              </a>
+              Created with funding from Amazon Future Engineer.
+            </p>
+          </div>
+          <div className="Instructions-sctFive">
+            <h3>License</h3>
+            <p>
+              Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA
+              4.0)
+            </p>
+            <p>In summary, you are free to:</p>
+            <ul>
+              <p>
+                <li>
+                  Share — copy and redistribute the material in any medium or
+                  format
+                </li>
+                <li>
+                  Adapt — remix, transform, and build upon the material for any
+                  purpose, even commercially.
+                </li>
+              </p>
+            </ul>
+            <p>Under the following terms:</p>
+            <ul>
+              <p>
+                <li>
+                  Attribution — You must give appropriate credit, provide a link
+                  to the license, and indicate if changes were made. You may do
+                  so in any reasonable manner, but not in any way that suggests
+                  the licensor endorses you or your use.
+                </li>
+                <li>
+                  ShareAlike — If you remix, transform, or build upon the
+                  material, you must distribute your contributions under the
+                  same license as the original.
+                </li>
+              </p>
+            </ul>
+            <p>
+              Full details of this license can be found here:{" "}
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://creativecommons.org/licenses/by-sa/4.0/",
+                    "https://creativecommons.org/licenses/by-sa/4.0/"
+                  )
+                }
+                href="https://creativecommons.org/licenses/by-sa/4.0/"
+                target="_new"
+              >
+                https://creativecommons.org/licenses/by-sa/4.0/
+              </a>
+            </p>
+          </div>
+          <div className="Instructions-sctSix">
+            <h3>
+              <a href="./PredictAPiePrivacyPolicy.pdf" target="blank">
+                Privacy Policy
+              </a>
+            </h3>
+          </div>
         </div>
       </div>
     </div>

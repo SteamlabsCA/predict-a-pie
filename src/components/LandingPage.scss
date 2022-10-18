@@ -1,8 +1,9 @@
-$boxBorderRadius: 25px;
+$borderRadius: 25px;
 $boxPadding: 15px 35px 35px;
 $boxTitleWeight: 800;
 $boxTitleSize: 2rem;
-$boxDescriptionSize: 1.5rem;
+$boxDescriptionSize: 1.6rem;
+$boxDescriptionLineHeight: 1.6;
 
 $sectionMargin: 200px 0 125px;
 $sectionTitleWeight: 700;
@@ -33,10 +34,59 @@ $sectionTitleSize: 6rem;
   }
 }
 
+.tile {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: $borderRadius;
+  text-align: center;
+  width: 90%;
+
+  @media screen and (min-width: 1120px) {
+    width: 45%;
+    margin: 20px 0;
+  }
+
+  img {
+    height: 45%;
+  }
+
+  div {
+    padding: 0 10px 5px;
+  }
+
+  h4 {
+    font-weight: $boxTitleWeight;
+    font-size: $boxTitleSize;
+  }
+
+  p {
+    font-size: $boxDescriptionSize;
+    line-height: $boxDescriptionLineHeight;
+  }
+
+  .Button {
+    color: #fff;
+    background: #2e4046;
+    width: 80%;
+  }
+}
+
+.fun-part {
+  width: 90%;
+  @media screen and (min-width: 1120px) {
+    width: 24%;
+    height: 550px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
 .Beginning {
   // margin: $sectionMargin;
   background: #2e4046;
-  border-radius: $boxBorderRadius;
+  border-radius: $borderRadius;
   min-height: 560px;
   padding: 55px 65px 65px;
 
@@ -55,6 +105,7 @@ $sectionTitleSize: 6rem;
 
     p {
       font-size: $boxDescriptionSize;
+      line-height: $boxDescriptionLineHeight;
     }
   }
 }
@@ -70,7 +121,7 @@ $sectionTitleSize: 6rem;
     width: 100%;
 
     div {
-      border-radius: $boxBorderRadius;
+      border-radius: $borderRadius;
     }
 
     h4 {
@@ -80,6 +131,7 @@ $sectionTitleSize: 6rem;
 
     p {
       font-size: $boxDescriptionSize;
+      line-height: $boxDescriptionLineHeight;
     }
   }
 
@@ -150,5 +202,57 @@ $sectionTitleSize: 6rem;
     width: 100%;
     padding: $boxPadding;
     color: #fff;
+  }
+}
+
+.Educators {
+  .left {
+    width: 40%;
+    h2 {
+      font-weight: $sectionTitleWeight;
+      font-size: $sectionTitleSize;
+    }
+    p {
+      font-size: $boxDescriptionSize;
+      line-height: $boxDescriptionLineHeight;
+    }
+  }
+
+  .right {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 20px;
+  }
+}
+
+.FunPart {
+  h2 {
+    font-weight: $sectionTitleWeight;
+    font-size: $sectionTitleSize;
+    text-align: center;
+  }
+
+  .columns {
+    @media screen and (min-width: 1120px) {
+      justify-content: space-between;
+    }
+  }
+}
+
+.AboutApp {
+  h2 {
+    font-weight: $sectionTitleWeight;
+    font-size: $sectionTitleSize;
+  }
+  p {
+    font-size: $boxDescriptionSize;
+    line-height: $boxDescriptionLineHeight;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.6rem;
   }
 }
