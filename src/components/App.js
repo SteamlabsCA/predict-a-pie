@@ -461,7 +461,7 @@ function App(props) {
               checkEnv={checkEnv}
               envVariables={envVariables}
             />
-            <LandingPage />
+            <LandingPage onCommand={onCommand} appData={appData} />
           </Route>
         </Switch>
         <Alert />

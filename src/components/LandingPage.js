@@ -2,6 +2,8 @@ import React from "react";
 import "./LandingPage.scss";
 import Hero from "./Hero";
 import Button from "./Button";
+import gtmTrack from "../helpers/gtmTrack";
+
 import indigenous from "../assets/indigenous.png";
 import aiWeirdness from "../assets/ai-weirdness.png";
 import amazonIcon from "../assets/amazon-icon.png";
@@ -14,7 +16,7 @@ import funBuild from "../assets/fun-build.png";
 import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
 
-const LandingPage = () => {
+const LandingPage = ({ onCommand, appData }) => {
   return (
     <div className="LandingPage">
       <Hero />
@@ -138,7 +140,21 @@ const LandingPage = () => {
               <div>
                 <h4>Lesson Plans</h4>
                 <p>We have lesson plans for all grade and subjects!</p>
-                <Button>Download Plans</Button>
+
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf",
+                      "https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
+                  target="_new"
+                >
+                  <Button>Download Plans</Button>
+                </a>
               </div>
             </div>
 
@@ -151,7 +167,15 @@ const LandingPage = () => {
                   Ready to explore this activity with your students? Share your
                   findings together.
                 </p>
-                <Button>Create</Button>
+                <a
+                  onClick={() => {
+                    onCommand("create-classroom");
+                    gtmTrack("sec_btn_click", "Class", "Create Class", "");
+                  }}
+                  disabled={!appData.connected}
+                >
+                  <Button>Create</Button>
+                </a>
               </div>
             </div>
 
@@ -193,7 +217,16 @@ const LandingPage = () => {
                   exploring!
                 </p>
               </div>
-              <Button>Enter Code</Button>
+
+              <a
+                onClick={() => {
+                  onCommand("join-classroom");
+                  gtmTrack("sec_btn_click", "Class", "Join Class", "");
+                }}
+                disabled={!appData.connected}
+              >
+                <Button>Enter Code</Button>
+              </a>
             </div>
 
             <div className="tile fun-part">
@@ -206,7 +239,16 @@ const LandingPage = () => {
                   use to make decisions based on your interests!{" "}
                 </p>
               </div>
-              <Button>Ready to Build!</Button>
+
+              <a
+                onClick={() => {
+                  onCommand("create-classroom");
+                  gtmTrack("sec_btn_click", "Class", "Create Class", "");
+                }}
+                disabled={!appData.connected}
+              >
+                <Button>Ready to Build!</Button>
+              </a>
             </div>
 
             <div className="tile fun-part">
@@ -220,7 +262,18 @@ const LandingPage = () => {
                   from a combination of the input ingredients.
                 </p>
               </div>
-              <Button>Ready to Play!</Button>
+              <a
+                onClick={() =>
+                  gtmTrack("prm_btn_click", "Pretrained", "Predict a Pie", "")
+                }
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/trained`
+                    : "/trained"
+                }
+              >
+                <Button>Ready to Play!</Button>
+              </a>
             </div>
 
             <div className="tile fun-part">
@@ -230,10 +283,27 @@ const LandingPage = () => {
                 <h4>Indigenous Fusion Neural Network</h4>
                 <p>
                   Play with this pretrained neural network and discover new
-                  recipes using this AI trained on xnumber of pie recipes!
+                  recipes using this AI trained on number of pie recipes!
                 </p>
               </div>
-              <Button>Ready to Play!</Button>
+
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "prm_btn_click",
+                    "Pretrained",
+                    "Chef David Wolfman",
+                    ""
+                  )
+                }
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/trained/wolfman`
+                    : "/trained/wolfman"
+                }
+              >
+                <Button>Ready to Play!</Button>
+              </a>
             </div>
           </div>
         </div>
