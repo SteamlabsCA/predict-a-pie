@@ -98,6 +98,21 @@ $sectionTitleSize: 6rem;
   width: 100%;
   background-color: #b3edd2;
   position: relative;
+  text-align: center;
+
+  h1 {
+    color: #fff !important;
+    font-weight: 800;
+    font-size: 5rem;
+    width: 100vw;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-45%);
+
+    @media screen and (min-width: 1120px) {
+      font-size: 7rem;
+    }
+  }
 
   &-scroll {
     position: absolute;

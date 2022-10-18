@@ -26,6 +26,8 @@ const LandingPage = ({ onCommand, appData }) => {
   return (
     <div className="LandingPage">
       <div className="Hero" id="Hero">
+        <h1>What are Neural Networks?</h1>
+
         <div className="Hero-scroll" onClick={scroll}>
           <span class="Hero-arrow"></span>
         </div>
