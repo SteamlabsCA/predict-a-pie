@@ -4,6 +4,7 @@ import Hero from "./Hero";
 import Button from "./Button";
 import gtmTrack from "../helpers/gtmTrack";
 
+import beginning from "../assets/beginning.png";
 import indigenous from "../assets/indigenous.png";
 import aiWeirdness from "../assets/ai-weirdness.png";
 import amazonIcon from "../assets/amazon-icon.png";
@@ -35,7 +36,7 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
 
           <div className="right">
-            <img src="" />
+            <img src={beginning} />
           </div>
         </div>
 

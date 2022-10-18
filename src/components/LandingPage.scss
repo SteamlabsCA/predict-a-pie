@@ -38,10 +38,10 @@ $sectionTitleSize: 6rem;
   border-radius: $borderRadius;
   text-align: center;
   width: 90%;
+  margin: 20px 0;
 
   @media screen and (min-width: 1120px) {
     width: 45%;
-    margin: 20px 0;
   }
 
   img {
@@ -97,7 +97,7 @@ $sectionTitleSize: 6rem;
   margin: $sectionMargin;
   background: #2e4046;
   border-radius: $borderRadius;
-  min-height: 560px;
+  // min-height: 560px;
   padding: 55px 65px 65px;
 
   .left {
@@ -116,6 +116,23 @@ $sectionTitleSize: 6rem;
     p {
       font-size: $boxDescriptionSize;
       line-height: $boxDescriptionLineHeight;
+    }
+  }
+
+  .right {
+    position: relative;
+    img {
+      width: 50%;
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+
+      @media screen and (min-width: 1120px) {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        top: 0;
+      }
     }
   }
 }
@@ -148,13 +165,21 @@ $sectionTitleSize: 6rem;
 
   &-indigenous {
     background: #b3edd2;
-    // padding: 55px 45px 45px;
-    padding: 0 45px;
+    padding: 55px 45px 45px;
     align-items: center;
 
+    @media screen and (min-width: 1120px) {
+      padding: 0 45px;
+    }
+
     .left {
+      text-align: center;
       img {
-        width: 100%;
+        width: 50%;
+
+        @media screen and (min-width: 1120px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -167,6 +192,7 @@ $sectionTitleSize: 6rem;
     &-weird {
       background: linear-gradient(180deg, #dbeaf7 0%, #9bd6f3 100%);
       padding: $boxPadding;
+      margin: 50px 0 25px;
 
       @media screen and (min-width: 1120px) {
         margin: 25px 7px 25px 0;
@@ -178,7 +204,13 @@ $sectionTitleSize: 6rem;
       }
 
       .right {
-        width: 40%;
+        display: none;
+
+        @media screen and (min-width: 1120px) {
+          display: block;
+          width: 40%;
+        }
+
         img {
           width: 130%;
         }
@@ -189,6 +221,7 @@ $sectionTitleSize: 6rem;
       background: #2e4046;
       padding: $boxPadding;
       color: #fff;
+      margin: 25px 0 50px;
 
       @media screen and (min-width: 1120px) {
         margin: 25px 0 25px 7px;
@@ -200,7 +233,13 @@ $sectionTitleSize: 6rem;
       }
 
       .right {
-        width: 40%;
+        display: none;
+
+        @media screen and (min-width: 1120px) {
+          display: block;
+          width: 40%;
+        }
+
         img {
           width: 100%;
         }
@@ -213,17 +252,31 @@ $sectionTitleSize: 6rem;
     width: 100%;
     padding: $boxPadding;
     color: #fff;
+
+    .right {
+      display: none;
+
+      @media screen and (min-width: 1120px) {
+        display: block;
+        width: 40%;
+      }
+    }
   }
 }
 
 .Educators {
   margin: $sectionMargin;
+
   .left {
-    width: 40%;
+    @media screen and (min-width: 1120px) {
+      width: 40%;
+    }
+
     h2 {
       font-weight: $sectionTitleWeight;
       font-size: $sectionTitleSize;
     }
+
     p {
       font-size: $boxDescriptionSize;
       line-height: $boxDescriptionLineHeight;
@@ -231,11 +284,14 @@ $sectionTitleSize: 6rem;
   }
 
   .right {
-    width: 60%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-left: 20px;
+
+    @media screen and (min-width: 1120px) {
+      width: 60%;
+    }
   }
 }
 
@@ -268,5 +324,15 @@ $sectionTitleSize: 6rem;
   h3 {
     font-weight: 700;
     font-size: 1.6rem;
+  }
+
+  .Instructions-sctFour {
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: 1120px) {
+      flex-direction: row;
+      align-items: baseline;
+    }
   }
 }
