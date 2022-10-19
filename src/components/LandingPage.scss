@@ -8,6 +8,14 @@ $boxDescriptionLineHeight: 1.6;
 $sectionMargin: 125px 0;
 $sectionTitleWeight: 700;
 $sectionTitleSize: 6rem;
+$sectionTitleSmallSize: 3rem;
+
+.LandingPage {
+  background-image: url(../assets/background-left.png),
+    url(../assets/background-right.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, right bottom;
+}
 
 .MainSection {
   margin: 0 13%;
@@ -178,15 +186,22 @@ $sectionTitleSize: 6rem;
   margin: $sectionMargin;
   background: #2e4046;
   border-radius: $borderRadius;
-  // min-height: 560px;
-  padding: 55px 65px 65px;
+  padding: 55px 35px;
+
+  @media screen and (min-width: 1120px) {
+    padding: 55px 65px 65px;
+  }
 
   .left {
     color: #fff;
 
     h2 {
       font-weight: $sectionTitleWeight;
-      font-size: $sectionTitleSize;
+      font-size: $sectionTitleSmallSize;
+
+      @media screen and (min-width: 1120px) {
+        font-size: $sectionTitleSize;
+      }
     }
 
     h4 {
@@ -246,7 +261,7 @@ $sectionTitleSize: 6rem;
 
   &-indigenous {
     background: #b3edd2;
-    padding: 55px 45px 45px;
+    padding: 55px 35px 45px;
     align-items: center;
 
     @media screen and (min-width: 1120px) {
@@ -256,7 +271,7 @@ $sectionTitleSize: 6rem;
     .left {
       text-align: center;
       img {
-        width: 50%;
+        width: 60%;
 
         @media screen and (min-width: 1120px) {
           width: 100%;
@@ -266,10 +281,6 @@ $sectionTitleSize: 6rem;
   }
 
   &-columns {
-    .Button {
-      width: 225px;
-    }
-
     &-weird {
       background: linear-gradient(180deg, #dbeaf7 0%, #9bd6f3 100%);
       padding: $boxPadding;
@@ -281,7 +292,9 @@ $sectionTitleSize: 6rem;
       }
 
       .left {
-        width: 60%;
+        @media screen and (min-width: 1120px) {
+          width: 60%;
+        }
       }
 
       .right {
@@ -310,7 +323,9 @@ $sectionTitleSize: 6rem;
       }
 
       .left {
-        width: 60%;
+        @media screen and (min-width: 1120px) {
+          width: 60%;
+        }
       }
 
       .right {
@@ -405,6 +420,10 @@ $sectionTitleSize: 6rem;
   h3 {
     font-weight: 700;
     font-size: 1.6rem;
+  }
+
+  .word-wrap {
+    word-wrap: break-word;
   }
 
   .Instructions-sctFour {

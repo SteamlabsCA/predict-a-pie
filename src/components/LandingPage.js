@@ -436,6 +436,7 @@ const LandingPage = ({ onCommand, appData }) => {
             <p>
               Full details of this license can be found here:{" "}
               <a
+                className="word-wrap"
                 onClick={() =>
                   gtmTrack(
                     "out_btn_click",

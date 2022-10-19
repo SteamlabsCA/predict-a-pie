@@ -2,11 +2,15 @@
   background-color: #fff;
   border: none;
   border-radius: 10px;
-  width: 300px;
+  width: 90%;
   height: 40px;
   font-weight: 700;
   font-size: 3rem;
   font-weight: 700;
   font-size: 1.75rem;
   cursor: pointer;
+
+  @media screen and (min-width: 1120px) {
+    width: 300px;
+  }
 }
