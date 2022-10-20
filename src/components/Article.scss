@@ -1,18 +1,10 @@
-$paddingTop: 20rem;
-
-a {
-  color: #000;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 1.6;
-}
+$topHeight: 35rem;
 
 .Article {
   //   margin: 20rem 13% 0;
   //   margin: 0 13%;
   display: flex;
-  overflow: auto;
+  //   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -29,20 +21,25 @@ a {
   position: sticky;
   align-self: flex-start;
   width: 30%;
-  padding-top: 35rem;
-  //   padding-right: 2rem;
+  padding-top: $topHeight;
   top: 0;
 
   background-color: aquamarine;
 
   ul {
     margin-left: 40%;
+    margin-top: 0;
     background-color: burlywood;
   }
 
   li {
     list-style: none;
     padding-bottom: 2rem;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.6;
 
     &:last-child {
       padding-bottom: 0;
@@ -51,25 +48,42 @@ a {
 }
 
 .Article-Main {
-  //   width: 65%;
   width: 70%;
-  padding-top: 20rem;
+  height: fit-content;
   padding-left: 3rem;
   padding-right: 15rem;
+  padding-bottom: 15rem;
 
   background-color: darksalmon;
 
-  h1 {
-    font-size: 6rem;
+  .heading {
+    display: flex;
+    height: $topHeight;
+
+    h1 {
+      align-self: flex-end;
+      font-size: 6rem;
+    }
   }
 
   p {
     font-size: 1.6rem;
     line-height: 1.6;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   h4 {
     font-size: 1.6rem;
     font-weight: 700;
+    padding-top: 7rem;
+  }
+
+  img {
+    width: 100%;
+    height: 35rem;
+    object-fit: cover;
   }
 }
