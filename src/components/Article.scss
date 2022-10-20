@@ -1,16 +1,9 @@
 $topHeight: 35rem;
 
 .Article {
-  //   margin: 20rem 13% 0;
-  //   margin: 0 13%;
   display: flex;
-  //   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  //   @media screen and (min-width: 1120px) {
-  //     margin: 20rem 13% 0;
-  //   }
 
   &::-webkit-scrollbar {
     display: none;
@@ -23,38 +16,42 @@ $topHeight: 35rem;
   width: 30%;
   padding-top: $topHeight;
   top: 0;
+  display: none;
 
-  background-color: aquamarine;
+  @media screen and (min-width: 1120px) {
+    display: block;
+  }
 
   ul {
     margin-left: 40%;
     margin-top: 0;
-    background-color: burlywood;
   }
 
   li {
     list-style: none;
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
     color: #000;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.6rem;
     line-height: 1.6;
-
-    &:last-child {
-      padding-bottom: 0;
-    }
+    cursor: pointer;
   }
 }
 
 .Article-Main {
-  width: 70%;
+  width: 100%;
   height: fit-content;
   padding-left: 3rem;
-  padding-right: 15rem;
-  padding-bottom: 15rem;
+  padding-right: 3rem;
+  padding-bottom: 10rem;
 
-  background-color: darksalmon;
+  @media screen and (min-width: 1120px) {
+    width: 70%;
+    padding-left: 3rem;
+    padding-right: 15rem;
+    padding-bottom: 15rem;
+  }
 
   .heading {
     display: flex;

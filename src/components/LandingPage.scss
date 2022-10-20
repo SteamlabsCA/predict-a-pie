@@ -104,21 +104,122 @@ $sectionTitleSmallSize: 3rem;
 .Hero {
   height: 100vh;
   width: 100%;
-  background-color: #b3edd2;
   position: relative;
   text-align: center;
+  background-image: url(../assets/hero-background.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  overflow: hidden;
+
+  &-animation {
+    height: 100vh;
+    width: 100%;
+
+    .line {
+      height: 100vh;
+      width: 100%;
+      background-image: url(../assets/hero-line.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      z-index: 1;
+      position: absolute;
+      animation-name: lineAnimation;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+    }
+
+    @keyframes lineAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .bright-line {
+      height: 100vh;
+      width: 100%;
+      background-image: url(../assets/hero-bright-line.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      z-index: 2;
+      position: absolute;
+      animation-name: brightLineAnimation;
+      animation-delay: 1s;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    @keyframes brightLineAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .particle {
+      height: 100vh;
+      width: 100%;
+      background-image: url(../assets/hero-particle.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      z-index: 3;
+      position: absolute;
+      animation-name: particleAnimation;
+      animation-delay: 2s;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+    }
+
+    @keyframes particleAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
 
   h1 {
     color: #fff !important;
     font-weight: 800;
     font-size: 5rem;
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 45%;
     transform: translateY(-45%);
+    z-index: 4;
+    animation-name: titleAnimation;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards;
 
     @media screen and (min-width: 1120px) {
       font-size: 7rem;
+    }
+
+    @keyframes titleAnimation {
+      0% {
+        top: 100%;
+        opacity: 0;
+      }
+      100% {
+        top: 45%;
+        transform: translateY(-45%);
+        opacity: 1;
+      }
     }
   }
 

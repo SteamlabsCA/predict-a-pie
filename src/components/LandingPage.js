@@ -26,7 +26,13 @@ const LandingPage = ({ onCommand, appData }) => {
   return (
     <div className="LandingPage">
       <div className="Hero" id="Hero">
-        <h1>What are Neural Networks?</h1>
+        <div className="Hero-animation">
+          <div className="line"></div>
+          <div className="bright-line"></div>
+          <div className="particle"></div>
+
+          <h1>What are Neural Networks?</h1>
+        </div>
 
         <div className="Hero-scroll" onClick={scroll}>
           <span class="Hero-arrow"></span>
@@ -56,8 +62,8 @@ const LandingPage = ({ onCommand, appData }) => {
               }
               to={
                 appData.classroom
-                  ? `/${appData.classroom.code}/intro-to-neural-networks`
-                  : "/intro-to-neural-networks"
+                  ? `/${appData.classroom.code}/article/intro-to-neural-networks`
+                  : "/article/intro-to-neural-networks"
               }
             >
               <Button>READ ARTICLE</Button>

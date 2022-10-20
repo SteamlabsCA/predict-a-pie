@@ -23,12 +23,12 @@ import socketClient from "socket.io-client";
 import ingredients from "../ingredients/ingredients.json";
 import classifications from "../ingredients/classifications.json";
 import stringData from "../strings.json";
+import ArticleIntro from "./ArticleIntro";
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-// const socket = socketClient(`https://${window.location.hostname}`);
-const socket = socketClient("http://127.0.0.1:8080");
+const socket = socketClient(`https://${window.location.hostname}`);
 
 // Classroom code specified in URL
 const url = window.location.pathname.split("/");
@@ -452,9 +452,20 @@ function App(props) {
               recipes={recipes}
             />
           </Route>
+          <Route path="*/article/intro-to-neural-networks">
+            <NavBar
+              title="Article - Intro to Neural Networks"
+              appData={appData}
+              route="intro-to-neural-networks"
+              onCommand={onCommand}
+              checkEnv={checkEnv}
+              envVariables={envVariables}
+            />
+            <ArticleIntro />
+          </Route>
           <Route path="/">
             <NavBar
-              title={strings.instructions}
+              title="Intro to Neural Network"
               appData={appData}
               route="instructions"
               onCommand={onCommand}
