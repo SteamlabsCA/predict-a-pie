@@ -45,7 +45,23 @@ const LandingPage = ({ onCommand, appData }) => {
               of Artificial Intelligence (AI) and how it is able to make
               predictions using a neural network.
             </p>
-            <Button>READ ARTICLE</Button>
+            <Link
+              onClick={() =>
+                gtmTrack(
+                  "prm_btn_click",
+                  "Article",
+                  "Intro to Neural Networks",
+                  ""
+                )
+              }
+              to={
+                appData.classroom
+                  ? `/${appData.classroom.code}/intro-to-neural-networks`
+                  : "/intro-to-neural-networks"
+              }
+            >
+              <Button>READ ARTICLE</Button>
+            </Link>
           </div>
 
           <div className="right">
