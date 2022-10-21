@@ -7,8 +7,23 @@ $boxDescriptionLineHeight: 1.6;
 
 $sectionMargin: 125px 0;
 $sectionTitleWeight: 700;
-$sectionTitleSize: 6rem;
-$sectionTitleSmallSize: 3rem;
+$sectionTitleSize: 9vmin;
+
+@mixin imageAnimation($url, $z-index, $animation-name, $animation-delay) {
+  height: 100vh;
+  width: 100%;
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: $z-index;
+  position: absolute;
+  animation-name: $animation-name;
+  animation-duration: 1s;
+  animation-delay: $animation-delay;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
 
 .LandingPage {
   background-image: url(../assets/background-left.png),
@@ -89,7 +104,6 @@ $sectionTitleSmallSize: 3rem;
 
   @media screen and (min-width: 1120px) {
     width: 24%;
-    // height: 600px;
   }
 
   img {
@@ -116,17 +130,7 @@ $sectionTitleSmallSize: 3rem;
     width: 100%;
 
     .line {
-      height: 100vh;
-      width: 100%;
-      background-image: url(../assets/hero-line.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      z-index: 1;
-      position: absolute;
-      animation-name: lineAnimation;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
+      @include imageAnimation("../assets/hero-line.png", 1, lineAnimation, 0);
     }
 
     @keyframes lineAnimation {
@@ -141,19 +145,12 @@ $sectionTitleSmallSize: 3rem;
     }
 
     .bright-line {
-      height: 100vh;
-      width: 100%;
-      background-image: url(../assets/hero-bright-line.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      z-index: 2;
-      position: absolute;
-      animation-name: brightLineAnimation;
-      animation-delay: 1s;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-      animation-fill-mode: backwards;
+      @include imageAnimation(
+        "../assets/hero-bright-line.png",
+        2,
+        brightLineAnimation,
+        1s
+      );
     }
 
     @keyframes brightLineAnimation {
@@ -166,19 +163,12 @@ $sectionTitleSmallSize: 3rem;
     }
 
     .particle {
-      height: 100vh;
-      width: 100%;
-      background-image: url(../assets/hero-particle.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      z-index: 3;
-      position: absolute;
-      animation-name: particleAnimation;
-      animation-delay: 2s;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-      animation-fill-mode: backwards;
+      @include imageAnimation(
+        "../assets/hero-particle.png",
+        3,
+        particleAnimation,
+        2s
+      );
     }
 
     @keyframes particleAnimation {
@@ -298,10 +288,10 @@ $sectionTitleSmallSize: 3rem;
 
     h2 {
       font-weight: $sectionTitleWeight;
-      font-size: $sectionTitleSmallSize;
+      font-size: 3rem;
 
       @media screen and (min-width: 1120px) {
-        font-size: $sectionTitleSize;
+        font-size: 6rem;
       }
     }
 
