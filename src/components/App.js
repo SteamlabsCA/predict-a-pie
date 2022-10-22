@@ -13,6 +13,7 @@ import SelectRecipe from "./SelectRecipe";
 import Stats from "./Stats";
 import TrainedNetwork from "./TrainedNetwork";
 import TrainedChefNetwork from "./TrainedChefNetwork";
+import TrainedNetworkInstructionPopup from "./TrainedNetworkInstructionPopup";
 import gtmTrack from "../helpers/gtmTrack";
 import nnToJSON from "../helpers/nnToJSON";
 import React from "react";
@@ -313,13 +314,40 @@ function App(props) {
 
   // Check if Environment Variables Exist
   const checkEnv = () => {
-    let resPromise = new Promise((resolve, reject) => {
-      socket.emit("check-env", (response) => {
-        setEnvVariables(response);
-        resolve(response);
+    let resPromise;
+
+    if (process.env.NODE_ENV === "development") {
+      resPromise = true;
+      setEnvVariables(resPromise);
+    } else if (process.env.NODE_ENV === "production") {
+      resPromise = new Promise((resolve, reject) => {
+        socket.emit("check-env", (response) => {
+          setEnvVariables(response);
+          resolve(response);
+        });
       });
-    });
+    }
+
     return resPromise;
+  };
+
+  // Show and hide instruction boxes
+  const clickInstructionButton = (e) => {
+    const id = e.target.id;
+
+    if (id === "4-1" || id === "4-2") {
+      document.querySelector(".Popup").style.display = "none";
+      document
+        .querySelectorAll(".Neuron-input")
+        .forEach((elem) => elem.classList.remove("zIndex"));
+      document
+        .querySelectorAll(".Neuron-output")
+        .forEach((elem) => elem.classList.remove("zIndex"));
+    } else {
+      document.querySelector(`.Popup-${id}`).style.display = "none";
+      document.querySelector(`.Popup-${parseInt(id) + 1}`).style.display =
+        "block";
+    }
   };
 
   return (
@@ -381,6 +409,9 @@ function App(props) {
             />
           </Route>
           <Route path="*/trained" exact>
+            <TrainedNetworkInstructionPopup
+              clickButton={clickInstructionButton}
+            />
             <NavBar
               title={strings.pretrainedModel}
               appData={appData}
@@ -393,6 +424,7 @@ function App(props) {
                   <SelectRecipe
                     classifications={classifications}
                     onSubmit={onFindRecipe}
+                    clickInstructionButton={clickInstructionButton}
                   />
                   <button
                     onClick={onSaveRecipe}
@@ -416,6 +448,7 @@ function App(props) {
               classifications={classifications}
               visible={reclassify}
               onReclassify={onReclassify}
+              clickInstructionButton={clickInstructionButton}
             />
           </Route>
           <Route path="*/trained/:id">

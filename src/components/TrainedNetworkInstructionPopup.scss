@@ -1,0 +1,61 @@
+.Popup {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 100;
+
+  //   display: none;
+
+  &-box {
+    max-width: 35%;
+    padding: 1rem 4.5rem;
+    top: 13%;
+    background-color: #fff;
+    border: 2px solid #472b9f;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+
+    p {
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    button {
+      color: #fff;
+      background-color: #472b9f;
+      border-radius: 5px;
+      padding: 5px;
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+
+  &-1 {
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+
+    // display: none;
+  }
+
+  &-2 {
+    left: 7%;
+
+    display: none;
+  }
+
+  &-3 {
+    right: 7%;
+
+    display: none;
+  }
+
+  &-4 {
+    right: 7%;
+    top: 35%;
+
+    display: none;
+  }
+}
