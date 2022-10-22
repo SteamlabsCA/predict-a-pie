@@ -30,8 +30,7 @@ function Reclassify({
     dismiss();
   };
 
-  const onDisagree = (e) => {
-    clickInstructionButton(e);
+  const onDisagree = () => {
     setClassification(0);
     gtmTrack(
       "sec_btn_click",
@@ -42,7 +41,8 @@ function Reclassify({
     setStep("1-2");
   };
 
-  const onReclassify = () => {
+  const onReclassify = (e) => {
+    clickInstructionButton(e);
     setStep("2-3");
     dismiss();
   };
@@ -64,9 +64,7 @@ function Reclassify({
               <button onClick={(e) => onAgree(e)} id="4-1">
                 {strings.yes}
               </button>
-              <button onClick={(e) => onDisagree(e)} id="4-2">
-                {strings.no}
-              </button>
+              <button onClick={onDisagree}>{strings.no}</button>
             </div>
           </div>
           <div className="Reclassify-step Reclassify-step-2">
@@ -81,7 +79,9 @@ function Reclassify({
                   </option>
                 ))}
               </select>
-              <button onClick={onReclassify}>{strings.submit}</button>
+              <button onClick={(e) => onReclassify(e)} id="4-2">
+                {strings.submit}
+              </button>
             </div>
           </div>
           <div className="Reclassify-step Reclassify-step-3">
