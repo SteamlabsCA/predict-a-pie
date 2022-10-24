@@ -26,34 +26,40 @@ const TrainedNetworkInstructionPopup = ({ clickButton }) => {
         </button>
       </div>
 
-      <div className="Popup-box Popup-2">
-        <div className="arrow"></div>
-        <p>
-          This activity can be done on your own, or with a group. For a group,
-          start with "<strong>Create Classroom</strong>", and have everyone go
-          to the URL that it generates.
-        </p>
-        <button id="2" onClick={(e) => clickButton(e)}>
-          Next
-        </button>
+      <div className="Popup-container Popup-2">
+        <div className="arrow arrow2"></div>
+        <div className="Popup-box">
+          <p>
+            This activity can be done on your own, or with a group. For a group,
+            start with "<strong>Create Classroom</strong>", and have everyone go
+            to the URL that it generates.
+          </p>
+          <button id="2" onClick={(e) => clickButton(e)}>
+            Next
+          </button>
+        </div>
       </div>
 
-      <div className="Popup-box Popup-3">
-        <div className="arrow"></div>
-        <p>
-          Try different combinations of ingredients and see what the Neural
-          Network thinks of them! You can also click on the "
-          <strong>Find Recipe</strong>" button to search for a recipe.
-        </p>
+      <div className="Popup-container Popup-3">
+        <div className="arrow arrow3"></div>
+        <div className="Popup-box">
+          <p>
+            Try different combinations of ingredients and see what the Neural
+            Network thinks of them! You can also click on the "
+            <strong>Find Recipe</strong>" button to search for a recipe.
+          </p>
+        </div>
       </div>
 
-      <div className="Popup-box Popup-4">
-        <div className="arrow"></div>
-        <p>
-          You can agree or disagree with the AI’s prediction. If you have made a
-          classroom link, your answer is recorded in the{" "}
-          <strong>Classroom Stats</strong> page found in the main menu.
-        </p>
+      <div className="Popup-container Popup-4">
+        <div className="arrow arrow4"></div>
+        <div className="Popup-box">
+          <p>
+            You can agree or disagree with the AI’s prediction. If you have made
+            a classroom link, your answer is recorded in the{" "}
+            <strong>Classroom Stats</strong> page found in the main menu.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ import TrainedChefNetwork from "./TrainedChefNetwork";
 import TrainedNetworkInstructionPopup from "./TrainedNetworkInstructionPopup";
 import gtmTrack from "../helpers/gtmTrack";
 import nnToJSON from "../helpers/nnToJSON";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LocalizedStrings from "react-localization";
 import socketClient from "socket.io-client";
@@ -72,6 +72,8 @@ function App(props) {
   });
   const [envVariables, setEnvVariables] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [instructionId, setInstructionId] = useState();
+  const [disableFindRecipe, setDisableFindRecipe] = useState(true);
 
   // Receive from socket
   React.useEffect(() => {
@@ -333,20 +335,25 @@ function App(props) {
 
   // Show and hide instruction boxes
   const clickInstructionButton = (e) => {
-    const id = e.target.id;
+    if (instructionId !== "4-1" && instructionId !== "4-2") {
+      const id = e.target.id;
+      setInstructionId(id);
 
-    if (id === "4-1" || id === "4-2") {
-      document.querySelector(".Popup").style.display = "none";
-      document
-        .querySelectorAll(".Neuron-input")
-        .forEach((elem) => elem.classList.remove("zIndex"));
-      document
-        .querySelectorAll(".Neuron-output")
-        .forEach((elem) => elem.classList.remove("zIndex"));
-    } else {
-      document.querySelector(`.Popup-${id}`).style.display = "none";
-      document.querySelector(`.Popup-${parseInt(id) + 1}`).style.display =
-        "block";
+      if (id === "4-1" || id === "4-2") {
+        setDisableFindRecipe(false);
+        document.querySelector(".Popup").style.display = "none";
+        document
+          .querySelectorAll(".Neuron-input")
+          .forEach((elem) => elem.classList.remove("zIndex"));
+        document
+          .querySelectorAll(".Neuron-output")
+          .forEach((elem) => elem.classList.remove("zIndex"));
+      } else {
+        id !== "2" ? setDisableFindRecipe(true) : setDisableFindRecipe(false);
+        document.querySelector(`.Popup-${id}`).style.display = "none";
+        document.querySelector(`.Popup-${parseInt(id) + 1}`).style.display =
+          "block";
+      }
     }
   };
 
@@ -425,6 +432,7 @@ function App(props) {
                     classifications={classifications}
                     onSubmit={onFindRecipe}
                     clickInstructionButton={clickInstructionButton}
+                    disableFindRecipe={disableFindRecipe}
                   />
                   <button
                     onClick={onSaveRecipe}

@@ -4,7 +4,12 @@ import React from "react";
 import { strings } from "./App";
 import { useParams } from "react-router-dom";
 
-function SelectRecipe({ classifications, clickInstructionButton, ...props }) {
+function SelectRecipe({
+  classifications,
+  clickInstructionButton,
+  disableFindRecipe,
+  ...props
+}) {
   let { id } = useParams();
   const customClassifications =
     !classifications &&
@@ -35,7 +40,7 @@ function SelectRecipe({ classifications, clickInstructionButton, ...props }) {
           </option>
         ))}
       </select>
-      <button onClick={(e) => onSubmit(e)} id="3">
+      <button onClick={(e) => onSubmit(e)} id="3" disabled={disableFindRecipe}>
         {strings.findRecipe}
       </button>
     </div>
