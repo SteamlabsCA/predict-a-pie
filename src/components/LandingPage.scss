@@ -25,17 +25,6 @@ $sectionTitleSize: 9vmin;
   animation-fill-mode: backwards;
 }
 
-.LandingPage {
-  background-image: url(../assets/background-left.png),
-    url(../assets/background-right.png);
-  background-repeat: no-repeat, no-repeat;
-  background-position: left top, right bottom;
-}
-
-.MainSection {
-  margin: 0 13%;
-}
-
 .columns {
   width: 100%;
   display: flex;
@@ -113,6 +102,17 @@ $sectionTitleSize: 9vmin;
   p {
     margin-bottom: 12rem;
   }
+}
+
+.LandingPage {
+  background-image: url(../assets/background-left.png),
+    url(../assets/background-right.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, right bottom;
+}
+
+.MainSection {
+  margin: 0 13%;
 }
 
 .Hero {
@@ -221,6 +221,7 @@ $sectionTitleSize: 9vmin;
     text-align: center;
     animation: arrowmove 1s ease-in-out infinite;
     cursor: pointer;
+    z-index: 10;
   }
 
   &-arrow {
@@ -326,6 +327,7 @@ $sectionTitleSize: 9vmin;
 
 .Articles {
   margin: $sectionMargin;
+
   h2 {
     font-weight: $sectionTitleWeight;
     font-size: $sectionTitleSize;
