@@ -18,6 +18,7 @@ import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
 
 const LandingPage = ({ onCommand, appData }) => {
+  // Scroll button movement
   const scroll = () => {
     const scrollHeight = document.getElementById("Hero").scrollHeight;
     window.scrollTo({ top: scrollHeight, behavior: "smooth" });
