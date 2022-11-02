@@ -9,13 +9,13 @@
     "aws-sdk": "^2.944.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "node-sass": "^4.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-gtm-module": "^2.0.11",
     "react-localization": "^1.0.16",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "sass": "^1.55.0",
     "seedrandom": "^3.0.5",
     "socket.io": "^3.1.1",
     "socket.io-client": "^3.1.1",
@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "^12.0.0",
-    "nodemon": "^2.0.15",
-    "react-test-render": "^1.1.2"
+    "nodemon": "^2.0.15"
   }
 }
