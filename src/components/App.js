@@ -33,7 +33,7 @@ let socket;
 
 if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:80");
-} else if (process.env.NODE_ENV === "production") {
+} else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
   socket = socketClient(`https://${window.location.hostname}`);
 }
 
@@ -321,7 +321,7 @@ function App(props) {
     if (process.env.NODE_ENV === "development") {
       resPromise = true;
       setEnvVariables(resPromise);
-    } else if (process.env.NODE_ENV === "production") {
+    } else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
       resPromise = new Promise((resolve, reject) => {
         socket.emit("check-env", (response) => {
           setEnvVariables(response);
