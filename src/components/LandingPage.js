@@ -32,7 +32,7 @@ const LandingPage = ({ onCommand, appData }) => {
           <div className="bright-line"></div>
           <div className="particle"></div>
 
-          <h1>What are Neural Networks?</h1>
+          <h1>Artificial Intelligence is everywhere</h1>
         </div>
 
         <div className="Hero-scroll" onClick={scroll}>
@@ -242,28 +242,61 @@ const LandingPage = ({ onCommand, appData }) => {
         </div>
 
         <div className="FunPart">
-          <h2>Now for the FUN part!</h2>
+          <h2>Try an AI!</h2>
           <div className="columns">
             <div className="tile fun-part">
-              <img src={funJoin} />
+              <img src={funPP} />
 
               <div>
-                <h4>Join a Classroom</h4>
+                <h4>Predict a Pie</h4>
                 <p>
-                  Enter the classroom code provide by your instructor to start
-                  exploring!
+                  The Neural Network in this activity has been trained on
+                  thousands of pie recipes to be able to classify any recipe
+                  from a combination of the input ingredients.
+                </p>
+              </div>
+              <Link
+                onClick={() =>
+                  gtmTrack("prm_btn_click", "Pretrained", "Predict a Pie", "")
+                }
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/trained`
+                    : "/trained"
+                }
+              >
+                <Button>Ready to Play!</Button>
+              </Link>
+            </div>
+
+            <div className="tile fun-part">
+              <img src={funIndigenous} />
+
+              <div>
+                <h4>Indigenous Fusion Cuisine</h4>
+                <p>
+                  Play with this pretrained neural network and discover new
+                  recipes using this AI trained on number of pie recipes!
                 </p>
               </div>
 
-              <a
-                onClick={() => {
-                  onCommand("join-classroom");
-                  gtmTrack("sec_btn_click", "Class", "Join Class", "");
-                }}
-                disabled={!appData.connected}
+              <Link
+                onClick={() =>
+                  gtmTrack(
+                    "prm_btn_click",
+                    "Pretrained",
+                    "Chef David Wolfman",
+                    ""
+                  )
+                }
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/trained/wolfman`
+                    : "/trained/wolfman"
+                }
               >
-                <Button>Enter Code</Button>
-              </a>
+                <Button>Ready to Play!</Button>
+              </Link>
             </div>
 
             <div className="tile fun-part">
@@ -289,58 +322,25 @@ const LandingPage = ({ onCommand, appData }) => {
             </div>
 
             <div className="tile fun-part">
-              <img src={funPP} />
+              <img src={funJoin} />
 
               <div>
-                <h4>Predict a Pie Neural Network</h4>
+                <h4>Join a Classroom</h4>
                 <p>
-                  The Neural Network in this activity has been trained on
-                  thousands of pie recipes to be able to classify any recipe
-                  from a combination of the input ingredients.
-                </p>
-              </div>
-              <Link
-                onClick={() =>
-                  gtmTrack("prm_btn_click", "Pretrained", "Predict a Pie", "")
-                }
-                to={
-                  appData.classroom
-                    ? `/${appData.classroom.code}/trained`
-                    : "/trained"
-                }
-              >
-                <Button>Ready to Play!</Button>
-              </Link>
-            </div>
-
-            <div className="tile fun-part">
-              <img src={funIndigenous} />
-
-              <div>
-                <h4>Indigenous Fusion Neural Network</h4>
-                <p>
-                  Play with this pretrained neural network and discover new
-                  recipes using this AI trained on number of pie recipes!
+                  Enter the classroom code provide by your instructor to start
+                  exploring!
                 </p>
               </div>
 
-              <Link
-                onClick={() =>
-                  gtmTrack(
-                    "prm_btn_click",
-                    "Pretrained",
-                    "Chef David Wolfman",
-                    ""
-                  )
-                }
-                to={
-                  appData.classroom
-                    ? `/${appData.classroom.code}/trained/wolfman`
-                    : "/trained/wolfman"
-                }
+              <a
+                onClick={() => {
+                  onCommand("join-classroom");
+                  gtmTrack("sec_btn_click", "Class", "Join Class", "");
+                }}
+                disabled={!appData.connected}
               >
-                <Button>Ready to Play!</Button>
-              </Link>
+                <Button>Enter Code</Button>
+              </a>
             </div>
           </div>
         </div>
