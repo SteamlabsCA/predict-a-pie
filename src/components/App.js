@@ -34,7 +34,8 @@ let socket;
 if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:80");
 } else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
-  socket = socketClient(`https://${window.location.hostname}`);
+  // socket = socketClient(`https://${window.location.hostname}`);
+  socket = socketClient(`http://nn-staging.inventor.city/`);
 }
 
 // Classroom code specified in URL
