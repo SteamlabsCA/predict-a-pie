@@ -43,36 +43,40 @@ const LandingPage = ({ onCommand, appData }) => {
       </div>
 
       <div className="MainSection">
-        <div className="Beginning columns">
-          <div className="left">
-            <h2>Let’s start from the beginning...</h2>
-            <h4 className="box-title">Intro to Neural Networks</h4>
-            <p className="box-description">
-              Totally brand new? Take a look at the concept and building blocks
-              of Artificial Intelligence (AI) and how it is able to make
-              predictions using a neural network.
-            </p>
-            <Link
-              onClick={() =>
-                gtmTrack(
-                  "prm_btn_click",
-                  "Article",
-                  "Intro to Neural Networks",
-                  ""
-                )
-              }
-              to={
-                appData.classroom
-                  ? `/${appData.classroom.code}/article/intro-to-neural-networks`
-                  : "/article/intro-to-neural-networks"
-              }
-            >
-              <Button>READ ARTICLE</Button>
-            </Link>
-          </div>
+        <div className="Beginning">
+          <h2>How does AI work?</h2>
 
-          <div className="right">
-            <img src={beginning} />
+          <div className="columns">
+            <div className="left">
+              <h2>Let’s start from the beginning...</h2>
+              <h4 className="box-title">Intro to Neural Networks</h4>
+              <p className="box-description">
+                Totally brand new? Take a look at the concept and building
+                blocks of Artificial Intelligence (AI) and how it is able to
+                make predictions using a neural network.
+              </p>
+              <Link
+                onClick={() =>
+                  gtmTrack(
+                    "prm_btn_click",
+                    "Article",
+                    "Intro to Neural Networks",
+                    ""
+                  )
+                }
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/article/intro-to-neural-networks`
+                    : "/article/intro-to-neural-networks"
+                }
+              >
+                <Button>READ ARTICLE</Button>
+              </Link>
+            </div>
+
+            <div className="right">
+              <img src={beginning} />
+            </div>
           </div>
         </div>
 
@@ -155,18 +159,18 @@ const LandingPage = ({ onCommand, appData }) => {
           <div className="left">
             <h2>Hey Educators! Want to use this in your classroom?</h2>
             <p>
-              In this activity, you can build a real, working Neural Network.
-              The neuron nodes in the first layer on the left are your "inputs".
-              Think of these as the ingredients, or pieces of information that
-              your NN will base its decisions on. The last layer of neurons are
-              the decisions, or "classifications" that the neural network can
-              make based on these inputs. Add neurons one at a time, connect
-              them together to indicate what inputs lead to what output
-              decisions. If you need to detect combinations of inputs, you can
-              add "hidden layers" in the middle to detect these combinations. If
-              necessary, you can click on the (+) or (-) symbol on any node and
-              change the "weights" to indicate the relative importance of each
-              incoming node.
+              This no-code workshop is designed for non computer science
+              teachers to introduce AI into any subject. AI is being used in
+              every field, most recently even transforming creative fields such
+              as writing and visual arts. The lesson plans include presentation
+              slides, a teaching guide and have been tested on grades 5 to 12.
+            </p>
+            <p>
+              Curriculum connections include:
+              <ul>
+                <li>Data literacy</li>
+                <li>(add more)</li>
+              </ul>
             </p>
           </div>
 
@@ -225,7 +229,20 @@ const LandingPage = ({ onCommand, appData }) => {
                   Participant in live workshops that will help guide you through
                   lessons!
                 </p>
-                <Button>Book</Button>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators",
+                      "https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
               </div>
             </div>
 
@@ -235,7 +252,20 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Book a Classroom Visit</h4>
                 <p>Have an instructor present to your classrom</p>
-                <Button>Book</Button>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all",
+                      "https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
               </div>
             </div>
           </div>
@@ -250,8 +280,8 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Predict a Pie</h4>
                 <p>
-                  The Neural Network in this activity has been trained on
-                  thousands of pie recipes to be able to classify any recipe
+                  Trained on thousands of pie recipes to be able to classify any
+                  recipe as "Sweet Pie", "Quiche", "Savoury Pie" and "Other"
                   from a combination of the input ingredients.
                 </p>
               </div>
@@ -276,7 +306,7 @@ const LandingPage = ({ onCommand, appData }) => {
                 <h4>Indigenous Fusion Cuisine</h4>
                 <p>
                   Play with this pretrained neural network and discover new
-                  recipes using this AI trained on number of pie recipes!
+                  recipes using this AI trained on xnumber of pie recipes!
                 </p>
               </div>
 
@@ -306,7 +336,7 @@ const LandingPage = ({ onCommand, appData }) => {
                 <h4>Build Your Own Neural Network</h4>
                 <p>
                   Create your own working neural network! Wire up the nodes and
-                  use to make decisions based on your interests!{" "}
+                  use to make decisions based on your interests!
                 </p>
               </div>
 
@@ -340,6 +370,29 @@ const LandingPage = ({ onCommand, appData }) => {
                 disabled={!appData.connected}
               >
                 <Button>Enter Code</Button>
+              </a>
+            </div>
+
+            <div className="tile fun-part">
+              <img src={funBuild} />
+
+              <div>
+                <h4>AI Gallery</h4>
+                <p>
+                  Explore other neural networks folks like you have created! Add
+                  your own nodes and connections to customize the networks to
+                  fit your life.
+                </p>
+              </div>
+
+              <a
+                onClick={() => {
+                  onCommand("join-classroom");
+                  gtmTrack("sec_btn_click", "Class", "Join Class", "");
+                }}
+                disabled={!appData.connected}
+              >
+                <Button>Ready to Explore!</Button>
               </a>
             </div>
           </div>

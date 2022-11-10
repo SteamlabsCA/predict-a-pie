@@ -275,13 +275,21 @@ $sectionTitleSize: 9vmin;
 }
 
 .Beginning {
-  margin: $sectionMargin;
-  background: #2e4046;
-  border-radius: $borderRadius;
-  padding: 55px 35px;
+  h2 {
+    font-weight: $sectionTitleWeight;
+    font-size: $sectionTitleSize;
+    text-align: center;
+  }
 
-  @media screen and (min-width: 1120px) {
-    padding: 55px 65px 65px;
+  div {
+    margin: $sectionMargin;
+    background: #2e4046;
+    border-radius: $borderRadius;
+    padding: 55px 35px;
+
+    @media screen and (min-width: 1120px) {
+      padding: 55px 65px 65px;
+    }
   }
 
   .left {
@@ -405,7 +413,7 @@ $sectionTitleSize: 9vmin;
     }
 
     &-prime {
-      background: #2e4046;
+      background: #19222d;
       padding: $boxPadding;
       color: #fff;
       margin: 25px 0 50px;
