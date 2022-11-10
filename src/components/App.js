@@ -33,9 +33,8 @@ let socket;
 
 if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:80");
-} else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
-  // socket = socketClient(`https://${window.location.hostname}`);
-  socket = socketClient(`http://nn-staging.inventor.city/`);
+} else if (process.env.NODE_ENV === "production") {
+  socket = socketClient(`https://${window.location.hostname}`);
 }
 
 // Classroom code specified in URL
@@ -322,7 +321,7 @@ function App(props) {
     if (process.env.NODE_ENV === "development") {
       resPromise = true;
       setEnvVariables(resPromise);
-    } else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
+    } else if (process.env.NODE_ENV === "production") {
       resPromise = new Promise((resolve, reject) => {
         socket.emit("check-env", (response) => {
           setEnvVariables(response);

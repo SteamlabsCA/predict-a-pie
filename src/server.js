@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "development") {
       methods: ["GET", "POST"],
     },
   });
-} else if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
+} else if (process.env.NODE_ENV === "production") {
   httpsOptions = {
     cert: fs.readFileSync(path.join(__dirname, "cert", "nn_inventor_city.crt")),
     ca: fs.readFileSync(
