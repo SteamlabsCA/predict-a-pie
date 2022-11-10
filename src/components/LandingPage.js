@@ -536,6 +536,113 @@ const LandingPage = ({ onCommand, appData }) => {
             </h3>
           </div>
         </div>
+
+        <div className="Educators columns">
+          <div className="left">
+            <h2>Bringing AI education everywhere!</h2>
+            <p>
+              This tools has been used to support educators and students all
+              over Canada and the world! Use this tool and workshop content to
+              teach students, adults, and coworkers alike.
+            </p>
+          </div>
+
+          <div className="right">
+            <div className="tile">
+              <img src={iconLesson} />
+
+              <div>
+                <h4>Lesson Plans</h4>
+                <p>We have lesson plans for all grade and subjects!</p>
+
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf",
+                      "https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
+                  target="_new"
+                >
+                  <Button>Download Plans</Button>
+                </a>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconCreateClassroom} />
+
+              <div>
+                <h4>Create a Classroom</h4>
+                <p>
+                  Ready to explore this activity with your students? Share your
+                  findings together.
+                </p>
+                <a
+                  onClick={() => {
+                    onCommand("create-classroom");
+                    gtmTrack("sec_btn_click", "Class", "Create Class", "");
+                  }}
+                  disabled={!appData.connected}
+                >
+                  <Button>Create</Button>
+                </a>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconBookTraining} />
+
+              <div>
+                <h4>Book Teacher Training</h4>
+                <p>
+                  Participant in live workshops that will help guide you through
+                  lessons!
+                </p>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators",
+                      "https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
+              </div>
+            </div>
+
+            <div className="tile">
+              <img src={iconBookClassroom} />
+
+              <div>
+                <h4>Book a Classroom Visit</h4>
+                <p>Have an instructor present to your classrom</p>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all",
+                      "https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

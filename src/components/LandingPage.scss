@@ -501,6 +501,8 @@ $sectionTitleSize: 9vmin;
   }
 
   .columns {
+    flex-wrap: wrap;
+
     @media screen and (min-width: 1120px) {
       justify-content: space-between;
     }
