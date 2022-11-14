@@ -1,4 +1,6 @@
 $topHeight: 35rem;
+$fontSize: 1.6rem;
+$lineHeight: 1.6;
 
 .Article {
   display: flex;
@@ -33,8 +35,8 @@ $topHeight: 35rem;
     color: #000;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.6rem;
-    line-height: 1.6;
+    font-size: $fontSize;
+    line-height: $lineHeight;
     cursor: pointer;
   }
 }
@@ -64,8 +66,8 @@ $topHeight: 35rem;
   }
 
   p {
-    font-size: 1.6rem;
-    line-height: 1.6;
+    font-size: $fontSize;
+    line-height: $lineHeight;
 
     &:first-child {
       margin-top: 0;
@@ -73,7 +75,7 @@ $topHeight: 35rem;
   }
 
   h4 {
-    font-size: 1.6rem;
+    font-size: $fontSize;
     font-weight: 700;
     padding-top: 7rem;
   }
@@ -82,5 +84,10 @@ $topHeight: 35rem;
     width: 100%;
     height: 35rem;
     object-fit: cover;
+  }
+
+  ul {
+    font-size: $fontSize;
+    line-height: $lineHeight;
   }
 }

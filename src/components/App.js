@@ -25,6 +25,7 @@ import ingredients from "../ingredients/ingredients.json";
 import classifications from "../ingredients/classifications.json";
 import stringData from "../strings.json";
 import ArticleIntro from "./ArticleIntro";
+import ArticleClassroom from "./ArticleClassroom";
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
@@ -509,7 +510,18 @@ function App(props) {
               checkEnv={checkEnv}
               envVariables={envVariables}
             />
-            <ArticleIntro />
+            <ArticleIntro appData={appData} />
+          </Route>
+          <Route path="*/article/non-computer-science-classroom">
+            <NavBar
+              title="Article - Neural Networks for Your Non-Computer Science Classroom Subject"
+              appData={appData}
+              route="non-computer-science-classroom"
+              onCommand={onCommand}
+              checkEnv={checkEnv}
+              envVariables={envVariables}
+            />
+            <ArticleClassroom appData={appData} />
           </Route>
           <Route path="/">
             <NavBar

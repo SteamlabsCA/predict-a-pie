@@ -160,7 +160,23 @@ const LandingPage = ({ onCommand, appData }) => {
                   potential areas in which AI could be adopted into different
                   areas of an education curriculum.
                 </p>
-                <Button>READ ARTICLE</Button>
+                <Link
+                  onClick={() =>
+                    gtmTrack(
+                      "prm_btn_click",
+                      "Article",
+                      "Neural Networks for Your Non-Computer Science Classroom Subject",
+                      ""
+                    )
+                  }
+                  to={
+                    appData.classroom
+                      ? `/${appData.classroom.code}/article/non-computer-science-classroom`
+                      : "/article/non-computer-science-classroom"
+                  }
+                >
+                  <Button>READ ARTICLE</Button>
+                </Link>
               </div>
               <div className="right">
                 <img src="" />
