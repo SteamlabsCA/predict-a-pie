@@ -113,6 +113,7 @@ $sectionTitleSize: 9vmin;
 
 .MainSection {
   margin: 0 13%;
+  padding-bottom: 10%;
 }
 
 .Hero {
@@ -530,32 +531,140 @@ $sectionTitleSize: 9vmin;
 }
 
 .AboutApp {
-  margin: $sectionPadding;
+  background: #2e4046;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: $borderRadius;
+  padding: 0.25rem 5rem 5rem;
+
   h2 {
     font-weight: $sectionTitleWeight;
     font-size: $sectionTitleSize;
+    color: #fff;
+    text-align: center;
   }
+
+  &-tiles {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @media screen and (min-width: 1120px) {
+      flex-direction: row;
+    }
+
+    div {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 23%;
+    }
+
+    img {
+      width: 200px;
+      object-fit: cover;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+
   p {
     font-size: $boxDescriptionSize;
     line-height: $boxDescriptionLineHeight;
   }
+}
 
-  h3 {
-    font-weight: 700;
-    font-size: 1.6rem;
-  }
+.BringAI {
+  padding: $sectionPadding;
 
-  .word-wrap {
-    word-wrap: break-word;
-  }
-
-  .Instructions-sctFour {
-    flex-direction: column;
-    align-items: center;
-
+  .left {
     @media screen and (min-width: 1120px) {
-      flex-direction: row;
-      align-items: baseline;
+      width: 40%;
+    }
+
+    h2 {
+      font-weight: $sectionTitleWeight;
+      font-size: $sectionTitleSize;
+    }
+
+    p {
+      font-size: $boxDescriptionSize;
+      line-height: $boxDescriptionLineHeight;
     }
   }
+
+  .right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 20px;
+
+    @media screen and (min-width: 1120px) {
+      width: 60%;
+    }
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-template-areas:
+      "amazon amazon teknisk tpl"
+      "amazon amazon clc digitalMoment"
+      ". wesUni sw .";
+
+    div {
+      background: #ffffff;
+      border-radius: 30px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .amazon {
+      grid-area: amazon;
+    }
+    .wesUni {
+      grid-area: wesUni;
+    }
+    .teknisk {
+      grid-area: teknisk;
+    }
+    .tpl {
+      grid-area: tpl;
+    }
+    .clc {
+      grid-area: clc;
+    }
+    .digitalMoment {
+      grid-area: digitalMoment;
+    }
+    .sw {
+      grid-area: sw;
+    }
+  }
+}
+
+.License {
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: $borderRadius;
+  padding: 4rem 10rem;
+
+  p {
+    font-size: $boxDescriptionSize;
+    line-height: $boxDescriptionLineHeight;
+  }
+}
+
+.word-wrap {
+  word-wrap: break-word;
 }

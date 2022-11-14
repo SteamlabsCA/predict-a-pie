@@ -17,6 +17,13 @@ import funJoin from "../assets/fun-join.png";
 import funBuild from "../assets/fun-build.png";
 import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
+import logoAmazon from "../assets/logo-amazon.png";
+import wesUni from "../assets/logo-wesuni.png";
+import teknisk from "../assets/logo-teknisk.png";
+import tpl from "../assets/logo-tpl.png";
+import clc from "../assets/logo-clc.png";
+import digiMoment from "../assets/logo-digimoment.png";
+import sw from "../assets/logo-sw.png";
 
 const LandingPage = ({ onCommand, appData }) => {
   // Scroll movement
@@ -406,10 +413,9 @@ const LandingPage = ({ onCommand, appData }) => {
         </div>
 
         <div className="AboutApp">
-          <h2>About this app</h2>
-          <h3>Credits</h3>
-          <div className="Instructions-sctFour">
-            <p>
+          <h2>About This App</h2>
+          <div className="AboutApp-tiles">
+            <div>
               <a
                 onClick={() =>
                   gtmTrack(
@@ -424,9 +430,10 @@ const LandingPage = ({ onCommand, appData }) => {
               >
                 <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
               </a>
-              Predict-a-Pie is a creation of Steamlabs.
-            </p>
-            <p>
+              <p>Predict-a-Pie is a creation of Steamlabs.</p>
+            </div>
+
+            <div>
               <a
                 onClick={() =>
                   gtmTrack(
@@ -441,9 +448,10 @@ const LandingPage = ({ onCommand, appData }) => {
               >
                 <img src="./ChefWolfmanLogo.gif" />
               </a>
-              Consultation with David Wolfman and Marlene Finn
-            </p>
-            <p>
+              <p>Consultation with David Wolfman and Marlene Finn</p>
+            </div>
+
+            <div>
               <a
                 onClick={() =>
                   gtmTrack(
@@ -461,9 +469,10 @@ const LandingPage = ({ onCommand, appData }) => {
                   height="100px"
                 />
               </a>
-              Co-designed by Steamlabs and Kids Code Jeunesse.
-            </p>
-            <p>
+              <p>Co-designed by Steamlabs and Kids Code Jeunesse.</p>
+            </div>
+
+            <div>
               <a
                 onClick={() =>
                   gtmTrack(
@@ -478,14 +487,150 @@ const LandingPage = ({ onCommand, appData }) => {
               >
                 <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
               </a>
-              Created with funding from Amazon Future Engineer.
+              <p>Created with funding from Amazon Future Engineer.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="BringAI columns">
+          <div className="left">
+            <h2>Bringing AI education everywhere!</h2>
+            <p>
+              This tools has been used to support educators and students all
+              over Canada and the world! Use this tool and workshop content to
+              teach students, adults, and coworkers alike.
             </p>
           </div>
-          <div className="Instructions-sctFive">
-            <h3>License</h3>
+
+          <div className="right container">
+            <div className="amazon">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day",
+                    "https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day"
+                  )
+                }
+                href="https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day"
+                target="_new"
+              >
+                <img src={logoAmazon} />
+              </a>
+            </div>
+
+            <div className="wesUni">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://space.uwo.ca/",
+                    "https://space.uwo.ca/"
+                  )
+                }
+                href="https://space.uwo.ca/"
+                target="_new"
+              >
+                <img src={wesUni} />
+              </a>
+            </div>
+
+            <div className="teknisk">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.tekniskmuseum.no",
+                    "https://www.tekniskmuseum.no"
+                  )
+                }
+                href="https://www.tekniskmuseum.no"
+                target="_new"
+              >
+                <img src={teknisk} />
+              </a>
+            </div>
+
+            <div className="tpl">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.torontopubliclibrary.ca/programs-and-classes/",
+                    "https://www.torontopubliclibrary.ca/programs-and-classes/"
+                  )
+                }
+                href="https://www.torontopubliclibrary.ca/programs-and-classes/"
+                target="_new"
+              >
+                <img src={tpl} />
+              </a>
+            </div>
+
+            <div className="clc">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.canadalearningcode.ca/",
+                    "https://www.canadalearningcode.ca/"
+                  )
+                }
+                href="https://www.canadalearningcode.ca/"
+                target="_new"
+              >
+                <img src={clc} />
+              </a>
+            </div>
+
+            <div className="digitalMoment">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://digitalmoment.org/",
+                    "https://digitalmoment.org/"
+                  )
+                }
+                href="https://digitalmoment.org/"
+                target="_new"
+              >
+                <img src={digiMoment} />
+              </a>
+            </div>
+
+            <div className="sw">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.scienceworld.ca/",
+                    "https://www.scienceworld.ca/"
+                  )
+                }
+                href="https://www.scienceworld.ca/"
+                target="_new"
+              >
+                <img src={sw} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="License columns">
+          <div className="left">
             <p>
-              Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA
-              4.0)
+              <strong>
+                Licensed under Attribution-ShareAlike 4.0 International (CC
+                BY-SA 4.0)
+              </strong>
             </p>
             <p>In summary, you are free to:</p>
             <ul>
@@ -534,120 +679,6 @@ const LandingPage = ({ onCommand, appData }) => {
                 https://creativecommons.org/licenses/by-sa/4.0/
               </a>
             </p>
-          </div>
-          <div className="Instructions-sctSix">
-            <h3>
-              <a href="./PredictAPiePrivacyPolicy.pdf" target="blank">
-                Privacy Policy
-              </a>
-            </h3>
-          </div>
-        </div>
-
-        <div className="Educators columns">
-          <div className="left">
-            <h2>Bringing AI education everywhere!</h2>
-            <p>
-              This tools has been used to support educators and students all
-              over Canada and the world! Use this tool and workshop content to
-              teach students, adults, and coworkers alike.
-            </p>
-          </div>
-
-          <div className="right">
-            <div className="tile">
-              <img src={iconLesson} />
-
-              <div>
-                <h4>Lesson Plans</h4>
-                <p>We have lesson plans for all grade and subjects!</p>
-
-                <a
-                  onClick={() =>
-                    gtmTrack(
-                      "out_btn_click",
-                      "LandingPage",
-                      "Out Bound: https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf",
-                      "https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
-                    )
-                  }
-                  href="https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
-                  target="_new"
-                >
-                  <Button>Download Plans</Button>
-                </a>
-              </div>
-            </div>
-
-            <div className="tile">
-              <img src={iconCreateClassroom} />
-
-              <div>
-                <h4>Create a Classroom</h4>
-                <p>
-                  Ready to explore this activity with your students? Share your
-                  findings together.
-                </p>
-                <a
-                  onClick={() => {
-                    onCommand("create-classroom");
-                    gtmTrack("sec_btn_click", "Class", "Create Class", "");
-                  }}
-                  disabled={!appData.connected}
-                >
-                  <Button>Create</Button>
-                </a>
-              </div>
-            </div>
-
-            <div className="tile">
-              <img src={iconBookTraining} />
-
-              <div>
-                <h4>Book Teacher Training</h4>
-                <p>
-                  Participant in live workshops that will help guide you through
-                  lessons!
-                </p>
-                <a
-                  onClick={() =>
-                    gtmTrack(
-                      "out_btn_click",
-                      "LandingPage",
-                      "Out Bound: https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators",
-                      "https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
-                    )
-                  }
-                  href="https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
-                  target="_new"
-                >
-                  <Button>Book</Button>
-                </a>
-              </div>
-            </div>
-
-            <div className="tile">
-              <img src={iconBookClassroom} />
-
-              <div>
-                <h4>Book a Classroom Visit</h4>
-                <p>Have an instructor present to your classrom</p>
-                <a
-                  onClick={() =>
-                    gtmTrack(
-                      "out_btn_click",
-                      "LandingPage",
-                      "Out Bound: https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all",
-                      "https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
-                    )
-                  }
-                  href="https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
-                  target="_new"
-                >
-                  <Button>Book</Button>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
