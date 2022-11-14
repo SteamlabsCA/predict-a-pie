@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./LandingPage.scss";
 import Button from "./Button";
 import gtmTrack from "../helpers/gtmTrack";
 import { Link } from "react-router-dom";
+import scroll from "../helpers/articleScroll";
 
 import beginning from "../assets/beginning.png";
 import indigenous from "../assets/indigenous.png";
@@ -18,32 +19,45 @@ import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
 
 const LandingPage = ({ onCommand, appData }) => {
-  // Scroll movement of the arrow
-  const scroll = () => {
-    const scrollHeight = document.getElementById("Hero").scrollHeight;
-    window.scrollTo({ top: scrollHeight, behavior: "smooth" });
+  // Scroll movement
+  const scroll = (id) => {
+    document.getElementById(id).scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <div className="LandingPage">
-      <div className="Hero" id="Hero">
+      <div className="Hero">
         <div className="Hero-animation">
           <div className="line"></div>
           <div className="bright-line"></div>
           <div className="particle"></div>
 
-          <h1>Artificial Intelligence is everywhere</h1>
+          <div className="Hero-contents">
+            <h1>Artificial Intelligence is everywhere</h1>
+
+            <div>
+              <Button onClick={() => scroll("Beginning")}>
+                Learn how AI works
+              </Button>
+              <Button onClick={() => scroll("TryAI")}>Try an AI</Button>
+              <Button onClick={() => scroll("Educators")}>
+                Explore AI workshops for any classroom
+              </Button>
+            </div>
+          </div>
         </div>
 
-        <div className="Hero-scroll" onClick={scroll}>
+        {/* <div className="Hero-scroll" onClick={scroll}>
           <span class="Hero-arrow"></span>
         </div>
 
-        <p>SCROLL DOWN</p>
+        <p>SCROLL DOWN</p> */}
       </div>
 
       <div className="MainSection">
-        <div className="Beginning">
+        <div className="Beginning" id="Beginning">
           <h2>How does AI work?</h2>
 
           <div className="columns">
@@ -155,7 +169,7 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="Educators columns">
+        <div className="Educators columns" id="Educators">
           <div className="left">
             <h2>Hey Educators! Want to use this in your classroom?</h2>
             <p>
@@ -271,10 +285,10 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="FunPart">
+        <div className="TryAI" id="TryAI">
           <h2>Try an AI!</h2>
           <div className="columns">
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funPP} />
 
               <div>
@@ -299,7 +313,7 @@ const LandingPage = ({ onCommand, appData }) => {
               </Link>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funIndigenous} />
 
               <div>
@@ -329,7 +343,7 @@ const LandingPage = ({ onCommand, appData }) => {
               </Link>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funBuild} />
 
               <div>
@@ -351,7 +365,7 @@ const LandingPage = ({ onCommand, appData }) => {
               </a>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funJoin} />
 
               <div>
@@ -370,29 +384,6 @@ const LandingPage = ({ onCommand, appData }) => {
                 disabled={!appData.connected}
               >
                 <Button>Enter Code</Button>
-              </a>
-            </div>
-
-            <div className="tile fun-part">
-              <img src={funBuild} />
-
-              <div>
-                <h4>AI Gallery</h4>
-                <p>
-                  Explore other neural networks folks like you have created! Add
-                  your own nodes and connections to customize the networks to
-                  fit your life.
-                </p>
-              </div>
-
-              <a
-                onClick={() => {
-                  onCommand("join-classroom");
-                  gtmTrack("sec_btn_click", "Class", "Join Class", "");
-                }}
-                disabled={!appData.connected}
-              >
-                <Button>Ready to Explore!</Button>
               </a>
             </div>
           </div>
