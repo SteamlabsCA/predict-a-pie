@@ -216,8 +216,8 @@ const LandingPage = ({ onCommand, appData }) => {
               <img src={iconLesson} />
 
               <div>
-                <h4>Lesson Plans</h4>
-                <p>We have lesson plans for all grade and subjects!</p>
+                <h4>Lesson Plan</h4>
+                <p>Incorporate into any subject grades 5 to 12.</p>
 
                 <a
                   onClick={() =>
@@ -242,8 +242,8 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Create a Classroom</h4>
                 <p>
-                  Ready to explore this activity with your students? Share your
-                  findings together.
+                  Companion website for lesson plan. Explore an AI with your
+                  class.
                 </p>
                 <a
                   onClick={() => {
@@ -394,7 +394,7 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Join a Classroom</h4>
                 <p>
-                  Enter the classroom code provide by your instructor to start
+                  Enter the classroom code provided by your instructor to start
                   exploring!
                 </p>
               </div>

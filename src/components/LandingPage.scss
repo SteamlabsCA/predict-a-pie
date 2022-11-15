@@ -338,16 +338,15 @@ $sectionTitleSize: 9vmin;
   .right {
     position: relative;
     img {
-      width: 50%;
       position: absolute;
-      bottom: 0;
-      left: 50%;
+      display: none;
 
       @media screen and (min-width: 1120px) {
+        display: block;
         width: 100%;
         bottom: 0;
         left: 0;
-        top: -5%;
+        top: -3%;
       }
     }
   }
@@ -546,9 +545,11 @@ $sectionTitleSize: 9vmin;
   &-tiles {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: column;
 
     @media screen and (min-width: 1120px) {
+      align-items: unset;
       flex-direction: row;
     }
 
@@ -560,7 +561,13 @@ $sectionTitleSize: 9vmin;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 23%;
+      width: 80%;
+      margin: 1rem 0;
+
+      @media screen and (min-width: 1120px) {
+        width: 23%;
+        margin: 0;
+      }
     }
 
     img {
@@ -611,13 +618,27 @@ $sectionTitleSize: 9vmin;
 
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
     gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "amazon amazon teknisk tpl"
-      "amazon amazon clc digitalMoment"
-      ". wesUni sw .";
+      "amazon"
+      "wesUni"
+      "teknisk"
+      "tpl"
+      "clc"
+      "digitalMoment"
+      "sw";
+    padding: 0;
+
+    @media screen and (min-width: 1120px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas:
+        "amazon amazon teknisk tpl"
+        "amazon amazon clc digitalMoment"
+        ". wesUni sw .";
+    }
 
     div {
       background: #ffffff;
