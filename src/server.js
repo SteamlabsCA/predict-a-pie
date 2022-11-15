@@ -24,7 +24,10 @@ const app = express();
 
 let server, httpsServer, io;
 
-if (process.env.NODE_ENV === "development") {
+if (
+  process.env.NODE_ENV === "development" ||
+  process.env.NODE_ENV === "staging"
+) {
   server = http.createServer(app);
   httpsServer = https.createServer(app);
 
