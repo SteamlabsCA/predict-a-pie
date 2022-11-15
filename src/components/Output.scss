@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .Output {
   background: #fff;
@@ -59,7 +59,7 @@
     padding-left: 2rem;
     right: -17rem - $spacer;
     width: 17rem;
-    height: $spacer / 2;
+    height: calc($spacer / 2);
   }
 
   &-small &-check {

@@ -1,123 +1,123 @@
-@import '../variables';
+@import "../variables";
 
 .Layer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 
-	&-container {
-		background: #e6eaec;
-		border-right: 2px solid $light-gray;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		flex-grow: 1;
-		flex-shrink: 0;
-		padding: $spacer / 2;
-		min-height: calc(100% - #{$spacer * 2});
-	}
+  &-container {
+    background: #e6eaec;
+    border-right: 2px solid $light-gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: calc($spacer / 2);
+    min-height: calc(100% - #{$spacer * 2});
+  }
 
-	&:first-child &-container {
-		border-top-left-radius: 1rem;
-		border-bottom-left-radius: 1rem;
-	}
+  &:first-child &-container {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
 
-	&:last-child &-container {
-		border-right: 0;
-		border-top-right-radius: 1rem;
-		border-bottom-right-radius: 1rem;
-	}
+  &:last-child &-container {
+    border-right: 0;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
 
-	&-neurons {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		flex-grow: 1;
-	}
+  &-neurons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
 
-	&-label {
-		background: $highlight;
-		border-radius: $spacer;
-		color: $light-gray;
-		display: inline-block;
-		font-size: 1.4rem;
-		font-weight: 700;
-		padding: 0.5rem 2rem;
-		position: absolute;
-		bottom: -7rem;
-		text-transform: uppercase;
-	}
+  &-label {
+    background: $highlight;
+    border-radius: $spacer;
+    color: $light-gray;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    position: absolute;
+    bottom: -7rem;
+    text-transform: uppercase;
+  }
 
-	&-name {
-		color: $highlight;
-		display: inline-block;
-		font-size: 1.7rem;
-		font-weight: 700;
-		margin: 2rem 0 0;
-		text-transform: uppercase;
-		border: none;
-		border-bottom: 2.5px solid $dark-gray;
-		background: transparent;
-		text-align: center;
+  &-name {
+    color: $highlight;
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 2rem 0 0;
+    text-transform: uppercase;
+    border: none;
+    border-bottom: 2.5px solid $dark-gray;
+    background: transparent;
+    text-align: center;
 
-		&:hover {
-			border-bottom: 2.5px solid $highlight;
-		}
-	}
+    &:hover {
+      border-bottom: 2.5px solid $highlight;
+    }
+  }
 
-	&-button {
-		background: transparent;
-		border: 1px $dark-gray dashed;
-		border-radius: 0.5rem;
-		color: $dark-gray;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		font-size: 2rem;
-		font-weight: 500;
-		line-height: 1.1;
-		margin: 1rem 0;
-		width: $spacer * 4;
-		height: $spacer;
-	}
+  &-button {
+    background: transparent;
+    border: 1px $dark-gray dashed;
+    border-radius: 0.5rem;
+    color: $dark-gray;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 1rem 0;
+    width: $spacer * 4;
+    height: $spacer;
+  }
 
-	&-trash {
-		background: $light-gray;
-		border-radius: $spacer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 1rem 0;
-		padding: 1.5rem;
-		transition: transform 300ms;
-		width: $spacer;
-		height: $spacer;
+  &-trash {
+    background: $light-gray;
+    border-radius: $spacer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    transition: transform 300ms;
+    width: $spacer;
+    height: $spacer;
 
-		img {
-			opacity: 0.25;
-			width: auto;
-			height: 100%;
-		}
-	}
+    img {
+      opacity: 0.25;
+      width: auto;
+      height: 100%;
+    }
+  }
 
-	&-trash-hover {
-		.Neuron-dragging {
-			opacity: 0.5;
-		}
+  &-trash-hover {
+    .Neuron-dragging {
+      opacity: 0.5;
+    }
 
-		.Layer-trash {
-			transform: scale(1.2);
-		}
-	}
+    .Layer-trash {
+      transform: scale(1.2);
+    }
+  }
 
-	&-placeholder {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 30rem;
-	}
+  &-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+  }
 }

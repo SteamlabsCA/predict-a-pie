@@ -1,120 +1,121 @@
-@import '../variables';
+@import "../variables";
 
 .Neuron {
-	background-color: #fff;
-	border-radius: 0.5rem;
-	box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-	margin: 1rem 0;
-	position: relative;
-	transition: background-color 300ms;
-	width: $spacer * 4;
-	height: $spacer;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 1rem 0;
+  position: relative;
+  transition: background-color 300ms;
+  width: $spacer * 4;
+  height: $spacer;
 
-	&-active {
-		background-color: #e4ffe3;
-	}
+  &-active {
+    background-color: #e4ffe3;
+  }
 
-	&-title {
-		font-size: 2rem;
-		font-weight: 600;
-		outline: none;
-		user-select: text;
-		min-width: 60%;
-		text-align: center;
-		&:hover {
-			cursor: text;
-		}
-	}
+  &-title {
+    font-size: 2rem;
+    font-weight: 600;
+    outline: none;
+    user-select: text;
+    min-width: 60%;
+    text-align: center;
+    &:hover {
+      cursor: text;
+    }
+  }
 
-	&-terminal {
-		background: $light-gray;
-		border-radius: 100%;
-		box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.7rem;
-		width: 1.4rem;
-		height: 1.4rem;
+  &-terminal {
+    background: $light-gray;
+    border-radius: 100%;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    width: 1.4rem;
+    height: 1.4rem;
 
-		img {
-			width: 1rem;
-			height: 1rem;
-		}
-	}
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
 
-	&-input {
-		padding: 1rem;
-		position: absolute;
-		top: 50%;
-		left: -0.5rem;
-		transform: translateY(-50%);
-		z-index: 1000;
-	}
+  &-input {
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    left: -0.5rem;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
 
-	&-positive {
-		padding: 1rem;
-		position: absolute;
-		top: -0.25rem;
-		transform: none;
-		z-index: 1000;
-	}
+  &-positive {
+    padding: 1rem;
+    position: absolute;
+    top: -0.25rem;
+    transform: none;
+    z-index: 1000;
+  }
 
-	&-negative {
-		padding: 1rem;
-		position: absolute;
-		top: auto;
-		bottom: -0.25rem;
-		transform: none;
-		z-index: 1000;
-	}
+  &-negative {
+    padding: 1rem;
+    position: absolute;
+    top: auto;
+    bottom: -0.25rem;
+    transform: none;
+    z-index: 1000;
+  }
 
-	&-output {
-		padding: 1rem;
-		position: absolute;
-		cursor: pointer;
-		top: 50%;
-		right: -0.5rem;
-		transform: translateY(-50%);
-		z-index: 1000;
-	}
+  &-output {
+    padding: 1rem;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    right: -0.5rem;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
 
-	&-dragging {
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		user-select: none;
-		z-index: 10000;
-	}
+  &-dragging {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    z-index: 10000;
+  }
 
-	&-grabbable {
-		&:hover,
-		&:active {
-			background-image: radial-gradient(#e0e0e0 20%, transparent 20%), radial-gradient(#fafafa 20%, transparent 20%);
-			background-size: 10px 10px;
-		}
-		&:hover {
-			cursor: grab;
-		}
-		&:active {
-			cursor: grabbing;
-		}
-	}
+  &-grabbable {
+    &:hover,
+    &:active {
+      background-image: radial-gradient(#e0e0e0 20%, transparent 20%),
+        radial-gradient(#fafafa 20%, transparent 20%);
+      background-size: 10px 10px;
+    }
+    &:hover {
+      cursor: grab;
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
 
-	&-small {
-		margin: 0.5rem 0;
-		width: $spacer * 4;
-		height: $spacer / 2;
-	}
+  &-small {
+    margin: 0.5rem 0;
+    width: $spacer * 4;
+    height: calc($spacer / 2);
+  }
 
-	&-small &-title {
-		font-size: 1.6rem;
-	}
+  &-small &-title {
+    font-size: 1.6rem;
+  }
 
-	&-small &-terminal {
-		width: 0.8rem;
-		height: 0.8rem;
-	}
+  &-small &-terminal {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
 }

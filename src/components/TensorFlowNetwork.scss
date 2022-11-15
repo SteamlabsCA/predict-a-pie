@@ -1,11 +1,11 @@
-@import '../variables';
+@import "../variables";
 
 .TensorFlowNetwork {
   background: #e6eaec;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $spacer / 2 $spacer;
+  padding: calc($spacer / 2) $spacer;
   position: relative;
   min-width: 58rem;
   z-index: 10;

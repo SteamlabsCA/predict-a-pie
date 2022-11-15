@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .ToggleSwitch {
   background: #fff;
@@ -59,7 +59,7 @@
   &-small {
     left: -8rem - $spacer;
     width: 8rem;
-    height: $spacer / 2;
+    height: calc($spacer / 2);
   }
 
   &-small &-well {

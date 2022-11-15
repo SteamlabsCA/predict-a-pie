@@ -1,29 +1,29 @@
-@import '../variables';
+@import "../variables";
 
 .Definition {
-	cursor: help;
+  cursor: help;
 
-	&-tooltip {
-		background: #fff;
-		border-radius: 0.5rem;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		color: #000;
-		font-size: 1.6rem;
-		opacity: 0;
-		padding: $spacer / 3;
-		pointer-events: none;
-		position: fixed;
-		text-align: left;
-		visibility: hidden;
-		max-width: 50rem;
-		z-index: 10000;
-	}
+  &-tooltip {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #000;
+    font-size: 1.6rem;
+    opacity: 0;
+    padding: calc($spacer / 3);
+    pointer-events: none;
+    position: fixed;
+    text-align: left;
+    visibility: hidden;
+    max-width: 50rem;
+    z-index: 10000;
+  }
 
-	&:hover &-tooltip {
-		display: block;
-		opacity: 1;
-		transition: opacity 200ms;
-		transition-delay: 500ms;
-		visibility: visible;
-	}
+  &:hover &-tooltip {
+    display: block;
+    opacity: 1;
+    transition: opacity 200ms;
+    transition-delay: 500ms;
+    visibility: visible;
+  }
 }

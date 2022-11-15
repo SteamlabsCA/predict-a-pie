@@ -1,38 +1,38 @@
-@import '../variables';
+@import "../variables";
 
 .Alert {
-	background: #fff;
-	border-radius: 0.5rem;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	font-size: 1.6rem;
-	margin: 0 auto;
-	padding: $spacer / 3 $spacer / 2;
-	position: fixed;
-	bottom: 5rem;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 100000;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.6rem;
+  margin: 0 auto;
+  padding: calc($spacer / 3) calc($spacer / 2);
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
 
-	animation-name: fadeOut;
-	animation-delay: 2s;
-	animation-duration: 1200ms;
-	animation-iteration-count: 1;
-	animation-fill-mode: both;
+  animation-name: fadeOut;
+  animation-delay: 2s;
+  animation-duration: 1200ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 
-	&-rateLimit {
-		animation-name: fadeOut;
-		animation-delay: 2s;
-		animation-duration: 3600ms;
-		animation-iteration-count: 1;
-		animation-fill-mode: both;
-	}
+  &-rateLimit {
+    animation-name: fadeOut;
+    animation-delay: 2s;
+    animation-duration: 3600ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+  }
 
-	@keyframes fadeOut {
-		from {
-			opacity: 1;
-		}
-		to {
-			opacity: 0;
-		}
-	}
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }
