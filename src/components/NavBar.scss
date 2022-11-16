@@ -1,8 +1,8 @@
-@import '../variables';
+@import "../variables";
 
 .NavBar {
-  background: #fff;
-  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  // box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   padding: 2rem 2rem 2rem 1rem;
@@ -38,6 +38,31 @@
     &:disabled {
       cursor: default;
       opacity: 0.2;
+    }
+  }
+
+  &-NN {
+    background: rgba(255, 255, 255, 0.9);
+    // box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 2rem 2rem 2rem 1rem;
+    position: fixed;
+    width: 100%;
+    height: $spacer;
+    top: $spacer;
+    left: 0;
+    z-index: 10000;
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    h1 + * {
+      margin-left: auto;
     }
   }
 }
