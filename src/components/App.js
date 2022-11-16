@@ -32,9 +32,9 @@ export { ingredients, classifications, strings };
 let socket;
 
 if (process.env.NODE_ENV === "development") {
-  socket = socketClient("http://localhost:8080");
+  socket = socketClient("http://localhost:80");
 } else if (process.env.NODE_ENV === "staging") {
-  socket = socketClient("http://0.0.0.0:8080");
+  socket = socketClient("http://0.0.0.0:80");
 } else if (process.env.NODE_ENV === "production") {
   socket = socketClient(`https://${window.location.hostname}`);
 }
