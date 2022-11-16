@@ -33,10 +33,8 @@ let socket;
 
 if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:8080");
-  console.log("development");
 } else if (process.env.NODE_ENV === "staging") {
   socket = socketClient("http://localhost:8080");
-  console.log("staging");
 } else if (process.env.NODE_ENV === "production") {
   socket = socketClient(`https://${window.location.hostname}`);
 }
@@ -84,8 +82,6 @@ function App(props) {
     socket.on("connect", () => {
       appData.connected = true;
       setAppData({ ...appData });
-
-      console.log(appData);
     });
 
     socket.on("disconnect", () => {
@@ -96,8 +92,6 @@ function App(props) {
     socket.on("user-id", (userId) => {
       appData.userId = userId;
       setAppData({ ...appData });
-
-      console.log(userId);
     });
 
     socket.on("classroom-created", (code) => {
