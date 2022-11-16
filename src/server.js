@@ -24,14 +24,33 @@ const app = express();
 
 let server, httpsServer, io;
 
-if (
-  process.env.NODE_ENV === "development" ||
-  process.env.NODE_ENV === "staging"
-) {
+if (process.env.NODE_ENV === "development") {
   server = http.createServer(app);
   httpsServer = https.createServer(app);
 
   io = socketIo(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+  });
+} else if (process.env.NODE_ENV === "staging") {
+  httpsOptions = {
+    cert: fs.readFileSync(
+      path.join(__dirname, "cert", "nn-staging_inventor_city.crt")
+    ),
+    ca: fs.readFileSync(
+      path.join(__dirname, "cert", "nn-staging_inventor_city.ca-bundle")
+    ),
+    key: fs.readFileSync(
+      path.join(__dirname, "cert", "nn-staging_inventor_city.p7b")
+    ),
+  };
+
+  server = http.createServer(app);
+  httpsServer = https.createServer(httpsOptions, app);
+
+  io = socketIo(httpsServer, {
     cors: {
       origin: "*",
       methods: ["GET", "POST"],
@@ -255,10 +274,6 @@ io.on("connection", (socket) => {
   console.log("New client connected");
   socket.emit("user-id", socket.id);
 
-  socket.on("connect_error", (err) => {
-    socket.emit("connection_error", err);
-  });
-
   // Find participant's classroom
   const findClassroom = () => {
     for (const i in classrooms) {
@@ -462,4 +477,4 @@ io.on("connection", (socket) => {
 });
 
 server.listen(8080, () => console.log(`Server on port 8080`));
-// httpsServer.listen(443, () => console.log(`Secure server on port 443`));
+httpsServer.listen(443, () => console.log(`Secure server on port 443`));
