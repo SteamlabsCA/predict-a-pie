@@ -90,6 +90,10 @@ function App(props) {
       console.log(appData);
     });
 
+    socket.on("connection_error", (err) => {
+      console.log(`connection_error due to ${err.message}`);
+    });
+
     socket.on("disconnect", () => {
       appData.connected = false;
       setAppData({ ...appData });

@@ -255,6 +255,10 @@ io.on("connection", (socket) => {
   console.log("New client connected");
   socket.emit("user-id", socket.id);
 
+  socket.on("connect_error", (err) => {
+    socket.emit("connection_error", err);
+  });
+
   // Find participant's classroom
   const findClassroom = () => {
     for (const i in classrooms) {
