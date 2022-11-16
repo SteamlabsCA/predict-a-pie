@@ -33,8 +33,10 @@ let socket;
 
 if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:8080");
+  console.log("development");
 } else if (process.env.NODE_ENV === "staging") {
-  socket = socketClient("http://127.0.0.1:8080/");
+  socket = socketClient("http://localhost:8080");
+  console.log("staging");
 } else if (process.env.NODE_ENV === "production") {
   socket = socketClient(`https://${window.location.hostname}`);
 }
