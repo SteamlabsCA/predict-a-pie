@@ -32,7 +32,7 @@ export { ingredients, classifications, strings };
 let socket;
 
 if (process.env.NODE_ENV === "development") {
-  socket = socketClient("http://localhost:80");
+  socket = socketClient("http://localhost:8080");
   console.log("development");
 } else if (process.env.NODE_ENV === "staging") {
   socket = socketClient("http://localhost:8080");
