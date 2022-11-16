@@ -32,9 +32,11 @@ export { ingredients, classifications, strings };
 let socket;
 
 if (process.env.NODE_ENV === "development") {
-  socket = socketClient("http://localhost:80");
+  socket = socketClient("http://localhost:8080");
+  console.log("development");
 } else if (process.env.NODE_ENV === "staging") {
-  socket = socketClient("http://0.0.0.0:80");
+  socket = socketClient("http://0.0.0.0:8080");
+  console.log("staging");
 } else if (process.env.NODE_ENV === "production") {
   socket = socketClient(`https://${window.location.hostname}`);
 }
@@ -79,9 +81,13 @@ function App(props) {
 
   // Receive from socket
   React.useEffect(() => {
+    console.log(appData);
+
     socket.on("connect", () => {
       appData.connected = true;
       setAppData({ ...appData });
+
+      console.log(appData);
     });
 
     socket.on("disconnect", () => {
