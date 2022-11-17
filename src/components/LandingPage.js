@@ -64,42 +64,44 @@ const LandingPage = ({ onCommand, appData }) => {
       </div>
 
       <div className="MainSection">
-        <div className="Beginning" id="Beginning">
-          <h2>How does AI work?</h2>
+        <a id="HowAIWorks">
+          <div className="Beginning" id="Beginning">
+            <h2>How does AI work?</h2>
 
-          <div className="columns">
-            <div className="left">
-              <h2>Let’s start from the beginning...</h2>
-              <h4 className="box-title">Intro to Neural Networks</h4>
-              <p className="box-description">
-                Totally brand new? Take a look at the concept and building
-                blocks of Artificial Intelligence (AI) and how it is able to
-                make predictions using a neural network.
-              </p>
-              <Link
-                onClick={() =>
-                  gtmTrack(
-                    "prm_btn_click",
-                    "Article",
-                    "Intro to Neural Networks",
-                    ""
-                  )
-                }
-                to={
-                  appData.classroom
-                    ? `/${appData.classroom.code}/article/intro-to-neural-networks`
-                    : "/article/intro-to-neural-networks"
-                }
-              >
-                <Button>READ ARTICLE</Button>
-              </Link>
-            </div>
+            <div className="columns">
+              <div className="left">
+                <h2>Let’s start from the beginning...</h2>
+                <h4 className="box-title">Intro to Neural Networks</h4>
+                <p className="box-description">
+                  Totally brand new? Take a look at the concept and building
+                  blocks of Artificial Intelligence (AI) and how it is able to
+                  make predictions using a neural network.
+                </p>
+                <Link
+                  onClick={() =>
+                    gtmTrack(
+                      "prm_btn_click",
+                      "Article",
+                      "Intro to Neural Networks",
+                      ""
+                    )
+                  }
+                  to={
+                    appData.classroom
+                      ? `/${appData.classroom.code}/article/intro-to-neural-networks`
+                      : "/article/intro-to-neural-networks"
+                  }
+                >
+                  <Button>READ ARTICLE</Button>
+                </Link>
+              </div>
 
-            <div className="right">
-              <img src={beginning} />
+              <div className="right">
+                <img src={beginning} />
+              </div>
             </div>
           </div>
-        </div>
+        </a>
 
         <div className="Articles">
           <h2>Let's go deeper!</h2>
@@ -231,7 +233,7 @@ const LandingPage = ({ onCommand, appData }) => {
                   href="https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
                   target="_new"
                 >
-                  <Button>Download Plans</Button>
+                  <Button>Download Plan</Button>
                 </a>
               </div>
             </div>
@@ -377,15 +379,16 @@ const LandingPage = ({ onCommand, appData }) => {
                 </p>
               </div>
 
-              <a
-                onClick={() => {
-                  onCommand("create-classroom");
-                  gtmTrack("sec_btn_click", "Class", "Create Class", "");
-                }}
-                disabled={!appData.connected}
+              <Link
+                onClick={() => gtmTrack("prm_btn_click", "Build", "Build", "")}
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/build`
+                    : "/build"
+                }
               >
                 <Button>Ready to Build!</Button>
-              </a>
+              </Link>
             </div>
 
             <div className="tile try-ai">
@@ -412,85 +415,87 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="AboutApp">
-          <h2>About This App</h2>
-          <div className="AboutApp-tiles">
-            <div>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://www.steamlabs.ca/",
-                    "https://www.steamlabs.ca/"
-                  )
-                }
-                href="https://www.steamlabs.ca/"
-                target="_new"
-              >
-                <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
-              </a>
-              <p>Predict-a-Pie is a creation of Steamlabs.</p>
-            </div>
+        <a id="About">
+          <div className="AboutApp">
+            <h2>About This App</h2>
+            <div className="AboutApp-tiles">
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://www.steamlabs.ca/",
+                      "https://www.steamlabs.ca/"
+                    )
+                  }
+                  href="https://www.steamlabs.ca/"
+                  target="_new"
+                >
+                  <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
+                </a>
+                <p>Predict-a-Pie is a creation of Steamlabs.</p>
+              </div>
 
-            <div>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: http://www.cookingwiththewolfman.com/home.html",
-                    "http://www.cookingwiththewolfman.com/home.html"
-                  )
-                }
-                href="http://www.cookingwiththewolfman.com/home.html"
-                target="_new"
-              >
-                <img src="./ChefWolfmanLogo.gif" />
-              </a>
-              <p>Consultation with David Wolfman and Marlene Finn</p>
-            </div>
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: http://www.cookingwiththewolfman.com/home.html",
+                      "http://www.cookingwiththewolfman.com/home.html"
+                    )
+                  }
+                  href="http://www.cookingwiththewolfman.com/home.html"
+                  target="_new"
+                >
+                  <img src="./ChefWolfmanLogo.gif" />
+                </a>
+                <p>Consultation with David Wolfman and Marlene Finn</p>
+              </div>
 
-            <div>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://kidscodejeunesse.org/",
-                    "https://kidscodejeunesse.org/"
-                  )
-                }
-                href="https://kidscodejeunesse.org/"
-                target="_new"
-              >
-                <img
-                  src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png"
-                  height="100px"
-                />
-              </a>
-              <p>Co-designed by Steamlabs and Kids Code Jeunesse.</p>
-            </div>
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://kidscodejeunesse.org/",
+                      "https://kidscodejeunesse.org/"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/"
+                  target="_new"
+                >
+                  <img
+                    src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png"
+                    height="100px"
+                  />
+                </a>
+                <p>Co-designed by Steamlabs and Kids Code Jeunesse.</p>
+              </div>
 
-            <div>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://www.amazonfutureengineer.com/",
-                    "https://www.amazonfutureengineer.com/"
-                  )
-                }
-                href="https://www.amazonfutureengineer.com/"
-                target="_new"
-              >
-                <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
-              </a>
-              <p>Created with funding from Amazon Future Engineer.</p>
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://www.amazonfutureengineer.com/",
+                      "https://www.amazonfutureengineer.com/"
+                    )
+                  }
+                  href="https://www.amazonfutureengineer.com/"
+                  target="_new"
+                >
+                  <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
+                </a>
+                <p>Created with funding from Amazon Future Engineer.</p>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
 
         <div className="BringAI columns">
           <div className="left">

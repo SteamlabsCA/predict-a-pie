@@ -19,7 +19,13 @@ function NavBar({ title, content, appData, checkEnv, envVariables, ...props }) {
   return (
     <header className="NavBar">
       <Nav appData={appData} route={props.route} onCommand={props.onCommand} />
-      {/* <h1>{title === 'customPretrain' ? `Test Chef ${id.charAt(0).toUpperCase() + id.slice(1)}'s Pretrained Network` : title}</h1> */}
+      {/* <h1>
+        {title === "customPretrain"
+          ? `Test Chef ${
+              id.charAt(0).toUpperCase() + id.slice(1)
+            }'s Pretrained Network`
+          : title}
+      </h1> */}
       {envVariables && content && (
         <div className="NavBar-NN">
           <h1>

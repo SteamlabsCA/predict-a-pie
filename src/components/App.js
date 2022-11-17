@@ -82,6 +82,7 @@ function App(props) {
     socket.on("connect", () => {
       appData.connected = true;
       setAppData({ ...appData });
+      console.log(appData);
     });
 
     socket.on("disconnect", () => {
@@ -97,6 +98,7 @@ function App(props) {
     socket.on("classroom-created", (code) => {
       setClassroomCode(code);
       window.history.pushState("", "", "/" + code);
+      console.log(appData);
     });
 
     socket.on("classroom-joined", (code) => {
