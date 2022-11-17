@@ -220,13 +220,24 @@ $sectionTitleSize: 9vmin;
 
     div {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      flex-wrap: wrap;
       margin: 0 auto;
       width: 80%;
+
+      @media screen and (min-width: 1120px) {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
 
       button {
         height: 8rem;
         font-size: 3vmin;
+        margin: 5px 0;
+
+        @media screen and (min-width: 1120px) {
+          margin: 0;
+        }
       }
     }
   }
