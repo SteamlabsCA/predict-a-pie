@@ -46,8 +46,8 @@
   }
 
   &-box {
-    min-width: 35%;
-    max-width: 45%;
+    min-width: 50%;
+    max-width: 55%;
     padding: 1rem 4.5rem;
     top: 18%;
     background-color: #fff;
@@ -58,6 +58,8 @@
 
     @media screen and (min-width: 1120px) {
       top: 15%;
+      min-width: 35%;
+      max-width: 45%;
     }
 
     p {

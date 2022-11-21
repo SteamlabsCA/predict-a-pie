@@ -53,7 +53,7 @@ const TrainedNetworkInstructionPopup = ({ clickButton }) => {
       </div>
 
       <div className="Popup-container Popup-4">
-        <div className="arrow arrow4"></div>
+        {/* <div className="arrow arrow4"></div> */}
         <div className="Popup-box">
           <p>
             You can agree or disagree with the AI’s prediction. If you have made
