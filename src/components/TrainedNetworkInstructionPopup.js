@@ -27,11 +27,12 @@ const TrainedNetworkInstructionPopup = ({ clickButton }) => {
       </div>
 
       <div className="Popup-container Popup-2">
-        <div className="arrow arrow2"></div>
+        {/* <div className="arrow arrow2"></div> */}
         <div className="Popup-box">
           <p>
             This activity can be done on your own, or with a group. For a group,
-            start with "<strong>Create Classroom</strong>", and have everyone go
+            start with "<strong>Create Classroom</strong>" from "
+            <strong>FOR EDUCATOR</strong>" drop-down menu, and have everyone go
             to the URL that it generates.
           </p>
           <button id="2" onClick={(e) => clickButton(e)}>
@@ -41,7 +42,7 @@ const TrainedNetworkInstructionPopup = ({ clickButton }) => {
       </div>
 
       <div className="Popup-container Popup-3">
-        <div className="arrow arrow3"></div>
+        {/* <div className="arrow arrow3"></div> */}
         <div className="Popup-box">
           <p>
             Try different combinations of ingredients and see what the Neural
@@ -57,7 +58,7 @@ const TrainedNetworkInstructionPopup = ({ clickButton }) => {
           <p>
             You can agree or disagree with the AI’s prediction. If you have made
             a classroom link, your answer is recorded in the{" "}
-            <strong>Classroom Stats</strong> page found in the main menu.
+            <strong>Classroom Stats</strong> page found in the top menu bar.
           </p>
         </div>
       </div>

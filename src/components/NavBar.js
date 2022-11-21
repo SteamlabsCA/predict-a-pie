@@ -21,7 +21,7 @@ function NavBar({ title, content, appData, checkEnv, envVariables, ...props }) {
   }, []);
 
   return (
-    <header className={width < breakpoint ? "NavBar mobile" : "NavBar"}>
+    <header className={width < breakpoint ? "NavBar NavBar-mobile" : "NavBar"}>
       {width < breakpoint ? (
         <MobileNav
           appData={appData}
@@ -37,7 +37,11 @@ function NavBar({ title, content, appData, checkEnv, envVariables, ...props }) {
       )}
 
       {envVariables && content && (
-        <div className="NavBar-NN">
+        <div
+          className={
+            width < breakpoint ? "NavBar-NN NavBar-NN-mobile" : "NavBar-NN"
+          }
+        >
           <h1>
             {title === "customPretrain"
               ? `Test Chef ${

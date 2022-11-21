@@ -13,6 +13,10 @@
   height: calc($spacer * 0.75);
   z-index: 10000;
 
+  &-mobile {
+    justify-content: flex-start;
+  }
+
   h1 {
     font-size: 1.8rem;
     font-weight: 900;
@@ -54,7 +58,16 @@
     height: calc($spacer * 0.75);
     top: calc($spacer * 0.75);
     left: 0;
-    z-index: 10000;
+
+    &-mobile {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    &-mobile::-webkit-scrollbar {
+      display: none;
+    }
 
     div {
       display: flex;
@@ -72,8 +85,4 @@
       margin-left: auto;
     }
   }
-}
-
-.mobile {
-  justify-content: flex-start;
 }
