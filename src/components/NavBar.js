@@ -38,6 +38,17 @@ function NavBar({ title, content, appData, checkEnv, envVariables, ...props }) {
           <div>{content}</div>
         </div>
       )}
+      {title === "customPretrain" && (
+        <div className="NavBar-NN">
+          <h1>
+            {title === "customPretrain"
+              ? `Test Chef ${
+                  id.charAt(0).toUpperCase() + id.slice(1)
+                }'s Pretrained Network`
+              : title}
+          </h1>
+        </div>
+      )}
     </header>
   );
 }

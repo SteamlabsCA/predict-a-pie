@@ -444,6 +444,16 @@ function App(props) {
                   >
                     {strings.saveRecipe}
                   </button>
+                  <button
+                    onClick={onSaveRecipe}
+                    style={
+                      appData.classroom
+                        ? { display: "block", marginLeft: "1rem" }
+                        : { display: "none", marginLeft: "1rem" }
+                    }
+                  >
+                    View Classroom Stats
+                  </button>
                 </>
               }
             />
