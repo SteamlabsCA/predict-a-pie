@@ -12,6 +12,7 @@ function DropdownNav({
   setOpen,
   anotherNavOpen,
   setAnotherNavOpen,
+  dropdownStyle,
 }) {
   let models = pretrainedModels.Models;
 
@@ -27,17 +28,13 @@ function DropdownNav({
           if (anotherNavOpen) {
             setAnotherNavOpen(!anotherNavOpen);
           }
-          //   setMenuStyle({
-          //     left: event.clientX + 10 + "px",
-          //     top: event.clientY - 5 + "px",
-          //   });
         }}
       >
         TRY AN AI
       </div>
       <div
         className={open ? "DropdownNav-menu open" : "DropdownNav-menu closed"}
-        // style={menuStyle}
+        style={dropdownStyle && dropdownStyle}
       >
         {open && (
           <>

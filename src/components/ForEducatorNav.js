@@ -12,12 +12,8 @@ function DropdownNav({
   setOpen,
   anotherNavOpen,
   setAnotherNavOpen,
+  dropdownStyle,
 }) {
-  let models = pretrainedModels.Models;
-
-  //   const [open, setOpen] = React.useState(false);
-  const [menuStyle, setMenuStyle] = React.useState();
-
   return (
     <div className="DropdownNav">
       <div
@@ -27,17 +23,13 @@ function DropdownNav({
           if (anotherNavOpen) {
             setAnotherNavOpen(!anotherNavOpen);
           }
-          //   setMenuStyle({
-          //     left: event.clientX + 10 + "px",
-          //     top: event.clientY - 5 + "px",
-          //   });
         }}
       >
         FOR EDUCATOR
       </div>
       <div
         className={open ? "DropdownNav-menu open" : "DropdownNav-menu closed"}
-        // style={menuStyle}
+        style={dropdownStyle && dropdownStyle}
       >
         {open && (
           <>
