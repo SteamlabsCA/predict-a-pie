@@ -1,9 +1,6 @@
 import "./DropdownNav.scss";
 import React from "react";
-import pretrainedModels from "../pretrainedModels.json";
 import gtmTrack from "../helpers/gtmTrack";
-import { Link } from "react-router-dom";
-import { strings } from "./App";
 
 function DropdownNav({
   appData,
@@ -18,7 +15,7 @@ function DropdownNav({
     <div className="DropdownNav">
       <div
         className="DropdownNav-open stayOpen"
-        onClick={(event) => {
+        onClick={() => {
           setOpen(!open);
           if (anotherNavOpen) {
             setAnotherNavOpen(!anotherNavOpen);

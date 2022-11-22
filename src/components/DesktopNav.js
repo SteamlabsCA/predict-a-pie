@@ -1,12 +1,8 @@
 import "./DesktopNav.scss";
 import React from "react";
-import PretrainedNav from "./PretrainedNav";
 import TryAiNav from "./TryAiNav";
 import ForEducatorNav from "./ForEducatorNav";
 import gtmTrack from "../helpers/gtmTrack";
-import menu from "../assets/menu.svg";
-import { Link } from "react-router-dom";
-import { strings } from "./App";
 
 function DesktopNav({ appData, onCommand, ...props }) {
   const [openTryAi, setOpenTryAi] = React.useState(false);

@@ -1,9 +1,7 @@
 import "./DropdownNav.scss";
 import React from "react";
-import pretrainedModels from "../pretrainedModels.json";
 import gtmTrack from "../helpers/gtmTrack";
 import { Link } from "react-router-dom";
-import { strings } from "./App";
 
 function DropdownNav({
   appData,
@@ -14,16 +12,11 @@ function DropdownNav({
   setAnotherNavOpen,
   dropdownStyle,
 }) {
-  let models = pretrainedModels.Models;
-
-  //   const [open, setOpen] = React.useState(false);
-  const [menuStyle, setMenuStyle] = React.useState();
-
   return (
     <div className="DropdownNav">
       <div
         className="DropdownNav-open stayOpen"
-        onClick={(event) => {
+        onClick={() => {
           setOpen(!open);
           if (anotherNavOpen) {
             setAnotherNavOpen(!anotherNavOpen);
