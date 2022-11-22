@@ -17,7 +17,7 @@ import TrainedNetworkInstructionPopup from "./TrainedNetworkInstructionPopup";
 import gtmTrack from "../helpers/gtmTrack";
 import nnToJSON from "../helpers/nnToJSON";
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import LocalizedStrings from "react-localization";
 import socketClient from "socket.io-client";
 
@@ -444,16 +444,22 @@ function App(props) {
                   >
                     {strings.saveRecipe}
                   </button>
-                  <button
-                    onClick={onSaveRecipe}
-                    style={
-                      appData.classroom
-                        ? { display: "block", marginLeft: "1rem" }
-                        : { display: "none", marginLeft: "1rem" }
+                  <Link
+                    onClick={() =>
+                      gtmTrack("prm_btn_click", "ClassStats", "ClassStats", "")
                     }
+                    to={
+                      appData.classroom
+                        ? `/${appData.classroom.code}/stats`
+                        : ""
+                    }
+                    target="_new"
+                    style={{ marginLeft: "1rem" }}
                   >
-                    View Classroom Stats
-                  </button>
+                    <button disabled={!appData.classroom || !updated}>
+                      View Classroom Stats
+                    </button>
+                  </Link>
                 </>
               }
             />
