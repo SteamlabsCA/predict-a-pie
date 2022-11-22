@@ -697,6 +697,10 @@ $sectionTitleSize: 9vmin;
     font-size: $boxDescriptionSize;
     line-height: $boxDescriptionLineHeight;
   }
+
+  &-image-credit {
+    margin-top: 5rem;
+  }
 }
 
 .word-wrap {

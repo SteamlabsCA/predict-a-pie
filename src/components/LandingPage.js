@@ -636,8 +636,8 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="License columns">
-          <div className="left">
+        <div className="License">
+          <div>
             <p>
               <strong>
                 Licensed under Attribution-ShareAlike 4.0 International (CC
@@ -690,6 +690,18 @@ const LandingPage = ({ onCommand, appData }) => {
               >
                 https://creativecommons.org/licenses/by-sa/4.0/
               </a>
+            </p>
+          </div>
+          <div className="License-image-credit">
+            <p>
+              <strong>Image Credits</strong>
+            </p>
+            <p>
+              Image of hand holding brain for Intro to Neural Networks Article:{" "}
+              <a href="https://www.freepik.com/free-vector/brain-digital-brain-hand-neural-network_8800951.htm#&position=9&from_view=author">
+                Image by iuriimotov
+              </a>{" "}
+              on Freepik
             </p>
           </div>
         </div>
