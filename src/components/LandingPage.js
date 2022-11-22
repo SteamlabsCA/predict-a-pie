@@ -204,13 +204,20 @@ const LandingPage = ({ onCommand, appData }) => {
               as writing and visual arts. The lesson plans include presentation
               slides, a teaching guide and have been tested on grades 5 to 12.
             </p>
-            <p>
-              Curriculum connections include:
-              <ul>
-                <li>Data literacy</li>
-                <li>(add more)</li>
-              </ul>
-            </p>
+            <p>Curriculum connections include:</p>
+            <ul>
+              <li>Data literacy</li>
+              <li>Decision making;</li>
+              <li>Science and technology;</li>
+              <li>Anatomy of mammals: Nervous system;</li>
+              <li>Machines and their mechanisms;</li>
+              <li>Complex tasks;</li>
+              <li>Problem solving;</li>
+              <li>Functions in mathematic;</li>
+              <li>Guidance in career;</li>
+              <li>Conducting scientific investigations</li>
+              <li>and more!</li>
+            </ul>
           </div>
 
           <div className="right">

@@ -505,7 +505,8 @@ $sectionTitleSize: 9vmin;
       font-size: $sectionTitleSize;
     }
 
-    p {
+    p,
+    ul {
       font-size: $boxDescriptionSize;
       line-height: $boxDescriptionLineHeight;
     }
