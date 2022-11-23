@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "development") {
     ),
   };
 
-  // server = http.createServer(app);
+  server = http.createServer(app);
   httpsServer = https.createServer(httpsOptions, app);
 
   io = socketIo(httpsServer, {
@@ -476,5 +476,5 @@ io.on("connection", (socket) => {
   });
 });
 
-// server.listen(8080, () => console.log(`Server on port 8080`));
-httpsServer.listen(8080, () => console.log(`Secure server on port 8080`));
+server.listen(8080, () => console.log(`Server on port 8080`));
+httpsServer.listen(443, () => console.log(`Secure server on port 443`));
