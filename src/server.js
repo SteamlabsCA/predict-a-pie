@@ -15,7 +15,7 @@ const s3 = new AWS.S3();
 var config = new AWS.Config({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.REGION,
+  region: process.env.AWS_REGION,
 });
 
 AWS.config = config;
@@ -37,13 +37,13 @@ if (process.env.NODE_ENV === "development") {
 } else if (process.env.NODE_ENV === "staging") {
   httpsOptions = {
     cert: fs.readFileSync(
-      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city.crt")
+      path.join(__dirname, "cert", "nn-staging_inventor_city_chain.crt")
     ),
     ca: fs.readFileSync(
-      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city.ca-bundle")
+      path.join(__dirname, "cert", "nn-staging_inventor_city.ca-bundle")
     ),
     key: fs.readFileSync(
-      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_PK.key")
+      path.join(__dirname, "cert", "nn-staging_inventor_city_PK.key")
     ),
   };
 
@@ -150,7 +150,8 @@ generateClassroomCode = (id) => {
 // Get all the Bucket Keys
 const listAllKeys = (thisIp) => {
   var params = {
-    Bucket: "predictapie",
+    // Bucket: "predictapie",
+    Bucket: process.env.AWS_BUCKET_NAME,
   };
   return new Promise((resolve, reject) => {
     let allKeys = [];
@@ -477,6 +478,4 @@ io.on("connection", (socket) => {
 });
 
 server.listen(8080, () => console.log(`Server on port 8080`));
-// httpsServer.listen(443, () => console.log(`Secure server on port 443`));
-
-// add comment
+httpsServer.listen(443, () => console.log(`Secure server on port 443`));
