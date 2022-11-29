@@ -39,9 +39,9 @@ if (process.env.NODE_ENV === "development") {
     cert: fs.readFileSync(
       path.join(__dirname, "cert", "nn-staging_inventor_city_chain.crt")
     ),
-    ca: fs.readFileSync(
-      path.join(__dirname, "cert", "nn-staging_inventor_city.ca-bundle")
-    ),
+    // ca: fs.readFileSync(
+    //   path.join(__dirname, "cert", "nn-staging_inventor_city.ca-bundle")
+    // ),
     key: fs.readFileSync(
       path.join(__dirname, "cert", "nn-staging_inventor_city_PK.key")
     ),
