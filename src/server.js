@@ -37,13 +37,10 @@ if (process.env.NODE_ENV === "development") {
 } else if (process.env.NODE_ENV === "staging") {
   httpsOptions = {
     cert: fs.readFileSync(
-      path.join(__dirname, "cert", "nn-staging_inventor_city_chain.crt")
+      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_chain.crt")
     ),
-    // ca: fs.readFileSync(
-    //   path.join(__dirname, "cert", "nn-staging_inventor_city.ca-bundle")
-    // ),
     key: fs.readFileSync(
-      path.join(__dirname, "cert", "nn-staging_inventor_city_PK.key")
+      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_PK.key")
     ),
   };
 
