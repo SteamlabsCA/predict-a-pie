@@ -42,7 +42,7 @@ let socket;
 //   socket = socketClient(`https://${window.location.hostname}`);
 // }
 
-socket = socketClient(`https://${window.location.hostname}`);
+socket = socketClient(`https://localhost:8080`);
 
 // Classroom code specified in URL
 const url = window.location.pathname.split("/");
