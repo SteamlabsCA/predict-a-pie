@@ -8,7 +8,7 @@ phases:
     commands:
       # install npm
       - npm install
-      - npm install socket.io
+      #- npm install socket.io
 
   build:
     commands:
@@ -21,6 +21,6 @@ artifacts:
   files:
     - public/**/*
     - src/**/*
-    - build/**/*
+    #- build/**/*
     - package.json 
     - scripts/**/*
