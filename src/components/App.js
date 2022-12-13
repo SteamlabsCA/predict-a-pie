@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "development") {
   socket = socketClient("http://localhost:8080");
   console.log("development");
 } else if (process.env.NODE_ENV === "staging") {
-  socket = socketClient(`https://localhost:8080`);
+  socket = socketClient(`https://localhost:443`);
   console.log("staging");
 } else if (process.env.NODE_ENV === "production") {
   socket = socketClient(`https://${window.location.hostname}`);
