@@ -17,7 +17,7 @@ import TrainedNetworkInstructionPopup from "./TrainedNetworkInstructionPopup";
 import gtmTrack from "../helpers/gtmTrack";
 import nnToJSON from "../helpers/nnToJSON";
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import LocalizedStrings from "react-localization";
 import socketClient from "socket.io-client";
 
@@ -25,6 +25,7 @@ import ingredients from "../ingredients/ingredients.json";
 import classifications from "../ingredients/classifications.json";
 import stringData from "../strings.json";
 import ArticleIntro from "./ArticleIntro";
+import ArticleClassroom from "./ArticleClassroom";
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
@@ -84,6 +85,7 @@ function App(props) {
     socket.on("connect", () => {
       appData.connected = true;
       setAppData({ ...appData });
+      console.log(appData);
     });
 
     socket.on("disconnect", () => {
@@ -99,6 +101,7 @@ function App(props) {
     socket.on("classroom-created", (code) => {
       setClassroomCode(code);
       window.history.pushState("", "", "/" + code);
+      console.log(appData);
     });
 
     socket.on("classroom-joined", (code) => {
@@ -447,6 +450,22 @@ function App(props) {
                   >
                     {strings.saveRecipe}
                   </button>
+                  <Link
+                    onClick={() =>
+                      gtmTrack("prm_btn_click", "ClassStats", "ClassStats", "")
+                    }
+                    to={
+                      appData.classroom
+                        ? `/${appData.classroom.code}/stats`
+                        : ""
+                    }
+                    target="_new"
+                    style={{ marginLeft: "1rem" }}
+                  >
+                    <button disabled={!appData.classroom || !updated}>
+                      View Classroom Stats
+                    </button>
+                  </Link>
                 </>
               }
             />
@@ -515,7 +534,18 @@ function App(props) {
               checkEnv={checkEnv}
               envVariables={envVariables}
             />
-            <ArticleIntro />
+            <ArticleIntro appData={appData} />
+          </Route>
+          <Route path="*/article/non-computer-science-classroom">
+            <NavBar
+              title="Article - Neural Networks for Your Non-Computer Science Classroom Subject"
+              appData={appData}
+              route="non-computer-science-classroom"
+              onCommand={onCommand}
+              checkEnv={checkEnv}
+              envVariables={envVariables}
+            />
+            <ArticleClassroom appData={appData} />
           </Route>
           <Route path="/">
             <NavBar

@@ -1,32 +1,32 @@
-@import '../variables';
+@import "../variables";
 
 .TrainedChefNetwork {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: $spacer ($spacer * 2 + 15) $spacer $spacer * 3;
-	min-width: min-content;
-	height: min-content;
-	min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: ($spacer * 1.5) ($spacer * 2 + 15) $spacer $spacer * 3;
+  min-width: min-content;
+  height: min-content;
+  min-height: 100%;
 
-	&-dropdown {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		margin: 30px 0 10px;
-		width: 100%;
-	}
+  &-dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px 0 10px;
+    width: 100%;
+  }
 
-	&-layers {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		flex-grow: 1;
-		flex-shrink: 0;
-		padding: 20px 0 $spacer;
-	}
+  &-layers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 20px 0 $spacer;
+  }
 
-	.Layer-container {
-		border-right: 0;
-	}
+  .Layer-container {
+    border-right: 0;
+  }
 }

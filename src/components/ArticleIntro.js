@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./Article.scss";
 import scroll from "../helpers/articleScroll";
+import ArticleBottomNav from "./ArticleBottomNav";
 
-const ArticleIntro = () => {
+const ArticleIntro = ({ appData }) => {
   const predict = useRef(null);
   const making = useRef(null);
   const negative = useRef(null);
@@ -140,6 +141,8 @@ const ArticleIntro = () => {
           </p>
           <img src="" />
         </div>
+
+        <ArticleBottomNav appData={appData} />
       </div>
     </div>
   );

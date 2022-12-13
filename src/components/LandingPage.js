@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./LandingPage.scss";
 import Button from "./Button";
 import gtmTrack from "../helpers/gtmTrack";
 import { Link } from "react-router-dom";
+import scroll from "../helpers/articleScroll";
 
 import beginning from "../assets/beginning.png";
 import indigenous from "../assets/indigenous.png";
@@ -16,65 +17,91 @@ import funJoin from "../assets/fun-join.png";
 import funBuild from "../assets/fun-build.png";
 import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
+import logoAmazon from "../assets/logo-amazon.png";
+import wesUni from "../assets/logo-wesuni.png";
+import teknisk from "../assets/logo-teknisk.png";
+import tpl from "../assets/logo-tpl.png";
+import clc from "../assets/logo-clc.png";
+import digiMoment from "../assets/logo-digimoment.png";
+import sw from "../assets/logo-sw.png";
 
 const LandingPage = ({ onCommand, appData }) => {
-  // Scroll movement of the arrow
-  const scroll = () => {
-    const scrollHeight = document.getElementById("Hero").scrollHeight;
-    window.scrollTo({ top: scrollHeight, behavior: "smooth" });
+  // Scroll movement
+  const scroll = (id) => {
+    document.getElementById(id).scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <div className="LandingPage">
-      <div className="Hero" id="Hero">
+      <div className="Hero">
         <div className="Hero-animation">
           <div className="line"></div>
           <div className="bright-line"></div>
           <div className="particle"></div>
 
-          <h1>Artificial Intelligence is everywhere</h1>
+          <div className="Hero-contents">
+            <h1>Artificial Intelligence is everywhere</h1>
+
+            <div>
+              <Button onClick={() => scroll("Beginning")}>
+                Learn how AI works
+              </Button>
+              <Button onClick={() => scroll("TryAI")}>Try an AI</Button>
+              <Button onClick={() => scroll("Educators")}>
+                Explore AI workshops for any classroom
+              </Button>
+            </div>
+          </div>
         </div>
 
-        <div className="Hero-scroll" onClick={scroll}>
+        {/* <div className="Hero-scroll" onClick={scroll}>
           <span class="Hero-arrow"></span>
         </div>
 
-        <p>SCROLL DOWN</p>
+        <p>SCROLL DOWN</p> */}
       </div>
 
       <div className="MainSection">
-        <div className="Beginning columns">
-          <div className="left">
-            <h2>Let’s start from the beginning...</h2>
-            <h4 className="box-title">Intro to Neural Networks</h4>
-            <p className="box-description">
-              Totally brand new? Take a look at the concept and building blocks
-              of Artificial Intelligence (AI) and how it is able to make
-              predictions using a neural network.
-            </p>
-            <Link
-              onClick={() =>
-                gtmTrack(
-                  "prm_btn_click",
-                  "Article",
-                  "Intro to Neural Networks",
-                  ""
-                )
-              }
-              to={
-                appData.classroom
-                  ? `/${appData.classroom.code}/article/intro-to-neural-networks`
-                  : "/article/intro-to-neural-networks"
-              }
-            >
-              <Button>READ ARTICLE</Button>
-            </Link>
-          </div>
+        <a id="HowAIWorks">
+          <div className="Beginning" id="Beginning">
+            <h2>How does AI work?</h2>
 
-          <div className="right">
-            <img src={beginning} />
+            <div className="columns">
+              <div className="left">
+                <h2>Let’s start from the beginning...</h2>
+                <h4 className="box-title">Intro to Neural Networks</h4>
+                <p className="box-description">
+                  Totally brand new? Take a look at the concept and building
+                  blocks of Artificial Intelligence (AI) and how it is able to
+                  make predictions using a neural network.
+                </p>
+                <Link
+                  onClick={() =>
+                    gtmTrack(
+                      "prm_btn_click",
+                      "Article",
+                      "Intro to Neural Networks",
+                      ""
+                    )
+                  }
+                  to={
+                    appData.classroom
+                      ? `/${appData.classroom.code}/article/intro-to-neural-networks`
+                      : "/article/intro-to-neural-networks"
+                  }
+                >
+                  <Button>READ ARTICLE</Button>
+                </Link>
+              </div>
+
+              <div className="right">
+                <img src={beginning} />
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
 
         <div className="Articles">
           <h2>Let's go deeper!</h2>
@@ -142,7 +169,23 @@ const LandingPage = ({ onCommand, appData }) => {
                   potential areas in which AI could be adopted into different
                   areas of an education curriculum.
                 </p>
-                <Button>READ ARTICLE</Button>
+                <Link
+                  onClick={() =>
+                    gtmTrack(
+                      "prm_btn_click",
+                      "Article",
+                      "Neural Networks for Your Non-Computer Science Classroom Subject",
+                      ""
+                    )
+                  }
+                  to={
+                    appData.classroom
+                      ? `/${appData.classroom.code}/article/non-computer-science-classroom`
+                      : "/article/non-computer-science-classroom"
+                  }
+                >
+                  <Button>READ ARTICLE</Button>
+                </Link>
               </div>
               <div className="right">
                 <img src="" />
@@ -151,23 +194,30 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="Educators columns">
+        <div className="Educators columns" id="Educators">
           <div className="left">
             <h2>Hey Educators! Want to use this in your classroom?</h2>
             <p>
-              In this activity, you can build a real, working Neural Network.
-              The neuron nodes in the first layer on the left are your "inputs".
-              Think of these as the ingredients, or pieces of information that
-              your NN will base its decisions on. The last layer of neurons are
-              the decisions, or "classifications" that the neural network can
-              make based on these inputs. Add neurons one at a time, connect
-              them together to indicate what inputs lead to what output
-              decisions. If you need to detect combinations of inputs, you can
-              add "hidden layers" in the middle to detect these combinations. If
-              necessary, you can click on the (+) or (-) symbol on any node and
-              change the "weights" to indicate the relative importance of each
-              incoming node.
+              This no-code workshop is designed for non computer science
+              teachers to introduce AI into any subject. AI is being used in
+              every field, most recently even transforming creative fields such
+              as writing and visual arts. The lesson plans include presentation
+              slides, a teaching guide and have been tested on grades 5 to 12.
             </p>
+            <p>Curriculum connections include:</p>
+            <ul>
+              <li>Data literacy</li>
+              <li>Decision making;</li>
+              <li>Science and technology;</li>
+              <li>Anatomy of mammals: Nervous system;</li>
+              <li>Machines and their mechanisms;</li>
+              <li>Complex tasks;</li>
+              <li>Problem solving;</li>
+              <li>Functions in mathematic;</li>
+              <li>Guidance in career;</li>
+              <li>Conducting scientific investigations</li>
+              <li>and more!</li>
+            </ul>
           </div>
 
           <div className="right">
@@ -175,8 +225,8 @@ const LandingPage = ({ onCommand, appData }) => {
               <img src={iconLesson} />
 
               <div>
-                <h4>Lesson Plans</h4>
-                <p>We have lesson plans for all grade and subjects!</p>
+                <h4>Lesson Plan</h4>
+                <p>Incorporate into any subject grades 5 to 12.</p>
 
                 <a
                   onClick={() =>
@@ -190,7 +240,7 @@ const LandingPage = ({ onCommand, appData }) => {
                   href="https://kidscodejeunesse.org/data/resources/resources_files/en/ai_algo/Cooking_with_Neural_Networks.pdf"
                   target="_new"
                 >
-                  <Button>Download Plans</Button>
+                  <Button>Download Plan</Button>
                 </a>
               </div>
             </div>
@@ -201,8 +251,8 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Create a Classroom</h4>
                 <p>
-                  Ready to explore this activity with your students? Share your
-                  findings together.
+                  Companion website for lesson plan. Explore an AI with your
+                  class.
                 </p>
                 <a
                   onClick={() => {
@@ -225,7 +275,20 @@ const LandingPage = ({ onCommand, appData }) => {
                   Participant in live workshops that will help guide you through
                   lessons!
                 </p>
-                <Button>Book</Button>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators",
+                      "https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/teacher-training?eventGroupType=kcj_educators"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
               </div>
             </div>
 
@@ -235,23 +298,36 @@ const LandingPage = ({ onCommand, appData }) => {
               <div>
                 <h4>Book a Classroom Visit</h4>
                 <p>Have an instructor present to your classrom</p>
-                <Button>Book</Button>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "LandingPage",
+                      "Out Bound: https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all",
+                      "https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/code-in-the-classroom?p=all&l=en&g=all"
+                  target="_new"
+                >
+                  <Button>Book</Button>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="FunPart">
+        <div className="TryAI" id="TryAI">
           <h2>Try an AI!</h2>
           <div className="columns">
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funPP} />
 
               <div>
                 <h4>Predict a Pie</h4>
                 <p>
-                  The Neural Network in this activity has been trained on
-                  thousands of pie recipes to be able to classify any recipe
+                  Trained on thousands of pie recipes to be able to classify any
+                  recipe as "Sweet Pie", "Quiche", "Savoury Pie" and "Other"
                   from a combination of the input ingredients.
                 </p>
               </div>
@@ -269,14 +345,14 @@ const LandingPage = ({ onCommand, appData }) => {
               </Link>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funIndigenous} />
 
               <div>
                 <h4>Indigenous Fusion Cuisine</h4>
                 <p>
                   Play with this pretrained neural network and discover new
-                  recipes using this AI trained on number of pie recipes!
+                  recipes using this AI trained on xnumber of pie recipes!
                 </p>
               </div>
 
@@ -299,35 +375,36 @@ const LandingPage = ({ onCommand, appData }) => {
               </Link>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funBuild} />
 
               <div>
                 <h4>Build Your Own Neural Network</h4>
                 <p>
                   Create your own working neural network! Wire up the nodes and
-                  use to make decisions based on your interests!{" "}
+                  use to make decisions based on your interests!
                 </p>
               </div>
 
-              <a
-                onClick={() => {
-                  onCommand("create-classroom");
-                  gtmTrack("sec_btn_click", "Class", "Create Class", "");
-                }}
-                disabled={!appData.connected}
+              <Link
+                onClick={() => gtmTrack("prm_btn_click", "Build", "Build", "")}
+                to={
+                  appData.classroom
+                    ? `/${appData.classroom.code}/build`
+                    : "/build"
+                }
               >
                 <Button>Ready to Build!</Button>
-              </a>
+              </Link>
             </div>
 
-            <div className="tile fun-part">
+            <div className="tile try-ai">
               <img src={funJoin} />
 
               <div>
                 <h4>Join a Classroom</h4>
                 <p>
-                  Enter the classroom code provide by your instructor to start
+                  Enter the classroom code provided by your instructor to start
                   exploring!
                 </p>
               </div>
@@ -345,87 +422,227 @@ const LandingPage = ({ onCommand, appData }) => {
           </div>
         </div>
 
-        <div className="AboutApp">
-          <h2>About this app</h2>
-          <h3>Credits</h3>
-          <div className="Instructions-sctFour">
+        <a id="About">
+          <div className="AboutApp">
+            <h2>About This App</h2>
+            <div className="AboutApp-tiles">
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://www.steamlabs.ca/",
+                      "https://www.steamlabs.ca/"
+                    )
+                  }
+                  href="https://www.steamlabs.ca/"
+                  target="_new"
+                >
+                  <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
+                </a>
+                <p>Predict-a-Pie is a creation of Steamlabs.</p>
+              </div>
+
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: http://www.cookingwiththewolfman.com/home.html",
+                      "http://www.cookingwiththewolfman.com/home.html"
+                    )
+                  }
+                  href="http://www.cookingwiththewolfman.com/home.html"
+                  target="_new"
+                >
+                  <img src="./ChefWolfmanLogo.gif" />
+                </a>
+                <p>Consultation with David Wolfman and Marlene Finn</p>
+              </div>
+
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://kidscodejeunesse.org/",
+                      "https://kidscodejeunesse.org/"
+                    )
+                  }
+                  href="https://kidscodejeunesse.org/"
+                  target="_new"
+                >
+                  <img
+                    src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png"
+                    height="100px"
+                  />
+                </a>
+                <p>Co-designed by Steamlabs and Kids Code Jeunesse.</p>
+              </div>
+
+              <div>
+                <a
+                  onClick={() =>
+                    gtmTrack(
+                      "out_btn_click",
+                      "Instructions",
+                      "Out Bound: https://www.amazonfutureengineer.com/",
+                      "https://www.amazonfutureengineer.com/"
+                    )
+                  }
+                  href="https://www.amazonfutureengineer.com/"
+                  target="_new"
+                >
+                  <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
+                </a>
+                <p>Created with funding from Amazon Future Engineer.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <div className="BringAI columns">
+          <div className="left">
+            <h2>Bringing AI education everywhere!</h2>
             <p>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://www.steamlabs.ca/",
-                    "https://www.steamlabs.ca/"
-                  )
-                }
-                href="https://www.steamlabs.ca/"
-                target="_new"
-              >
-                <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
-              </a>
-              Predict-a-Pie is a creation of Steamlabs.
-            </p>
-            <p>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: http://www.cookingwiththewolfman.com/home.html",
-                    "http://www.cookingwiththewolfman.com/home.html"
-                  )
-                }
-                href="http://www.cookingwiththewolfman.com/home.html"
-                target="_new"
-              >
-                <img src="./ChefWolfmanLogo.gif" />
-              </a>
-              Consultation with David Wolfman and Marlene Finn
-            </p>
-            <p>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://kidscodejeunesse.org/",
-                    "https://kidscodejeunesse.org/"
-                  )
-                }
-                href="https://kidscodejeunesse.org/"
-                target="_new"
-              >
-                <img
-                  src="https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png"
-                  height="100px"
-                />
-              </a>
-              Co-designed by Steamlabs and Kids Code Jeunesse.
-            </p>
-            <p>
-              <a
-                onClick={() =>
-                  gtmTrack(
-                    "out_btn_click",
-                    "Instructions",
-                    "Out Bound: https://www.amazonfutureengineer.com/",
-                    "https://www.amazonfutureengineer.com/"
-                  )
-                }
-                href="https://www.amazonfutureengineer.com/"
-                target="_new"
-              >
-                <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
-              </a>
-              Created with funding from Amazon Future Engineer.
+              This tools has been used to support educators and students all
+              over Canada and the world! Use this tool and workshop content to
+              teach students, adults, and coworkers alike.
             </p>
           </div>
-          <div className="Instructions-sctFive">
-            <h3>License</h3>
+
+          <div className="right container">
+            <div className="amazon">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day",
+                    "https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day"
+                  )
+                }
+                href="https://www.aboutamazon.com/news/workplace/amazon-hosts-more-than-8-000-kids-for-bring-your-kids-to-work-day"
+                target="_new"
+              >
+                <img src={logoAmazon} />
+              </a>
+            </div>
+
+            <div className="wesUni">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://space.uwo.ca/",
+                    "https://space.uwo.ca/"
+                  )
+                }
+                href="https://space.uwo.ca/"
+                target="_new"
+              >
+                <img src={wesUni} />
+              </a>
+            </div>
+
+            <div className="teknisk">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.tekniskmuseum.no",
+                    "https://www.tekniskmuseum.no"
+                  )
+                }
+                href="https://www.tekniskmuseum.no"
+                target="_new"
+              >
+                <img src={teknisk} />
+              </a>
+            </div>
+
+            <div className="tpl">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.torontopubliclibrary.ca/programs-and-classes/",
+                    "https://www.torontopubliclibrary.ca/programs-and-classes/"
+                  )
+                }
+                href="https://www.torontopubliclibrary.ca/programs-and-classes/"
+                target="_new"
+              >
+                <img src={tpl} />
+              </a>
+            </div>
+
+            <div className="clc">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.canadalearningcode.ca/",
+                    "https://www.canadalearningcode.ca/"
+                  )
+                }
+                href="https://www.canadalearningcode.ca/"
+                target="_new"
+              >
+                <img src={clc} />
+              </a>
+            </div>
+
+            <div className="digitalMoment">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://digitalmoment.org/",
+                    "https://digitalmoment.org/"
+                  )
+                }
+                href="https://digitalmoment.org/"
+                target="_new"
+              >
+                <img src={digiMoment} />
+              </a>
+            </div>
+
+            <div className="sw">
+              <a
+                onClick={() =>
+                  gtmTrack(
+                    "out_btn_click",
+                    "Instructions",
+                    "Out Bound: https://www.scienceworld.ca/",
+                    "https://www.scienceworld.ca/"
+                  )
+                }
+                href="https://www.scienceworld.ca/"
+                target="_new"
+              >
+                <img src={sw} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="License">
+          <div>
             <p>
-              Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA
-              4.0)
+              <strong>
+                Licensed under Attribution-ShareAlike 4.0 International (CC
+                BY-SA 4.0)
+              </strong>
             </p>
             <p>In summary, you are free to:</p>
             <ul>
@@ -475,12 +692,17 @@ const LandingPage = ({ onCommand, appData }) => {
               </a>
             </p>
           </div>
-          <div className="Instructions-sctSix">
-            <h3>
-              <a href="./PredictAPiePrivacyPolicy.pdf" target="blank">
-                Privacy Policy
-              </a>
-            </h3>
+          <div className="License-image-credit">
+            <p>
+              <strong>Image Credits</strong>
+            </p>
+            <p>
+              Image of hand holding brain for Intro to Neural Networks Article:{" "}
+              <a href="https://www.freepik.com/free-vector/brain-digital-brain-hand-neural-network_8800951.htm#&position=9&from_view=author">
+                Image by iuriimotov
+              </a>{" "}
+              on Freepik
+            </p>
           </div>
         </div>
       </div>
