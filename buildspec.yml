@@ -7,7 +7,8 @@ phases:
 
     commands:
       # install npm
-      - npm install 
+      - npm install
+      #- npm install socket.io
 
   build:
     commands:
