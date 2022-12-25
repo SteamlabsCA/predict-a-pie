@@ -266,11 +266,9 @@ String.prototype.hashCode = function () {
     hash = hash & hash;
   }
   return hash;
-}; 
+};
 
-console.log(io);
-
-io.on("connection", function (socket) {
+io.on("connection", (socket) => {
   console.log("New client connected");
   socket.emit("user-id", socket.id);
 
