@@ -21,6 +21,6 @@ artifacts:
   files:
     - public/**/*
     - src/**/*
-    #- build/**/*
+    - build/**/*
     - package.json 
     - scripts/**/*
