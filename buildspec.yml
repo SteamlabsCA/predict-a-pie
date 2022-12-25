@@ -1,19 +1,29 @@
 version: 0.2
 
-phases:
+phases: 
   install:
     runtime-versions:
       nodejs: 16
 
     commands:
-      # install npm
+      - echo Installing source NPM dependencies..install.
       - npm install
       #- npm install socket.io
 
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies..pre_build.
+      - npm install
+
   build:
     commands:
+      - echo Build started on `date`
       # run build script
       - npm run-script build
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
 
 artifacts:
   # include all files required to run application
@@ -21,6 +31,6 @@ artifacts:
   files:
     - public/**/*
     - src/**/*
-    #- build/**/*
+    - build/**/*
     - package.json 
     - scripts/**/*
