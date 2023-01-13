@@ -7,6 +7,7 @@ const seedrandom = require("seedrandom");
 const socketIo = require("socket.io");
 var AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -269,23 +270,23 @@ String.prototype.hashCode = function () {
 };
 
 io.on("connection", (socket) => {
-  console.log("New client connected");
-  socket.emit("user-id", socket.id);
+    console.log("New client connected");
+    socket.emit("user-id", socket.id);
 
-  // Find participant's classroom
-  const findClassroom = () => {
-    for (const i in classrooms) {
-      if (classrooms[i].participants.includes(socket.id)) {
-        return classrooms[i];
+    // Find participant's classroom
+    const findClassroom = () => {
+      for (const i in classrooms) {
+        if (classrooms[i].participants.includes(socket.id)) {
+          return classrooms[i];
+        }
       }
-    }
-  };
+    };
 
-  // Notify participants of update to classroom
-  const onUpdateClassroom = (classroom) => {
-    for (const i in classroom.participants) {
-      io.to(classroom.participants[i]).emit("classroom-updated", classroom);
-    }
+    // Notify participants of update to classroom
+    const onUpdateClassroom = (classroom) => {
+      for (const i in classroom.participants) {
+        io.to(classroom.participants[i]).emit("classroom-updated", classroom);
+      }
   };
 
   // Create new classroom
@@ -474,5 +475,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(8080, () => console.log(`Server is running on port 8080`));
-httpsServer.listen(444, () => console.log(`Secure server on port 444`));
+server.listen(80, () => console.log(`Server is running on port 80`));
+httpsServer.listen(443, () => console.log(`Secure server on port 443`));
