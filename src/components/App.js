@@ -39,8 +39,10 @@ let socket;
 //   socket = socketClient(`https://127.0.0.1/`);
 //   console.log("staging");
 // } else if (process.env.NODE_ENV === "production") {
-socket = socketClient(`https://${window.location.hostname}:444`);
-// }
+//socket = socketClient(`https://${window.location.hostname}:444`);
+socket = socketClient(`https://${window.location.hostname}`);
+
+// }  
 
 // Classroom code specified in URL
 const url = window.location.pathname.split("/");
