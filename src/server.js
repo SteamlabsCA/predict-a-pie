@@ -7,6 +7,7 @@ const seedrandom = require("seedrandom");
 const socketIo = require("socket.io");
 var AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
