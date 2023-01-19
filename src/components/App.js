@@ -326,12 +326,12 @@ function App(props) {
     let resPromise;
 
     if (
-      process.env.NODE_ENV === "development" ||
-      process.env.NODE_ENV === "staging"
+      process.env.REACT_APP_REACT_APP_NODE_ENV === "development" ||
+      process.env.REACT_APP_REACT_APP_NODE_ENV === "staging"
     ) {
       resPromise = true;
       setEnvVariables(resPromise);
-    } else if (process.env.NODE_ENV === "production") {
+    } else if (process.env.REACT_APP_NODE_ENV === "production") {
       resPromise = new Promise((resolve, reject) => {
         socket.emit("check-env", (response) => {
           setEnvVariables(response);
