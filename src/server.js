@@ -8,15 +8,15 @@ const socketIo = require("socket.io");
 var AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
 
-if (process.env.REACT_APP_NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
 const s3 = new AWS.S3();
 var config = new AWS.Config({
-  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-  region: process.env.REACT_APP_AWS_REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
 });
 
 AWS.config = config;
@@ -25,7 +25,7 @@ const app = express();
 
 let server, httpsServer, io;
 
-if (process.env.REACT_APP_NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   server = http.createServer(app);
   httpsServer = https.createServer(app);
 
@@ -35,7 +35,7 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
       methods: ["GET", "POST"],
     },
   });
-} else if (process.env.REACT_APP_NODE_ENV === "staging") {
+} else if (process.env.NODE_ENV === "staging") {
   httpsOptions = {
     cert: fs.readFileSync(
       path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_chain.crt")
@@ -54,7 +54,7 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
       methods: ["GET", "POST"],
     },
   });
-} else if (process.env.REACT_APP_NODE_ENV === "production") {
+} else if (process.env.NODE_ENV === "production") {
   httpsOptions = {
     cert: fs.readFileSync(path.join(__dirname, "cert", "nn_inventor_city.crt")),
     ca: fs.readFileSync(
@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, "../build")));
 
 app.get("*", function (req, res) {
   if (
-    process.env.REACT_APP_LOGNAME == "ubuntu" &&
+    process.env.LOGNAME == "ubuntu" &&
     req.get("x-forwarded-proto").indexOf("https") == -1
   ) {
     res.redirect("https://" + req.hostname + req.url);
@@ -149,7 +149,7 @@ generateClassroomCode = (id) => {
 const listAllKeys = (thisIp) => {
   var params = {
     // Bucket: "predictapie",
-    Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
+    Bucket: process.env.AWS_BUCKET_NAME,
   };
   return new Promise((resolve, reject) => {
     let allKeys = [];
@@ -365,7 +365,7 @@ io.on("connection", (socket) => {
     //Check to make sure data is a JSON object and includes the secret
     try {
       JSON.parse(network.data);
-      let secret = process.env.REACT_APP_DATA_SECRET;
+      let secret = process.env.DATA_SECRET;
       if (!network.data.includes(secret.replace(/'/g, '"'))) {
         throw "Secret Not Passed";
       }
@@ -378,7 +378,7 @@ io.on("connection", (socket) => {
     }
 
     let ipHash = require("crypto")
-      .createHmac("sha256", process.env.REACT_APP_IP_HASH_SECRET)
+      .createHmac("sha256", process.env.IP_HASH_SECRET)
       .update(
         socket.request.headers["x-forwarded-for"] ||
           socket.request.connection.remoteAddress
@@ -445,10 +445,10 @@ io.on("connection", (socket) => {
   socket.on("check-env", (callback) => {
     let tempArr = [];
     tempArr.push(
-      process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-      process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-      process.env.REACT_APP_DB,
-      process.env.REACT_APP_IP_HASH_SECRET
+      process.env.AWS_ACCESS_KEY_ID,
+      process.env.AWS_SECRET_ACCESS_KEY,
+      process.env.DB,
+      process.env.IP_HASH_SECRET
     );
     for (let i = 0; i < tempArr.length; i++) {
       if (tempArr[i] === "" || tempArr[i] === undefined) {
