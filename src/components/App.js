@@ -26,6 +26,7 @@ import classifications from "../ingredients/classifications.json";
 import stringData from "../strings.json";
 import ArticleIntro from "./ArticleIntro";
 import ArticleClassroom from "./ArticleClassroom";
+import AIGallery from './AIGallery';
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
@@ -540,6 +541,17 @@ function App(props) {
               envVariables={envVariables}
             />
             <ArticleClassroom appData={appData} />
+          </Route>
+          <Route path="*/ai-gallery">
+            <NavBar
+              title="AI Gallery"
+              appData={appData}
+              route="ai-gallery"
+              onCommand={onCommand}
+              checkEnv={checkEnv}
+              envVariables={envVariables}
+            />
+            <AIGallery />
           </Route>
           <Route path="/">
             <NavBar

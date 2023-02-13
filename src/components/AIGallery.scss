@@ -1,0 +1,54 @@
+$sectionTitleWeight: 700;
+$sectionTitleSize: 72px ;
+$contentWeight: 400;
+$contentSize: 24px;
+$narrowWidth: 630px;
+$wideWidth: 1120px;
+
+.GalleryMain h2 {
+    font-weight: $sectionTitleWeight;
+    font-size: $sectionTitleSize;
+}
+
+.GalleryMain h6 {
+    font-weight: $contentWeight;
+    font-size: $contentSize;
+}
+
+.GalleryMain  {
+    width: 60%;
+    margin: 200px auto 0 auto;
+}
+
+.GalleryMain .columns {
+    @media screen and (min-width: $narrowWidth) {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    
+}
+
+.GalleryMain .tile {
+    @media screen and (max-width: $narrowWidth) {
+        min-height: 500px;
+    }
+    
+    @media screen and (min-width: $narrowWidth) {
+        min-height: 500px;
+        width: 48%;
+    }
+
+    @media screen and (min-width: $wideWidth) {
+        min-height: 470px;
+        width: 30%;
+    } 
+}
+
+.GalleryMain .tile img {
+    width: 100%;
+}
+
+.GalleryMain .tile p {
+    font-size: 12px;
+}

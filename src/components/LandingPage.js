@@ -15,6 +15,7 @@ import iconBookTraining from "../assets/icon-book-training.png";
 import iconBookClassroom from "../assets/icon-book-classroom.png";
 import funJoin from "../assets/fun-join.png";
 import funBuild from "../assets/fun-build.png";
+import funAIGallery from "../assets/fun-aigallery.png";
 import funPP from "../assets/fun-pp.png";
 import funIndigenous from "../assets/fun-indigenous.png";
 import logoAmazon from "../assets/logo-amazon.png";
@@ -419,6 +420,36 @@ const LandingPage = ({ onCommand, appData }) => {
                 <Button>Enter Code</Button>
               </a>
             </div>
+
+            <div className="tile try-ai">
+              <img src={funAIGallery} />
+
+              <div>
+                <h4>AI Gallery</h4>
+                <p>
+                  Explore other neural networks folks like you have created! Add your own nodes and connections to customize the networks to fit your life.
+                </p>
+              </div>
+
+              <Link
+                  onClick={() =>
+                    gtmTrack(
+                      "prm_btn_click",
+                      "AI Gallery",
+                      "",
+                      ""
+                    )
+                  }
+                  to={
+                    appData.classroom
+                      ? `/${appData.classroom.code}/ai-gallery`
+                      : "/ai-gallery"
+                  }
+                >
+                <Button>Ready to Build</Button>
+              </Link>
+            </div>
+
           </div>
         </div>
 
