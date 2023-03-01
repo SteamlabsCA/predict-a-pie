@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+
+    commands:
+      - echo Installing source NPM dependencies..install.
+      - npm install
+
+  build:
+    commands:
+      #- echo Build started on `date`
+      #- npm run build
+      #- echo Run Node.js server
+      #- npm run server
+
+artifacts:
+  # include all files required to run application
+  # notably excluded is node_modules, as this will cause overwrite error on deploy
+  files:
+    - public/**/*
+    - src/**/*
+    - .ebextensions/*
+    - .platform/**/*
+    # - build/**/*
+    - package.json
+    #- tsconfig.json
