@@ -22,11 +22,20 @@ AWS.config = config;
 
 const app = express();
 
+// const httpsOptions = {
+// 	cert: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.crt')),
+// 	ca: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.ca-bundle')),
+// 	key: fs.readFileSync(path.join(__dirname, 'cert', 'ssl_nn_inventor_city_PK.key')),
+// };
+
+
 const httpsOptions = {
-	cert: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.crt')),
-	ca: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.ca-bundle')),
-	key: fs.readFileSync(path.join(__dirname, 'cert', 'ssl_nn_inventor_city_PK.key')),
+	cert: fs.readFileSync(
+		path.join("/etc/pki/tls/certs", "nn_inventor_city_chain.crt")
+	),
+	key: fs.readFileSync(path.join("/etc/pki/tls/certs", "nn_inventor_city.key")),
 };
+
 
 const server = http.createServer(app);
 const httpsServer = https.createServer(httpsOptions, app);
