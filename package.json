@@ -2,6 +2,9 @@
   "name": "predict-a-pie",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.X"
+  },
   "dependencies": {
     "@tensorflow/tfjs": "^3.0.0",
     "@testing-library/jest-dom": "^5.14.1",
