@@ -6,15 +6,13 @@ phases:
       nodejs: 16
 
     commands:
-      - echo Installing source NPM dependencies..install.
+      # install npm
       - npm install
 
   build:
     commands:
-      #- echo Build started on `date`
-      #- npm run build
-      #- echo Run Node.js server
-      #- npm run server
+      # run build script
+      - npm run-script build
 
 artifacts:
   # include all files required to run application
@@ -22,8 +20,6 @@ artifacts:
   files:
     - public/**/*
     - src/**/*
-    - .ebextensions/*
-    - .platform/**/*
-    # - build/**/*
+    - build/**/*
     - package.json
-    #- tsconfig.json
+    - scripts/**/*
