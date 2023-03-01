@@ -23,3 +23,6 @@ artifacts:
     - build/**/*
     - package.json
     - scripts/**/*
+    - .platform/**/*
+    - .ebextensions/*
+
