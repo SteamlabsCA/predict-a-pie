@@ -26,7 +26,7 @@ const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-const socket = socketClient(`https://${window.location.hostname}:445`);
+const socket = socketClient(`https://${window.location.hostname}:444/api`);
 // const socket = socketClient('http://127.0.0.1:8080');
 
 // Classroom code specified in URL
