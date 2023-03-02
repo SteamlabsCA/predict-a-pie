@@ -28,19 +28,20 @@ const app = express();
 // 	key: fs.readFileSync(path.join(__dirname, 'cert', 'ssl_nn_inventor_city_PK.key')),
 // };
 
-
+// https server not needed, since NGINX is used as a reverse proxy
+/*
 const httpsOptions = {
 	cert: fs.readFileSync(
 		path.join("/etc/pki/tls/certs", "nn_inventor_city_chain.crt")
 	),
 	key: fs.readFileSync(path.join("/etc/pki/tls/certs", "nn_inventor_city.key")),
 };
-
+*/
 
 const server = http.createServer(app);
-const httpsServer = https.createServer(httpsOptions, app);
+// const httpsServer = https.createServer(httpsOptions, app);
 
-const io = socketIo(httpsServer, {
+const io = socketIo(server, {
 	cors: {
 		origin: '*',
 		methods: ['GET', 'POST'],
