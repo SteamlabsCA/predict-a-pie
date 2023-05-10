@@ -266,12 +266,12 @@ function Instructions() {
 								</p>
 								<ul>
 									<p>
-										<li>Read more about this activity and our other AI educational activities</li>
-										<li>Find links to educational presentations for this activity</li>
-										<li>Frequently Asked Questions on how this AI system works and technical questions on building your own network</li>
+										<li>Lese mer om denne aktiviteten eller andre AI-aktiviteter</li>
+										<li>Finne linker til presentasjoner (på engelsk) om denne aktiviteten</li>
+										<li>Ofte stilte spørsmål om hvordan denne AI-aktiviteten fungerer og tekniske spørsmål rundt bygging av ditt eget nettverk</li>
 									</p>
 								</ul>
-								<p>We’d love to hear your questions! Email us at info@steamlabs.ca and we will get back to you and add your questions and answers to the page’s FAQ.</p>
+								<p>Spørsmål? Send en epost til info@steamlabs.ca (på engelsk) så vil vi komme tilbake til deg.</p>
 							</div>
 						</span>
 						<span>
@@ -280,26 +280,26 @@ function Instructions() {
 					</div>
 					<div className='sctn-title'>
 						<strong>
-							Indigenous Cooking with a <em>dash</em> of AI
+							Matlaging med en <em>dæsj</em> AI
 						</strong>
 					</div>
 					<div className='video-sctn'>
 						<div>
 							<h2>Educational and Tutorial Video</h2>
 							<p>
-								Learn about Indigenous-fusion cooking practices from Xaxli’p First Nation chef, David Wolfman and how to use an AI Neural Network simulator to generate new recipes for a restaurant!
-								You will learn about how data can be biased and how excluding cooking from a wide array of cultures can have negative impacts. This can lead to missing out on the rich diversity of
-								experiences that can be shared from other cultures, and risk marginalizing those communities. We then show how you can build your own model from your own data using our Neural Network
-								simulator.
+								Lær om kanadisk urfolk-fusjonsmatlaging fra Xaxli’p First Nation-kokk David Wolfman og hvordan du kan bruke en AI-simulator for nevrale nettverk for å generere oppskrifter til en restaurant!
+								Du vil lære om hvordan data kan være skjev og hvordan utelukkelse av matlaging fra et bredt spekter av kulturer kan ha negative konsekvenser. Dette kan føre til at man går glipp av den rike
+								mangfoldigheten av erfaringer som kan deles fra andre kulturer, og risikere å marginalisere disse samfunnene. Deretter viser vi hvordan du kan bygge din egen modell fra dine egne data ved
+								hjelp av vår simulator for nevrale nettverk.
 							</p>
 						</div>
 						<div className='video-container'>
 							<div className='sctn'>
 								<h2>Full Video</h2>
 								<p className='aligned-p'>
-									If you are coming here totally new to AI and machine learning, this is a video for you! Used as a self service tool, this video covers the basics of machine learning programming and
-									neural networks. We consult with Indigenous chef, David Wolfman to test out our model and then discuss the potential training biases and ethical implications of AI. Chef Wolfman
-									creates a new model that better caters to his own Indigenous fusion culinary values and principles.
+									Hvis du er helt ny innen AI og maskinlæring, er dette en video for deg! Som et verktøy for selvbetjening dekker denne videoen grunnleggende om programmering av maskinlæring og nevrale nettverk.
+									Vi konsulterer med chief David Wolfman, for å teste ut vår modell og deretter diskutere potensielle treningsforutsetninger og etiske implikasjoner av AI. Chief Wolfman lager en ny modell som
+									bedre imøtekommer hans egne verdier og prinsipper for innfødt sammensatt kulinarisk matlaging.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
