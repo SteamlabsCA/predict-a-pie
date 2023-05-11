@@ -244,7 +244,7 @@ function Instructions() {
 					<div className='Instructions-sctOne'>
 						<span>
 							<span className='Instructions-title'>
-								<h1>Gjett en matrett </h1>
+								<h1>Gjett en rett </h1>
 								<h1>med et nevralt nettverk</h1>
 							</span>
 							<div className='body'>
@@ -295,10 +295,10 @@ function Instructions() {
 						</div>
 						<div className='video-container'>
 							<div className='sctn'>
-								<h2>Full Video</h2>
+								<h2>Hele videoen</h2>
 								<p className='aligned-p'>
 									Hvis du er helt ny innen AI og maskinlæring, er dette en video for deg! Som et verktøy for selvbetjening dekker denne videoen grunnleggende om programmering av maskinlæring og nevrale nettverk.
-									Vi konsulterer med chief David Wolfman, for å teste ut vår modell og deretter diskutere potensielle treningsforutsetninger og etiske implikasjoner av AI. Chief Wolfman lager en ny modell som
+									Vi konsulterer med urfolkskokk David Wolfman, for å teste ut vår modell og deretter diskutere potensielle treningsforutsetninger og etiske implikasjoner av AI. Chief Wolfman lager en ny modell som
 									bedre imøtekommer hans egne verdier og prinsipper for innfødt sammensatt kulinarisk matlaging.
 								</p>
 								<iframe
@@ -310,11 +310,10 @@ function Instructions() {
 								></iframe>
 							</div>
 							<div className='sctn'>
-								<h2>Shortened Video - Only Indigenous Content</h2>
+								<h2>Utrdag - Bare urfolksinnhold</h2>
 								<p className='aligned-p'>
-									If you are planning to use this webapp with your classroom/ educational group to support your AI and neural network lesson, this video is for you! This video covers all of our
-									consultation with Indigenous chef, David Wolfman. Chef Wolfman tests out our predict a pie model and then discusses the potential training biases and ethical implications of AI. Chef
-									Wolfman creates a new model that better caters to his own Indigenous fusion culinary values and principles.
+									Skal du bruke denne webappen i klasserommet for å støtte leksjoner om AI og nevrale nettverk, er dette versjonen du trenger! Videoen dekker alle våre samtaler med urfolkskokk David Wolfman.
+									Wolfman tester ut vår "gjett en rett"-modell og diskuterer potensielle trenings-skjevheter og etiske implikasjoner med AI. Han bygger en modell som passer bedre til hans egen matlagingsstil og prinsipper.
 								</p>
 								<iframe
 									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
@@ -326,59 +325,59 @@ function Instructions() {
 							</div>
 						</div>
 					</div>
-					<div className='Instructions-sctTwo'>There are two main activities that you can do in this web application. You can access them at any time from the menu in the top left corner</div>
+					<div className='Instructions-sctTwo'>Det er to hovedaktiviteter du kan gjøre på disse nettsidene. Du har tilgang til dem når som helst fra menyen i øverste venstre hjørne.</div>
 					<div className='Instructions-sctThree'>
 						<div>
-							<h2>Build a Neural Network (NN)</h2>
+							<h2>Bygg et nevralt nettverk (NN)</h2>
 							<p>
-								In this activity, you can build a real, working Neural Network. The <Definition text={strings.neuronDef}>neuron</Definition> nodes in the first layer on the left are your "inputs".
-								Think of these as the ingredients, or pieces of information that your NN will base its decisions on. The last layer of <Definition text={strings.neuronDef}>neurons</Definition> are the
-								decisions, or "classifications" that the neural network can make based on these inputs. Add <Definition text={strings.neuronDef}>neurons</Definition> one at a time, connect them
-								together to indicate what inputs lead to what output decisions. If you need to detect combinations of inputs, you can add "hidden layers" in the middle to detect these combinations. If
-								necessary, you can click on the (+) or (-) symbol on any node and change the "weights" to indicate the relative importance of each incoming node.
+								I denne aktiviteten bygger du et ekte, fungerende nevralt nettverk. <Definition text={strings.neuronDef}>Nevronene</Definition>, eller inngangsnodene om du vil, i det første laget er dine "inndata".
+								Tenk på disse som ingrediensene, eller informasjonen som ditt NN vil basere sine avgjørelser på. Det siste laget med <Definition text={strings.neuronDef}>nevroner</Definition> (utgangsnoder) er 
+								beslutningene, resultatene, eller "klassifiseringene" som det nevrale nettverket kan gjøre basert på inndataene. Legg til <Definition text={strings.neuronDef}>nevroner</Definition> og koble dem
+								sammen for å bestemme hvilke inngangsnoder som vil påvirke hvilke resultater. Trenger du å oppdage kombinasjoner av inngangsverdier, kan du legge til "skjulte lag" i midten for å oppdage disse kombinasjonene. Om
+								nødvendig, kan du klikke på symbolene (+) eller (-) på nodene og forandre "vektingen", eller hvor mye hver inngangsverdi har å si for utgangsverdien.
 							</p>
 						</div>
 						<div>
-							<h2>Test a Trained Neural Network</h2>
-							<p>This activity can be done on your own, or with a group. For a group, start with "Create Classroom", and have everyone go to the URL that it generates.</p>
+							<h2>Test et nevralt nettverk</h2>
+							<p>Denne aktiviteten kan gjøres på egenhånd, eller i klasser. For klasser, trykk på "Lag klasserom", og del URL-en med elevene.</p>
 							<p>
-								The Neural Network in this activity has been trained on thousands of recipes to be able to classify any recipe as "Sweet Pie", "Quiche", "Savoury Pie" and "Disgusting" from a
-								combination of the input ingredients. Now it can generalize and classify any of the millions of combinations of recipes.
+								Det nevrale nettverket i denne aktiviteten har blitt trenet på tusenvis av oppskrifter for å kunne klassifisere enhver oppskrift som "Søt pai", "Quiche", "Middagspai" and "Ekkelt" fra
+								kombinasjonen av ingredienser. Nå kan den generalisere og klassifisere hvilken som helst av de mange millioner av muligheter.
 							</p>
-							<p>Try different combinations of ingredients and see what the Neural Network thinks of them! You can also click on the "Find Recipe" button to search for a recipe.</p>
+							<p>Prøv forskjellige kombinasjoner av ingredienser og se hva det nevrale nettverket syns om dem! Du kan også trykke på "Finn oppskrift"-knappen for å søke etter en oppskrift.</p>
 							<p>
-								Save the recipes that you like for future reference. Find classifications that you disagree with, and input the correct classification. On the "View Stats" page you can see if others
-								agreed with you.
+								Lagre oppskriftene du er fornøyd med. Finn klassifikasjoner du er uenig med, og skriv inn hva du mener den burde vært klassifisert som. På "Vis statistikk"-siden kan du se om andre
+								er enige med deg.
 							</p>
 						</div>
 					</div>
 
 					{window.location.origin.includes('glitch') && (
 						<>
-							<h2>Remixing Predict a Pie</h2>
-							<p>When you remix Predict a Pie, you’re creating a copy of the existing project. From there, you can customize the project and make other changes.</p>
-							<h3 style={{ marginBottom: 0 }}>How to Remix</h3>
+							<h2>Remiks av prosjektet</h2>
+							<p>Når du remikser dette prosjektet, lager du en kopi av det eksisterende prosjektet. Deretter kan du tilpasse det og gjøre endringer.</p>
+							<h3 style={{ marginBottom: 0 }}>Hvordan remikse</h3>
 							<p style={{ marginTop: 0 }}>
-								To remix Predict a Pie press on the fish icon
+								For å remikse prosjektet, trykk på fiskeikonet
 								<img
 									src='https://cdn.glitch.com/1973df30-22e4-49d9-94b0-9a3b017066bc%2FGlitchLogo_Color.svg?v=1613667290307'
 									width='50px'
 									style={{ position: 'relative', top: '15px', margin: '0 15px' }}
 								/>
-								and click on <strong>'Remix on Glitch'</strong>.
+								og trykk på <strong>'Remix on Glitch'</strong>.
 							</p>
-							<p> To make the project your own you'll have to boost it to allow for extra memory and disk space.</p>
-							<h3>From here, you can:</h3>
+							<p> For å lage prosjektet til ditt eget må du "booste" det for å gi plass til ekstra minne og lagringsplass.</p>
+							<h3>Fra her, kan du:</h3>
 							<ul style={{ marginBottom: '30px' }}>
 								<p>
-									<li>Edit any of the files that were in the original project.</li>
-									<li>Change the name of the project.</li>
-									<li>Customize the project to make it your own!</li>
+									<li>Redigere filene i originalprosjektet</li>
+									<li>Forandre navnet på prosjektet.</li>
+									<li>Tilpasse det og gjør det til ditt eget!</li>
 								</p>
 							</ul>
 						</>
 					)}
-					<h2>About this app</h2>
+					<h2>Om denne nettsiden (på engelsk)</h2>
 					<h3>Credits</h3>
 					<div className='Instructions-sctFour'>
 						<p>
