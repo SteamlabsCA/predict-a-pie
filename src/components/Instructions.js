@@ -237,6 +237,227 @@ function Instructions() {
 				</div>
 			</div>
 		);
+	} else if (strings.getLanguage() == 'no') {
+		return (
+			<div className='Instructions'>
+				<div className='Instructions-container'>
+					<div className='Instructions-sctOne'>
+						<span>
+							<span className='Instructions-title'>
+								<h1>Gjett en rett </h1>
+								<h1>med et nevralt nettverk</h1>
+							</span>
+							<div className='body'>
+								<p>
+									Hva får en pai til å smake best? Hva om du hadde alle ingrediensene i hele verden tilgjengelig for å lage den perfekte paien? I denne workshopen vil du koble opp en nevralt nettverk for å gjøre akkurat
+									det! Du vil så få brukt den nye kunnskapen din til å teste et større nevralt nettverk som har brukt maskinlæring for å analysere tusenvis av oppskrifter for å komme opp med nye, kreative
+									kombinasjoner.
+								</p>
+								<p>
+									Interessert i å lære mer? Besøk{' '}
+									<a
+										onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://steamlabs.ca/ai-programs/predict-a-pie', 'https://steamlabs.ca/ai-programs/predict-a-pie')}
+										href='https://steamlabs.ca'
+										target='_new'
+									>
+										Steamlabs' nettsider
+									</a>{' '}
+									for å:
+								</p>
+								<ul>
+									<p>
+										<li>Lese mer om denne aktiviteten eller andre AI-aktiviteter</li>
+										<li>Finne linker til presentasjoner (på engelsk) om denne aktiviteten</li>
+										<li>Ofte stilte spørsmål om hvordan denne AI-aktiviteten fungerer og tekniske spørsmål rundt bygging av ditt eget nettverk</li>
+									</p>
+								</ul>
+								<p>Spørsmål? Send en epost til info@steamlabs.ca (på engelsk) så vil vi komme tilbake til deg.</p>
+							</div>
+						</span>
+						<span>
+							<img src='./PredictPie.jpg' />
+						</span>
+					</div>
+					<div className='sctn-title'>
+						<strong>
+							Matlaging med en <em>dæsj</em> AI
+						</strong>
+					</div>
+					<div className='video-sctn'>
+						<div>
+							<h2>Educational and Tutorial Video</h2>
+							<p>
+								Lær om kanadisk urfolk-fusjonsmatlaging fra Xaxli’p First Nation-kokk David Wolfman og hvordan du kan bruke en AI-simulator for nevrale nettverk for å generere oppskrifter til en restaurant!
+								Du vil lære om hvordan data kan være skjev og hvordan utelukkelse av matlaging fra et bredt spekter av kulturer kan ha negative konsekvenser. Dette kan føre til at man går glipp av den rike
+								mangfoldigheten av erfaringer som kan deles fra andre kulturer, og risikere å marginalisere disse samfunnene. Deretter viser vi hvordan du kan bygge din egen modell fra dine egne data ved
+								hjelp av vår simulator for nevrale nettverk.
+							</p>
+						</div>
+						<div className='video-container'>
+							<div className='sctn'>
+								<h2>Hele videoen</h2>
+								<p className='aligned-p'>
+									Hvis du er helt ny innen AI og maskinlæring, er dette en video for deg! Som et verktøy for selvbetjening dekker denne videoen grunnleggende om programmering av maskinlæring og nevrale nettverk.
+									Vi konsulterer med urfolkskokk David Wolfman, for å teste ut vår modell og deretter diskutere potensielle treningsforutsetninger og etiske implikasjoner av AI. Chief Wolfman lager en ny modell som
+									bedre imøtekommer hans egne verdier og prinsipper for innfødt sammensatt kulinarisk matlaging.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/9niAf2fAuhw'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+							<div className='sctn'>
+								<h2>Utrdag - Bare urfolksinnhold</h2>
+								<p className='aligned-p'>
+									Skal du bruke denne webappen i klasserommet for å støtte leksjoner om AI og nevrale nettverk, er dette versjonen du trenger! Videoen dekker alle våre samtaler med urfolkskokk David Wolfman.
+									Wolfman tester ut vår "gjett en rett"-modell og diskuterer potensielle trenings-skjevheter og etiske implikasjoner med AI. Han bygger en modell som passer bedre til hans egen matlagingsstil og prinsipper.
+								</p>
+								<iframe
+									src='https://www.youtube-nocookie.com/embed/pofctfKPokI'
+									title='YouTube video player'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+									allowFullScreen
+								></iframe>
+							</div>
+						</div>
+					</div>
+					<div className='Instructions-sctTwo'>Det er to hovedaktiviteter du kan gjøre på disse nettsidene. Du har tilgang til dem når som helst fra menyen i øverste venstre hjørne.</div>
+					<div className='Instructions-sctThree'>
+						<div>
+							<h2>Bygg et nevralt nettverk (NN)</h2>
+							<p>
+								I denne aktiviteten bygger du et ekte, fungerende nevralt nettverk. <Definition text={strings.neuronDef}>Nevronene</Definition>, eller inngangsnodene om du vil, i det første laget er dine "inndata".
+								Tenk på disse som ingrediensene, eller informasjonen som ditt NN vil basere sine avgjørelser på. Det siste laget med <Definition text={strings.neuronDef}>nevroner</Definition> (utgangsnoder) er 
+								beslutningene, resultatene, eller "klassifiseringene" som det nevrale nettverket kan gjøre basert på inndataene. Legg til <Definition text={strings.neuronDef}>nevroner</Definition> og koble dem
+								sammen for å bestemme hvilke inngangsnoder som vil påvirke hvilke resultater. Trenger du å oppdage kombinasjoner av inngangsverdier, kan du legge til "skjulte lag" i midten for å oppdage disse kombinasjonene. Om
+								nødvendig, kan du klikke på symbolene (+) eller (-) på nodene og forandre "vektingen", eller hvor mye hver inngangsverdi har å si for utgangsverdien.
+							</p>
+						</div>
+						<div>
+							<h2>Test et nevralt nettverk</h2>
+							<p>Denne aktiviteten kan gjøres på egenhånd, eller i klasser. For klasser, trykk på "Lag klasserom", og del URL-en med elevene.</p>
+							<p>
+								Det nevrale nettverket i denne aktiviteten har blitt trenet på tusenvis av oppskrifter for å kunne klassifisere enhver oppskrift som "Søt pai", "Quiche", "Middagspai" and "Ekkelt" fra
+								kombinasjonen av ingredienser. Nå kan den generalisere og klassifisere hvilken som helst av de mange millioner av muligheter.
+							</p>
+							<p>Prøv forskjellige kombinasjoner av ingredienser og se hva det nevrale nettverket syns om dem! Du kan også trykke på "Finn oppskrift"-knappen for å søke etter en oppskrift.</p>
+							<p>
+								Lagre oppskriftene du er fornøyd med. Finn klassifikasjoner du er uenig med, og skriv inn hva du mener den burde vært klassifisert som. På "Vis statistikk"-siden kan du se om andre
+								er enige med deg.
+							</p>
+						</div>
+					</div>
+
+					{window.location.origin.includes('glitch') && (
+						<>
+							<h2>Remiks av prosjektet</h2>
+							<p>Når du remikser dette prosjektet, lager du en kopi av det eksisterende prosjektet. Deretter kan du tilpasse det og gjøre endringer.</p>
+							<h3 style={{ marginBottom: 0 }}>Hvordan remikse</h3>
+							<p style={{ marginTop: 0 }}>
+								For å remikse prosjektet, trykk på fiskeikonet
+								<img
+									src='https://cdn.glitch.com/1973df30-22e4-49d9-94b0-9a3b017066bc%2FGlitchLogo_Color.svg?v=1613667290307'
+									width='50px'
+									style={{ position: 'relative', top: '15px', margin: '0 15px' }}
+								/>
+								og trykk på <strong>'Remix on Glitch'</strong>.
+							</p>
+							<p> For å lage prosjektet til ditt eget må du "booste" det for å gi plass til ekstra minne og lagringsplass.</p>
+							<h3>Fra her, kan du:</h3>
+							<ul style={{ marginBottom: '30px' }}>
+								<p>
+									<li>Redigere filene i originalprosjektet</li>
+									<li>Forandre navnet på prosjektet.</li>
+									<li>Tilpasse det og gjør det til ditt eget!</li>
+								</p>
+							</ul>
+						</>
+					)}
+					<h2>Om denne nettsiden (på engelsk)</h2>
+					<h3>Credits</h3>
+					<div className='Instructions-sctFour'>
+						<p>
+							<a onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.steamlabs.ca/', 'https://www.steamlabs.ca/')} href='https://www.steamlabs.ca/' target='_new'>
+								<img src='https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg' />
+							</a>
+							Predict-a-Pie is a creation of Steamlabs.
+						</p>
+						<p>
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: http://www.cookingwiththewolfman.com/home.html', 'http://www.cookingwiththewolfman.com/home.html')}
+								href='http://www.cookingwiththewolfman.com/home.html'
+								target='_new'
+							>
+								<img src='./ChefWolfmanLogo.gif' />
+							</a>
+							Consultation with David Wolfman and Marlene Finn
+						</p>
+						<p>
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://kidscodejeunesse.org/', 'https://kidscodejeunesse.org/')}
+								href='https://kidscodejeunesse.org/'
+								target='_new'
+							>
+								<img src='https://steamlabs.ca/wp-content/uploads/2021/01/300px-KCJ.png' height='100px' />
+							</a>
+							Co-designed by Steamlabs and Kids Code Jeunesse.
+						</p>
+						<p>
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://www.amazonfutureengineer.com/', 'https://www.amazonfutureengineer.com/')}
+								href='https://www.amazonfutureengineer.com/'
+								target='_new'
+							>
+								<img src='https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png' />
+							</a>
+							Created with funding from Amazon Future Engineer.
+						</p>
+					</div>
+					<div className='Instructions-sctFive'>
+						<h3>License</h3>
+						<p>Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</p>
+						<p>In summary, you are free to:</p>
+						<ul>
+							<p>
+								<li>Share — copy and redistribute the material in any medium or format</li>
+								<li>Adapt — remix, transform, and build upon the material for any purpose, even commercially.</li>
+							</p>
+						</ul>
+						<p>Under the following terms:</p>
+						<ul>
+							<p>
+								<li>
+									Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that
+									suggests the licensor endorses you or your use.
+								</li>
+								<li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+							</p>
+						</ul>
+						<p>
+							Full details of this license can be found here:{' '}
+							<a
+								onClick={() => gtmTrack('out_btn_click', 'Instructions', 'Out Bound: https://creativecommons.org/licenses/by-sa/4.0/', 'https://creativecommons.org/licenses/by-sa/4.0/')}
+								href='https://creativecommons.org/licenses/by-sa/4.0/'
+								target='_new'
+							>
+								https://creativecommons.org/licenses/by-sa/4.0/
+							</a>
+						</p>
+					</div>
+					<div className='Instructions-sctSix'>
+						<h3>
+							<a href='./PredictAPiePrivacyPolicy.pdf' target='blank'>
+								Privacy Policy
+							</a>
+						</h3>
+					</div>
+				</div>
+			</div>
+		);
 	} else {
 		return (
 			<div className='Instructions'>
