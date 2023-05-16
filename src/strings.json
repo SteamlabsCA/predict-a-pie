@@ -169,7 +169,8 @@
     "Winter": "Winter",
     "Spring": "Spring",
     "english": "English",
-    "french": "Français"
+    "french": "Français",
+    "norwegian": "Norsk"
   },
   "fr": {
     "instructions": "Instructions",
@@ -341,7 +342,8 @@
     "Winter": "Hiver",
     "Spring": "Printemps",
     "english": "English",
-    "french": "Français"
+    "french": "Français",
+    "norwegian": "Norsk"
   },
   "no": {
     "instructions": "Instruksjoner",
@@ -512,7 +514,8 @@
     "Fall": "Høst",
     "Winter": "Vinter",
     "Spring": "Vår",
-    "english": "Engelsk",
-    "french": "Fransk"
+    "english": "English",
+    "french": "Français",
+    "norwegian": "Norsk"
   }
 }
