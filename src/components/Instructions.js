@@ -601,8 +601,8 @@ function Instructions() {
               </ul>
             </>
           )}
-          <h2>Om denne nettsiden (på engelsk)</h2>
-          <h3>Credits</h3>
+          <h2>Om denne nettsiden</h2>
+          <h3>Krediteringer</h3>
           <div className="Instructions-sctFour">
             <p>
               <a
@@ -619,7 +619,7 @@ function Instructions() {
               >
                 <img src="https://steamlabs.ca/wp-content/uploads/2020/04/SteamLabs_Wordmark_RGB_Blue.jpg" />
               </a>
-              Predict-a-Pie is a creation of Steamlabs.
+              Gjett en rett, originalt Predict-a-Pie er laget av Steamlabs.
             </p>
             <p>
               <a
@@ -636,7 +636,7 @@ function Instructions() {
               >
                 <img src="./ChefWolfmanLogo.gif" />
               </a>
-              Consultation with David Wolfman and Marlene Finn
+              Samtaler med David Wolfman og Marlene Finn
             </p>
             <p>
               <a
@@ -656,7 +656,7 @@ function Instructions() {
                   height="100px"
                 />
               </a>
-              Co-designed by Steamlabs and Kids Code Jeunesse.
+              Laget som et samarbeid mellom Steamlabs og Kids Code Jeunesse.
             </p>
             <p>
               <a
@@ -673,46 +673,46 @@ function Instructions() {
               >
                 <img src="https://steamlabs.ca/wp-content/uploads/2021/04/Amazon-Future-Engineer-Logo.png" />
               </a>
-              Created with funding from Amazon Future Engineer.
+              Laget med midler fra Amazon Future Engineer.
             </p>
           </div>
           <div className="Instructions-sctFive">
-            <h3>License</h3>
+            <h3>Lisens</h3>
             <p>
-              Licensed under Attribution-ShareAlike 4.0 International (CC BY-SA
-              4.0)
+              Lisensiert under Attribution-ShareAlike 4.0 International (CC
+              BY-SA 4.0).
             </p>
-            <p>In summary, you are free to:</p>
+            <p>Kort oppsummert, du har frihet til å:</p>
             <ul>
               <p>
                 <li>
-                  Share — copy and redistribute the material in any medium or
-                  format
+                  Dele - kopiere og redistribuere materialet i hvilket som helst
+                  medium eller format.
                 </li>
                 <li>
-                  Adapt — remix, transform, and build upon the material for any
-                  purpose, even commercially.
+                  Tilpasse - remikse, transformere og bygge videre på materialet
+                  til ethvert formål, også kommersielt.
                 </li>
               </p>
             </ul>
-            <p>Under the following terms:</p>
+            <p>Under følgende vilkår:</p>
             <ul>
               <p>
                 <li>
-                  Attribution — You must give appropriate credit, provide a link
-                  to the license, and indicate if changes were made. You may do
-                  so in any reasonable manner, but not in any way that suggests
-                  the licensor endorses you or your use.
+                  Attribusjon - Du må gi passende kreditering, gi en link til
+                  lisensen, og indikere om endringer ble gjort. Du kan gjøre
+                  dette på en hvilken som helst rimelig måte, men ikke på en
+                  måte som antyder at lisensgiveren støtter deg eller din bruk.
                 </li>
                 <li>
-                  ShareAlike — If you remix, transform, or build upon the
-                  material, you must distribute your contributions under the
-                  same license as the original.
+                  ShareAlike - Hvis du remikser, transformerer, eller bygger
+                  videre på materialet, må du distribuere dine bidrag under
+                  samme lisens som den opprinnelige.
                 </li>
               </p>
             </ul>
             <p>
-              Full details of this license can be found here:{" "}
+              Alle detaljene om denne lisensen kan bli funnet her:{" "}
               <a
                 onClick={() =>
                   gtmTrack(
@@ -732,7 +732,7 @@ function Instructions() {
           <div className="Instructions-sctSix">
             <h3>
               <a href="./PredictAPiePrivacyPolicy.pdf" target="blank">
-                Privacy Policy
+                Personvernerklæring
               </a>
             </h3>
           </div>
