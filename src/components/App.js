@@ -4,7 +4,6 @@ import ClassroomCode from "./ClassroomCode";
 import SharePrompt from "./SharePrompt";
 import Backdrop from "./Backdrop";
 import Instructions from "./Instructions";
-import LandingPage from "./LandingPage";
 import NavBar from "./NavBar";
 import Network from "./Network";
 import Prompt from "./Prompt";
@@ -13,34 +12,24 @@ import SelectRecipe from "./SelectRecipe";
 import Stats from "./Stats";
 import TrainedNetwork from "./TrainedNetwork";
 import TrainedChefNetwork from "./TrainedChefNetwork";
-import TrainedNetworkInstructionPopup from "./TrainedNetworkInstructionPopup";
 import gtmTrack from "../helpers/gtmTrack";
 import nnToJSON from "../helpers/nnToJSON";
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LocalizedStrings from "react-localization";
 import socketClient from "socket.io-client";
 
 import ingredients from "../ingredients/ingredients.json";
 import classifications from "../ingredients/classifications.json";
 import stringData from "../strings.json";
-import ArticleIntro from "./ArticleIntro";
-import ArticleClassroom from "./ArticleClassroom";
 const strings = new LocalizedStrings(stringData);
 
 export { ingredients, classifications, strings };
 
-let socket;
-
-// if (process.env.NODE_ENV === "development") {
-//   socket = socketClient("http://localhost:8080");
-//   console.log("development");
-// } else if (process.env.NODE_ENV === "staging") {
-//   socket = socketClient(`https://127.0.0.1/`);
-//   console.log("staging");
-// } else if (process.env.NODE_ENV === "production") {
-socket = socketClient(`https://${window.location.hostname}:445`);
-// }
+const socket = socketClient(`https://${window.location.hostname}:443`, {
+  path: "/api/socket.io/",
+});
+// const socket = socketClient("http://127.0.0.1:3001");
 
 // Classroom code specified in URL
 const url = window.location.pathname.split("/");
@@ -77,15 +66,12 @@ function App(props) {
   });
   const [envVariables, setEnvVariables] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [instructionId, setInstructionId] = useState();
-  const [disableFindRecipe, setDisableFindRecipe] = useState(true);
 
   // Receive from socket
   React.useEffect(() => {
     socket.on("connect", () => {
       appData.connected = true;
       setAppData({ ...appData });
-      console.log(appData);
     });
 
     socket.on("disconnect", () => {
@@ -101,7 +87,6 @@ function App(props) {
     socket.on("classroom-created", (code) => {
       setClassroomCode(code);
       window.history.pushState("", "", "/" + code);
-      console.log(appData);
     });
 
     socket.on("classroom-joined", (code) => {
@@ -160,6 +145,11 @@ function App(props) {
 
       case "french":
         strings.setLanguage("fr");
+        setAppData({ ...appData });
+        break;
+
+      case "norwegian":
+        strings.setLanguage("no");
         setAppData({ ...appData });
         break;
     }
@@ -323,48 +313,13 @@ function App(props) {
 
   // Check if Environment Variables Exist
   const checkEnv = () => {
-    let resPromise;
-
-    if (
-      process.env.NODE_ENV === "development" ||
-      process.env.NODE_ENV === "staging"
-    ) {
-      resPromise = true;
-      setEnvVariables(resPromise);
-    } else if (process.env.NODE_ENV === "production") {
-      resPromise = new Promise((resolve, reject) => {
-        socket.emit("check-env", (response) => {
-          setEnvVariables(response);
-          resolve(response);
-        });
+    let resPromise = new Promise((resolve, reject) => {
+      socket.emit("check-env", (response) => {
+        setEnvVariables(response);
+        resolve(response);
       });
-    }
-
+    });
     return resPromise;
-  };
-
-  // Show and hide instruction boxes
-  const clickInstructionButton = (e) => {
-    if (instructionId !== "4-1" && instructionId !== "4-2") {
-      const id = e.target.id;
-      setInstructionId(id);
-
-      if (id === "4-1" || id === "4-2") {
-        setDisableFindRecipe(false);
-        document.querySelector(".Popup").style.display = "none";
-        document
-          .querySelectorAll(".Neuron-input")
-          .forEach((elem) => elem.classList.remove("zIndex"));
-        document
-          .querySelectorAll(".Neuron-output")
-          .forEach((elem) => elem.classList.remove("zIndex"));
-      } else {
-        id !== "2" ? setDisableFindRecipe(true) : setDisableFindRecipe(false);
-        document.querySelector(`.Popup-${id}`).style.display = "none";
-        document.querySelector(`.Popup-${parseInt(id) + 1}`).style.display =
-          "block";
-      }
-    }
   };
 
   return (
@@ -426,9 +381,6 @@ function App(props) {
             />
           </Route>
           <Route path="*/trained" exact>
-            <TrainedNetworkInstructionPopup
-              clickButton={clickInstructionButton}
-            />
             <NavBar
               title={strings.pretrainedModel}
               appData={appData}
@@ -441,8 +393,6 @@ function App(props) {
                   <SelectRecipe
                     classifications={classifications}
                     onSubmit={onFindRecipe}
-                    clickInstructionButton={clickInstructionButton}
-                    disableFindRecipe={disableFindRecipe}
                   />
                   <button
                     onClick={onSaveRecipe}
@@ -450,22 +400,6 @@ function App(props) {
                   >
                     {strings.saveRecipe}
                   </button>
-                  <Link
-                    onClick={() =>
-                      gtmTrack("prm_btn_click", "ClassStats", "ClassStats", "")
-                    }
-                    to={
-                      appData.classroom
-                        ? `/${appData.classroom.code}/stats`
-                        : ""
-                    }
-                    target="_new"
-                    style={{ marginLeft: "1rem" }}
-                  >
-                    <button disabled={!appData.classroom || !updated}>
-                      View Classroom Stats
-                    </button>
-                  </Link>
                 </>
               }
             />
@@ -482,7 +416,6 @@ function App(props) {
               classifications={classifications}
               visible={reclassify}
               onReclassify={onReclassify}
-              clickInstructionButton={clickInstructionButton}
             />
           </Route>
           <Route path="*/trained/:id">
@@ -525,38 +458,16 @@ function App(props) {
               recipes={recipes}
             />
           </Route>
-          <Route path="*/article/intro-to-neural-networks">
-            <NavBar
-              title="Article - Intro to Neural Networks"
-              appData={appData}
-              route="intro-to-neural-networks"
-              onCommand={onCommand}
-              checkEnv={checkEnv}
-              envVariables={envVariables}
-            />
-            <ArticleIntro appData={appData} />
-          </Route>
-          <Route path="*/article/non-computer-science-classroom">
-            <NavBar
-              title="Article - Neural Networks for Your Non-Computer Science Classroom Subject"
-              appData={appData}
-              route="non-computer-science-classroom"
-              onCommand={onCommand}
-              checkEnv={checkEnv}
-              envVariables={envVariables}
-            />
-            <ArticleClassroom appData={appData} />
-          </Route>
           <Route path="/">
             <NavBar
-              title="Intro to Neural Network"
+              title={strings.instructions}
               appData={appData}
               route="instructions"
               onCommand={onCommand}
               checkEnv={checkEnv}
               envVariables={envVariables}
             />
-            <LandingPage onCommand={onCommand} appData={appData} />
+            <Instructions />
           </Route>
         </Switch>
         <Alert />

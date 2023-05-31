@@ -7,7 +7,6 @@ const seedrandom = require("seedrandom");
 const socketIo = require("socket.io");
 var AWS = require("aws-sdk");
 const { v4: uuidv4 } = require("uuid");
-
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -16,65 +15,38 @@ const s3 = new AWS.S3();
 var config = new AWS.Config({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  region: process.env.REGION,
 });
 
 AWS.config = config;
 
 const app = express();
 
-let server, httpsServer, io;
+// const httpsOptions = {
+// 	cert: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.crt')),
+// 	ca: fs.readFileSync(path.join(__dirname, 'cert', 'nn_inventor_city.ca-bundle')),
+// 	key: fs.readFileSync(path.join(__dirname, 'cert', 'ssl_nn_inventor_city_PK.key')),
+// };
 
-if (process.env.NODE_ENV === "development") {
-  server = http.createServer(app);
-  httpsServer = https.createServer(app);
+// https server not needed, since NGINX is used as a reverse proxy
+/*
+const httpsOptions = {
+	cert: fs.readFileSync(
+		path.join("/etc/pki/tls/certs", "nn_inventor_city_chain.crt")
+	),
+	key: fs.readFileSync(path.join("/etc/pki/tls/certs", "nn_inventor_city.key")),
+};
+*/
 
-  io = socketIo(server, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-    },
-  });
-} else if (process.env.NODE_ENV === "staging") {
-  httpsOptions = {
-    cert: fs.readFileSync(
-      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_chain.crt")
-    ),
-    key: fs.readFileSync(
-      path.join("/etc/pki/tls/certs", "nn-staging_inventor_city_PK.key")
-    ),
-  };
+const server = http.createServer(app);
+// const httpsServer = https.createServer(httpsOptions, app);
 
-  server = http.createServer(app);
-  httpsServer = https.createServer(httpsOptions, app);
-
-  io = socketIo(httpsServer, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-    },
-  });
-} else if (process.env.NODE_ENV === "production") {
-  httpsOptions = {
-    cert: fs.readFileSync(path.join(__dirname, "cert", "nn_inventor_city.crt")),
-    ca: fs.readFileSync(
-      path.join(__dirname, "cert", "nn_inventor_city.ca-bundle")
-    ),
-    key: fs.readFileSync(
-      path.join(__dirname, "cert", "ssl_nn_inventor_city_PK.key")
-    ),
-  };
-
-  server = http.createServer(app);
-  httpsServer = https.createServer(httpsOptions, app);
-
-  io = socketIo(httpsServer, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-    },
-  });
-}
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 app.use(express.static(path.join(__dirname, "../build")));
 
@@ -148,8 +120,7 @@ generateClassroomCode = (id) => {
 // Get all the Bucket Keys
 const listAllKeys = (thisIp) => {
   var params = {
-    // Bucket: "predictapie",
-    Bucket: process.env.AWS_BUCKET_NAME,
+    Bucket: "predictapie",
   };
   return new Promise((resolve, reject) => {
     let allKeys = [];
@@ -475,5 +446,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(8080, () => console.log(`Node Server is running on port 8080`));
-httpsServer.listen(444, () => console.log(`Node Secure server on port 444`));
+server.listen(3001, () => console.log(`http server on port 3001`));
+// httpsServer.listen(444, () => console.log(`Secure server on port 444`));

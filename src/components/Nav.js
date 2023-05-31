@@ -31,7 +31,7 @@ function Nav({ appData, ...props }) {
           }
           to={appData.classroom ? `/${appData.classroom.code}` : "/"}
         >
-          Intro to Neural Network
+          {strings.instructions}
         </Link>
         <Link
           onClick={() => gtmTrack("prm_btn_click", "Build", "Build", "")}
@@ -96,6 +96,14 @@ function Nav({ appData, ...props }) {
             >
               {strings.french}
             </a>
+            <a
+              onClick={() => {
+                props.onCommand("norwegian");
+                gtmTrack("sec_btn_click", "Language", "Norwegian", "");
+              }}
+            >
+              {strings.norwegian}
+            </a>
           </>
         )}
         {strings.getLanguage() == "fr" && (
@@ -107,6 +115,34 @@ function Nav({ appData, ...props }) {
               }}
             >
               {strings.english}
+            </a>
+            <a
+              onClick={() => {
+                props.onCommand("norwegian");
+                gtmTrack("sec_btn_click", "Language", "Norwegian", "");
+              }}
+            >
+              {strings.norwegian}
+            </a>
+          </>
+        )}
+        {strings.getLanguage() == "no" && (
+          <>
+            <a
+              onClick={() => {
+                props.onCommand("english");
+                gtmTrack("sec_btn_click", "Language", "English", "");
+              }}
+            >
+              {strings.english}
+            </a>
+            <a
+              onClick={() => {
+                props.onCommand("french");
+                gtmTrack("sec_btn_click", "Language", "French", "");
+              }}
+            >
+              {strings.french}
             </a>
           </>
         )}
