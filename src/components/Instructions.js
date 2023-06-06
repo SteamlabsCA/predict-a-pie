@@ -380,7 +380,6 @@ function Instructions() {
       </div>
     );
   } else if (strings.getLanguage() == "no") {
-    console.debug(strings.getLanguage());
     return (
       <div className="Instructions">
         <div className="Instructions-container">
