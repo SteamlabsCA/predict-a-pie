@@ -42,7 +42,7 @@ Will start the server side component allowing the client side to create and join
 const socket = socketClient("http://127.0.0.1:8080");
 ```
 
-## AWS account weirdness
+## AWS accounts
 
 There is only one AWS account for both staging and production, and there is only one EC2 instance and Elastic Beanstalk environment which are for the production site.
 
