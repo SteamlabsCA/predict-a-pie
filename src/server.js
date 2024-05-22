@@ -334,51 +334,45 @@ io.on('connection', (socket) => {
         return;
     }
 
-    // Generate an ID that includes transformations as previously used
-    let baseId = uuidv4();
-    let transformedId = `${baseId}.${baseId.hashCode().toString().replace(/-/g, '_')}`;
-    generateId(transformedId, ipHash).then((res) => {
-        if (res.status !== -1) {
-            let networkData = JSON.stringify({
-                id: res,
-                data: network.data,
-                ipAddress: ipHash,
-                date: network.dateTime,
-            });
+    // Assign a unique ID to the network
+    network.id = uuidv4();
 
-            const params = {
-                Bucket: 'predictapie-ca',
-                Body: networkData,
-                Key: `${res}.json`
-            };
+    const networkData = JSON.stringify({
+        id: network.id,
+        data: network.data,
+        ipAddress: ipHash,
+        date: network.dateTime,
+    });
 
-            s3.upload(params, function (err, data) {
-                if (err) {
-                    console.error('Error saving neural network:', err);
-                    callback({ status: -1, message: 'Error saving data' });
-                    return;
-                }
-                console.log('Neural Network Saved Successfully');
+    const params = {
+        Bucket: 'predictapie-ca', // Updated bucket name
+        Body: networkData,
+        Key: `${network.id}.json` // Simplified key with the .json extension
+    };
 
-                lastRequest = {
-                    ipHash: ipHash,
-                    time: Date.now(),
-                };
-
-                callback({
-                    id: res,
-                    data: network.data,
-                    ipAddress: ipHash,
-                    date: network.dateTime,
-                    status: 1,
-                });
-            });
-        } else {
-            callback(res);
+    s3.upload(params, function (err, data) {
+        if (err) {
+            console.error('Error saving neural network:', err);
+            callback({ status: -1, message: 'Error saving data' });
+            return;
         }
+        console.log('Neural Network Saved Successfully');
+
+        // Update last request details
+        lastRequest = {
+            ipHash: ipHash,
+            time: Date.now(),
+        };
+
+        callback({
+            id: network.id,
+            data: network.data,
+            ipAddress: ipHash,
+            date: network.dateTime,
+            status: 1,
+        });
     });
 });
-
 
 
 	// Check for Environment Variables
