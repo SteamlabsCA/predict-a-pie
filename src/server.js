@@ -180,37 +180,23 @@ async function generateId(id, thisIp) {
 }
 
 //Retrieve Neural Network from DB
+// Updated to use the new S3 bucket and simpler filename for easier retrieval
 const retrieveNN = (id) => {
-	var params = {
-		Bucket: 'predictapie',
-	};
-	return new Promise((resolve, reject) => {
-		let found = false;
-		s3.listObjectsV2(params, function (err, data) {
-			if (err) {
-				console.log(err, err.stack);
-			} else {
-				var contents = data.Contents;
-				contents.forEach(function (content) {
-					if (content.Key.includes(id)) {
-						found = true;
-						var params = {
-							Bucket: 'predictapie',
-							Key: content.Key,
-						};
-						s3.getObject(params, function (err, data) {
-							if (err) {
-								console.log('Error', err.stack);
-							} else {
-								resolve(data.Body.toString());
-							}
-						});
-					}
-				});
-				if (!found) resolve(found);
-			}
-		});
-	});
+  const params = {
+      Bucket: 'predictapie-ca', // Updated bucket name
+      Key: `${id}.json` // Construct the file key directly from the id
+  };
+
+  return new Promise((resolve, reject) => {
+      s3.getObject(params, function(err, data) {
+          if (err) {
+              console.log('Error retrieving file:', err.stack);
+              resolve(false); // Resolve as false if the file is not found or an error occurs
+          } else {
+              resolve(data.Body.toString()); // Return the content of the file
+          }
+      });
+  });
 };
 
 //String hash for url
@@ -315,69 +301,79 @@ io.on('connection', (socket) => {
 	});
 
 	// Save Neural Network
-	socket.on('save-network', (network, callback) => {
-		//Check to make sure data is a JSON object and includes the secret
-		try {
-			JSON.parse(network.data);
-			let secret = process.env.DATA_SECRET;
-			if (!network.data.includes(secret.replace(/'/g, '"'))) {
-				throw 'Secret Not Passed';
-			}
-		} catch (e) {
-			callback({
-				status: -1,
-				message: 'Error',
-			});
-			return -1;
-		}
+  // Updated to use the new S3 bucket and simpler filename for easier retrieval
+  socket.on('save-network', (network, callback) => {
+    // Validate JSON and check for secret
+    try {
+        JSON.parse(network.data);
+        const secret = process.env.DATA_SECRET;
+        if (!network.data.includes(secret.replace(/'/g, '"'))) {
+            throw 'Secret Not Passed';
+        }
+    } catch (e) {
+        callback({
+            status: -1,
+            message: 'Error',
+        });
+        return;
+    }
 
-		let ipHash = require('crypto')
-			.createHmac('sha256', process.env.IP_HASH_SECRET)
-			.update(socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress)
-			.digest('hex');
+    // Rate limit check
+    const ipHash = require('crypto')
+        .createHmac('sha256', process.env.IP_HASH_SECRET)
+        .update(socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress)
+        .digest('hex');
 
-		let timeLimit = 5000;
-		if (lastRequest.ipHash === ipHash && Date.now() - lastRequest.time < timeLimit) {
-			console.log('Consecutive Neural Network Sharing rate has been exceeded, please try again in 5 seconds.');
-			callback({
-				status: -1,
-				message: 'Consecutive Neural Network Sharing rate has been exceeded, please try again in 5 seconds.',
-			});
-			return -1;
-		}
+    const timeLimit = 5000; // 5 seconds
+    if (lastRequest.ipHash === ipHash && Date.now() - lastRequest.time < timeLimit) {
+        console.log('Rate limit exceeded, please try again in 5 seconds.');
+        callback({
+            status: -1,
+            message: 'Rate limit exceeded, please try again in 5 seconds.',
+        });
+        return;
+    }
 
-		network.id = uuidv4();
+    // Assign a unique ID to the network
+    network.id = uuidv4();
 
-		generateId(`${network.id}.${network.id.hashCode().toString().replace(/-/g, '_')}`, ipHash).then((res) => {
-			if (res.status !== -1) {
-				let networkData = JSON.stringify({
-					id: res,
-					data: network.data,
-					ipAddress: ipHash,
-					date: network.dateTime,
-				});
+    const networkData = JSON.stringify({
+        id: network.id,
+        data: network.data,
+        ipAddress: ipHash,
+        date: network.dateTime,
+    });
 
-				var params = { Bucket: 'predictapie', Body: networkData, Key: `${res}^${ipHash}` };
-				s3.upload(params, function (err, data) {
-					console.log('Neural Network Shared');
-				});
-				lastRequest = {
-					ipHash: ipHash,
-					time: Date.now(),
-				};
+    const params = {
+        Bucket: 'predictapie-ca', // Updated bucket name
+        Body: networkData,
+        Key: `${network.id}.json` // Simplified key with the .json extension
+    };
 
-				callback({
-					id: res,
-					data: network.data,
-					ipAddress: ipHash,
-					date: network.dateTime,
-					status: 1,
-				});
-			} else {
-				callback(res);
-			}
-		});
-	});
+    s3.upload(params, function (err, data) {
+        if (err) {
+            console.error('Error saving neural network:', err);
+            callback({ status: -1, message: 'Error saving data' });
+            return;
+        }
+        console.log('Neural Network Saved Successfully');
+
+        // Update last request details
+        lastRequest = {
+            ipHash: ipHash,
+            time: Date.now(),
+        };
+
+        callback({
+            id: network.id,
+            data: network.data,
+            ipAddress: ipHash,
+            date: network.dateTime,
+            status: 1,
+        });
+    });
+});
+
 
 	// Check for Environment Variables
 	socket.on('check-env', (callback) => {
