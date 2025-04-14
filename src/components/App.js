@@ -265,7 +265,9 @@ function App(props) {
 
 			socket.emit('save-network', { data: jsonObj, dateTime: `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}` }, (response) => {
 				if (response.status === 1) {
-					let urlId = response.id.split('.')[1];
+					// let urlId = response.id.split('.')[1];
+					// New version is just the id, no extra information
+					let urlId = response.id;
 					let url = window.location.origin + '/build/' + urlId;
 					setBuildNetwork({
 						name: buildNetwork.name,
